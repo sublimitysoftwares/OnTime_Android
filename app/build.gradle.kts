@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.ontime_jitendra"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.ontime_jitendra"
@@ -50,6 +50,9 @@ android {
 }
 
 dependencies {
+
+    // for navigation
+    implementation("androidx.navigation:navigation-compose:2.7.5")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
