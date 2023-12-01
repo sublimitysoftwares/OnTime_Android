@@ -60,7 +60,7 @@ fun SuperAdminScreen(navController: NavController, windowInfo: WindowInfo) {
             ) {
                 Text(text = "    switch to \nmobile mode")
             }
-            Spacer(modifier = Modifier.height(80.dp))
+            Spacer(modifier = Modifier.weight(1f))
 
             Row(
                 modifier = Modifier
@@ -139,7 +139,7 @@ fun SuperAdminScreen(navController: NavController, windowInfo: WindowInfo) {
                     Text(text = "Export DB", color = Color.White)
                 }
             }
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.weight(1f))
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -169,7 +169,7 @@ fun SuperAdminScreen(navController: NavController, windowInfo: WindowInfo) {
 
                 }
             }
-            Spacer(modifier = Modifier.height(60.dp))
+            Spacer(modifier = Modifier.weight(4f))
             Row(
                 modifier = Modifier
                     .fillMaxWidth()

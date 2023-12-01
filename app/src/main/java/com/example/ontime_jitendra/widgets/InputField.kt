@@ -2,6 +2,7 @@ package com.example.ontime_jitendra.widgets
 
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -61,8 +62,12 @@ fun InputField(
             Text(text = labelId)
         },
         trailingIcon = {
-            if (isTrailingIcon){
-                Image(painter = painterResource(id = R.drawable.cross), contentDescription = "cross_icon")
+            if (isTrailingIcon) {
+                Image(
+                    painter = painterResource(id = R.drawable.cross),
+                    contentDescription = "cross_icon",
+                    modifier = Modifier.aspectRatio(0.5f)
+                )
             }
         },
         singleLine = isSingleLine,

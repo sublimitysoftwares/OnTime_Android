@@ -7,9 +7,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.mandatorySystemGesturesPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -21,6 +24,7 @@ import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -73,7 +77,7 @@ fun AdminRegistrationScreen(navController: NavController, windowInfo: WindowInfo
                     .padding(end = 10.dp)
             )
 
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(10.dp).weight(1f))
 
 
             Row(
@@ -87,8 +91,8 @@ fun AdminRegistrationScreen(navController: NavController, windowInfo: WindowInfo
                 ) {
                     Text(text = "New/Edit User Registration", color = Color.White)
                     Surface(
-                        modifier = Modifier
-                            .size(width = 465.dp, height = 220.dp)
+                        modifier = Modifier.fillMaxWidth(0.4f)
+                            .fillMaxHeight(0.4f)
                             .padding(top = 5.dp),
                         color = Color(0xFF5A5656)
                     ) {
@@ -132,7 +136,9 @@ fun AdminRegistrationScreen(navController: NavController, windowInfo: WindowInfo
                     Text(text = "Fingerprint Registration", color = Color.White)
                     Surface(
                         modifier = Modifier
-                            .size(width = 465.dp, height = 220.dp)
+//                            .size(width = 465.dp, height = 220.dp)
+                            .fillMaxWidth(0.6f)
+                            .fillMaxHeight(0.4f)
                             .padding(top = 5.dp),
                         color =  Color(0xFF5A5656)
                     ) {
@@ -155,7 +161,8 @@ fun AdminRegistrationScreen(navController: NavController, windowInfo: WindowInfo
                                 )
                                 Image(
                                     painter = painterResource(id = R.drawable.fingerprint),
-                                    contentDescription = "fingerprint_img"
+                                    contentDescription = "fingerprint_img",
+                                    modifier = Modifier.aspectRatio(1.2f),
                                 )
                             }
                             Row(
@@ -174,7 +181,8 @@ fun AdminRegistrationScreen(navController: NavController, windowInfo: WindowInfo
                                 )
                                 Image(
                                     painter = painterResource(id = R.drawable.fingerprint),
-                                    contentDescription = "fingerprint_img"
+                                    contentDescription = "fingerprint_img",
+                                    modifier = Modifier.aspectRatio(1.2f),
                                 )
                             }
                             Row(
@@ -197,7 +205,7 @@ fun AdminRegistrationScreen(navController: NavController, windowInfo: WindowInfo
 
                 }
             }
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(10.dp).weight(1f))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
@@ -231,7 +239,7 @@ fun AdminRegistrationScreen(navController: NavController, windowInfo: WindowInfo
                     .padding(start = 20.dp),
                 style = MaterialTheme.typography.labelSmall
             )
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(10.dp).weight(1f))
             Row(
                 modifier = Modifier
                     .fillMaxWidth()

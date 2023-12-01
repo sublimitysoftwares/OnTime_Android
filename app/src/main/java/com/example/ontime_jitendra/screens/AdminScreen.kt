@@ -110,7 +110,7 @@ fun AdminScreen(navController: NavController, windowInfo: WindowInfo) {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.place_finger_icon),
+                        painter = painterResource(id = R.drawable.fingerprint_rld),
                         contentDescription = "place_finger_logo",
                         colorFilter = ColorFilter.tint(color = Color.White)
                     )
@@ -201,30 +201,34 @@ fun AdminScreen(navController: NavController, windowInfo: WindowInfo) {
                     }
                 }
                 Column(
-                    verticalArrangement = Arrangement.Bottom,
+                    verticalArrangement = Arrangement.SpaceBetween,
                     horizontalAlignment = Alignment.End,
                 ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.fob_icon),
-                        contentDescription = "fob_icon",
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier.align(alignment = Alignment.End),
-                        colorFilter = ColorFilter.tint(color = Color.White)
+                    Column(
+                        verticalArrangement = Arrangement.Top,
+                        horizontalAlignment = Alignment.End
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_nfc),
+                            contentDescription = "fob_icon",
+                            contentScale = ContentScale.Fit,
+                            colorFilter = ColorFilter.tint(color = Color.White)
 
-                    )
-                    Spacer(modifier = Modifier.height(2.dp))
-                    Text(
-                        text = "FOB",
-                        style = MaterialTheme.typography.titleSmall,
-                        color = Color.White,
-                        modifier = Modifier
-                            .align(alignment = Alignment.End)
-                            .padding(end = 6.dp)
-                    )
-                    Spacer(modifier = Modifier.height(70.dp))
+                        )
+                        Spacer(modifier = Modifier.height(2.dp))
+                        Text(
+                            text = "FOB",
+                            style = MaterialTheme.typography.titleSmall,
+                            color = Color.White,
+                        )
+
+                    }
+
+                    Spacer(modifier = Modifier.weight(1f))
                     Column(
                         verticalArrangement = Arrangement.Bottom,
                         horizontalAlignment = Alignment.End,
+                        modifier = Modifier.padding(bottom = 20.dp)
                     ) {
                         Text(text = "6.5d : 6.5", color = Color.White,style = MaterialTheme.typography.labelSmall)
                         Text(text = "Unique Identifier : ci delhi", color = Color.White,style = MaterialTheme.typography.labelSmall)

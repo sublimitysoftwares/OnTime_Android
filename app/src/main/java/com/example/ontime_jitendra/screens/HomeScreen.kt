@@ -22,6 +22,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -80,16 +81,17 @@ fun HomeScreen(navController: NavController, windowInfo: WindowInfo) {
                     contentDescription =
                     "rld_logo",
                     contentScale = ContentScale.Fit,
-                    modifier = Modifier.size(width = 300.dp, height = 75.dp)
+                    modifier = Modifier.fillMaxWidth(0.4f)
+                        .fillMaxHeight(0.2f)
                 )
                 Column(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.place_finger_icon),
+                        painter = painterResource(id = R.drawable.fingerprint_rld),
                         contentDescription =
-                        "place_finger_logo"
+                        "place_finger_logo",
                     )
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
@@ -103,7 +105,8 @@ fun HomeScreen(navController: NavController, windowInfo: WindowInfo) {
                 painter = painterResource(id = R.drawable.ontime_logo),
                 contentDescription = "onTime_logo",
                 contentScale = ContentScale.Fit,
-                modifier = Modifier.size(width = 300.dp, height = 250.dp)
+                modifier = Modifier.fillMaxWidth(0.4f)
+                    .fillMaxHeight(0.6f)
             )
             Row(
                 modifier = Modifier
@@ -177,29 +180,37 @@ fun HomeScreen(navController: NavController, windowInfo: WindowInfo) {
                     }
                 }
                 Column(
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.fob_icon),
-                        contentDescription = "fob_icon",
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier.align(alignment = Alignment.End)
+                    verticalArrangement = Arrangement.SpaceBetween,
+                    horizontalAlignment = Alignment.End,
 
-                    )
-                    Spacer(modifier = Modifier.height(2.dp))
-                    Text(
-                        text = "FOB",
-                        style = MaterialTheme.typography.titleSmall,
-                        color = Color.Red,
-                        modifier = Modifier
-                            .align(alignment = Alignment.End)
-                            .padding(end = 6.dp)
-                    )
-                    Spacer(modifier = Modifier.height(60.dp))
+                ) {
+                    Column(
+                        verticalArrangement = Arrangement.Top,
+                        horizontalAlignment = Alignment.End
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_nfc),
+                            contentDescription = "fob_icon",
+                            contentScale = ContentScale.Fit,
+
+
+                        )
+                        Spacer(modifier = Modifier.height(2.dp))
+                        Text(
+                            text = "FOB",
+                            style = MaterialTheme.typography.titleSmall,
+                            color = Color.Red,
+
+
+
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.weight(1f))
                     Column(
                         verticalArrangement = Arrangement.Bottom,
                         horizontalAlignment = Alignment.End,
+                        modifier = Modifier.padding(bottom = 20.dp)
                     ) {
                         Text(text = "6.5d : 6.5", style = MaterialTheme.typography.labelSmall)
                         Text(text = "Unique Identifier : ci delhi", style = MaterialTheme.typography.labelSmall)
