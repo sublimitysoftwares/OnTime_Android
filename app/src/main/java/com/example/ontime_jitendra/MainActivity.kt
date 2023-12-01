@@ -1,5 +1,6 @@
 package com.example.ontime_jitendra
 
+import WindowInfo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -15,12 +16,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.ontime_jitendra.navigation.OnTimeNavigation
 import com.example.ontime_jitendra.ui.theme.OnTime_JitendraTheme
+import rememberWindowInfo
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            OnTimeApp()
+            val windowInfo = rememberWindowInfo()
+            OnTimeApp(windowInfo)
         }
     }
 }
@@ -28,7 +31,7 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun OnTimeApp() {
+fun OnTimeApp(windowInfo: WindowInfo) {
     OnTime_JitendraTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
@@ -36,8 +39,7 @@ fun OnTimeApp() {
         ) {
             Column(verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally) {
-                OnTimeNavigation()
-
+                OnTimeNavigation(windowInfo)
             }
 
 
@@ -45,17 +47,4 @@ fun OnTimeApp() {
     }
 }
 
-@OptIn(ExperimentalComposeUiApi::class)
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview(){
-    OnTime_JitendraTheme {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            OnTimeNavigation()
-        }
-    }
 
-}

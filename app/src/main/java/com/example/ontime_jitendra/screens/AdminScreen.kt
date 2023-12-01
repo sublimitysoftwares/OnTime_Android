@@ -1,17 +1,18 @@
 package com.example.ontime_jitendra.screens
 
+import WindowInfo
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -41,7 +42,7 @@ import com.example.ontime_jitendra.navigation.OnTimeScreens
 import com.example.ontime_jitendra.widgets.PinEntryDialog
 
 @Composable
-fun AdminScreen(navController: NavController) {
+fun AdminScreen(navController: NavController, windowInfo: WindowInfo) {
     var isDialogVisible by remember { mutableStateOf(false) }
     val context = LocalContext.current
     if (isDialogVisible) {
@@ -122,7 +123,7 @@ fun AdminScreen(navController: NavController) {
                 }
             }
 
-            Spacer(modifier = Modifier.fillMaxHeight(0.67f))
+            Spacer(modifier = Modifier.fillMaxHeight(0.5f))
 
             Row(
                 modifier = Modifier
@@ -135,10 +136,8 @@ fun AdminScreen(navController: NavController) {
                 Image(
                     painter = painterResource(id = R.drawable.rld_img_logo),
                     contentDescription = "rld_img_logo",
-                    modifier = Modifier
-
-                        .size(width = 250.dp, height = 500.dp),
-                    contentScale = ContentScale.Fit,
+                    modifier = Modifier.aspectRatio(1f),
+                    contentScale = ContentScale.Crop,
                     colorFilter = ColorFilter.tint(color = Color.White)
                 )
                 Column(
@@ -222,13 +221,13 @@ fun AdminScreen(navController: NavController) {
                             .align(alignment = Alignment.End)
                             .padding(end = 6.dp)
                     )
-                    Spacer(modifier = Modifier.height(60.dp))
+                    Spacer(modifier = Modifier.height(70.dp))
                     Column(
                         verticalArrangement = Arrangement.Bottom,
                         horizontalAlignment = Alignment.End,
                     ) {
-                        Text(text = "6.5d : 6.5", color = Color.White)
-                        Text(text = "Unique Identifier : ci delhi", color = Color.White)
+                        Text(text = "6.5d : 6.5", color = Color.White,style = MaterialTheme.typography.labelSmall)
+                        Text(text = "Unique Identifier : ci delhi", color = Color.White,style = MaterialTheme.typography.labelSmall)
                     }
                 }
             }

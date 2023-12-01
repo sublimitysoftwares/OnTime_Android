@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.ontime_jitendra"
-        minSdk = 24
+        minSdk = 23
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -53,6 +53,9 @@ dependencies {
 
     // for navigation
     implementation("androidx.navigation:navigation-compose:2.7.5")
+
+    // for responsive design
+    implementation ("androidx.compose.material3:material3-window-size-class:1.1.2")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
