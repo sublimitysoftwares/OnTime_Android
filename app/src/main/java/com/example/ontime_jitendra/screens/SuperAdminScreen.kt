@@ -60,7 +60,7 @@ fun SuperAdminScreen(navController: NavController, windowInfo: WindowInfo) {
             ) {
                 Text(text = "    switch to \nmobile mode")
             }
-            Spacer(modifier = Modifier.weight(1f))
+            Spacer(modifier = Modifier.weight(3f))
 
             Row(
                 modifier = Modifier

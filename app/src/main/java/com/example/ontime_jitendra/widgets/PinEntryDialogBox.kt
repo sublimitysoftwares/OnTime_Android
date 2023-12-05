@@ -106,7 +106,7 @@ fun PinEntryDialog(
                 Spacer(modifier = Modifier.height(5.dp))
                 Text(
                     text = "Administration Log In",
-                    style = MaterialTheme.typography.titleLarge,
+                    style = MaterialTheme.typography.headlineSmall,
                     color = Color(0xFF008B8B),
                     fontWeight = FontWeight.Bold
                 )

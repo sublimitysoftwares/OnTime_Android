@@ -1,6 +1,7 @@
 package com.example.ontime_jitendra.screens
 
 import WindowInfo
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -32,6 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -39,10 +42,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.ontime_jitendra.R
 import com.example.ontime_jitendra.navigation.OnTimeScreens
+import com.example.ontime_jitendra.ui.theme.dimens
 import com.example.ontime_jitendra.widgets.PinEntryDialog
 
 @Composable
 fun AdminScreen(navController: NavController, windowInfo: WindowInfo) {
+
     var isDialogVisible by remember { mutableStateOf(false) }
     val context = LocalContext.current
     if (isDialogVisible) {
@@ -80,8 +85,9 @@ fun AdminScreen(navController: NavController, windowInfo: WindowInfo) {
 
                     Text(
                         text = "2:23 PM",
-                        style = MaterialTheme.typography.titleLarge,
-                        color = Color.White
+                        style = MaterialTheme.typography.headlineMedium,
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold
                     )
                 }
                 Column {
@@ -112,18 +118,19 @@ fun AdminScreen(navController: NavController, windowInfo: WindowInfo) {
                     Image(
                         painter = painterResource(id = R.drawable.fingerprint_rld),
                         contentDescription = "place_finger_logo",
-                        colorFilter = ColorFilter.tint(color = Color.White)
+                        colorFilter = ColorFilter.tint(color = Color.White),
+                        modifier = Modifier.size(MaterialTheme.dimens.medium3)
                     )
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
                         text = "Place Finger",
-                        style = MaterialTheme.typography.titleSmall,
+                        style = MaterialTheme.typography.headlineSmall,
                         color = Color.White
                     )
                 }
             }
 
-            Spacer(modifier = Modifier.fillMaxHeight(0.5f))
+            Spacer(modifier = Modifier.fillMaxHeight(0.45f))
 
             Row(
                 modifier = Modifier
@@ -136,8 +143,8 @@ fun AdminScreen(navController: NavController, windowInfo: WindowInfo) {
                 Image(
                     painter = painterResource(id = R.drawable.rld_img_logo),
                     contentDescription = "rld_img_logo",
-                    modifier = Modifier.aspectRatio(1f),
-                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.size(MaterialTheme.dimens.large3)
+                        .aspectRatio(1f),
                     colorFilter = ColorFilter.tint(color = Color.White)
                 )
                 Column(
@@ -205,20 +212,21 @@ fun AdminScreen(navController: NavController, windowInfo: WindowInfo) {
                     horizontalAlignment = Alignment.End,
                 ) {
                     Column(
-                        verticalArrangement = Arrangement.Top,
-                        horizontalAlignment = Alignment.End
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.ic_nfc),
                             contentDescription = "fob_icon",
                             contentScale = ContentScale.Fit,
-                            colorFilter = ColorFilter.tint(color = Color.White)
+                            colorFilter = ColorFilter.tint(color = Color.White),
+                            modifier = Modifier.size(MaterialTheme.dimens.medium3)
 
                         )
                         Spacer(modifier = Modifier.height(2.dp))
                         Text(
                             text = "FOB",
-                            style = MaterialTheme.typography.titleSmall,
+                            style = MaterialTheme.typography.headlineSmall,
                             color = Color.White,
                         )
 

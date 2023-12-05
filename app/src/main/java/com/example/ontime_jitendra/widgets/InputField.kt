@@ -44,14 +44,19 @@ fun InputField(
     keyboardType: KeyboardType = KeyboardType.Text,
     imeAction: ImeAction = ImeAction.Next,
     onAction: KeyboardActions = KeyboardActions.Default,
-    colors: TextFieldColors = TextFieldDefaults.textFieldColors(
-        containerColor = Color(0xFFD6B6C1),
-        unfocusedTextColor = Color.LightGray,
-        cursorColor = Color.Cyan,
-        focusedLabelColor = Color.White,
-        focusedIndicatorColor = Color.White,
-        focusedSupportingTextColor = Color.White
-    ),
+    colors: TextFieldColors = run {
+        val containerColor = Color(0xFFD6B6C1)
+        TextFieldDefaults.colors(
+            unfocusedTextColor = Color.LightGray,
+            focusedContainerColor = containerColor,
+            unfocusedContainerColor = containerColor,
+            disabledContainerColor = containerColor,
+            cursorColor = Color.Cyan,
+            focusedIndicatorColor = Color.White,
+            focusedLabelColor = Color.White,
+            focusedSupportingTextColor = Color.White,
+        )
+    },
     shape: Shape = RoundedCornerShape(5.dp)
 
 ) {
@@ -73,8 +78,8 @@ fun InputField(
         singleLine = isSingleLine,
         textStyle = TextStyle(fontSize = 18.sp, color = MaterialTheme.colorScheme.onBackground),
         modifier = modifier
-            .padding(bottom = 10.dp, start = 10.dp, end = 10.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .padding(bottom = 10.dp, start = 10.dp, end = 10.dp),
         enabled = enabled,
         keyboardOptions = KeyboardOptions(keyboardType = keyboardType, imeAction = imeAction),
         keyboardActions = onAction,

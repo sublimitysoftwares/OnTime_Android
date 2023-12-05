@@ -1,6 +1,7 @@
 package com.example.ontime_jitendra.screens
 
 import WindowInfo
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -32,12 +33,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.ontime_jitendra.R
 import com.example.ontime_jitendra.navigation.OnTimeScreens
+import com.example.ontime_jitendra.ui.theme.dimens
 import com.example.ontime_jitendra.widgets.PinEntryDialog
 
 @Composable
@@ -57,14 +61,16 @@ fun HomeScreen(navController: NavController, windowInfo: WindowInfo) {
     ) {
 
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(MaterialTheme.dimens.small1),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 10.dp, end = 20.dp, top = 30.dp),
+                    .padding(end = MaterialTheme.dimens.small3, top = MaterialTheme.dimens.medium1),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.Top
             ) {
@@ -74,14 +80,15 @@ fun HomeScreen(navController: NavController, windowInfo: WindowInfo) {
                 ) {
                     RadioButton(selected = true, onClick = { /*TODO*/ })
 
-                    Text(text = "2:23 PM", style = MaterialTheme.typography.titleLarge)
+                    Text(text = "2:23 PM", style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
                 }
                 Image(
                     painter = painterResource(id = R.drawable.rld_logo),
                     contentDescription =
                     "rld_logo",
                     contentScale = ContentScale.Fit,
-                    modifier = Modifier.fillMaxWidth(0.4f)
+                    modifier = Modifier
+                        .fillMaxWidth(0.4f)
                         .fillMaxHeight(0.2f)
                 )
                 Column(
@@ -92,11 +99,12 @@ fun HomeScreen(navController: NavController, windowInfo: WindowInfo) {
                         painter = painterResource(id = R.drawable.fingerprint_rld),
                         contentDescription =
                         "place_finger_logo",
+                        modifier = Modifier.size(MaterialTheme.dimens.medium3)
                     )
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
                         text = "Place Finger",
-                        style = MaterialTheme.typography.titleSmall,
+                        style = MaterialTheme.typography.headlineSmall,
                         color = Color.Red
                     )
                 }
@@ -105,8 +113,9 @@ fun HomeScreen(navController: NavController, windowInfo: WindowInfo) {
                 painter = painterResource(id = R.drawable.ontime_logo),
                 contentDescription = "onTime_logo",
                 contentScale = ContentScale.Fit,
-                modifier = Modifier.fillMaxWidth(0.4f)
-                    .fillMaxHeight(0.6f)
+                modifier = Modifier
+                    .fillMaxWidth(0.35f)
+                    .fillMaxHeight(0.5f)
             )
             Row(
                 modifier = Modifier
@@ -118,8 +127,9 @@ fun HomeScreen(navController: NavController, windowInfo: WindowInfo) {
                     painter = painterResource(id = R.drawable.rld_img_logo),
                     contentDescription = "rld_img_logo",
                     modifier = Modifier
+                        .size(MaterialTheme.dimens.large3)
                         .aspectRatio(1f),
-                    contentScale = ContentScale.Crop
+
                 )
                 Column(
                     verticalArrangement = Arrangement.Bottom,
@@ -185,24 +195,20 @@ fun HomeScreen(navController: NavController, windowInfo: WindowInfo) {
 
                 ) {
                     Column(
-                        verticalArrangement = Arrangement.Top,
-                        horizontalAlignment = Alignment.End
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.ic_nfc),
                             contentDescription = "fob_icon",
                             contentScale = ContentScale.Fit,
-
-
+                            modifier = Modifier.size(MaterialTheme.dimens.medium3)
                         )
                         Spacer(modifier = Modifier.height(2.dp))
                         Text(
                             text = "FOB",
-                            style = MaterialTheme.typography.titleSmall,
+                            style = MaterialTheme.typography.headlineSmall,
                             color = Color.Red,
-
-
-
                         )
                     }
 
