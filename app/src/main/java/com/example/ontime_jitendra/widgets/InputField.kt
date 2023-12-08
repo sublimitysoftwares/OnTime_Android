@@ -27,6 +27,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ontime_jitendra.R
@@ -57,14 +58,15 @@ fun InputField(
             focusedSupportingTextColor = Color.White,
         )
     },
-    shape: Shape = RoundedCornerShape(5.dp)
+    shape: Shape = RoundedCornerShape(5.dp),
+    textStyle: TextStyle
 
 ) {
     OutlinedTextField(
         value = valueState.value,
         onValueChange = { valueState.value = it },
         label = {
-            Text(text = labelId)
+            Text(text = labelId, style = textStyle)
         },
         trailingIcon = {
             if (isTrailingIcon) {
@@ -76,7 +78,7 @@ fun InputField(
             }
         },
         singleLine = isSingleLine,
-        textStyle = TextStyle(fontSize = 18.sp, color = MaterialTheme.colorScheme.onBackground),
+        textStyle = TextStyle(fontSize = 14.sp, color = MaterialTheme.colorScheme.onBackground),
         modifier = modifier
             .fillMaxWidth()
             .padding(bottom = 10.dp, start = 10.dp, end = 10.dp),
@@ -85,5 +87,7 @@ fun InputField(
         keyboardActions = onAction,
         colors = colors,
         shape = shape,
+
+
     )
 }

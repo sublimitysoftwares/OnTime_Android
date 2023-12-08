@@ -78,7 +78,8 @@ fun AdminRegistrationScreen(navController: NavController, windowInfo: WindowInfo
                 modifier = Modifier
                     .size(width = 300.dp, height = 70.dp)
                     .align(alignment = Alignment.End)
-                    .padding(end = 10.dp)
+                    .padding(end = 10.dp),
+                textStyle = MaterialTheme.typography.titleMedium
             )
 
             Spacer(
@@ -122,7 +123,8 @@ fun AdminRegistrationScreen(navController: NavController, windowInfo: WindowInfo
                                     .size(
                                         width = MaterialTheme.dimens.userInputTextFieldWidth,
                                         height = MaterialTheme.dimens.userInputTextFieldHeight
-                                    )
+                                    ),
+                                textStyle = MaterialTheme.typography.titleMedium
                             )
                             InputField(
                                 valueState = searchState,
@@ -133,7 +135,8 @@ fun AdminRegistrationScreen(navController: NavController, windowInfo: WindowInfo
                                     .size(
                                         width = MaterialTheme.dimens.userInputTextFieldWidth,
                                         height = MaterialTheme.dimens.userInputTextFieldHeight
-                                    )
+                                    ),
+                                textStyle = MaterialTheme.typography.titleMedium
                             )
                             InputField(
                                 valueState = searchState,
@@ -144,7 +147,8 @@ fun AdminRegistrationScreen(navController: NavController, windowInfo: WindowInfo
                                     .size(
                                         width = MaterialTheme.dimens.userInputTextFieldWidth,
                                         height = MaterialTheme.dimens.userInputTextFieldHeight
-                                    )
+                                    ),
+                                textStyle = MaterialTheme.typography.titleMedium
                             )
 
                         }
@@ -185,7 +189,8 @@ fun AdminRegistrationScreen(navController: NavController, windowInfo: WindowInfo
                                             width = MaterialTheme.dimens.fingerprintInputTextFieldWidth,
                                             height = MaterialTheme.dimens.fingerprintInputTextFieldHeight
                                         ),
-                                    isTrailingIcon = true
+                                    isTrailingIcon = true,
+                                    textStyle = MaterialTheme.typography.titleMedium
                                 )
                                 Image(
                                     painter = painterResource(id = R.drawable.fingerprint),
@@ -204,9 +209,12 @@ fun AdminRegistrationScreen(navController: NavController, windowInfo: WindowInfo
                                     enabled = true,
                                     isSingleLine = true,
                                     modifier = Modifier
-                                        .size(width = MaterialTheme.dimens.fingerprintInputTextFieldWidth,
-                                            height = MaterialTheme.dimens.fingerprintInputTextFieldHeight),
-                                    isTrailingIcon = true
+                                        .size(
+                                            width = MaterialTheme.dimens.fingerprintInputTextFieldWidth,
+                                            height = MaterialTheme.dimens.fingerprintInputTextFieldHeight
+                                        ),
+                                    isTrailingIcon = true,
+                                    textStyle = MaterialTheme.typography.titleMedium
                                 )
                                 Image(
                                     painter = painterResource(id = R.drawable.fingerprint),
@@ -254,7 +262,10 @@ fun AdminRegistrationScreen(navController: NavController, windowInfo: WindowInfo
                     onClick = { /*TODO*/ },
                     shape = RoundedCornerShape(3.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF85D32C)),
-                    modifier = Modifier.size(width = 200.dp, height = 40.dp)
+                    modifier = Modifier.size(
+                        width = MaterialTheme.dimens.nextBtnWidth,
+                        height = MaterialTheme.dimens.nextBtnHeight
+                    )
                 ) {
                     Text(text = "NEXT")
 

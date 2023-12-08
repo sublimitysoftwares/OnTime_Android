@@ -120,7 +120,7 @@ fun HomeScreen(navController: NavController, windowInfo: WindowInfo) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(end = 40.dp),
+                    .padding(end = MaterialTheme.dimens.medium1),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Image(
@@ -136,7 +136,7 @@ fun HomeScreen(navController: NavController, windowInfo: WindowInfo) {
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier
                         .fillMaxHeight()
-                        .padding(bottom = 20.dp)
+                        .padding(bottom = MaterialTheme.dimens.small3)
                 ) {
 
 
@@ -150,7 +150,7 @@ fun HomeScreen(navController: NavController, windowInfo: WindowInfo) {
                         Text(text = "ENTER PIN", style = MaterialTheme.typography.titleLarge)
 
                     }
-                    Spacer(modifier = Modifier.height(20.dp))
+                    Spacer(modifier = Modifier.height(MaterialTheme.dimens.small3))
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.Center,

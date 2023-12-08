@@ -171,7 +171,7 @@ fun AdminScreen(navController: NavController, windowInfo: WindowInfo) {
 
                     }
 
-                    Spacer(modifier = Modifier.height(20.dp))
+                    Spacer(modifier = Modifier.height(MaterialTheme.dimens.small3))
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.Center,

@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.ontime_jitendra.R
 import com.example.ontime_jitendra.navigation.OnTimeScreens
+import com.example.ontime_jitendra.ui.theme.dimens
 
 @Composable
 fun SuperAdminScreen(navController: NavController, windowInfo: WindowInfo) {
@@ -54,7 +55,10 @@ fun SuperAdminScreen(navController: NavController, windowInfo: WindowInfo) {
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF85D32C)),
                 modifier = Modifier
                     .align(alignment = Alignment.End)
-                    .size(width = 250.dp, height = 55.dp)
+                    .size(
+                        width = MaterialTheme.dimens.switchToMobileModeBtnWidth,
+                        height = MaterialTheme.dimens.switchToMobileModeBtnHeight
+                    )
                     .padding(end = 10.dp),
                 shape = RoundedCornerShape(3.dp)
             ) {
@@ -151,7 +155,7 @@ fun SuperAdminScreen(navController: NavController, windowInfo: WindowInfo) {
                 Button(
                     onClick = { /*TODO*/ },
                     shape = RoundedCornerShape(3.dp),
-                    modifier = Modifier.size(width = 200.dp, height = 40.dp),
+                    modifier = Modifier.size(width = 220.dp, height = 40.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD6B6C1)),
                     border = BorderStroke(width = 1.dp, color = Color.White)
                 ) {
@@ -179,7 +183,7 @@ fun SuperAdminScreen(navController: NavController, windowInfo: WindowInfo) {
             ) {
                 Button(
                     onClick = {
-                              navController.popBackStack()
+                        navController.popBackStack()
                     },
                     shape = RoundedCornerShape(3.dp),
                     colors = ButtonDefaults.buttonColors(
@@ -205,7 +209,7 @@ fun SuperAdminScreen(navController: NavController, windowInfo: WindowInfo) {
                 Spacer(modifier = Modifier.width(20.dp))
                 Button(
                     onClick = {
-                              navController.navigate(OnTimeScreens.AdminRegistrationScreen.name)
+                        navController.navigate(OnTimeScreens.AdminRegistrationScreen.name)
                     },
                     shape = RoundedCornerShape(3.dp),
                     colors = ButtonDefaults.buttonColors(

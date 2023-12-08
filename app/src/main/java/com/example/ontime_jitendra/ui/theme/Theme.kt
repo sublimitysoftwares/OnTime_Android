@@ -91,8 +91,23 @@ fun OnTime_JitendraTheme(
             }
         }
         WindowWidthSizeClass.Expanded -> {
-            appDimens = ExpandedDimens
-            typography = ExpandedTypography
+            if (config.screenWidthDp < 900){
+                appDimens = ExpandedDimens2
+                typography = ExpandedTypography2
+
+            }else if (config.screenWidthDp < 960){
+                appDimens = ExpandedDimens1
+                typography = ExpandedTypography1
+
+            }else if (config.screenWidthDp < 1020){
+                appDimens = ExpandedDimens3
+                typography = ExpandedTypography3
+
+            }else{
+                appDimens = ExpandedDimens
+                typography = ExpandedTypography
+            }
+
         }
     }
 

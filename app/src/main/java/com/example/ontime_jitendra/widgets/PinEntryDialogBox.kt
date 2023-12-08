@@ -4,12 +4,16 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -24,6 +28,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -38,6 +43,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.example.ontime_jitendra.ui.theme.dimens
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -63,6 +69,7 @@ fun PinEntryDialog(
             ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center,
                     modifier = Modifier.fillMaxWidth()
 
                 ) {
@@ -71,9 +78,10 @@ fun PinEntryDialog(
                         style = MaterialTheme.typography.headlineSmall,
                         color = Color(0xFF4CAF50),
                         fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(start = 100.dp)
+                        modifier = Modifier.padding(start = MaterialTheme.dimens.administrationPadding)
                     )
-                    Spacer(modifier = Modifier.width(50.dp))
+                    Spacer(modifier = Modifier.width(MaterialTheme.dimens.adminAndCloseSpacerW))
+
                     IconButton(
                         onClick = {
                             onDismiss()
@@ -81,7 +89,11 @@ fun PinEntryDialog(
 
 
                         ) {
-                        Icon(imageVector = Icons.Default.Close, contentDescription = null)
+                        Icon(
+                            imageVector = Icons.Default.Close,
+                            contentDescription = null,
+                            modifier = Modifier.size(MaterialTheme.dimens.closeIconSize)
+                        )
                     }
                 }
 
@@ -89,7 +101,6 @@ fun PinEntryDialog(
                 Surface(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(start = 10.dp, end = 10.dp)
                         .height(50.dp),
                     shape = RoundedCornerShape(3.dp),
                     color = Color(0xFFD6B6C1),
@@ -99,7 +110,7 @@ fun PinEntryDialog(
                         text = "Please enter your PIN number to log in",
                         textAlign = TextAlign.Center,
                         style = MaterialTheme.typography.titleMedium,
-                        modifier = Modifier.padding(top = 12.5.dp)
+                        modifier = Modifier.padding(top = MaterialTheme.dimens.enterPinTextPadding)
                     )
 
                 }
@@ -128,7 +139,6 @@ fun PinEntryDialog(
                 singleLine = true,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp)
             )
 
         },
@@ -140,8 +150,11 @@ fun PinEntryDialog(
                     onDismiss()
                 },
                 modifier = Modifier
-                    .padding(end = 180.dp)
-                    .size(width = 160.dp, height = 40.dp),
+                    .padding(end = MaterialTheme.dimens.loginButtonPadding)
+                    .size(
+                        width = MaterialTheme.dimens.loginButtonWidth,
+                        height = MaterialTheme.dimens.loginButtonHeight
+                    ),
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF19701D)),
                 shape = RoundedCornerShape(3.dp)
             ) {
