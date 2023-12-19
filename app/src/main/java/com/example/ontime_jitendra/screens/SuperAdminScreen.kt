@@ -3,6 +3,7 @@ package com.example.ontime_jitendra.screens
 import WindowInfo
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -87,7 +88,10 @@ fun SuperAdminScreen(navController: NavController, windowInfo: WindowInfo) {
 
                 Column(
                     verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.clickable {
+                        navController.navigate(OnTimeScreens.FobRegisterScreen.name)
+                    }
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.nfc_register),
@@ -99,7 +103,10 @@ fun SuperAdminScreen(navController: NavController, windowInfo: WindowInfo) {
 
                 Column(
                     verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.clickable {
+                        navController.navigate(OnTimeScreens.SuperAdminSettingScreen.name)
+                    }
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.device_setting),

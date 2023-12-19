@@ -4,5 +4,7 @@ enum class OnTimeScreens {
     HomeScreen,
     AdminScreen,
     SuperAdminScreen,
-    AdminRegistrationScreen
+    AdminRegistrationScreen,
+    FobRegisterScreen,
+    SuperAdminSettingScreen
 }

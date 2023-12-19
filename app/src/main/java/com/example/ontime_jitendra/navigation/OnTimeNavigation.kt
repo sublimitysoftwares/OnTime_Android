@@ -8,8 +8,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.ontime_jitendra.screens.AdminRegistrationScreen
 import com.example.ontime_jitendra.screens.AdminScreen
+import com.example.ontime_jitendra.screens.FobRegisterScreen
 import com.example.ontime_jitendra.screens.HomeScreen
 import com.example.ontime_jitendra.screens.SuperAdminScreen
+import com.example.ontime_jitendra.screens.SuperAdminSettingScreen
 
 @ExperimentalComposeUiApi
 @Composable
@@ -28,6 +30,12 @@ fun OnTimeNavigation(windowInfo: WindowInfo) {
         }
         composable(OnTimeScreens.AdminRegistrationScreen.name){
             AdminRegistrationScreen(navController = navController,windowInfo)
+        }
+        composable(OnTimeScreens.FobRegisterScreen.name){
+            FobRegisterScreen(navController = navController)
+        }
+        composable(OnTimeScreens.SuperAdminSettingScreen.name){
+            SuperAdminSettingScreen(navController = navController)
         }
     }
 }
