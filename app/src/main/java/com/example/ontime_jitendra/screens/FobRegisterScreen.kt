@@ -1,5 +1,8 @@
 package com.example.ontime_jitendra.screens
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -55,11 +58,19 @@ fun FobRegisterScreen(navController: NavController) {
 
         mutableStateOf("")
     }
+
+    val isVisible = remember {
+        mutableStateOf(true)
+    }
+
+    val isSwitchOn = remember {
+        mutableStateOf(false)
+    }
     Surface(
         modifier = Modifier.fillMaxSize(), color = Color.DarkGray.copy(alpha = 0.8f)
     ) {
         Column(
-            verticalArrangement = Arrangement.Top,
+            verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(
                 top = MaterialTheme.dimens.small3,
@@ -90,49 +101,58 @@ fun FobRegisterScreen(navController: NavController) {
                     textStyle = MaterialTheme.typography.titleMedium
                 )
                 Spacer(modifier = Modifier.height(MaterialTheme.dimens.small1))
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    modifier = Modifier.width(360.dp)
-
+                AnimatedVisibility(
+                    visible = if (!isSwitchOn.value) {
+                        isVisible.value
+                    } else {
+                        !isVisible.value
+                    }, enter = fadeIn(), exit = fadeOut()
                 ) {
-                    Text(
-                        text = "Set location Radius",
-                        color = Color.White,
-                        style = MaterialTheme.typography.titleSmall
-                    )
-                    OutlinedTextField(
-                        value = locationRadiusState.value,
-                        onValueChange = { locationRadiusState.value = it },
-                        keyboardOptions = KeyboardOptions(
-                            keyboardType = KeyboardType.Number,
-                            imeAction = ImeAction.Default
-                        ),
-                        singleLine = true,
-                        modifier = Modifier.size(width = 70.dp, height = 50.dp),
-                        textStyle = MaterialTheme.typography.titleSmall,
-                        colors = run {
-                            val containerColor = Color(0xFFD6B6C1)
-                            TextFieldDefaults.colors(
-                                unfocusedTextColor = Color.LightGray,
-                                focusedContainerColor = containerColor,
-                                unfocusedContainerColor = containerColor,
-                                disabledContainerColor = containerColor,
-                                cursorColor = Color.Cyan,
-                                focusedIndicatorColor = Color.White,
-                                focusedLabelColor = Color.White,
-                                focusedSupportingTextColor = Color.White,
-                            )
-                        },
-                        placeholder = {
-                            Text(
-                                text = "Miles",
-                                style = MaterialTheme.typography.titleSmall
-                            )
-                        }
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        modifier = Modifier.width(360.dp)
 
-                    )
+                    ) {
+                        Text(
+                            text = "Set location Radius",
+                            color = Color.White,
+                            style = MaterialTheme.typography.titleSmall
+                        )
+                        OutlinedTextField(
+                            value = locationRadiusState.value,
+                            onValueChange = { locationRadiusState.value = it },
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Number,
+                                imeAction = ImeAction.Default
+                            ),
+                            singleLine = true,
+                            modifier = Modifier.size(width = 70.dp, height = 50.dp),
+                            textStyle = MaterialTheme.typography.titleSmall,
+                            colors = run {
+                                val containerColor = Color(0xFFD6B6C1)
+                                TextFieldDefaults.colors(
+                                    unfocusedTextColor = Color.LightGray,
+                                    focusedContainerColor = containerColor,
+                                    unfocusedContainerColor = containerColor,
+                                    disabledContainerColor = containerColor,
+                                    cursorColor = Color.Cyan,
+                                    focusedIndicatorColor = Color.White,
+                                    focusedLabelColor = Color.White,
+                                    focusedSupportingTextColor = Color.White,
+                                )
+                            },
+                            placeholder = {
+                                Text(
+                                    text = "Miles",
+                                    style = MaterialTheme.typography.titleSmall
+                                )
+                            }
+
+                        )
+                    }
                 }
+
                 Spacer(modifier = Modifier.height(MaterialTheme.dimens.small1))
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -146,8 +166,10 @@ fun FobRegisterScreen(navController: NavController) {
                         style = MaterialTheme.typography.titleSmall
                     )
                     Switch(
-                        checked = true,
-                        onCheckedChange = {},
+                        checked = isSwitchOn.value,
+                        onCheckedChange = {
+                                          isSwitchOn.value = it
+                        },
                         colors = SwitchDefaults.colors(
                             uncheckedThumbColor = Color.White,
                             uncheckedTrackColor = Color.LightGray,
