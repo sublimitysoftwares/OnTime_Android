@@ -3,6 +3,7 @@ package com.example.ontime_jitendra.navigation
 import WindowInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -12,10 +13,11 @@ import com.example.ontime_jitendra.screens.FobRegisterScreen
 import com.example.ontime_jitendra.screens.HomeScreen
 import com.example.ontime_jitendra.screens.SuperAdminScreen
 import com.example.ontime_jitendra.screens.SuperAdminSettingScreen
+import com.example.ontime_jitendra.screens.SuperAdminSettingViewModel
 
 @ExperimentalComposeUiApi
 @Composable
-fun OnTimeNavigation(windowInfo: WindowInfo) {
+fun OnTimeNavigation(windowInfo: WindowInfo, viewModel: SuperAdminSettingViewModel) {
     val navController = rememberNavController()
     NavHost(navController = navController,
         startDestination = OnTimeScreens.HomeScreen.name ) {
@@ -35,7 +37,7 @@ fun OnTimeNavigation(windowInfo: WindowInfo) {
             FobRegisterScreen(navController = navController)
         }
         composable(OnTimeScreens.SuperAdminSettingScreen.name){
-            SuperAdminSettingScreen(navController = navController)
+            SuperAdminSettingScreen(navController = navController,viewModel)
         }
     }
 }

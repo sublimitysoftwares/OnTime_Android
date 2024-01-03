@@ -1,14 +1,13 @@
 package com.example.ontime_jitendra
 
 import WindowInfo
-import android.app.PendingIntent
+import android.annotation.SuppressLint
 import android.app.admin.DevicePolicyManager
 import android.app.admin.SystemUpdatePolicy
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.content.IntentSender
 import android.os.BatteryManager
 import android.os.Bundle
 import android.os.UserManager
@@ -25,10 +24,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.ontime_jitendra.navigation.OnTimeNavigation
+import com.example.ontime_jitendra.screens.SuperAdminSettingViewModel
 import com.example.ontime_jitendra.ui.theme.OnTime_JitendraTheme
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.DelicateCoroutinesApi
 import rememberWindowInfo
 
+
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private lateinit var mAdminComponentName: ComponentName
@@ -38,10 +43,11 @@ class MainActivity : ComponentActivity() {
     companion object {
         const val LOCK_ACTIVITY_KEY = "com.example.ontime_jitendra.MainActivity"
     }
+    @OptIn(DelicateCoroutinesApi::class)
+    @SuppressLint("CoroutineCreationDuringComposition")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
             val windowInfo = rememberWindowInfo()
             OnTimeApp(windowInfo)
         }
@@ -178,7 +184,7 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun OnTimeApp(windowInfo: WindowInfo) {
+fun OnTimeApp(windowInfo: WindowInfo,viewModel : SuperAdminSettingViewModel = hiltViewModel() ) {
     OnTime_JitendraTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
@@ -186,7 +192,7 @@ fun OnTimeApp(windowInfo: WindowInfo) {
         ) {
             Column(verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally) {
-                OnTimeNavigation(windowInfo)
+                OnTimeNavigation(windowInfo,viewModel = viewModel)
             }
 
 

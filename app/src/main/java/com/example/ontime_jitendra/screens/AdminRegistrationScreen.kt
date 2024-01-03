@@ -1,7 +1,7 @@
 package com.example.ontime_jitendra.screens
 
 import WindowInfo
-import android.util.Log
+import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -9,11 +9,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.mandatorySystemGesturesPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -25,7 +23,6 @@ import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -33,7 +30,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -42,7 +38,10 @@ import androidx.navigation.NavController
 import com.example.ontime_jitendra.R
 import com.example.ontime_jitendra.ui.theme.dimens
 import com.example.ontime_jitendra.widgets.InputField
+import kotlinx.coroutines.DelicateCoroutinesApi
 
+@OptIn(DelicateCoroutinesApi::class)
+@SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun AdminRegistrationScreen(navController: NavController, windowInfo: WindowInfo) {
 
@@ -53,6 +52,19 @@ fun AdminRegistrationScreen(navController: NavController, windowInfo: WindowInfo
     val checkBoxState = remember {
         mutableStateOf(false)
     }
+
+//    var response by remember { mutableStateOf<DeviceInfo?>(null) }
+//    val api = Retrofit.Builder()
+//        .baseUrl(Constants.BASE_URL)
+//        .addConverterFactory(GsonConverterFactory.create())
+//        .build()
+//        .create(OnTimeApi::class.java)
+//    GlobalScope.launch(Dispatchers.IO) {
+//        val result = api.getDeviceInfo()
+//        response = result
+//
+//        Log.d("abc", "onCreate: ${response.toString()}")
+//    }
 
     Surface(
         modifier = Modifier.fillMaxSize(), color = Color.DarkGray.copy(alpha = 0.8f)
