@@ -26,7 +26,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.allocate.ontime.presentation_logic.navigation.OnTimeNavigation
-import com.allocate.ontime.presentation_logic.screens.SuperAdminSettingViewModel
+import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminSettingViewModel
 import com.allocate.ontime.presentation_logic.theme.OnTime_JitendraTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.DelicateCoroutinesApi

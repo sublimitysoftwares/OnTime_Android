@@ -8,6 +8,6 @@ import javax.inject.Singleton
 
 @Singleton
 interface OnTimeApi {
-    @GET(value = "GetDevice?IMEI=868307030059158")
+    @GET(value = "GetDevice?IMEI=868646330255705")
     suspend fun getDeviceInfo(): DeviceInfo
 }

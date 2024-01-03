@@ -1,4 +1,4 @@
-package com.allocate.ontime.presentation_logic.screens
+package com.allocate.ontime.presentation_logic.screens.super_admin
 
 import android.annotation.SuppressLint
 import android.util.Log
@@ -30,7 +30,6 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -43,13 +42,16 @@ import androidx.navigation.NavController
 import com.allocate.ontime.R
 import com.allocate.ontime.business_logic.data.DataOrException
 import com.allocate.ontime.presentation_logic.model.DeviceInfo
-import com.allocate.ontime.presentation_logic.model.ResponsePacket
+import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminSettingViewModel
 import com.allocate.ontime.presentation_logic.widgets.InputField
 
 
 @SuppressLint("SuspiciousIndentation")
 @Composable
-fun SuperAdminSettingScreen(navController: NavController,superAdminViewModel: SuperAdminSettingViewModel = hiltViewModel()) {
+fun SuperAdminSettingScreen(
+    navController: NavController,
+    superAdminViewModel: SuperAdminSettingViewModel = hiltViewModel()
+) {
     val checkBoxState = remember {
         mutableStateOf(false)
     }
@@ -76,6 +78,34 @@ fun SuperAdminSettingScreen(navController: NavController,superAdminViewModel: Su
     }
 
 
+    val deviceData = produceState<DataOrException<DeviceInfo, Boolean, Exception>>(
+        initialValue = DataOrException(loading = true)
+    ) {
+        value = superAdminViewModel.getDeviceData()
+    }.value
+
+    Log.d("deviceData", "SuperAdminSettingScreen: $deviceData")
+
+
+    if (deviceData.loading == true) {
+        CircularProgressIndicator()
+    } else {
+
+        if (deviceData.data?.statusCode == 200) {
+            deviceData.data!!.responsePacket.forEach {
+                trustState.value = it.TrustOrganization
+                locationState.value = it.Location
+                postCodeState.value = it.Postcode
+                uniqueIdentifierState.value = it.Unique_Identifier
+                latitudeState.value = it.Latitude
+                longitudeState.value = it.Longitude
+            }
+            latLngState.value = latitudeState.value + ',' + longitudeState.value
+
+        }
+    }
+
+
     Surface(
         modifier = Modifier.fillMaxSize(), color = Color.DarkGray.copy(alpha = 0.8f)
     ) {
@@ -90,36 +120,13 @@ fun SuperAdminSettingScreen(navController: NavController,superAdminViewModel: Su
                 fontWeight = FontWeight.Bold
             )
 
-            val deviceData = produceState<DataOrException<DeviceInfo, Boolean, Exception>>(
-                initialValue = DataOrException(loading = true)
-            ) {
-                value = superAdminViewModel.getDeviceData()
-            }.value
-
-            Log.d("deviceData", "SuperAdminSettingScreen: $deviceData")
-
-
-            if (deviceData.loading == true) {
-                CircularProgressIndicator()
-            } else {
-
-                if (deviceData.data?.statusCode == 200) {
-                  deviceData.data!!.responsePacket.forEach {
-                      trustState.value = it.TrustOrganization
-                      locationState.value = it.Location
-                      postCodeState.value = it.Postcode
-                      uniqueIdentifierState.value = it.Unique_Identifier
-                      latitudeState.value = it.Latitude
-                      longitudeState.value = it.Longitude
-                  }
-                    latLngState.value = latitudeState.value + ',' +longitudeState.value
-
-                }
-                SuperAdminSettingInfo(trustState, locationState, postCodeState, uniqueIdentifierState, latLngState)
-
-
-
-            }
+            SuperAdminSettingInfo(
+                trustState,
+                locationState,
+                postCodeState,
+                uniqueIdentifierState,
+                latLngState
+            )
 
             Row(
                 verticalAlignment = Alignment.CenterVertically,

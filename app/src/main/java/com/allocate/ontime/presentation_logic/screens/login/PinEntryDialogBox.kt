@@ -1,4 +1,4 @@
-package com.allocate.ontime.presentation_logic.widgets
+package com.allocate.ontime.presentation_logic.screens.login
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement

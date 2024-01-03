@@ -1,4 +1,4 @@
-package com.allocate.ontime.presentation_logic.screens
+package com.allocate.ontime.presentation_logic.screens.super_admin
 
 import WindowInfo
 import android.annotation.SuppressLint

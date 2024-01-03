@@ -1,4 +1,4 @@
-package com.allocate.ontime.presentation_logic.screens
+package com.allocate.ontime.business_logic.viewmodel.super_admin
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -15,25 +15,6 @@ import javax.inject.Inject
 @HiltViewModel
 class SuperAdminSettingViewModel @Inject constructor(private val repository: OnTimeRepository) :
     ViewModel() {
-//    val data: MutableState<DataOrException<DeviceInfo, Boolean, Exception>> =
-//        mutableStateOf(
-//            DataOrException(null, true, Exception(""))
-//        )
-//
-//
-//    init {
-//        getAllDeviceInfo()
-//    }
-//
-//    private fun getAllDeviceInfo() {
-//        viewModelScope.launch {
-//            data.value.loading = true
-//            data.value.data = repository.getDeviceInfo().data
-//            if (data.value.data.toString().isNotEmpty()) {
-//                data.value.loading = false
-//            }
-//        }
-//    }
 suspend fun getDeviceData()
         : DataOrException<DeviceInfo, Boolean, Exception> {
     return repository.getDeviceInfo()

@@ -1,4 +1,4 @@
-package com.allocate.ontime.presentation_logic.screens
+package com.allocate.ontime.presentation_logic.screens.super_admin
 
 import WindowInfo
 import androidx.compose.foundation.BorderStroke
@@ -75,7 +75,10 @@ fun SuperAdminScreen(navController: NavController, windowInfo: WindowInfo) {
             ) {
                 Column(
                     verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.clickable {
+                        navController.navigate(OnTimeScreens.AdminRegistrationScreen.name)
+                    }
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.new_user_registration),
@@ -216,7 +219,7 @@ fun SuperAdminScreen(navController: NavController, windowInfo: WindowInfo) {
                 Spacer(modifier = Modifier.width(20.dp))
                 Button(
                     onClick = {
-                        navController.navigate(OnTimeScreens.AdminRegistrationScreen.name)
+
                     },
                     shape = RoundedCornerShape(3.dp),
                     colors = ButtonDefaults.buttonColors(
