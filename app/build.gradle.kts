@@ -9,11 +9,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.ontime_jitendra"
+    namespace = "com.allocate.ontime"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.ontime_jitendra"
+        applicationId = "com.allocate.ontime"
         minSdk = 23
         targetSdk = 33
         versionCode = 1
