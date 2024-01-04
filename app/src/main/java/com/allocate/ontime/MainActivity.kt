@@ -1,6 +1,6 @@
 package com.allocate.ontime
 
-import WindowInfo
+
 import android.annotation.SuppressLint
 import android.app.admin.DevicePolicyManager
 import android.app.admin.SystemUpdatePolicy
@@ -30,7 +30,7 @@ import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminSettin
 import com.allocate.ontime.presentation_logic.theme.OnTime_JitendraTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.DelicateCoroutinesApi
-import rememberWindowInfo
+
 
 
 @AndroidEntryPoint
@@ -48,8 +48,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val windowInfo = rememberWindowInfo()
-            OnTimeApp(windowInfo)
+            OnTimeApp()
         }
         mAdminComponentName = MyDeviceAdminReceiver.getComponentName(this)
         mDevicePolicyManager = getSystemService(Context.DEVICE_POLICY_SERVICE) as DevicePolicyManager
@@ -184,7 +183,7 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun OnTimeApp(windowInfo: WindowInfo,viewModel : SuperAdminSettingViewModel = hiltViewModel() ) {
+fun OnTimeApp(viewModel : SuperAdminSettingViewModel = hiltViewModel() ) {
     OnTime_JitendraTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
@@ -192,7 +191,7 @@ fun OnTimeApp(windowInfo: WindowInfo,viewModel : SuperAdminSettingViewModel = hi
         ) {
             Column(verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally) {
-                OnTimeNavigation(windowInfo,viewModel = viewModel)
+                OnTimeNavigation(viewModel = viewModel)
             }
 
 

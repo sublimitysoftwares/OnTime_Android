@@ -22,11 +22,17 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideOnTimeApi(): OnTimeApi {
+    fun provideOnTimeApi(retrofit: Retrofit): OnTimeApi {
+        return retrofit.create(OnTimeApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideRetrofitClient(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(OnTimeApi::class.java)
+
     }
 }

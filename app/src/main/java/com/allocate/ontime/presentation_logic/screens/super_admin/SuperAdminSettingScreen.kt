@@ -88,7 +88,8 @@ fun SuperAdminSettingScreen(
 
 
     if (deviceData.loading == true) {
-        CircularProgressIndicator()
+        CircularProgressIndicator(color = Color.Red)
+
     } else {
 
         if (deviceData.data?.statusCode == 200) {

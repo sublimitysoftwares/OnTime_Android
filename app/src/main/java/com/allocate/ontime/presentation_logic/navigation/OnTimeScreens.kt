@@ -8,3 +8,15 @@ enum class OnTimeScreens {
     FobRegisterScreen,
     SuperAdminSettingScreen
 }
+
+sealed class HomeScreenRoot {
+    object AdminScreen:HomeScreenRoot()
+    object SuperAdminScreen:HomeScreenRoot()
+
+}
+
+sealed class SuperAdminScreenRoot {
+    object AdminRegistrationScreen:SuperAdminScreenRoot()
+    object FobRegisterScreen:SuperAdminScreenRoot()
+    object SuperAdminSettingScreen:SuperAdminScreenRoot()
+}

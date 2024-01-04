@@ -1,6 +1,5 @@
 package com.allocate.ontime.presentation_logic.screens.home
 
-import WindowInfo
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -37,12 +36,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.allocate.ontime.R
+import com.allocate.ontime.presentation_logic.navigation.HomeScreenRoot
 import com.allocate.ontime.presentation_logic.navigation.OnTimeScreens
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.screens.login.PinEntryDialog
 
+
+
 @Composable
-fun HomeScreen(navController: NavController, windowInfo: WindowInfo) {
+fun HomeScreen(homeScreenRoot: (HomeScreenRoot)-> Unit) {
     var isDialogVisible by remember { mutableStateOf(false) }
     val context = LocalContext.current
     if (isDialogVisible) {
@@ -154,7 +156,7 @@ fun HomeScreen(navController: NavController, windowInfo: WindowInfo) {
                     ) {
                         Button(
                             onClick = {
-                                navController.navigate(OnTimeScreens.AdminScreen.name)
+                      homeScreenRoot(HomeScreenRoot.AdminScreen)
                             },
                             shape = RoundedCornerShape(10.dp),
                             colors = ButtonDefaults.buttonColors(
@@ -171,7 +173,7 @@ fun HomeScreen(navController: NavController, windowInfo: WindowInfo) {
                         Spacer(modifier = Modifier.width(15.dp))
                         Button(
                             onClick = {
-                                navController.navigate(OnTimeScreens.SuperAdminScreen.name)
+                                homeScreenRoot(HomeScreenRoot.SuperAdminScreen)
                             }, shape = RoundedCornerShape(10.dp),
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color(

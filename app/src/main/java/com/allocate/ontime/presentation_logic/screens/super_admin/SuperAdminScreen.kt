@@ -1,6 +1,6 @@
 package com.allocate.ontime.presentation_logic.screens.super_admin
 
-import WindowInfo
+
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -31,10 +31,11 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.allocate.ontime.R
 import com.allocate.ontime.presentation_logic.navigation.OnTimeScreens
+import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 
 @Composable
-fun SuperAdminScreen(navController: NavController, windowInfo: WindowInfo) {
+fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot)-> Unit) {
     Surface(
         modifier = Modifier.fillMaxSize(), color = Color.DarkGray.copy(alpha = 0.8f)
     ) {
@@ -77,7 +78,7 @@ fun SuperAdminScreen(navController: NavController, windowInfo: WindowInfo) {
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier.clickable {
-                        navController.navigate(OnTimeScreens.AdminRegistrationScreen.name)
+                        superAdminScreenRoot(SuperAdminScreenRoot.AdminRegistrationScreen)
                     }
                 ) {
                     Image(
@@ -93,7 +94,7 @@ fun SuperAdminScreen(navController: NavController, windowInfo: WindowInfo) {
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier.clickable {
-                        navController.navigate(OnTimeScreens.FobRegisterScreen.name)
+                        superAdminScreenRoot(SuperAdminScreenRoot.FobRegisterScreen)
                     }
                 ) {
                     Image(
@@ -108,7 +109,7 @@ fun SuperAdminScreen(navController: NavController, windowInfo: WindowInfo) {
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier.clickable {
-                        navController.navigate(OnTimeScreens.SuperAdminSettingScreen.name)
+                        superAdminScreenRoot(SuperAdminScreenRoot.SuperAdminSettingScreen)
                     }
                 ) {
                     Image(
@@ -193,7 +194,7 @@ fun SuperAdminScreen(navController: NavController, windowInfo: WindowInfo) {
             ) {
                 Button(
                     onClick = {
-                        navController.popBackStack()
+//                        superAdminScreenRoot(SuperAdminScreenRoot.SuperAdminSettingScreen)
                     },
                     shape = RoundedCornerShape(3.dp),
                     colors = ButtonDefaults.buttonColors(

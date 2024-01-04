@@ -1,6 +1,6 @@
 package com.allocate.ontime.presentation_logic.screens.admin
 
-import WindowInfo
+
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -44,7 +44,7 @@ import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.screens.login.PinEntryDialog
 
 @Composable
-fun AdminScreen(navController: NavController, windowInfo: WindowInfo) {
+fun AdminScreen(navController: NavController) {
 
     var isDialogVisible by remember { mutableStateOf(false) }
     val context = LocalContext.current

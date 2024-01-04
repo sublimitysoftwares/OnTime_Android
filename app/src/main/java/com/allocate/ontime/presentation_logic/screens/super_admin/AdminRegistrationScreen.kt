@@ -1,6 +1,6 @@
 package com.allocate.ontime.presentation_logic.screens.super_admin
 
-import WindowInfo
+
 import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -43,7 +43,7 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 @OptIn(DelicateCoroutinesApi::class)
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
-fun AdminRegistrationScreen(navController: NavController, windowInfo: WindowInfo) {
+fun AdminRegistrationScreen(navController: NavController) {
 
     val searchState = remember {
         mutableStateOf("")
