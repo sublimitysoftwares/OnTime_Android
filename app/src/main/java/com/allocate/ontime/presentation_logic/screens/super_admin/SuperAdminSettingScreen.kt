@@ -41,8 +41,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.allocate.ontime.R
 import com.allocate.ontime.business_logic.data.DataOrException
-import com.allocate.ontime.presentation_logic.model.DeviceInfo
 import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminSettingViewModel
+import com.allocate.ontime.presentation_logic.model.DeviceInfo
+
 import com.allocate.ontime.presentation_logic.widgets.InputField
 
 

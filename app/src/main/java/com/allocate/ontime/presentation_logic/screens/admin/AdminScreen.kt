@@ -176,7 +176,7 @@ fun AdminScreen(navController: NavController) {
                     ) {
                         Button(
                             onClick = {
-                                navController.navigate(OnTimeScreens.HomeScreen.name)
+                                navController.navigate(OnTimeScreens.HomeScreen.toString())
                             },
                             shape = RoundedCornerShape(10.dp),
                             colors = ButtonDefaults.buttonColors(

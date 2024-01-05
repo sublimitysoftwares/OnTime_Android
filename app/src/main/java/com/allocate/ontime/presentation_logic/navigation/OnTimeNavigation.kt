@@ -13,6 +13,7 @@ import com.allocate.ontime.presentation_logic.screens.home.HomeScreen
 import com.allocate.ontime.presentation_logic.screens.super_admin.SuperAdminScreen
 import com.allocate.ontime.presentation_logic.screens.super_admin.SuperAdminSettingScreen
 import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminSettingViewModel
+import com.allocate.ontime.presentation_logic.screens.splash.SplashScreen
 
 
 @ExperimentalComposeUiApi
@@ -21,45 +22,54 @@ fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = OnTimeScreens.HomeScreen.name
+        startDestination = OnTimeScreens.HomeScreen.toString()
     ) {
-        composable(OnTimeScreens.HomeScreen.name) {
+        composable(OnTimeScreens.HomeScreen.toString()) {
             HomeScreen(
                 homeScreenRoot = {
                     when (it) {
-                        HomeScreenRoot.AdminScreen -> navController.navigate(OnTimeScreens.AdminScreen.name)
-                        HomeScreenRoot.SuperAdminScreen -> navController.navigate(OnTimeScreens.SuperAdminScreen.name)
+                        HomeScreenRoot.AdminScreen -> navController.navigate(OnTimeScreens.AdminScreen.toString())
+                        HomeScreenRoot.SuperAdminScreen -> navController.navigate(OnTimeScreens.SuperAdminScreen.toString())
                     }
                 })
         }
-        composable(OnTimeScreens.AdminScreen.name) {
-            AdminScreen(navController = navController)
-        }
-        composable(OnTimeScreens.SuperAdminScreen.name) {
+        composable(OnTimeScreens.SuperAdminScreen.toString()) {
             SuperAdminScreen(
                 superAdminScreenRoot = {
                     when (it) {
                         SuperAdminScreenRoot.AdminRegistrationScreen -> navController.navigate(
-                            OnTimeScreens.AdminRegistrationScreen.name
+                            OnTimeScreens.AdminRegistrationScreen.toString()
                         )
                         SuperAdminScreenRoot.FobRegisterScreen -> navController.navigate(
-                            OnTimeScreens.FobRegisterScreen.name
+                            OnTimeScreens.FobRegisterScreen.toString()
                         )
                         SuperAdminScreenRoot.SuperAdminSettingScreen -> navController.navigate(
-                            OnTimeScreens.SuperAdminSettingScreen.name
+                            OnTimeScreens.SuperAdminSettingScreen.toString()
+                        )
+                        SuperAdminScreenRoot.HomeScreen -> navController.navigate(
+                            OnTimeScreens.HomeScreen.toString()
+                        )
+                        SuperAdminScreenRoot.SplashScreen -> navController.navigate(
+                            OnTimeScreens.SplashScreen.toString()
                         )
 
                     }
                 })
         }
-        composable(OnTimeScreens.AdminRegistrationScreen.name) {
+        composable(OnTimeScreens.AdminScreen.toString()) {
+            AdminScreen(navController = navController)
+        }
+        composable(OnTimeScreens.AdminRegistrationScreen.toString()) {
             AdminRegistrationScreen(navController = navController)
         }
-        composable(OnTimeScreens.FobRegisterScreen.name) {
+        composable(OnTimeScreens.FobRegisterScreen.toString()) {
             FobRegisterScreen(navController = navController)
         }
-        composable(OnTimeScreens.SuperAdminSettingScreen.name) {
+        composable(OnTimeScreens.SuperAdminSettingScreen.toString()) {
             SuperAdminSettingScreen(navController = navController, viewModel)
+        }
+        composable(OnTimeScreens.SplashScreen.toString()) {
+            SplashScreen(navController = navController)
         }
     }
 }

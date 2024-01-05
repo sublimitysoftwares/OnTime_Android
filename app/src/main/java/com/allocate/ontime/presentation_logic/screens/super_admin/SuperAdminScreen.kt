@@ -194,7 +194,7 @@ fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot)-> Unit) {
             ) {
                 Button(
                     onClick = {
-//                        superAdminScreenRoot(SuperAdminScreenRoot.SuperAdminSettingScreen)
+                        superAdminScreenRoot(SuperAdminScreenRoot.HomeScreen)
                     },
                     shape = RoundedCornerShape(3.dp),
                     colors = ButtonDefaults.buttonColors(
@@ -220,7 +220,7 @@ fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot)-> Unit) {
                 Spacer(modifier = Modifier.width(20.dp))
                 Button(
                     onClick = {
-
+                        superAdminScreenRoot(SuperAdminScreenRoot.SplashScreen)
                     },
                     shape = RoundedCornerShape(3.dp),
                     colors = ButtonDefaults.buttonColors(
