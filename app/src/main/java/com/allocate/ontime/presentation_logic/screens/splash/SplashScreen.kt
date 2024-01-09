@@ -11,12 +11,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,6 +33,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.allocate.ontime.R
 import com.allocate.ontime.business_logic.data.DataOrException
+import com.allocate.ontime.business_logic.data.room.DeviceInformation
 import com.allocate.ontime.business_logic.viewmodel.splash.SplashViewModel
 import com.allocate.ontime.presentation_logic.model.DeviceInfo
 
@@ -39,7 +45,15 @@ fun SplashScreen(navController: NavController, splashViewModel: SplashViewModel 
         value = splashViewModel.getDeviceData()
     }.value
 
-    Log.d("deviceData_splash", "SuperAdminSettingScreen: $deviceData")
+    val acknowledgementStatus = remember {
+        mutableIntStateOf(0)
+    }
+
+    val apiDataLists = splashViewModel.apiDataList.collectAsState().value
+
+    Log.d("api_data", "received data from database: $apiDataLists")
+
+
 
 
 
@@ -75,6 +89,47 @@ fun SplashScreen(navController: NavController, splashViewModel: SplashViewModel 
                 text = "Please wait while device setup is completed...",
                 style = MaterialTheme.typography.headlineSmall,
             )
+            Button(onClick = {
+                splashViewModel.addDeviceInfo(
+                    deviceInformation = DeviceInformation(
+                        id = 0,
+                        apiData = deviceData.data.toString(),
+                        acknowledgementStatus = acknowledgementStatus.intValue
+                    )
+                )
+            }) {
+                Text(text = "Insert into Database")
+
+            }
+            Button(onClick = {
+                splashViewModel.updateDeviceInfo(
+                    deviceInformation = DeviceInformation(
+                        id = apiDataLists[1].id,
+                        apiData = apiDataLists.toString(),
+                        acknowledgementStatus = 1
+                    )
+                )
+            }) {
+                Text(text = "Update into Database")
+
+            }
+
+            Button(onClick = {
+                splashViewModel.deleteDeviceInfo(
+                    deviceInformation = DeviceInformation(
+                        id = apiDataLists[1].id,
+                        apiData = apiDataLists.toString(),
+                        acknowledgementStatus = acknowledgementStatus.intValue
+                    )
+                )
+            }) {
+                Text(text = "Delete from Database")
+
+            }
+
+
+
+
 
         }
 
