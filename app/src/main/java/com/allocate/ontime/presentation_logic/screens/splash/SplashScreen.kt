@@ -19,7 +19,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -35,15 +34,18 @@ import com.allocate.ontime.R
 import com.allocate.ontime.business_logic.data.DataOrException
 import com.allocate.ontime.business_logic.data.room.DeviceInformation
 import com.allocate.ontime.business_logic.viewmodel.splash.SplashViewModel
+import com.allocate.ontime.presentation_logic.model.AppInfo
 import com.allocate.ontime.presentation_logic.model.DeviceInfo
+import retrofit2.Response
 
 @Composable
 fun SplashScreen(navController: NavController, splashViewModel: SplashViewModel = hiltViewModel()) {
-    val deviceData = produceState<DataOrException<DeviceInfo, Boolean, Exception>>(
+    val deviceDataState = produceState<DataOrException<DeviceInfo, Boolean, Exception>>(
         initialValue = DataOrException(loading = true)
     ) {
         value = splashViewModel.getDeviceData()
     }.value
+
 
     val acknowledgementStatus = remember {
         mutableIntStateOf(0)
@@ -53,9 +55,20 @@ fun SplashScreen(navController: NavController, splashViewModel: SplashViewModel 
 
     Log.d("api_data", "received data from database: $apiDataLists")
 
+    val postDeviceDataState = produceState<DataOrException<Response<AppInfo>, Boolean, Exception>>(
+        initialValue = DataOrException(loading = false)
+    ) {
+        value = splashViewModel.postDeviceData(
+            appInfo = AppInfo(
+                id = "6587024c56a8d4c340e31ad3",
+                macAddress = "test7",
+                app = "test7",
+                appVersion = "test7"
+            )
+        )
+    }.value
 
-
-
+    Log.d("post", "${postDeviceDataState.data}")
 
 
     Surface(
@@ -76,7 +89,7 @@ fun SplashScreen(navController: NavController, splashViewModel: SplashViewModel 
                     .fillMaxHeight(0.5f),
                 colorFilter = ColorFilter.tint(color = Color.Black)
             )
-            if (deviceData.loading == true) {
+            if (deviceDataState.loading == true) {
                 CircularProgressIndicator(modifier = Modifier.size(80.dp))
 
             } else {
@@ -93,7 +106,7 @@ fun SplashScreen(navController: NavController, splashViewModel: SplashViewModel 
                 splashViewModel.addDeviceInfo(
                     deviceInformation = DeviceInformation(
                         id = 0,
-                        apiData = deviceData.data.toString(),
+                        apiData = deviceDataState.data.toString(),
                         acknowledgementStatus = acknowledgementStatus.intValue
                     )
                 )
@@ -126,9 +139,6 @@ fun SplashScreen(navController: NavController, splashViewModel: SplashViewModel 
                 Text(text = "Delete from Database")
 
             }
-
-
-
 
 
         }

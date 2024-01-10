@@ -23,13 +23,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.allocate.ontime.R
 
 
-@OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun InputField(
     modifier: Modifier = Modifier,

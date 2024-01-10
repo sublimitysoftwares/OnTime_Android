@@ -21,12 +21,13 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-
+    // It provides the dependency of OnTimeRepository Class.
     @Singleton
     @Provides
     fun provideOnTimeRepository(api: OnTimeApi) =
         OnTimeRepository(api)
 
+    // It provides the dependency of DaoRepository Class.
     @Singleton
     @Provides
     fun provideDaoRepository(database: OnTimeDatabase): OnTimeDatabaseDao {
@@ -34,6 +35,7 @@ object AppModule {
     }
 
 
+    // It provides the dependency of OnTimeDatabase Class.
     @Singleton
     @Provides
     fun provideAppDatabase(@ApplicationContext context: Context): OnTimeDatabase =
@@ -41,6 +43,7 @@ object AppModule {
             .fallbackToDestructiveMigration()
             .build()
 
+    // It provides the dependency of OnTimeApi Interface.
     @Singleton
     @Provides
     fun provideOnTimeApi(retrofit: Retrofit): OnTimeApi {

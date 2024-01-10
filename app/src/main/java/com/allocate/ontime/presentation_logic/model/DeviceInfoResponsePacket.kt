@@ -2,7 +2,7 @@ package com.allocate.ontime.presentation_logic.model
 
 data class DeviceInfoResponsePacket(
     val ASApiURL: String,
-    val ASEmployeeOnlineURL: Any,
+    val ASEmployeeOnlineURL: String,
     val ASInstance: String,
     val AddedBy: String,
     val AddedOn: String,
