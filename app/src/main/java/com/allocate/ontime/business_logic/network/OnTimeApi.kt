@@ -13,7 +13,7 @@ import javax.inject.Singleton
 interface OnTimeApi {
 
     // GET api to get device information through IMEI number of device.
-    @GET(value = "GetDevice?IMEI=868646330255705")
+    @GET(value = "GetDevice?IMEI=864392050088489")
     suspend fun getDeviceInfo(): DeviceInfo
 
 

@@ -1,16 +1,24 @@
 package com.allocate.ontime.business_logic.viewmodel.splash
 
 import android.util.Log
+import android.util.MutableBoolean
+import androidx.compose.runtime.MutableIntState
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavController
 import com.allocate.ontime.business_logic.data.DataOrException
 import com.allocate.ontime.business_logic.data.room.DeviceInformation
 import com.allocate.ontime.business_logic.repository.DaoRepository
 import com.allocate.ontime.business_logic.repository.OnTimeRepository
 import com.allocate.ontime.presentation_logic.model.AppInfo
 import com.allocate.ontime.presentation_logic.model.DeviceInfo
+import com.allocate.ontime.presentation_logic.navigation.OnTimeScreens
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -21,15 +29,18 @@ import javax.inject.Inject
 @HiltViewModel
 class SplashViewModel @Inject constructor(
     private val repository: OnTimeRepository,
-    private val daoRepository: DaoRepository
+    private val daoRepository: DaoRepository,
 ) :
     ViewModel() {
 
-    private val _apiDataList = MutableStateFlow<List<DeviceInformation>>(emptyList())
-    val apiDataList = _apiDataList.asStateFlow()
+    private val _roomDataList = MutableStateFlow<List<DeviceInformation>>(emptyList())
+    val roomDataList = _roomDataList.asStateFlow()
 
     private val _postApiDataList = MutableStateFlow<List<DeviceInfo>>(emptyList())
     val postApiDataList = _postApiDataList.asStateFlow()
+
+
+
 
 
     init {
@@ -37,16 +48,9 @@ class SplashViewModel @Inject constructor(
             daoRepository.getAllDeviceInfo().distinctUntilChanged().collect() { listOfDeviceInfo ->
                 if (listOfDeviceInfo.isEmpty()) {
                     Log.d("Empty", "Empty List: ")
-
-                    // i have to apply acknowledgement api here and i have to change the
-                    // acknowledgement status to 1.
-
                 } else {
-                    _apiDataList.value = listOfDeviceInfo
-                    // i have to navigate to home screen here.
+                    _roomDataList.value = listOfDeviceInfo
                 }
-
-                Log.d("abcde", "${apiDataList.value}")
             }
 
 
@@ -70,6 +74,7 @@ class SplashViewModel @Inject constructor(
 
     fun updateDeviceInfo(deviceInformation: DeviceInformation) =
         viewModelScope.launch { daoRepository.updateDeviceInfo(deviceInformation) }
+
 
     fun deleteDeviceInfo(deviceInformation: DeviceInformation) =
         viewModelScope.launch { daoRepository.deleteDeviceInfo(deviceInformation) }

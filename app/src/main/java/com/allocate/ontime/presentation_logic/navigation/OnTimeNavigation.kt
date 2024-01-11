@@ -22,7 +22,7 @@ fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = OnTimeScreens.HomeScreen.toString()
+        startDestination = OnTimeScreens.SplashScreen.toString()
     ) {
         composable(OnTimeScreens.HomeScreen.toString()) {
             HomeScreen(
@@ -49,10 +49,6 @@ fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
                         SuperAdminScreenRoot.HomeScreen -> navController.navigate(
                             OnTimeScreens.HomeScreen.toString()
                         )
-                        SuperAdminScreenRoot.SplashScreen -> navController.navigate(
-                            OnTimeScreens.SplashScreen.toString()
-                        )
-
                     }
                 })
         }

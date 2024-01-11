@@ -217,9 +217,7 @@ fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot)-> Unit) {
                 }
                 Spacer(modifier = Modifier.width(20.dp))
                 Button(
-                    onClick = {
-                        superAdminScreenRoot(SuperAdminScreenRoot.SplashScreen)
-                    },
+                    onClick = {},
                     shape = RoundedCornerShape(3.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.LightGray, contentColor = Color(0xFF5B6F46)

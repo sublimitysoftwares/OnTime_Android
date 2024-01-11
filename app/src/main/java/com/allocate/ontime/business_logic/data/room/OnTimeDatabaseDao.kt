@@ -21,6 +21,7 @@ interface OnTimeDatabaseDao {
     @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun update(deviceInfo: DeviceInformation)
 
+
     @Delete
     suspend fun delete(deviceInfo: DeviceInformation)
 

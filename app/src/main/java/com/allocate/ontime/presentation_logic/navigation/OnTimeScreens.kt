@@ -23,5 +23,4 @@ sealed class SuperAdminScreenRoot {
     object AdminRegistrationScreen:SuperAdminScreenRoot()
     object FobRegisterScreen:SuperAdminScreenRoot()
     object SuperAdminSettingScreen:SuperAdminScreenRoot()
-    object SplashScreen:SuperAdminScreenRoot()
 }

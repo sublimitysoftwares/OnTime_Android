@@ -8,10 +8,39 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "device_info")
 data class DeviceInformation(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long,
-    @ColumnInfo(name = "api_data")
-    val apiData: String,
-    @ColumnInfo(name = "acknowledgement_status")
-    val acknowledgementStatus: Int = 0
+    @PrimaryKey
+    val id: String,
+//    @ColumnInfo(name = "api_data")
+//    val apiData: String,
+    @ColumnInfo(name = "Device_Id")
+    val deviceId: Long,
+    @ColumnInfo(name = "TrustOrganization")
+    val trustOrganization: String,
+    @ColumnInfo(name = "Unique_Identifier")
+    val uniqueIdentifier: String,
+    @ColumnInfo(name = "Location")
+    val location: String,
+    @ColumnInfo(name = "SerialNumber")
+    val serialNumber: String,
+    @ColumnInfo(name = "Latitude")
+    val latitude: Double,
+    @ColumnInfo(name = "Longitude")
+    val longitude: Double,
+    @ColumnInfo(name = "Postcode")
+    val postcode: String,
+    @ColumnInfo(name = "Status")
+    val status: String,
+    @ColumnInfo(name = "ASInstance")
+    val asInstance: String,
+    @ColumnInfo(name = "ASEmployeeOnlineURL")
+    val asEmployeeOnlineURL: String,
+    @ColumnInfo(name = "ASApiURL")
+    val asApiURL: String,
+    @ColumnInfo(name = "AppVersion")
+    val appVersion: String,
+    @ColumnInfo(name = "LocationCode")
+    val locationCode: String,
+    @ColumnInfo(name = "Acknowledgement_status")
+    val acknowledgementStatus: Int
 )
+
