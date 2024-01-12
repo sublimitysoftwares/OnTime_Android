@@ -55,7 +55,6 @@ fun InputField(
     },
     shape: Shape = RoundedCornerShape(5.dp),
     textStyle: TextStyle
-
 ) {
     OutlinedTextField(
         value = valueState.value,
@@ -82,7 +81,5 @@ fun InputField(
         keyboardActions = onAction,
         colors = colors,
         shape = shape,
-
-
     )
 }

@@ -44,6 +44,7 @@ import com.allocate.ontime.presentation_logic.widgets.InputField
 
 @Composable
 fun FobRegisterScreen(navController: NavController) {
+
     val searchEmployeeState = remember {
         mutableStateOf("")
     }
@@ -59,6 +60,7 @@ fun FobRegisterScreen(navController: NavController) {
     val isSwitchOn = remember {
         mutableStateOf(false)
     }
+
     Surface(
         modifier = Modifier.fillMaxSize(), color = Color.DarkGray.copy(alpha = 0.8f)
     ) {
@@ -80,7 +82,6 @@ fun FobRegisterScreen(navController: NavController) {
             Column(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
-
             ) {
                 InputField(
                     valueState = searchEmployeeState,
@@ -105,7 +106,6 @@ fun FobRegisterScreen(navController: NavController) {
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween,
                         modifier = Modifier.width(360.dp)
-
                     ) {
                         Text(
                             text = "Set location Radius",
@@ -145,7 +145,6 @@ fun FobRegisterScreen(navController: NavController) {
                         )
                     }
                 }
-
                 Spacer(modifier = Modifier.height(MaterialTheme.dimens.small1))
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -161,7 +160,7 @@ fun FobRegisterScreen(navController: NavController) {
                     Switch(
                         checked = isSwitchOn.value,
                         onCheckedChange = {
-                                          isSwitchOn.value = it
+                            isSwitchOn.value = it
                         },
                         colors = SwitchDefaults.colors(
                             uncheckedThumbColor = Color.White,
@@ -170,9 +169,7 @@ fun FobRegisterScreen(navController: NavController) {
                             checkedTrackColor = Color.White
                         )
                     )
-
                 }
-
             }
             Spacer(modifier = Modifier.weight(1f))
             Button(
@@ -198,12 +195,7 @@ fun FobRegisterScreen(navController: NavController) {
 
                     Text(text = "Click here to go back")
                 }
-
             }
-
         }
-
     }
-
-
 }

@@ -53,19 +53,6 @@ fun AdminRegistrationScreen(navController: NavController) {
         mutableStateOf(false)
     }
 
-//    var response by remember { mutableStateOf<DeviceInfo?>(null) }
-//    val api = Retrofit.Builder()
-//        .baseUrl(Constants.BASE_URL)
-//        .addConverterFactory(GsonConverterFactory.create())
-//        .build()
-//        .create(OnTimeApi::class.java)
-//    GlobalScope.launch(Dispatchers.IO) {
-//        val result = api.getDeviceInfo()
-//        response = result
-//
-//        Log.d("abc", "onCreate: ${response.toString()}")
-//    }
-
     Surface(
         modifier = Modifier.fillMaxSize(), color = Color.DarkGray.copy(alpha = 0.8f)
     ) {
@@ -117,8 +104,6 @@ fun AdminRegistrationScreen(navController: NavController) {
                                 width = MaterialTheme.dimens.surfaceWidth,
                                 height = MaterialTheme.dimens.surfaceHeight
                             )
-//                            .fillMaxWidth(0.4f)
-//                            .fillMaxHeight(0.5f)
                             .padding(top = 5.dp),
                         color = Color(0xFF5A5656)
                     ) {
@@ -165,12 +150,10 @@ fun AdminRegistrationScreen(navController: NavController) {
 
                         }
                     }
-
                 }
                 Column(
                     verticalArrangement = Arrangement.Top,
-
-                    ) {
+                ) {
                     Text(text = "Fingerprint Registration", color = Color.White)
                     Surface(
                         modifier = Modifier
@@ -178,8 +161,6 @@ fun AdminRegistrationScreen(navController: NavController) {
                                 width = MaterialTheme.dimens.surfaceWidth,
                                 height = MaterialTheme.dimens.surfaceHeight
                             )
-//                            .fillMaxWidth(0.6f)
-//                            .fillMaxHeight(0.4f)
                             .padding(top = 5.dp),
                         color = Color(0xFF5A5656)
                     ) {
@@ -214,7 +195,6 @@ fun AdminRegistrationScreen(navController: NavController) {
                                 modifier = Modifier.padding(start = 15.dp),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-
                                 InputField(
                                     valueState = searchState,
                                     labelId = "Fingerprint Two(Not Registered)",
@@ -239,7 +219,6 @@ fun AdminRegistrationScreen(navController: NavController) {
                                 verticalAlignment = Alignment.CenterVertically,
                                 modifier = Modifier.padding(start = 15.dp)
                             ) {
-
                                 Checkbox(
                                     checked = false,
                                     onCheckedChange = { checkBoxState.value },
@@ -248,7 +227,6 @@ fun AdminRegistrationScreen(navController: NavController) {
                                 Spacer(modifier = Modifier.width(5.dp))
                                 Text(text = "Skip Fingerprint", color = Color.White)
                             }
-
                         }
                     }
 
@@ -263,7 +241,6 @@ fun AdminRegistrationScreen(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
-
                 Image(
                     painter = painterResource(id = R.drawable.ontime_qr_code),
                     contentDescription = "qr_code_img",
@@ -280,9 +257,7 @@ fun AdminRegistrationScreen(navController: NavController) {
                     )
                 ) {
                     Text(text = "NEXT")
-
                 }
-
             }
             Spacer(modifier = Modifier.height(10.dp))
             Text(
@@ -326,10 +301,8 @@ fun AdminRegistrationScreen(navController: NavController) {
                             contentScale = ContentScale.Fit,
                             modifier = Modifier.size(15.dp)
                         )
-
                         Text(text = "Click here to go back")
                     }
-
                 }
                 Spacer(modifier = Modifier.width(20.dp))
                 Button(
@@ -352,12 +325,8 @@ fun AdminRegistrationScreen(navController: NavController) {
                         )
                         Text(text = "View Employee Online")
                     }
-
                 }
             }
-
         }
-
     }
-
 }

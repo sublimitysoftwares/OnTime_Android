@@ -33,7 +33,8 @@ import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 
 @Composable
-fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot)-> Unit) {
+fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot) -> Unit) {
+
     Surface(
         modifier = Modifier.fillMaxSize(), color = Color.DarkGray.copy(alpha = 0.8f)
     ) {
@@ -65,7 +66,6 @@ fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot)-> Unit) {
                 Text(text = "    switch to \nmobile mode")
             }
             Spacer(modifier = Modifier.weight(3f))
-
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -87,7 +87,6 @@ fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot)-> Unit) {
                     Text(text = "New/Edit Admin", color = Color.White)
                     Text(text = "Registration", color = Color.White)
                 }
-
                 Column(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -102,7 +101,6 @@ fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot)-> Unit) {
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(text = "FOB Register", color = Color.White)
                 }
-
                 Column(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -153,7 +151,6 @@ fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot)-> Unit) {
                 }
             }
             Spacer(modifier = Modifier.weight(1f))
-
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
@@ -169,7 +166,6 @@ fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot)-> Unit) {
                     border = BorderStroke(width = 1.dp, color = Color.White)
                 ) {
                     Text(text = "Fingerprint Match Rate", color = Color.DarkGray)
-
                 }
                 Spacer(modifier = Modifier.width(20.dp))
                 Button(
@@ -179,7 +175,6 @@ fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot)-> Unit) {
                     modifier = Modifier.size(width = 200.dp, height = 40.dp)
                 ) {
                     Text(text = "SUBMIT")
-
                 }
             }
             Spacer(modifier = Modifier.weight(4f))
@@ -210,10 +205,8 @@ fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot)-> Unit) {
                             contentScale = ContentScale.Fit,
                             modifier = Modifier.size(15.dp)
                         )
-
                         Text(text = "Log out and return to home page")
                     }
-
                 }
                 Spacer(modifier = Modifier.width(20.dp))
                 Button(
@@ -236,11 +229,8 @@ fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot)-> Unit) {
                         )
                         Text(text = "View Employee Online")
                     }
-
                 }
             }
-
         }
-
     }
 }

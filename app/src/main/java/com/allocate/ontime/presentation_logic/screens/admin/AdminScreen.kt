@@ -141,7 +141,8 @@ fun AdminScreen(navController: NavController) {
                 Image(
                     painter = painterResource(id = R.drawable.rld_img_logo),
                     contentDescription = "rld_img_logo",
-                    modifier = Modifier.size(MaterialTheme.dimens.large3)
+                    modifier = Modifier
+                        .size(MaterialTheme.dimens.large3)
                         .aspectRatio(1f),
                     colorFilter = ColorFilter.tint(color = Color.White)
                 )
@@ -236,8 +237,16 @@ fun AdminScreen(navController: NavController) {
                         horizontalAlignment = Alignment.End,
                         modifier = Modifier.padding(bottom = 20.dp)
                     ) {
-                        Text(text = "6.5d : 6.5", color = Color.White,style = MaterialTheme.typography.labelSmall)
-                        Text(text = "Unique Identifier : ci delhi", color = Color.White,style = MaterialTheme.typography.labelSmall)
+                        Text(
+                            text = "6.5d : 6.5",
+                            color = Color.White,
+                            style = MaterialTheme.typography.labelSmall
+                        )
+                        Text(
+                            text = "Unique Identifier : ci delhi",
+                            color = Color.White,
+                            style = MaterialTheme.typography.labelSmall
+                        )
                     }
                 }
             }

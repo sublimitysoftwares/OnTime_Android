@@ -11,10 +11,8 @@ import javax.inject.Inject
 @HiltViewModel
 class SuperAdminSettingViewModel @Inject constructor(private val repository: OnTimeRepository) :
     ViewModel() {
-suspend fun getDeviceData()
-        : DataOrException<DeviceInfo, Boolean, Exception> {
-    return repository.getDeviceInfo()
-
-}
-
+    suspend fun getDeviceData()
+            : DataOrException<DeviceInfo, Boolean, Exception> {
+        return repository.getDeviceInfo()
+    }
 }

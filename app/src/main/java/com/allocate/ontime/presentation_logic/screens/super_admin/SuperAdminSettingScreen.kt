@@ -87,12 +87,9 @@ fun SuperAdminSettingScreen(
 
     Log.d("deviceData", "SuperAdminSettingScreen: $deviceData")
 
-
     if (deviceData.loading == true) {
         CircularProgressIndicator(color = Color.Red)
-
     } else {
-
         if (deviceData.data?.statusCode == 200) {
             deviceData.data!!.responsePacket.forEach {
                 trustState.value = it.TrustOrganization
@@ -107,7 +104,6 @@ fun SuperAdminSettingScreen(
         }
     }
 
-
     Surface(
         modifier = Modifier.fillMaxSize(), color = Color.DarkGray.copy(alpha = 0.8f)
     ) {
@@ -121,7 +117,6 @@ fun SuperAdminSettingScreen(
                 color = Color(0xFF85D32C),
                 fontWeight = FontWeight.Bold
             )
-
             SuperAdminSettingInfo(
                 trustState,
                 locationState,
@@ -129,7 +124,6 @@ fun SuperAdminSettingScreen(
                 uniqueIdentifierState,
                 latLngState
             )
-
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(20.dp)
@@ -154,7 +148,6 @@ fun SuperAdminSettingScreen(
                     color = Color.White,
                     style = MaterialTheme.typography.titleSmall
                 )
-
             }
             Row(
                 verticalAlignment = Alignment.CenterVertically
@@ -169,7 +162,6 @@ fun SuperAdminSettingScreen(
                     color = Color.White,
                     style = MaterialTheme.typography.titleMedium
                 )
-
             }
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -195,9 +187,7 @@ fun SuperAdminSettingScreen(
                     color = Color.White,
                     style = MaterialTheme.typography.titleSmall
                 )
-
             }
-
             Row(
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
@@ -206,10 +196,8 @@ fun SuperAdminSettingScreen(
                     onClick = { /*TODO*/ },
                     shape = RoundedCornerShape(3.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF85D32C)),
-
-                    ) {
+                ) {
                     Text(text = "CHECK FOR UPDATE")
-
                 }
                 Spacer(modifier = Modifier.width(20.dp))
                 Button(
@@ -219,7 +207,6 @@ fun SuperAdminSettingScreen(
 
                     ) {
                     Text(text = "SET TEST EMPLOYEE")
-
                 }
             }
             Spacer(modifier = Modifier.height(10.dp))
@@ -250,10 +237,8 @@ fun SuperAdminSettingScreen(
                             contentScale = ContentScale.Fit,
                             modifier = Modifier.size(15.dp)
                         )
-
                         Text(text = "Click here to go back")
                     }
-
                 }
                 Spacer(modifier = Modifier.width(20.dp))
                 Button(
@@ -276,15 +261,10 @@ fun SuperAdminSettingScreen(
                         )
                         Text(text = "View Employee Online")
                     }
-
                 }
             }
-
-
         }
-
     }
-
 }
 
 @Composable
@@ -411,12 +391,8 @@ private fun SuperAdminSettingInfo(
 
                 ) {
                     Text(text = "REGISTER")
-
                 }
             }
-
         }
-
-
     }
 }

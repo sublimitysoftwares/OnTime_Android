@@ -12,10 +12,8 @@ class OnTimeRepository @Inject constructor(
     private val api: OnTimeApi,
 
     ) {
-    private val dataOrException = DataOrException<DeviceInfo, Boolean, Exception>()
-    val dataOrException1 = DataOrException<Response<AppInfo>, Boolean, Exception>()
-
     suspend fun getDeviceInfo(): DataOrException<DeviceInfo, Boolean, Exception> {
+        val dataOrException = DataOrException<DeviceInfo, Boolean, Exception>()
         try {
             dataOrException.loading = true
             dataOrException.data = api.getDeviceInfo()
@@ -28,10 +26,11 @@ class OnTimeRepository @Inject constructor(
     }
 
     suspend fun postDeviceInfo(
-    appInfo: AppInfo
+        appInfo: AppInfo
     ): DataOrException<Response<AppInfo>, Boolean, Exception> {
+        val dataOrException1 = DataOrException<Response<AppInfo>, Boolean, Exception>()
         try {
-            dataOrException1.loading = false
+            dataOrException1.loading = true
             dataOrException1.data = api.postEditDeviceInfo(appInfo)
             if (dataOrException1.data.toString().isNotEmpty()) dataOrException1.loading = false
         } catch (exception: Exception) {
@@ -40,6 +39,4 @@ class OnTimeRepository @Inject constructor(
         }
         return dataOrException1
     }
-
-
 }

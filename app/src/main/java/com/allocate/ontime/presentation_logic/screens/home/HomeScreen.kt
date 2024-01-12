@@ -40,9 +40,8 @@ import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.screens.login.PinEntryDialog
 
 
-
 @Composable
-fun HomeScreen(homeScreenRoot: (HomeScreenRoot)-> Unit) {
+fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
     var isDialogVisible by remember { mutableStateOf(false) }
     val context = LocalContext.current
     if (isDialogVisible) {
@@ -52,6 +51,7 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot)-> Unit) {
             Toast.makeText(context, "Entered PIN: $pin", Toast.LENGTH_SHORT).show()
         })
     }
+
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -77,7 +77,11 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot)-> Unit) {
                 ) {
                     RadioButton(selected = true, onClick = { /*TODO*/ })
 
-                    Text(text = "2:23 PM", style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
+                    Text(
+                        text = "2:23 PM",
+                        style = MaterialTheme.typography.headlineMedium,
+                        fontWeight = FontWeight.Bold
+                    )
                 }
                 Image(
                     painter = painterResource(id = R.drawable.rld_logo),
@@ -127,7 +131,7 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot)-> Unit) {
                         .size(MaterialTheme.dimens.large3)
                         .aspectRatio(1f),
 
-                )
+                    )
                 Column(
                     verticalArrangement = Arrangement.Bottom,
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -154,7 +158,7 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot)-> Unit) {
                     ) {
                         Button(
                             onClick = {
-                      homeScreenRoot(HomeScreenRoot.AdminScreen)
+                                homeScreenRoot(HomeScreenRoot.AdminScreen)
                             },
                             shape = RoundedCornerShape(10.dp),
                             colors = ButtonDefaults.buttonColors(
@@ -190,7 +194,7 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot)-> Unit) {
                     verticalArrangement = Arrangement.SpaceBetween,
                     horizontalAlignment = Alignment.End,
 
-                ) {
+                    ) {
                     Column(
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
@@ -216,15 +220,15 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot)-> Unit) {
                         modifier = Modifier.padding(bottom = 20.dp)
                     ) {
                         Text(text = "6.5d : 6.5", style = MaterialTheme.typography.labelSmall)
-                        Text(text = "Unique Identifier : ci delhi", style = MaterialTheme.typography.labelSmall)
+                        Text(
+                            text = "Unique Identifier : ci delhi",
+                            style = MaterialTheme.typography.labelSmall
+                        )
                     }
                 }
             }
         }
-
-
-
-        }
     }
+}
 
 

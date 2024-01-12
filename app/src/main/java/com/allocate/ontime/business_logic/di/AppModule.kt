@@ -20,26 +20,22 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
     // It provides the dependency of OnTimeRepository Class.
-    @Singleton
     @Provides
     fun provideOnTimeRepository(api: OnTimeApi) =
         OnTimeRepository(api)
 
     // It provides the dependency of DaoRepository Class.
-    @Singleton
     @Provides
     fun provideDaoRepository(database: OnTimeDatabase): OnTimeDatabaseDao {
         return database.onTimeDatabaseDao()
     }
 
-
     // It provides the dependency of OnTimeDatabase Class.
     @Singleton
     @Provides
     fun provideAppDatabase(@ApplicationContext context: Context): OnTimeDatabase =
-        Room.databaseBuilder(context, OnTimeDatabase::class.java, name = "OnTime_DB")
+        Room.databaseBuilder(context, OnTimeDatabase::class.java, name = Constants.databaseName)
             .fallbackToDestructiveMigration()
             .build()
 
@@ -57,6 +53,5 @@ object AppModule {
             .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-
     }
 }

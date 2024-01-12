@@ -47,13 +47,13 @@ import retrofit2.Response
 
 @Composable
 fun SplashScreen(navController: NavController, splashViewModel: SplashViewModel = hiltViewModel()) {
-    val deviceDataState = produceState<DataOrException<DeviceInfo, Boolean, Exception>>(
+    val deviceInfoApiData = produceState<DataOrException<DeviceInfo, Boolean, Exception>>(
         initialValue = DataOrException(loading = true)
     ) {
         value = splashViewModel.getDeviceData()
     }.value
 
-    val roomDataLists = splashViewModel.roomDataList.collectAsState().value
+    val deviceInfoListsRoomData = splashViewModel.deviceInfoListRoomData.collectAsState().value
 
     val id = rememberSaveable {
         mutableStateOf("")
@@ -104,7 +104,7 @@ fun SplashScreen(navController: NavController, splashViewModel: SplashViewModel 
         mutableIntStateOf(0)
     }
 
-    deviceDataState.data?.let { rememberUpdatedState( it.responsePacket) }?.value?.forEach {
+    deviceInfoApiData.data?.let { rememberUpdatedState(it.responsePacket) }?.value?.forEach {
         Log.d("rahul", "$it")
         id.value = it._id
         deviceId.longValue = it.DeviceId.toLong()
@@ -121,7 +121,6 @@ fun SplashScreen(navController: NavController, splashViewModel: SplashViewModel 
         asApiURL.value = it.ASApiURL
         appVersion.value = it.AppVersion.toString()
         locationCode.value = it.LocationCode
-
     }
 
 
@@ -133,15 +132,13 @@ fun SplashScreen(navController: NavController, splashViewModel: SplashViewModel 
             value = splashViewModel.postDeviceData(
                 appInfo = AppInfo(
                     id = "658c1d97eb1ccaa54de6d5d3",
-                    macAddress = "test2",
-                    app = "test2",
-                    appVersion = "test2"
+                    macAddress = "test3",
+                    app = "test3",
+                    appVersion = "test3"
                 )
             )
         }.value
-
     }
-
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -161,19 +158,17 @@ fun SplashScreen(navController: NavController, splashViewModel: SplashViewModel 
                     .fillMaxHeight(0.5f),
                 colorFilter = ColorFilter.tint(color = Color.Black)
             )
-            if (deviceDataState.loading == true) {
+            if (deviceInfoApiData.loading == true) {
                 CircularProgressIndicator(modifier = Modifier.size(80.dp))
                 // if api response is not stored in room database then acknowledgementStatus
                 // value should be 0.
-                if (roomDataLists.isEmpty()){
+                if (deviceInfoListsRoomData.isEmpty()) {
                     acknowledgementStatus.intValue = 0
                 }
-
-
             } else {
                 // if api response is stored in room database then acknowledgementStatus
                 // value should be 1.
-                if (roomDataLists.isNotEmpty()){
+                if (deviceInfoListsRoomData.isNotEmpty()) {
                     acknowledgementStatus.intValue = 1
                 }
                 // we are inserting device information(coming from getDevice api through IMEI number) into room database.
@@ -231,8 +226,5 @@ fun SplashScreen(navController: NavController, splashViewModel: SplashViewModel 
                 style = MaterialTheme.typography.headlineSmall,
             )
         }
-
     }
-
-
 }

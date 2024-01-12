@@ -10,8 +10,6 @@ import androidx.room.PrimaryKey
 data class DeviceInformation(
     @PrimaryKey
     val id: String,
-//    @ColumnInfo(name = "api_data")
-//    val apiData: String,
     @ColumnInfo(name = "Device_Id")
     val deviceId: Long,
     @ColumnInfo(name = "TrustOrganization")

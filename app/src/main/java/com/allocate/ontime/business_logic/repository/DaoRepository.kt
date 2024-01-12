@@ -15,13 +15,6 @@ class DaoRepository @Inject constructor(private val onTimeDatabaseDao: OnTimeDat
     suspend fun updateDeviceInfo(deviceInformation: DeviceInformation) =
         onTimeDatabaseDao.update(deviceInformation)
 
-
-    suspend fun deleteDeviceInfo(deviceInformation: DeviceInformation) =
-        onTimeDatabaseDao.delete(deviceInformation)
-
-        fun getAllDeviceInfo(): kotlinx.coroutines.flow.Flow<List<DeviceInformation>> =
+    fun getAllDeviceInfo(): kotlinx.coroutines.flow.Flow<List<DeviceInformation>> =
         onTimeDatabaseDao.getDeviceInfo().flowOn(Dispatchers.IO).conflate()
-
-
-
 }

@@ -6,6 +6,7 @@ import androidx.compose.runtime.MutableIntState
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
@@ -18,6 +19,7 @@ import com.allocate.ontime.presentation_logic.model.DeviceInfo
 import com.allocate.ontime.presentation_logic.navigation.OnTimeScreens
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -33,15 +35,8 @@ class SplashViewModel @Inject constructor(
 ) :
     ViewModel() {
 
-    private val _roomDataList = MutableStateFlow<List<DeviceInformation>>(emptyList())
-    val roomDataList = _roomDataList.asStateFlow()
-
-    private val _postApiDataList = MutableStateFlow<List<DeviceInfo>>(emptyList())
-    val postApiDataList = _postApiDataList.asStateFlow()
-
-
-
-
+    private val _deviceInfoListRoomData = MutableStateFlow<List<DeviceInformation>>(emptyList())
+    val deviceInfoListRoomData = _deviceInfoListRoomData.asStateFlow()
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
@@ -49,13 +44,10 @@ class SplashViewModel @Inject constructor(
                 if (listOfDeviceInfo.isEmpty()) {
                     Log.d("Empty", "Empty List: ")
                 } else {
-                    _roomDataList.value = listOfDeviceInfo
+                    _deviceInfoListRoomData.value = listOfDeviceInfo
                 }
             }
-
-
         }
-
     }
 
     suspend fun getDeviceData()
@@ -70,14 +62,8 @@ class SplashViewModel @Inject constructor(
     }
 
     fun addDeviceInfo(deviceInformation: DeviceInformation) =
-        viewModelScope.launch { daoRepository.addDeviceInfo(deviceInformation) }
+        viewModelScope.launch(Dispatchers.IO) { daoRepository.addDeviceInfo(deviceInformation) }
 
     fun updateDeviceInfo(deviceInformation: DeviceInformation) =
-        viewModelScope.launch { daoRepository.updateDeviceInfo(deviceInformation) }
-
-
-    fun deleteDeviceInfo(deviceInformation: DeviceInformation) =
-        viewModelScope.launch { daoRepository.deleteDeviceInfo(deviceInformation) }
-
-
+        viewModelScope.launch(Dispatchers.IO) { daoRepository.updateDeviceInfo(deviceInformation) }
 }

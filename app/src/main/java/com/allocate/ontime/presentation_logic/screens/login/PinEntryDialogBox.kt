@@ -47,7 +47,6 @@ fun PinEntryDialog(
     onPinEntered: (String) -> Unit
 ) {
     var pin by remember { mutableStateOf("") }
-
     val focusManager = LocalFocusManager.current
 
     AlertDialog(
@@ -55,7 +54,6 @@ fun PinEntryDialog(
             onDismiss()
         },
         title = {
-
             Column(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -80,10 +78,7 @@ fun PinEntryDialog(
                     IconButton(
                         onClick = {
                             onDismiss()
-                        },
-
-
-                        ) {
+                        }) {
                         Icon(
                             imageVector = Icons.Default.Close,
                             contentDescription = null,
@@ -116,10 +111,7 @@ fun PinEntryDialog(
                     color = Color(0xFF008B8B),
                     fontWeight = FontWeight.Bold
                 )
-
-
             }
-
         },
         text = {
             OutlinedTextField(
@@ -135,7 +127,6 @@ fun PinEntryDialog(
                 modifier = Modifier
                     .fillMaxWidth()
             )
-
         },
         confirmButton = {
             Button(
