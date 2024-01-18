@@ -36,6 +36,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.allocate.ontime.R
+import com.allocate.ontime.presentation_logic.navigation.OnTimeScreens
+import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.widgets.InputField
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -43,7 +45,7 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 @OptIn(DelicateCoroutinesApi::class)
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
-fun AdminRegistrationScreen(navController: NavController) {
+fun AdminRegistrationScreen(backToSuperAdminScreen:(SuperAdminScreenRoot) -> Unit) {
 
     val searchState = remember {
         mutableStateOf("")
@@ -283,7 +285,7 @@ fun AdminRegistrationScreen(navController: NavController) {
             ) {
                 Button(
                     onClick = {
-                        navController.popBackStack()
+                        backToSuperAdminScreen(SuperAdminScreenRoot.SuperAdminScreen)
                     },
                     shape = RoundedCornerShape(3.dp),
                     colors = ButtonDefaults.buttonColors(

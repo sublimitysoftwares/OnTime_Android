@@ -43,6 +43,7 @@ import com.allocate.ontime.R
 import com.allocate.ontime.business_logic.data.DataOrException
 import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminSettingViewModel
 import com.allocate.ontime.presentation_logic.model.DeviceInfo
+import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
 
 import com.allocate.ontime.presentation_logic.widgets.InputField
 
@@ -50,7 +51,7 @@ import com.allocate.ontime.presentation_logic.widgets.InputField
 @SuppressLint("SuspiciousIndentation")
 @Composable
 fun SuperAdminSettingScreen(
-    navController: NavController,
+    backToSuperAdminScreen:(SuperAdminScreenRoot) -> Unit,
     superAdminViewModel: SuperAdminSettingViewModel = hiltViewModel()
 ) {
     val checkBoxState = remember {
@@ -219,7 +220,7 @@ fun SuperAdminSettingScreen(
             ) {
                 Button(
                     onClick = {
-                        navController.popBackStack()
+                        backToSuperAdminScreen(SuperAdminScreenRoot.SuperAdminScreen)
                     },
                     shape = RoundedCornerShape(3.dp),
                     colors = ButtonDefaults.buttonColors(

@@ -42,11 +42,12 @@ import com.allocate.ontime.business_logic.viewmodel.splash.SplashViewModel
 import com.allocate.ontime.presentation_logic.model.AppInfo
 import com.allocate.ontime.presentation_logic.model.DeviceInfo
 import com.allocate.ontime.presentation_logic.model.DeviceInfoResponsePacket
+import com.allocate.ontime.presentation_logic.navigation.HomeScreenRoot
 import com.allocate.ontime.presentation_logic.navigation.OnTimeScreens
 import retrofit2.Response
 
 @Composable
-fun SplashScreen(navController: NavController, splashViewModel: SplashViewModel = hiltViewModel()) {
+fun SplashScreen(homeScreenRoot: (HomeScreenRoot) -> Unit, splashViewModel: SplashViewModel = hiltViewModel()) {
     val deviceInfoApiData = produceState<DataOrException<DeviceInfo, Boolean, Exception>>(
         initialValue = DataOrException(loading = true)
     ) {
@@ -217,7 +218,7 @@ fun SplashScreen(navController: NavController, splashViewModel: SplashViewModel 
                 // we have completed the device setup.
                 postEditDeviceDataCall()
                 // navigating from splash screen to home screen.
-                navController.navigate(OnTimeScreens.HomeScreen.toString())
+                homeScreenRoot(HomeScreenRoot.HomeScreen)
             }
 
             Spacer(modifier = Modifier.height(20.dp))

@@ -39,12 +39,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.allocate.ontime.R
+import com.allocate.ontime.presentation_logic.navigation.HomeScreenRoot
 import com.allocate.ontime.presentation_logic.navigation.OnTimeScreens
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.screens.login.PinEntryDialog
 
 @Composable
-fun AdminScreen(navController: NavController) {
+fun AdminScreen(backToHome: (HomeScreenRoot)->Unit) {
 
     var isDialogVisible by remember { mutableStateOf(false) }
     val context = LocalContext.current
@@ -177,7 +178,7 @@ fun AdminScreen(navController: NavController) {
                     ) {
                         Button(
                             onClick = {
-                                navController.navigate(OnTimeScreens.HomeScreen.toString())
+                                backToHome(HomeScreenRoot.HomeScreen)
                             },
                             shape = RoundedCornerShape(10.dp),
                             colors = ButtonDefaults.buttonColors(

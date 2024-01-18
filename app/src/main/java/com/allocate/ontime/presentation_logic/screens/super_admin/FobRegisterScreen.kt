@@ -39,11 +39,12 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.allocate.ontime.R
+import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.widgets.InputField
 
 @Composable
-fun FobRegisterScreen(navController: NavController) {
+fun FobRegisterScreen(backToSuperAdminScreen:(SuperAdminScreenRoot) -> Unit) {
 
     val searchEmployeeState = remember {
         mutableStateOf("")
@@ -174,7 +175,7 @@ fun FobRegisterScreen(navController: NavController) {
             Spacer(modifier = Modifier.weight(1f))
             Button(
                 onClick = {
-                    navController.popBackStack()
+                    backToSuperAdminScreen(SuperAdminScreenRoot.SuperAdminScreen)
                 },
                 shape = RoundedCornerShape(3.dp),
                 colors = ButtonDefaults.buttonColors(
