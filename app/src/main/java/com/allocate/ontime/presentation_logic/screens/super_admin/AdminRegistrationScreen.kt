@@ -34,18 +34,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.allocate.ontime.R
-import com.allocate.ontime.presentation_logic.navigation.OnTimeScreens
 import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.widgets.InputField
-import kotlinx.coroutines.DelicateCoroutinesApi
 
-@OptIn(DelicateCoroutinesApi::class)
+
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
-fun AdminRegistrationScreen(backToSuperAdminScreen:(SuperAdminScreenRoot) -> Unit) {
+fun AdminRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
 
     val searchState = remember {
         mutableStateOf("")
@@ -82,14 +79,11 @@ fun AdminRegistrationScreen(backToSuperAdminScreen:(SuperAdminScreenRoot) -> Uni
                     .padding(end = 10.dp),
                 textStyle = MaterialTheme.typography.titleMedium
             )
-
             Spacer(
                 modifier = Modifier
                     .height(10.dp)
                     .weight(1f)
             )
-
-
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -149,7 +143,6 @@ fun AdminRegistrationScreen(backToSuperAdminScreen:(SuperAdminScreenRoot) -> Uni
                                     ),
                                 textStyle = MaterialTheme.typography.titleMedium
                             )
-
                         }
                     }
                 }
@@ -231,7 +224,6 @@ fun AdminRegistrationScreen(backToSuperAdminScreen:(SuperAdminScreenRoot) -> Uni
                             }
                         }
                     }
-
                 }
             }
             Spacer(

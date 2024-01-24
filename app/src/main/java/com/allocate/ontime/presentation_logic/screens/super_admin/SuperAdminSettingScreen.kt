@@ -19,7 +19,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
@@ -38,20 +37,18 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.allocate.ontime.R
 import com.allocate.ontime.business_logic.data.DataOrException
 import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminSettingViewModel
 import com.allocate.ontime.presentation_logic.model.DeviceInfo
 import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
-
 import com.allocate.ontime.presentation_logic.widgets.InputField
 
 
 @SuppressLint("SuspiciousIndentation")
 @Composable
 fun SuperAdminSettingScreen(
-    backToSuperAdminScreen:(SuperAdminScreenRoot) -> Unit,
+    backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit,
     superAdminViewModel: SuperAdminSettingViewModel = hiltViewModel()
 ) {
     val checkBoxState = remember {
@@ -80,29 +77,25 @@ fun SuperAdminSettingScreen(
     }
 
 
-    val deviceData = produceState<DataOrException<DeviceInfo, Boolean, Exception>>(
-        initialValue = DataOrException(loading = true)
+    val deviceData = produceState<DataOrException<DeviceInfo, Exception>>(
+        initialValue = DataOrException()
     ) {
         value = superAdminViewModel.getDeviceData()
     }.value
 
     Log.d("deviceData", "SuperAdminSettingScreen: $deviceData")
 
-    if (deviceData.loading == true) {
-        CircularProgressIndicator(color = Color.Red)
-    } else {
-        if (deviceData.data?.statusCode == 200) {
-            deviceData.data!!.responsePacket.forEach {
-                trustState.value = it.TrustOrganization
-                locationState.value = it.Location
-                postCodeState.value = it.Postcode
-                uniqueIdentifierState.value = it.Unique_Identifier
-                latitudeState.value = it.Latitude
-                longitudeState.value = it.Longitude
-            }
-            latLngState.value = latitudeState.value + ',' + longitudeState.value
-
+    if (deviceData.data?.statusCode == 200) {
+        deviceData.data!!.responsePacket.forEach {
+            trustState.value = it.TrustOrganization
+            locationState.value = it.Location
+            postCodeState.value = it.Postcode
+            uniqueIdentifierState.value = it.Unique_Identifier
+            latitudeState.value = it.Latitude
+            longitudeState.value = it.Longitude
         }
+        latLngState.value = latitudeState.value + ',' + longitudeState.value
+
     }
 
     Surface(
@@ -389,7 +382,6 @@ private fun SuperAdminSettingInfo(
                     modifier = Modifier
                         .size(width = 400.dp, height = 70.dp)
                         .padding(10.dp)
-
                 ) {
                     Text(text = "REGISTER")
                 }

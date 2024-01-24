@@ -40,7 +40,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.allocate.ontime.presentation_logic.theme.dimens
 
-@OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun PinEntryDialog(
     onDismiss: () -> Unit,

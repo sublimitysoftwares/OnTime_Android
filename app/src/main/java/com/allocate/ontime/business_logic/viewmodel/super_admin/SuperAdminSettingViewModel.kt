@@ -12,7 +12,7 @@ import javax.inject.Inject
 class SuperAdminSettingViewModel @Inject constructor(private val repository: OnTimeRepository) :
     ViewModel() {
     suspend fun getDeviceData()
-            : DataOrException<DeviceInfo, Boolean, Exception> {
+            : DataOrException<DeviceInfo, Exception> {
         return repository.getDeviceInfo()
     }
 }

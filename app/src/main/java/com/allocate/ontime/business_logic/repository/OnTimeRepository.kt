@@ -12,12 +12,10 @@ class OnTimeRepository @Inject constructor(
     private val api: OnTimeApi,
 
     ) {
-    suspend fun getDeviceInfo(): DataOrException<DeviceInfo, Boolean, Exception> {
-        val dataOrException = DataOrException<DeviceInfo, Boolean, Exception>()
+    suspend fun getDeviceInfo(): DataOrException<DeviceInfo, Exception> {
+        val dataOrException = DataOrException<DeviceInfo, Exception>()
         try {
-            dataOrException.loading = true
             dataOrException.data = api.getDeviceInfo()
-            if (dataOrException.data.toString().isNotEmpty()) dataOrException.loading = false
         } catch (exception: Exception) {
             dataOrException.e = exception
             Log.d("EXC", "getAllDeviceInfo: ${dataOrException.e}")
@@ -27,12 +25,10 @@ class OnTimeRepository @Inject constructor(
 
     suspend fun postDeviceInfo(
         appInfo: AppInfo
-    ): DataOrException<Response<AppInfo>, Boolean, Exception> {
-        val dataOrException1 = DataOrException<Response<AppInfo>, Boolean, Exception>()
+    ): DataOrException<Response<AppInfo>, Exception> {
+        val dataOrException1 = DataOrException<Response<AppInfo>, Exception>()
         try {
-            dataOrException1.loading = true
             dataOrException1.data = api.postEditDeviceInfo(appInfo)
-            if (dataOrException1.data.toString().isNotEmpty()) dataOrException1.loading = false
         } catch (exception: Exception) {
             dataOrException1.e = exception
             Log.d("EXC", "getAllDeviceInfo: ${dataOrException1.e}")

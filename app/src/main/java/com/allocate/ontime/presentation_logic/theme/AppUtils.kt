@@ -8,7 +8,7 @@ import androidx.compose.runtime.remember
 @Composable
 fun AppUtils(
     appDimens: Dimens,
-    content: @Composable ()-> Unit
+    content: @Composable () -> Unit
 ) {
     val appDimens: Dimens = remember {
         appDimens
@@ -16,12 +16,9 @@ fun AppUtils(
 
     CompositionLocalProvider(LocalAppDimens provides appDimens) {
         content()
-
-
     }
-
 }
 
-val LocalAppDimens = compositionLocalOf{
+val LocalAppDimens = compositionLocalOf {
     MediumDimens1
 }

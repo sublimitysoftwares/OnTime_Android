@@ -41,15 +41,19 @@ fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
                         SuperAdminScreenRoot.AdminRegistrationScreen -> navController.navigate(
                             OnTimeScreens.AdminRegistrationScreen.name
                         )
+
                         SuperAdminScreenRoot.FobRegisterScreen -> navController.navigate(
                             OnTimeScreens.FobRegisterScreen.name
                         )
+
                         SuperAdminScreenRoot.SuperAdminSettingScreen -> navController.navigate(
                             OnTimeScreens.SuperAdminSettingScreen.name
                         )
+
                         SuperAdminScreenRoot.HomeScreen -> navController.navigate(
                             OnTimeScreens.HomeScreen.name
                         )
+
                         SuperAdminScreenRoot.SuperAdminScreen -> navController.navigate(
                             OnTimeScreens.SuperAdminScreen.name
                         )
@@ -58,7 +62,7 @@ fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
         }
         composable(OnTimeScreens.AdminScreen.name) {
             AdminScreen(backToHome = {
-                when(it){
+                when (it) {
                     HomeScreenRoot.HomeScreen -> navController.navigate(OnTimeScreens.HomeScreen.name)
                     else -> {}
                 }
@@ -66,7 +70,7 @@ fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
         }
         composable(OnTimeScreens.AdminRegistrationScreen.name) {
             AdminRegistrationScreen(backToSuperAdminScreen = {
-                when(it){
+                when (it) {
                     SuperAdminScreenRoot.SuperAdminScreen -> navController.navigate(OnTimeScreens.SuperAdminScreen.name)
                     else -> {}
                 }
@@ -74,7 +78,7 @@ fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
         }
         composable(OnTimeScreens.FobRegisterScreen.name) {
             FobRegisterScreen(backToSuperAdminScreen = {
-                when(it){
+                when (it) {
                     SuperAdminScreenRoot.SuperAdminScreen -> navController.navigate(OnTimeScreens.SuperAdminScreen.name)
                     else -> {}
                 }
@@ -82,7 +86,7 @@ fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
         }
         composable(OnTimeScreens.SuperAdminSettingScreen.name) {
             SuperAdminSettingScreen(backToSuperAdminScreen = {
-                when(it){
+                when (it) {
                     SuperAdminScreenRoot.SuperAdminScreen -> navController.navigate(OnTimeScreens.SuperAdminScreen.name)
                     else -> {}
                 }
@@ -90,7 +94,7 @@ fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
         }
         composable(OnTimeScreens.SplashScreen.name) {
             SplashScreen(homeScreenRoot = {
-                when(it){
+                when (it) {
                     HomeScreenRoot.HomeScreen -> navController.navigate(OnTimeScreens.HomeScreen.name)
                     else -> {}
                 }

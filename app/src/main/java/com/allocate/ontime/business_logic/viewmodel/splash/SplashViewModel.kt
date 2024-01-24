@@ -1,69 +1,124 @@
 package com.allocate.ontime.business_logic.viewmodel.splash
 
 import android.util.Log
-import android.util.MutableBoolean
-import androidx.compose.runtime.MutableIntState
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavController
-import com.allocate.ontime.business_logic.data.DataOrException
 import com.allocate.ontime.business_logic.data.room.DeviceInformation
 import com.allocate.ontime.business_logic.repository.DaoRepository
 import com.allocate.ontime.business_logic.repository.OnTimeRepository
 import com.allocate.ontime.presentation_logic.model.AppInfo
-import com.allocate.ontime.presentation_logic.model.DeviceInfo
-import com.allocate.ontime.presentation_logic.navigation.OnTimeScreens
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
-import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
 class SplashViewModel @Inject constructor(
     private val repository: OnTimeRepository,
     private val daoRepository: DaoRepository,
-) :
-    ViewModel() {
+) : ViewModel() {
 
     private val _deviceInfoListRoomData = MutableStateFlow<List<DeviceInformation>>(emptyList())
     val deviceInfoListRoomData = _deviceInfoListRoomData.asStateFlow()
 
+    private val _acknowledgementStatus = MutableStateFlow(0)
+    private val acknowledgementStatus = _acknowledgementStatus.asStateFlow()
+
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            daoRepository.getAllDeviceInfo().distinctUntilChanged().collect() { listOfDeviceInfo ->
-                if (listOfDeviceInfo.isEmpty()) {
-                    Log.d("Empty", "Empty List: ")
-                } else {
-                    _deviceInfoListRoomData.value = listOfDeviceInfo
-                }
+            val getDeviceInfoApiData = async { repository.getDeviceInfo() }.await()
+
+            getDeviceInfoApiData.data?.responsePacket?.first()?.let { data ->
+                DeviceInformation(
+                    id = data._id,
+                    deviceId = data.DeviceId.toLong(),
+                    trustOrganization = data.TrustOrganization,
+                    uniqueIdentifier = data.Unique_Identifier,
+                    location = data.Location,
+                    serialNumber = data.SerialNumber,
+                    latitude = data.Latitude.toDouble(),
+                    longitude = data.Longitude.toDouble(),
+                    postcode = data.Postcode,
+                    status = data.Status,
+                    asInstance = data.ASInstance,
+                    asEmployeeOnlineURL = data.ASEmployeeOnlineURL,
+                    asApiURL = data.ASApiURL,
+                    appVersion = data.AppVersion!!,
+                    locationCode = data.LocationCode,
+                    acknowledgementStatus = acknowledgementStatus.value
+                )
+            }?.let {
+                addDeviceInfo(
+                    deviceInformation = it
+                )
             }
+
+            daoRepository.getAllDeviceInfo().distinctUntilChanged()
+                .collect() { listOfDeviceInfo ->
+                    if (listOfDeviceInfo.isEmpty()) {
+                        Log.d("Empty", "Empty List: ")
+                    } else {
+                        _deviceInfoListRoomData.value = listOfDeviceInfo
+                        deviceInfoListRoomData.value.forEach {
+                            if (it.acknowledgementStatus == 0) {
+                                val result = async {
+                                    getDeviceInfoApiData.data?.let {
+                                        repository.postDeviceInfo(
+                                            appInfo = AppInfo(
+                                                id = it.responsePacket.first()._id,
+                                                macAddress = "test8",
+                                                app = "test8",
+                                                appVersion = "test8"
+                                            )
+                                        )
+                                    } ?: run {
+                                        getDeviceInfoApiData.e?.let {
+                                            Log.d("EXC", "$it")
+                                        }
+                                    }
+                                }.await()
+                                result.run {
+                                    _acknowledgementStatus.value = 1
+                                    getDeviceInfoApiData.data?.responsePacket?.first()
+                                        ?.let { data ->
+                                            DeviceInformation(
+                                                id = data._id,
+                                                deviceId = data.DeviceId.toLong(),
+                                                trustOrganization = data.TrustOrganization,
+                                                uniqueIdentifier = data.Unique_Identifier,
+                                                location = data.Location,
+                                                serialNumber = data.SerialNumber,
+                                                latitude = data.Latitude.toDouble(),
+                                                longitude = data.Longitude.toDouble(),
+                                                postcode = data.Postcode,
+                                                status = data.Status,
+                                                asInstance = data.ASInstance,
+                                                asEmployeeOnlineURL = data.ASEmployeeOnlineURL,
+                                                asApiURL = data.ASApiURL,
+                                                appVersion = data.AppVersion!!,
+                                                locationCode = data.LocationCode,
+                                                acknowledgementStatus = acknowledgementStatus.value
+                                            )
+                                        }
+                                }?.let {
+                                    updateDeviceInfo(
+                                        deviceInformation = it
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
         }
     }
 
-    suspend fun getDeviceData()
-            : DataOrException<DeviceInfo, Boolean, Exception> {
-        return repository.getDeviceInfo()
-    }
-
-    suspend fun postDeviceData(
-       appInfo: AppInfo
-    ) : DataOrException<Response<AppInfo>, Boolean, Exception> {
-        return repository.postDeviceInfo(appInfo)
-    }
-
-    fun addDeviceInfo(deviceInformation: DeviceInformation) =
+    private suspend fun addDeviceInfo(deviceInformation: DeviceInformation) =
         viewModelScope.launch(Dispatchers.IO) { daoRepository.addDeviceInfo(deviceInformation) }
 
-    fun updateDeviceInfo(deviceInformation: DeviceInformation) =
+    private suspend fun updateDeviceInfo(deviceInformation: DeviceInformation) =
         viewModelScope.launch(Dispatchers.IO) { daoRepository.updateDeviceInfo(deviceInformation) }
 }

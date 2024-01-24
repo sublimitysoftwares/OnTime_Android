@@ -37,14 +37,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.allocate.ontime.R
 import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.widgets.InputField
 
 @Composable
-fun FobRegisterScreen(backToSuperAdminScreen:(SuperAdminScreenRoot) -> Unit) {
+fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
 
     val searchEmployeeState = remember {
         mutableStateOf("")
@@ -142,7 +141,6 @@ fun FobRegisterScreen(backToSuperAdminScreen:(SuperAdminScreenRoot) -> Unit) {
                                     style = MaterialTheme.typography.titleSmall
                                 )
                             }
-
                         )
                     }
                 }
@@ -193,7 +191,6 @@ fun FobRegisterScreen(backToSuperAdminScreen:(SuperAdminScreenRoot) -> Unit) {
                         contentScale = ContentScale.Fit,
                         modifier = Modifier.size(15.dp)
                     )
-
                     Text(text = "Click here to go back")
                 }
             }

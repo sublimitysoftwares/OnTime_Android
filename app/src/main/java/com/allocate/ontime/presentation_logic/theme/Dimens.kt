@@ -33,7 +33,6 @@ data class Dimens(
     val loginButtonPadding: Dp = 0.dp,
     val loginButtonWidth: Dp = 0.dp,
     val loginButtonHeight: Dp = 0.dp
-
 )
 
 val MediumDimens1 = Dimens(
@@ -118,8 +117,6 @@ val ExpandedDimens1 = Dimens(
     loginButtonPadding = 65.dp,
     loginButtonWidth = 140.dp,
     loginButtonHeight = 35.dp
-
-
 )
 
 val ExpandedDimens2 = Dimens(
@@ -150,8 +147,6 @@ val ExpandedDimens2 = Dimens(
     loginButtonPadding = 125.dp,
     loginButtonWidth = 140.dp,
     loginButtonHeight = 35.dp
-
-
 )
 
 val ExpandedDimens3 = Dimens(
@@ -182,8 +177,6 @@ val ExpandedDimens3 = Dimens(
     loginButtonPadding = 165.dp,
     loginButtonWidth = 160.dp,
     loginButtonHeight = 40.dp
-
-
 )
 
 val ExpandedDimens = Dimens(
@@ -214,5 +207,4 @@ val ExpandedDimens = Dimens(
     loginButtonPadding = 180.dp,
     loginButtonWidth = 160.dp,
     loginButtonHeight = 40.dp
-
 )

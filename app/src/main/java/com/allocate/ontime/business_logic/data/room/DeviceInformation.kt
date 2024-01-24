@@ -11,33 +11,33 @@ data class DeviceInformation(
     @PrimaryKey
     val id: String,
     @ColumnInfo(name = "Device_Id")
-    val deviceId: Long,
+    val deviceId: Long?,
     @ColumnInfo(name = "TrustOrganization")
-    val trustOrganization: String,
+    val trustOrganization: String?,
     @ColumnInfo(name = "Unique_Identifier")
-    val uniqueIdentifier: String,
+    val uniqueIdentifier: String?,
     @ColumnInfo(name = "Location")
-    val location: String,
+    val location: String?,
     @ColumnInfo(name = "SerialNumber")
-    val serialNumber: String,
+    val serialNumber: String?,
     @ColumnInfo(name = "Latitude")
-    val latitude: Double,
+    val latitude: Double?,
     @ColumnInfo(name = "Longitude")
-    val longitude: Double,
+    val longitude: Double?,
     @ColumnInfo(name = "Postcode")
-    val postcode: String,
+    val postcode: String?,
     @ColumnInfo(name = "Status")
-    val status: String,
+    val status: String?,
     @ColumnInfo(name = "ASInstance")
-    val asInstance: String,
+    val asInstance: String?,
     @ColumnInfo(name = "ASEmployeeOnlineURL")
-    val asEmployeeOnlineURL: String,
+    val asEmployeeOnlineURL: String?,
     @ColumnInfo(name = "ASApiURL")
-    val asApiURL: String,
+    val asApiURL: String?,
     @ColumnInfo(name = "AppVersion")
-    val appVersion: String,
+    val appVersion: String?,
     @ColumnInfo(name = "LocationCode")
-    val locationCode: String,
+    val locationCode: String?,
     @ColumnInfo(name = "Acknowledgement_status")
     val acknowledgementStatus: Int
 )
