@@ -32,8 +32,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import com.allocate.ontime.R
 import com.allocate.ontime.presentation_logic.navigation.HomeScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
@@ -56,7 +56,6 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
-
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -86,7 +85,7 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                 Image(
                     painter = painterResource(id = R.drawable.rld_logo),
                     contentDescription =
-                    "rld_logo",
+                    stringResource(id = R.string.rld_logo),
                     contentScale = ContentScale.Fit,
                     modifier = Modifier
                         .fillMaxWidth(MaterialTheme.dimens.homeScreenRldLogoMaxWidthFraction)
@@ -99,12 +98,12 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                     Image(
                         painter = painterResource(id = R.drawable.fingerprint_rld),
                         contentDescription =
-                        "place_finger_logo",
+                        stringResource(id = R.string.place_finger_logo),
                         modifier = Modifier.size(MaterialTheme.dimens.medium3)
                     )
                     Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
                     Text(
-                        text = "Place Finger",
+                        text = stringResource(id = R.string.Place_Finger),
                         style = MaterialTheme.typography.headlineSmall,
                         color = Color.Red
                     )
@@ -112,7 +111,7 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
             }
             Image(
                 painter = painterResource(id = R.drawable.ontime_logo),
-                contentDescription = "onTime_logo",
+                contentDescription = stringResource(id = R.string.onTime_logo),
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .fillMaxWidth(MaterialTheme.dimens.homeScreenOnTimeLogoMaxWidthFraction)
@@ -126,7 +125,7 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.rld_img_logo),
-                    contentDescription = "rld_img_logo",
+                    contentDescription = stringResource(id = R.string.rld_img_logo),
                     modifier = Modifier
                         .size(MaterialTheme.dimens.large3)
                         .aspectRatio(1f),
@@ -146,7 +145,10 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                         shape = RoundedCornerShape(MaterialTheme.dimens.homeScreenButtonsCornerShapeSize),
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5F3341)),
                     ) {
-                        Text(text = "ENTER PIN", style = MaterialTheme.typography.titleLarge)
+                        Text(
+                            text = stringResource(id = R.string.ENTER_PIN),
+                            style = MaterialTheme.typography.titleLarge
+                        )
 
                     }
                     Spacer(modifier = Modifier.height(MaterialTheme.dimens.small3))
@@ -166,7 +168,7 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                             )
                         ) {
                             Text(
-                                text = "Administrator Access",
+                                text = stringResource(id = R.string.Administrator_Access),
                                 style = MaterialTheme.typography.titleLarge
                             )
                         }
@@ -183,7 +185,7 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                             )
                         ) {
                             Text(
-                                text = "View Employee Online",
+                                text = stringResource(id = R.string.View_Employee_Online),
                                 style = MaterialTheme.typography.titleLarge
                             )
                         }
@@ -200,13 +202,13 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.ic_nfc),
-                            contentDescription = "fob_icon",
+                            contentDescription = stringResource(id = R.string.fob_icon),
                             contentScale = ContentScale.Fit,
                             modifier = Modifier.size(MaterialTheme.dimens.medium3)
                         )
                         Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
                         Text(
-                            text = "FOB",
+                            text = stringResource(id = R.string.FOB),
                             style = MaterialTheme.typography.headlineSmall,
                             color = Color.Red,
                         )
@@ -217,9 +219,12 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                         horizontalAlignment = Alignment.End,
                         modifier = Modifier.padding(bottom = MaterialTheme.dimens.homeScreenBottomRowBottomPadding)
                     ) {
-                        Text(text = "6.5d : 6.5", style = MaterialTheme.typography.labelSmall)
                         Text(
-                            text = "Unique Identifier : ci delhi",
+                            text = stringResource(id = R.string.app_info),
+                            style = MaterialTheme.typography.labelSmall
+                        )
+                        Text(
+                            text = stringResource(id = R.string.Unique_Identifier),
                             style = MaterialTheme.typography.labelSmall
                         )
                     }

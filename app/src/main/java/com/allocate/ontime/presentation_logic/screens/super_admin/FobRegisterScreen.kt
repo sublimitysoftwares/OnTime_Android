@@ -33,6 +33,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -74,7 +75,7 @@ fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
             )
         ) {
             Text(
-                text = "FOB REGISTER",
+                text = stringResource(id = R.string.FOB_REGISTER),
                 style = MaterialTheme.typography.headlineMedium,
                 color = Color(0xFF85D32C),
                 fontWeight = FontWeight.Bold
@@ -86,7 +87,7 @@ fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
             ) {
                 InputField(
                     valueState = searchEmployeeState,
-                    labelId = "Search Employee",
+                    labelId = stringResource(id = R.string.Search_Employee),
                     enabled = true,
                     isSingleLine = true,
                     modifier = Modifier
@@ -112,7 +113,7 @@ fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
                         modifier = Modifier.width(MaterialTheme.dimens.fobRegisterScreenSetLocationRowWidth)
                     ) {
                         Text(
-                            text = "Set location Radius",
+                            text = stringResource(id = R.string.Set_location_Radius),
                             color = Color.White,
                             style = MaterialTheme.typography.titleSmall
                         )
@@ -144,7 +145,7 @@ fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
                             },
                             placeholder = {
                                 Text(
-                                    text = "Miles",
+                                    text = stringResource(id = R.string.Miles),
                                     style = MaterialTheme.typography.titleSmall
                                 )
                             }
@@ -159,7 +160,7 @@ fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
                         .width(MaterialTheme.dimens.fobRegisterScreenSetLocationRowWidth)
                 ) {
                     Text(
-                        text = "All Locations",
+                        text = stringResource(id = R.string.All_Locations),
                         color = Color.White,
                         style = MaterialTheme.typography.titleSmall
                     )
@@ -197,11 +198,11 @@ fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.circle_black),
-                        contentDescription = "circle_black_img",
+                        contentDescription = stringResource(id = R.string.circle_black_img),
                         contentScale = ContentScale.Fit,
                         modifier = Modifier.size(MaterialTheme.dimens.circleBlackImgSize)
                     )
-                    Text(text = "Click here to go back")
+                    Text(text = stringResource(id = R.string.Click_here_to_go_back))
                 }
             }
         }

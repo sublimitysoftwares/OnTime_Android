@@ -34,6 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -108,7 +109,7 @@ fun SuperAdminSettingScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Super Admin Setting",
+                text = stringResource(id = R.string.Super_Admin_Setting),
                 style = MaterialTheme.typography.headlineMedium,
                 color = Color(0xFF85D32C),
                 fontWeight = FontWeight.Bold
@@ -121,7 +122,7 @@ fun SuperAdminSettingScreen(
                 horizontalArrangement = Arrangement.spacedBy(20.dp)
             ) {
                 Text(
-                    text = "Clock In/Out",
+                    text = stringResource(id = R.string.Clock_In_or_Out),
                     color = Color.White,
                     style = MaterialTheme.typography.titleSmall
                 )
@@ -134,7 +135,7 @@ fun SuperAdminSettingScreen(
                     )
                 )
                 Text(
-                    text = "Swipe And Go",
+                    text = stringResource(id = R.string.Swipe_And_Go),
                     color = Color.White,
                     style = MaterialTheme.typography.titleSmall
                 )
@@ -148,7 +149,7 @@ fun SuperAdminSettingScreen(
                     colors = CheckboxDefaults.colors(uncheckedColor = Color.White)
                 )
                 Text(
-                    text = "Enable two way Authentication",
+                    text = stringResource(id = R.string.Enable_two_way_Authentication),
                     color = Color.White,
                     style = MaterialTheme.typography.titleMedium
                 )
@@ -158,7 +159,7 @@ fun SuperAdminSettingScreen(
                 horizontalArrangement = Arrangement.spacedBy(20.dp)
             ) {
                 Text(
-                    text = "Enable Pin",
+                    text = stringResource(id = R.string.ENTER_PIN),
                     color = Color.White,
                     style = MaterialTheme.typography.titleSmall
                 )
@@ -171,7 +172,7 @@ fun SuperAdminSettingScreen(
                     )
                 )
                 Text(
-                    text = "Disable Pin",
+                    text = stringResource(id = R.string.Disable_Pin),
                     color = Color.White,
                     style = MaterialTheme.typography.titleSmall
                 )
@@ -185,7 +186,7 @@ fun SuperAdminSettingScreen(
                     shape = RoundedCornerShape(MaterialTheme.dimens.superAdminSettingScreenButtonsCornerShapeSize),
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF85D32C)),
                 ) {
-                    Text(text = "CHECK FOR UPDATE")
+                    Text(text = stringResource(id = R.string.CHECK_FOR_UPDATE))
                 }
                 Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth20))
                 Button(
@@ -194,7 +195,7 @@ fun SuperAdminSettingScreen(
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF85D32C)),
 
                     ) {
-                    Text(text = "SET TEST EMPLOYEE")
+                    Text(text = stringResource(id = R.string.SET_TEST_EMPLOYEE))
                 }
             }
             Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight10))
@@ -224,11 +225,11 @@ fun SuperAdminSettingScreen(
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.circle_black),
-                            contentDescription = "circle_black_img",
+                            contentDescription = stringResource(id = R.string.circle_black_img),
                             contentScale = ContentScale.Fit,
                             modifier = Modifier.size(MaterialTheme.dimens.circleBlackImgSize)
                         )
-                        Text(text = "Click here to go back")
+                        Text(text = stringResource(id = R.string.Click_here_to_go_back))
                     }
                 }
                 Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth20))
@@ -249,11 +250,11 @@ fun SuperAdminSettingScreen(
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.circle_green),
-                            contentDescription = "circle_green_img",
+                            contentDescription = stringResource(id = R.string.circle_green_img),
                             contentScale = ContentScale.Fit,
                             modifier = Modifier.size(MaterialTheme.dimens.circleGreenImgSize)
                         )
-                        Text(text = "View Employee Online")
+                        Text(text = stringResource(id = R.string.View_Employee_Online))
                     }
                 }
             }
@@ -286,7 +287,7 @@ private fun SuperAdminSettingInfo(
                 horizontalAlignment = Alignment.Start,
             ) {
                 Text(
-                    text = "Trust/Organization",
+                    text = stringResource(id = R.string.Trust_or_Organization),
                     color = Color.White,
                     modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
                 )
@@ -302,7 +303,7 @@ private fun SuperAdminSettingInfo(
                     textStyle = MaterialTheme.typography.titleMedium
                 )
                 Text(
-                    text = "Location(Do not add semi colon)",
+                    text = stringResource(id = R.string.Location_Do_not_add_semi_colon),
                     color = Color.White,
                     modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
                 )
@@ -318,7 +319,7 @@ private fun SuperAdminSettingInfo(
                     textStyle = MaterialTheme.typography.titleMedium
                 )
                 Text(
-                    text = "Postcode",
+                    text = stringResource(id = R.string.Postcode),
                     color = Color.White,
                     modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
                 )
@@ -339,7 +340,7 @@ private fun SuperAdminSettingInfo(
                 horizontalAlignment = Alignment.Start,
             ) {
                 Text(
-                    text = "Unique Identifier",
+                    text = stringResource(id = R.string.Unique_Identifier),
                     color = Color.White,
                     modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
                 )
@@ -355,7 +356,7 @@ private fun SuperAdminSettingInfo(
                     textStyle = MaterialTheme.typography.titleMedium
                 )
                 Text(
-                    text = "LatLng",
+                    text = stringResource(id = R.string.LatLng),
                     color = Color.White,
                     modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
                 )
@@ -381,7 +382,7 @@ private fun SuperAdminSettingInfo(
                         )
                         .padding(MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
                 ) {
-                    Text(text = "REGISTER")
+                    Text(text = stringResource(id = R.string.REGISTER))
                 }
             }
         }

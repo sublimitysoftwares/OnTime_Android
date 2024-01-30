@@ -31,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -64,14 +65,14 @@ fun AdminRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Un
                 .fillMaxSize()
         ) {
             Text(
-                text = "ADMIN PAGE",
+                text = stringResource(id = R.string.ADMIN_PAGE),
                 style = MaterialTheme.typography.headlineMedium,
                 color = Color(0xFF85D32C),
                 fontWeight = FontWeight.Bold
             )
             InputField(
                 valueState = searchState,
-                labelId = "Search Employee",
+                labelId = stringResource(id = R.string.Search_Employee),
                 enabled = true,
                 isSingleLine = true,
                 modifier = Modifier
@@ -100,7 +101,10 @@ fun AdminRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Un
                 Column(
                     verticalArrangement = Arrangement.Top,
                 ) {
-                    Text(text = "New/Edit User Registration", color = Color.White)
+                    Text(
+                        text = stringResource(id = R.string.New_or_Edit_User_Registration),
+                        color = Color.White
+                    )
                     Surface(
                         modifier = Modifier
                             .size(
@@ -116,7 +120,7 @@ fun AdminRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Un
                         ) {
                             InputField(
                                 valueState = searchState,
-                                labelId = "First Name",
+                                labelId = stringResource(id = R.string.First_Name),
                                 enabled = true,
                                 isSingleLine = true,
                                 modifier = Modifier
@@ -128,7 +132,7 @@ fun AdminRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Un
                             )
                             InputField(
                                 valueState = searchState,
-                                labelId = "Last Name",
+                                labelId = stringResource(id = R.string.Last_Name),
                                 enabled = true,
                                 isSingleLine = true,
                                 modifier = Modifier
@@ -140,7 +144,7 @@ fun AdminRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Un
                             )
                             InputField(
                                 valueState = searchState,
-                                labelId = "Employee Number",
+                                labelId = stringResource(id = R.string.Employee_Number),
                                 enabled = true,
                                 isSingleLine = true,
                                 modifier = Modifier
@@ -156,7 +160,10 @@ fun AdminRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Un
                 Column(
                     verticalArrangement = Arrangement.Top,
                 ) {
-                    Text(text = "Fingerprint Registration", color = Color.White)
+                    Text(
+                        text = stringResource(id = R.string.Fingerprint_Registration),
+                        color = Color.White
+                    )
                     Surface(
                         modifier = Modifier
                             .size(
@@ -176,7 +183,7 @@ fun AdminRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Un
 
                                 InputField(
                                     valueState = searchState,
-                                    labelId = "Fingerprint One(Not Registered)",
+                                    labelId = stringResource(id = R.string.Fingerprint_One),
                                     enabled = true,
                                     isSingleLine = true,
                                     modifier = Modifier
@@ -189,7 +196,7 @@ fun AdminRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Un
                                 )
                                 Image(
                                     painter = painterResource(id = R.drawable.fingerprint),
-                                    contentDescription = "fingerprint_img",
+                                    contentDescription = stringResource(id = R.string.fingerprint_img),
                                     modifier = Modifier.aspectRatio(MaterialTheme.dimens.adminRegistrationScreenFingerprintImgAspectRatio),
                                 )
                             }
@@ -199,7 +206,7 @@ fun AdminRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Un
                             ) {
                                 InputField(
                                     valueState = searchState,
-                                    labelId = "Fingerprint Two(Not Registered)",
+                                    labelId = stringResource(id = R.string.Fingerprint_Two),
                                     enabled = true,
                                     isSingleLine = true,
                                     modifier = Modifier
@@ -212,7 +219,7 @@ fun AdminRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Un
                                 )
                                 Image(
                                     painter = painterResource(id = R.drawable.fingerprint),
-                                    contentDescription = "fingerprint_img",
+                                    contentDescription = stringResource(id = R.string.fingerprint_img),
                                     modifier = Modifier.aspectRatio(MaterialTheme.dimens.adminRegistrationScreenFingerprintImgAspectRatio),
                                 )
                             }
@@ -227,7 +234,10 @@ fun AdminRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Un
                                     colors = CheckboxDefaults.colors(uncheckedColor = Color.White)
                                 )
                                 Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth5))
-                                Text(text = "Skip Fingerprint", color = Color.White)
+                                Text(
+                                    text = stringResource(id = R.string.Skip_Fingerprint),
+                                    color = Color.White
+                                )
                             }
                         }
                     }
@@ -244,7 +254,7 @@ fun AdminRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Un
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.ontime_qr_code),
-                    contentDescription = "qr_code_img",
+                    contentDescription = stringResource(id = R.string.qr_code_img),
                     modifier = Modifier.size(MaterialTheme.dimens.qrCodeLogoSize)
                 )
                 Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth20))
@@ -257,12 +267,12 @@ fun AdminRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Un
                         height = MaterialTheme.dimens.nextBtnHeight
                     )
                 ) {
-                    Text(text = "NEXT")
+                    Text(text = stringResource(id = R.string.NEXT))
                 }
             }
             Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight10))
             Text(
-                text = "Please scan QR Code for instructional video on Finger Scan \nregistrations",
+                text = stringResource(id = R.string.Please_scan_QR_Code_for_instructional_video_on_Finger_Scan_registrations),
                 color = Color.White,
                 textAlign = TextAlign.Start,
                 modifier = Modifier
@@ -301,11 +311,11 @@ fun AdminRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Un
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.circle_black),
-                            contentDescription = "circle_black_img",
+                            contentDescription = stringResource(id = R.string.circle_black_img),
                             contentScale = ContentScale.Fit,
                             modifier = Modifier.size(MaterialTheme.dimens.circleBlackImgSize)
                         )
-                        Text(text = "Click here to go back")
+                        Text(text = stringResource(id = R.string.Click_here_to_go_back))
                     }
                 }
                 Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth20))
@@ -326,11 +336,11 @@ fun AdminRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Un
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.circle_green),
-                            contentDescription = "circle_green_img",
+                            contentDescription = stringResource(id = R.string.circle_green_img),
                             contentScale = ContentScale.Fit,
                             modifier = Modifier.size(MaterialTheme.dimens.circleGreenImgSize)
                         )
-                        Text(text = "View Employee Online")
+                        Text(text = stringResource(id = R.string.View_Employee_Online))
                     }
                 }
             }

@@ -35,8 +35,8 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import com.allocate.ontime.R
 import com.allocate.ontime.presentation_logic.navigation.HomeScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
@@ -94,20 +94,20 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                 }
                 Column {
                     Text(
-                        text = "WELCOME TO ADMIN PAGE",
+                        text = stringResource(id = R.string.WELCOME_TO_ADMIN_PAGE),
                         style = MaterialTheme.typography.headlineLarge,
                         color = Color(0xFF008B8B),
                         fontWeight = FontWeight.Bold
                     )
                     Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight5))
                     Text(
-                        text = "Administrator to Log In",
+                        text = stringResource(id = R.string.Administrator_to_Log_In),
                         style = MaterialTheme.typography.headlineMedium,
                         color = Color.White,
                         modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
                     )
                     Text(
-                        text = "via the Fingerprint Reader",
+                        text = stringResource(id = R.string.via_the_Fingerprint_Reader),
                         style = MaterialTheme.typography.headlineMedium,
                         color = Color.White,
                         modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
@@ -119,13 +119,13 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.fingerprint_rld),
-                        contentDescription = "place_finger_logo",
+                        contentDescription = stringResource(id = R.string.place_finger_logo),
                         colorFilter = ColorFilter.tint(color = Color.White),
                         modifier = Modifier.size(MaterialTheme.dimens.medium3)
                     )
                     Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
                     Text(
-                        text = "Place Finger",
+                        text = stringResource(id = R.string.Place_Finger),
                         style = MaterialTheme.typography.headlineSmall,
                         color = Color.White
                     )
@@ -143,7 +143,7 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.rld_img_logo),
-                    contentDescription = "rld_img_logo",
+                    contentDescription = stringResource(id = R.string.rld_img_logo),
                     modifier = Modifier
                         .size(MaterialTheme.dimens.large3)
                         .aspectRatio(1f),
@@ -166,13 +166,12 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5F3341)),
                     ) {
                         Text(
-                            text = "ENTER PIN",
+                            text = stringResource(id = R.string.ENTER_PIN),
                             style = MaterialTheme.typography.titleLarge,
                             fontWeight = FontWeight.Bold
                         )
 
                     }
-
                     Spacer(modifier = Modifier.height(MaterialTheme.dimens.small3))
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -188,7 +187,7 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                             )
                         ) {
                             Text(
-                                text = "Click here to home page",
+                                text = stringResource(id = R.string.Click_here_to_home_page),
                                 style = MaterialTheme.typography.titleLarge,
                                 fontWeight = FontWeight.Bold
                             )
@@ -202,7 +201,7 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                             )
                         ) {
                             Text(
-                                text = "View Employee Online",
+                                text = stringResource(id = R.string.View_Employee_Online),
                                 style = MaterialTheme.typography.titleLarge,
                                 fontWeight = FontWeight.Bold
                             )
@@ -219,14 +218,14 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.ic_nfc),
-                            contentDescription = "fob_icon",
+                            contentDescription = stringResource(id = R.string.fob_icon),
                             contentScale = ContentScale.Fit,
                             colorFilter = ColorFilter.tint(color = Color.White),
                             modifier = Modifier.size(MaterialTheme.dimens.medium3)
                         )
                         Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
                         Text(
-                            text = "FOB",
+                            text = stringResource(id = R.string.FOB),
                             style = MaterialTheme.typography.headlineSmall,
                             color = Color.White,
                         )
@@ -238,12 +237,12 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                         modifier = Modifier.padding(bottom = MaterialTheme.dimens.adminScreenBottomRowBottomPadding)
                     ) {
                         Text(
-                            text = "6.5d : 6.5",
+                            text = stringResource(id = R.string.app_info),
                             color = Color.White,
                             style = MaterialTheme.typography.labelSmall
                         )
                         Text(
-                            text = "Unique Identifier : ci delhi",
+                            text = stringResource(id = R.string.Unique_Identifier),
                             color = Color.White,
                             style = MaterialTheme.typography.labelSmall
                         )

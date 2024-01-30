@@ -32,10 +32,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
+import com.allocate.ontime.R
 import com.allocate.ontime.presentation_logic.theme.dimens
 
 
@@ -65,14 +67,13 @@ fun PinEntryDialog(
 
                 ) {
                     Text(
-                        text = "ADMINISTRATION ACCESS",
+                        text = stringResource(id = R.string.Administrator_Access),
                         style = MaterialTheme.typography.headlineSmall,
                         color = Color(0xFF4CAF50),
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(start = MaterialTheme.dimens.administrationPadding)
                     )
                     Spacer(modifier = Modifier.width(MaterialTheme.dimens.adminAndCloseSpacerW))
-
                     IconButton(
                         onClick = {
                             onDismiss()
@@ -97,7 +98,7 @@ fun PinEntryDialog(
                     )
                 ) {
                     Text(
-                        text = "Please enter your PIN number to log in",
+                        text = stringResource(id = R.string.Please_enter_your_PIN_number_to_log_in),
                         textAlign = TextAlign.Center,
                         style = MaterialTheme.typography.titleMedium,
                         modifier = Modifier.padding(top = MaterialTheme.dimens.enterPinTextPadding)
@@ -105,7 +106,7 @@ fun PinEntryDialog(
                 }
                 Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight5))
                 Text(
-                    text = "Administration Log In",
+                    text = stringResource(id = R.string.Administration_Log_In),
                     style = MaterialTheme.typography.headlineSmall,
                     color = Color(0xFF008B8B),
                     fontWeight = FontWeight.Bold
@@ -143,7 +144,7 @@ fun PinEntryDialog(
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF19701D)),
                 shape = RoundedCornerShape(MaterialTheme.dimens.pinEntryDialogRoundedCornerShapeSize)
             ) {
-                Text(text = "Login")
+                Text(text = stringResource(id = R.string.Login))
             }
         },
         dismissButton = {},
