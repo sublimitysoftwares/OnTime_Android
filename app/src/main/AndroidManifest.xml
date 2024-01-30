@@ -11,19 +11,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.OnTime_Jitendra"
+        android:theme="@style/Theme.CI_OnTime"
         android:testOnly="true"
         android:name=".OnTimeApplication"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
-
         <activity
             android:name=".MainActivity"
             android:screenOrientation="landscape"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.OnTime_Jitendra">
+            android:theme="@style/Theme.CI_OnTime">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

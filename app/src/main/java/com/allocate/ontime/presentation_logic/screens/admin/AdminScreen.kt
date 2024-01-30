@@ -56,7 +56,8 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
     }
 
     Surface(
-        modifier = Modifier.fillMaxSize(), color = Color.DarkGray.copy(alpha = 0.8f)
+        modifier = Modifier.fillMaxSize(),
+        color = Color.DarkGray.copy(alpha = MaterialTheme.dimens.surfaceColorAlphaValue)
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -66,7 +67,11 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 10.dp, end = 20.dp, top = 30.dp),
+                    .padding(
+                        start = MaterialTheme.dimens.adminScreenTopRowStartPadding,
+                        end = MaterialTheme.dimens.adminScreenTopRowEndPadding,
+                        top = MaterialTheme.dimens.adminScreenTopRowTopPadding
+                    ),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.Top
             ) {
@@ -94,7 +99,7 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                         color = Color(0xFF008B8B),
                         fontWeight = FontWeight.Bold
                     )
-                    Spacer(modifier = Modifier.height(5.dp))
+                    Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight5))
                     Text(
                         text = "Administrator to Log In",
                         style = MaterialTheme.typography.headlineMedium,
@@ -118,7 +123,7 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                         colorFilter = ColorFilter.tint(color = Color.White),
                         modifier = Modifier.size(MaterialTheme.dimens.medium3)
                     )
-                    Spacer(modifier = Modifier.height(2.dp))
+                    Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
                     Text(
                         text = "Place Finger",
                         style = MaterialTheme.typography.headlineSmall,
@@ -126,13 +131,12 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                     )
                 }
             }
-
             Spacer(modifier = Modifier.fillMaxHeight(0.45f))
 
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(end = 40.dp),
+                    .padding(end = MaterialTheme.dimens.adminScreenBottomRowEndPadding),
                 horizontalArrangement = Arrangement.SpaceBetween
 
 
@@ -150,7 +154,7 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier
                         .fillMaxHeight()
-                        .padding(bottom = 20.dp)
+                        .padding(bottom = MaterialTheme.dimens.adminScreenBottomRowBottomPadding)
                 ) {
 
 
@@ -158,7 +162,7 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                         onClick = {
                             isDialogVisible = true
                         },
-                        shape = RoundedCornerShape(10.dp),
+                        shape = RoundedCornerShape(MaterialTheme.dimens.adminScreenButtonsCornerShapeSize),
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5F3341)),
                     ) {
                         Text(
@@ -178,7 +182,7 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                             onClick = {
                                 backToHome(HomeScreenRoot.HomeScreen)
                             },
-                            shape = RoundedCornerShape(10.dp),
+                            shape = RoundedCornerShape(MaterialTheme.dimens.adminScreenButtonsCornerShapeSize),
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color(0xFF008B8B)
                             )
@@ -189,10 +193,10 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                                 fontWeight = FontWeight.Bold
                             )
                         }
-                        Spacer(modifier = Modifier.width(15.dp))
+                        Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth15))
                         Button(
                             onClick = { /*TODO*/ },
-                            shape = RoundedCornerShape(10.dp),
+                            shape = RoundedCornerShape(MaterialTheme.dimens.adminScreenButtonsCornerShapeSize),
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color(0xFF008B8B)
                             )
@@ -219,22 +223,19 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                             contentScale = ContentScale.Fit,
                             colorFilter = ColorFilter.tint(color = Color.White),
                             modifier = Modifier.size(MaterialTheme.dimens.medium3)
-
                         )
-                        Spacer(modifier = Modifier.height(2.dp))
+                        Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
                         Text(
                             text = "FOB",
                             style = MaterialTheme.typography.headlineSmall,
                             color = Color.White,
                         )
-
                     }
-
                     Spacer(modifier = Modifier.weight(1f))
                     Column(
                         verticalArrangement = Arrangement.Bottom,
                         horizontalAlignment = Alignment.End,
-                        modifier = Modifier.padding(bottom = 20.dp)
+                        modifier = Modifier.padding(bottom = MaterialTheme.dimens.adminScreenBottomRowBottomPadding)
                     ) {
                         Text(
                             text = "6.5d : 6.5",

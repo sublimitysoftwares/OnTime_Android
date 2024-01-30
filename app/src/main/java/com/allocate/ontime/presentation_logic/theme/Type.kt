@@ -87,7 +87,7 @@ val MediumTypography1 = Typography(
     ),
 
 
-)
+    )
 val MediumTypography2 = Typography(
     headlineSmall = TextStyle(
         fontFamily = FontFamily.Default,
@@ -141,7 +141,7 @@ val MediumTypography2 = Typography(
         fontSize = 15.sp,
     ),
 
-)
+    )
 val MediumTypography3 = Typography(
     headlineSmall = TextStyle(
         fontFamily = FontFamily.Default,
@@ -194,7 +194,6 @@ val MediumTypography3 = Typography(
         letterSpacing = 0.5.sp,
         fontSize = 15.sp,
     ),
-
 )
 
 val ExpandedTypography1 = Typography(
@@ -249,7 +248,6 @@ val ExpandedTypography1 = Typography(
         letterSpacing = 0.5.sp,
         fontSize = 13.sp,
     ),
-
 )
 
 val ExpandedTypography2 = Typography(
@@ -304,8 +302,7 @@ val ExpandedTypography2 = Typography(
         letterSpacing = 0.5.sp,
         fontSize = 13.sp,
     ),
-
-    )
+)
 
 val ExpandedTypography3 = Typography(
     headlineSmall = TextStyle(
@@ -359,8 +356,7 @@ val ExpandedTypography3 = Typography(
         letterSpacing = 0.5.sp,
         fontSize = 15.sp,
     ),
-
-    )
+)
 
 val ExpandedTypography = Typography(
     headlineSmall = TextStyle(
@@ -414,5 +410,4 @@ val ExpandedTypography = Typography(
         letterSpacing = 0.5.sp,
         fontSize = 15.sp,
     ),
-
 )

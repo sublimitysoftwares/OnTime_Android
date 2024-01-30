@@ -89,8 +89,8 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                     "rld_logo",
                     contentScale = ContentScale.Fit,
                     modifier = Modifier
-                        .fillMaxWidth(0.4f)
-                        .fillMaxHeight(0.2f)
+                        .fillMaxWidth(MaterialTheme.dimens.homeScreenRldLogoMaxWidthFraction)
+                        .fillMaxHeight(MaterialTheme.dimens.homeScreenRldLogoMaxHeightFraction)
                 )
                 Column(
                     verticalArrangement = Arrangement.Center,
@@ -102,7 +102,7 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                         "place_finger_logo",
                         modifier = Modifier.size(MaterialTheme.dimens.medium3)
                     )
-                    Spacer(modifier = Modifier.height(2.dp))
+                    Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
                     Text(
                         text = "Place Finger",
                         style = MaterialTheme.typography.headlineSmall,
@@ -115,8 +115,8 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                 contentDescription = "onTime_logo",
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
-                    .fillMaxWidth(0.35f)
-                    .fillMaxHeight(0.5f)
+                    .fillMaxWidth(MaterialTheme.dimens.homeScreenOnTimeLogoMaxWidthFraction)
+                    .fillMaxHeight(MaterialTheme.dimens.homeScreenOnTimeLogoMaxHeightFraction)
             )
             Row(
                 modifier = Modifier
@@ -139,13 +139,11 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                         .fillMaxHeight()
                         .padding(bottom = MaterialTheme.dimens.small3)
                 ) {
-
-
                     Button(
                         onClick = {
                             isDialogVisible = true
                         },
-                        shape = RoundedCornerShape(10.dp),
+                        shape = RoundedCornerShape(MaterialTheme.dimens.homeScreenButtonsCornerShapeSize),
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5F3341)),
                     ) {
                         Text(text = "ENTER PIN", style = MaterialTheme.typography.titleLarge)
@@ -160,7 +158,7 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                             onClick = {
                                 homeScreenRoot(HomeScreenRoot.AdminScreen)
                             },
-                            shape = RoundedCornerShape(10.dp),
+                            shape = RoundedCornerShape(MaterialTheme.dimens.homeScreenButtonsCornerShapeSize),
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color(
                                     0xFF202424
@@ -172,11 +170,12 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                                 style = MaterialTheme.typography.titleLarge
                             )
                         }
-                        Spacer(modifier = Modifier.width(15.dp))
+                        Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth15))
                         Button(
                             onClick = {
                                 homeScreenRoot(HomeScreenRoot.SuperAdminScreen)
-                            }, shape = RoundedCornerShape(10.dp),
+                            },
+                            shape = RoundedCornerShape(MaterialTheme.dimens.homeScreenButtonsCornerShapeSize),
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color(
                                     0xFF202424
@@ -205,19 +204,18 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                             contentScale = ContentScale.Fit,
                             modifier = Modifier.size(MaterialTheme.dimens.medium3)
                         )
-                        Spacer(modifier = Modifier.height(2.dp))
+                        Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
                         Text(
                             text = "FOB",
                             style = MaterialTheme.typography.headlineSmall,
                             color = Color.Red,
                         )
                     }
-
                     Spacer(modifier = Modifier.weight(1f))
                     Column(
                         verticalArrangement = Arrangement.Bottom,
                         horizontalAlignment = Alignment.End,
-                        modifier = Modifier.padding(bottom = 20.dp)
+                        modifier = Modifier.padding(bottom = MaterialTheme.dimens.homeScreenBottomRowBottomPadding)
                     ) {
                         Text(text = "6.5d : 6.5", style = MaterialTheme.typography.labelSmall)
                         Text(

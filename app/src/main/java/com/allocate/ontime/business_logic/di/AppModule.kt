@@ -2,8 +2,8 @@ package com.allocate.ontime.business_logic.di
 
 import android.content.Context
 import androidx.room.Room
+import com.allocate.ontime.business_logic.data.room.DeviceInfoDao
 import com.allocate.ontime.business_logic.data.room.OnTimeDatabase
-import com.allocate.ontime.business_logic.data.room.OnTimeDatabaseDao
 import com.allocate.ontime.business_logic.network.OnTimeApi
 import com.allocate.ontime.business_logic.repository.OnTimeRepository
 import com.allocate.ontime.business_logic.utils.Constants
@@ -27,8 +27,8 @@ object AppModule {
 
     // It provides the dependency of DaoRepository Class.
     @Provides
-    fun provideDaoRepository(database: OnTimeDatabase): OnTimeDatabaseDao {
-        return database.onTimeDatabaseDao()
+    fun provideDeviceInfoDaoRepository(database: OnTimeDatabase): DeviceInfoDao {
+        return database.deviceInfoDao()
     }
 
     // It provides the dependency of OnTimeDatabase Class.

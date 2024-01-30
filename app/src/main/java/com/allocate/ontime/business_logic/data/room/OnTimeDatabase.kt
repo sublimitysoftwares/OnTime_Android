@@ -4,7 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 
 
-@Database(entities = [DeviceInformation::class], version = 2, exportSchema = false)
+@Database(entities = [DeviceInformation::class], version = 1, exportSchema = false)
 abstract class OnTimeDatabase: RoomDatabase() {
-    abstract fun onTimeDatabaseDao(): OnTimeDatabaseDao
+    abstract fun deviceInfoDao(): DeviceInfoDao
 }

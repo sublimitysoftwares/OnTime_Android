@@ -42,6 +42,7 @@ import com.allocate.ontime.business_logic.data.DataOrException
 import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminSettingViewModel
 import com.allocate.ontime.presentation_logic.model.DeviceInfo
 import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
+import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.widgets.InputField
 
 
@@ -99,7 +100,8 @@ fun SuperAdminSettingScreen(
     }
 
     Surface(
-        modifier = Modifier.fillMaxSize(), color = Color.DarkGray.copy(alpha = 0.8f)
+        modifier = Modifier.fillMaxSize(),
+        color = Color.DarkGray.copy(alpha = MaterialTheme.dimens.surfaceColorAlphaValue)
     ) {
         Column(
             verticalArrangement = Arrangement.Center,
@@ -112,11 +114,7 @@ fun SuperAdminSettingScreen(
                 fontWeight = FontWeight.Bold
             )
             SuperAdminSettingInfo(
-                trustState,
-                locationState,
-                postCodeState,
-                uniqueIdentifierState,
-                latLngState
+                trustState, locationState, postCodeState, uniqueIdentifierState, latLngState
             )
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -128,9 +126,7 @@ fun SuperAdminSettingScreen(
                     style = MaterialTheme.typography.titleSmall
                 )
                 Switch(
-                    checked = true,
-                    onCheckedChange = {},
-                    colors = SwitchDefaults.colors(
+                    checked = true, onCheckedChange = {}, colors = SwitchDefaults.colors(
                         uncheckedThumbColor = Color.White,
                         uncheckedTrackColor = Color.LightGray,
                         checkedThumbColor = Color.Cyan,
@@ -167,9 +163,7 @@ fun SuperAdminSettingScreen(
                     style = MaterialTheme.typography.titleSmall
                 )
                 Switch(
-                    checked = true,
-                    onCheckedChange = {},
-                    colors = SwitchDefaults.colors(
+                    checked = true, onCheckedChange = {}, colors = SwitchDefaults.colors(
                         uncheckedThumbColor = Color.White,
                         uncheckedTrackColor = Color.LightGray,
                         checkedThumbColor = Color.Cyan,
@@ -188,26 +182,26 @@ fun SuperAdminSettingScreen(
             ) {
                 Button(
                     onClick = { /*TODO*/ },
-                    shape = RoundedCornerShape(3.dp),
+                    shape = RoundedCornerShape(MaterialTheme.dimens.superAdminSettingScreenButtonsCornerShapeSize),
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF85D32C)),
                 ) {
                     Text(text = "CHECK FOR UPDATE")
                 }
-                Spacer(modifier = Modifier.width(20.dp))
+                Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth20))
                 Button(
                     onClick = { /*TODO*/ },
-                    shape = RoundedCornerShape(3.dp),
+                    shape = RoundedCornerShape(MaterialTheme.dimens.superAdminSettingScreenButtonsCornerShapeSize),
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF85D32C)),
 
                     ) {
                     Text(text = "SET TEST EMPLOYEE")
                 }
             }
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight10))
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 10.dp),
+                    .padding(bottom = MaterialTheme.dimens.superAdminSettingScreenBottomRowBottomPadding),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -215,11 +209,14 @@ fun SuperAdminSettingScreen(
                     onClick = {
                         backToSuperAdminScreen(SuperAdminScreenRoot.SuperAdminScreen)
                     },
-                    shape = RoundedCornerShape(3.dp),
+                    shape = RoundedCornerShape(MaterialTheme.dimens.superAdminSettingScreenButtonsCornerShapeSize),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.LightGray, contentColor = Color.Black
                     ),
-                    border = BorderStroke(width = 1.dp, color = Color.White)
+                    border = BorderStroke(
+                        width = MaterialTheme.dimens.superAdminSettingScreenButtonsBorderWidth,
+                        color = Color.White
+                    )
                 ) {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(5.dp),
@@ -229,19 +226,22 @@ fun SuperAdminSettingScreen(
                             painter = painterResource(id = R.drawable.circle_black),
                             contentDescription = "circle_black_img",
                             contentScale = ContentScale.Fit,
-                            modifier = Modifier.size(15.dp)
+                            modifier = Modifier.size(MaterialTheme.dimens.circleBlackImgSize)
                         )
                         Text(text = "Click here to go back")
                     }
                 }
-                Spacer(modifier = Modifier.width(20.dp))
+                Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth20))
                 Button(
                     onClick = { /*TODO*/ },
-                    shape = RoundedCornerShape(3.dp),
+                    shape = RoundedCornerShape(MaterialTheme.dimens.superAdminSettingScreenButtonsCornerShapeSize),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.LightGray, contentColor = Color(0xFF5B6F46)
                     ),
-                    border = BorderStroke(width = 1.dp, color = Color.White)
+                    border = BorderStroke(
+                        width = MaterialTheme.dimens.superAdminSettingScreenButtonsBorderWidth,
+                        color = Color.White
+                    )
                 ) {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(5.dp),
@@ -251,7 +251,7 @@ fun SuperAdminSettingScreen(
                             painter = painterResource(id = R.drawable.circle_green),
                             contentDescription = "circle_green_img",
                             contentScale = ContentScale.Fit,
-                            modifier = Modifier.size(15.dp)
+                            modifier = Modifier.size(MaterialTheme.dimens.circleGreenImgSize)
                         )
                         Text(text = "View Employee Online")
                     }
@@ -272,10 +272,10 @@ private fun SuperAdminSettingInfo(
     Surface(
         modifier = Modifier
             .size(
-                width = 900.dp,
-                height = 400.dp
+                width = MaterialTheme.dimens.superAdminSettingScreenSurfaceWidth,
+                height = MaterialTheme.dimens.superAdminSettingScreenSurfaceHeight
             )
-            .padding(top = 10.dp),
+            .padding(top = MaterialTheme.dimens.superAdminSettingScreenSurfaceTopPadding),
         color = Color(0xFF5A5656)
     ) {
         Row(
@@ -288,100 +288,98 @@ private fun SuperAdminSettingInfo(
                 Text(
                     text = "Trust/Organization",
                     color = Color.White,
-                    modifier = Modifier.padding(start = 10.dp)
+                    modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
                 )
                 InputField(
                     valueState = trustState,
                     labelId = "",
                     enabled = true,
                     isSingleLine = true,
-                    modifier = Modifier
-                        .size(
-                            width = 400.dp,
-                            height = 70.dp
-                        ),
+                    modifier = Modifier.size(
+                        width = MaterialTheme.dimens.superAdminSettingScreenTextFieldsWidth,
+                        height = MaterialTheme.dimens.superAdminSettingScreenTextFieldsHeight
+                    ),
                     textStyle = MaterialTheme.typography.titleMedium
                 )
                 Text(
                     text = "Location(Do not add semi colon)",
                     color = Color.White,
-                    modifier = Modifier.padding(start = 10.dp)
+                    modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
                 )
                 InputField(
                     valueState = locationState,
                     labelId = "",
                     enabled = true,
                     isSingleLine = true,
-                    modifier = Modifier
-                        .size(
-                            width = 400.dp,
-                            height = 70.dp
-                        ),
+                    modifier = Modifier.size(
+                        width = MaterialTheme.dimens.superAdminSettingScreenTextFieldsWidth,
+                        height = MaterialTheme.dimens.superAdminSettingScreenTextFieldsHeight
+                    ),
                     textStyle = MaterialTheme.typography.titleMedium
                 )
                 Text(
                     text = "Postcode",
                     color = Color.White,
-                    modifier = Modifier.padding(start = 10.dp)
+                    modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
                 )
                 InputField(
                     valueState = postCodeState,
                     labelId = "",
                     enabled = true,
                     isSingleLine = true,
-                    modifier = Modifier
-                        .size(
-                            width = 400.dp,
-                            height = 70.dp
-                        ),
+                    modifier = Modifier.size(
+                        width = MaterialTheme.dimens.superAdminSettingScreenTextFieldsWidth,
+                        height = MaterialTheme.dimens.superAdminSettingScreenTextFieldsHeight
+                    ),
                     textStyle = MaterialTheme.typography.titleMedium
                 )
             }
-            Spacer(modifier = Modifier.width(10.dp))
+            Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth10))
             Column(
                 horizontalAlignment = Alignment.Start,
             ) {
                 Text(
                     text = "Unique Identifier",
                     color = Color.White,
-                    modifier = Modifier.padding(start = 10.dp)
+                    modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
                 )
                 InputField(
                     valueState = uniqueIdentifierState,
                     labelId = "",
                     enabled = true,
                     isSingleLine = true,
-                    modifier = Modifier
-                        .size(
-                            width = 400.dp,
-                            height = 70.dp
-                        ),
+                    modifier = Modifier.size(
+                        width = MaterialTheme.dimens.superAdminSettingScreenTextFieldsWidth,
+                        height = MaterialTheme.dimens.superAdminSettingScreenTextFieldsHeight
+                    ),
                     textStyle = MaterialTheme.typography.titleMedium
                 )
                 Text(
                     text = "LatLng",
                     color = Color.White,
-                    modifier = Modifier.padding(start = 10.dp)
+                    modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
                 )
                 InputField(
                     valueState = latLngState,
                     labelId = "",
                     enabled = true,
                     isSingleLine = true,
-                    modifier = Modifier
-                        .size(
-                            width = 400.dp,
-                            height = 70.dp
-                        ),
+                    modifier = Modifier.size(
+                        width = MaterialTheme.dimens.superAdminSettingScreenTextFieldsWidth,
+                        height = MaterialTheme.dimens.superAdminSettingScreenTextFieldsHeight
+                    ),
                     textStyle = MaterialTheme.typography.titleMedium
                 )
                 Button(
                     onClick = { /*TODO*/ },
-                    shape = RoundedCornerShape(3.dp),
+                    shape = RoundedCornerShape(MaterialTheme.dimens.superAdminSettingScreenButtonsCornerShapeSize),
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF85D32C)),
                     modifier = Modifier
-                        .size(width = 400.dp, height = 70.dp)
-                        .padding(10.dp)
+                        .size(
+                            width = MaterialTheme.dimens.superAdminSettingScreenRegisterButtonWidth,
+                            height = MaterialTheme.dimens.superAdminSettingScreenRegisterButtonHeight
+                        )
+                        .padding(MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
                 ) {
                     Text(text = "REGISTER")
                 }

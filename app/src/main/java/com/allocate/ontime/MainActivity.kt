@@ -27,7 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.allocate.ontime.presentation_logic.navigation.OnTimeNavigation
 import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminSettingViewModel
-import com.allocate.ontime.presentation_logic.theme.OnTime_JitendraTheme
+import com.allocate.ontime.presentation_logic.theme.CI_OnTimeTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.DelicateCoroutinesApi
 
@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
         const val LOCK_ACTIVITY_KEY = "com.allocate.ontime.MainActivity"
     }
 
-    @OptIn(DelicateCoroutinesApi::class)
+
     @SuppressLint("CoroutineCreationDuringComposition")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -117,7 +117,7 @@ class MainActivity : ComponentActivity() {
         )
     }
 
-    fun setLockTask(start: Boolean, isAdmin: Boolean) {
+    private fun setLockTask(start: Boolean, isAdmin: Boolean) {
         if (isAdmin) {
             mDevicePolicyManager.setLockTaskPackages(
                 mAdminComponentName, if (start) arrayOf(packageName) else arrayOf()
@@ -186,7 +186,7 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun OnTimeApp(viewModel: SuperAdminSettingViewModel = hiltViewModel()) {
-    OnTime_JitendraTheme {
+    CI_OnTimeTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background

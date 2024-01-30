@@ -62,7 +62,8 @@ fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
     }
 
     Surface(
-        modifier = Modifier.fillMaxSize(), color = Color.DarkGray.copy(alpha = 0.8f)
+        modifier = Modifier.fillMaxSize(),
+        color = Color.DarkGray.copy(alpha = MaterialTheme.dimens.surfaceColorAlphaValue)
     ) {
         Column(
             verticalArrangement = Arrangement.Center,
@@ -89,9 +90,12 @@ fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
                     enabled = true,
                     isSingleLine = true,
                     modifier = Modifier
-                        .size(width = 400.dp, height = 70.dp)
+                        .size(
+                            width = MaterialTheme.dimens.fobRegisterScreenSearchTextFieldWidth,
+                            height = MaterialTheme.dimens.fobRegisterScreenSearchTextFieldHeight
+                        )
                         .align(alignment = Alignment.End)
-                        .padding(end = 10.dp),
+                        .padding(end = MaterialTheme.dimens.fobRegisterScreenSearchTextFieldEndPadding),
                     textStyle = MaterialTheme.typography.titleMedium
                 )
                 Spacer(modifier = Modifier.height(MaterialTheme.dimens.small1))
@@ -105,7 +109,7 @@ fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween,
-                        modifier = Modifier.width(360.dp)
+                        modifier = Modifier.width(MaterialTheme.dimens.fobRegisterScreenSetLocationRowWidth)
                     ) {
                         Text(
                             text = "Set location Radius",
@@ -120,7 +124,10 @@ fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
                                 imeAction = ImeAction.Default
                             ),
                             singleLine = true,
-                            modifier = Modifier.size(width = 70.dp, height = 50.dp),
+                            modifier = Modifier.size(
+                                width = MaterialTheme.dimens.fobRegisterScreenSetLocationTextFieldWidth,
+                                height = MaterialTheme.dimens.fobRegisterScreenSetLocationTextFieldHeight
+                            ),
                             textStyle = MaterialTheme.typography.titleSmall,
                             colors = run {
                                 val containerColor = Color(0xFFD6B6C1)
@@ -149,7 +156,7 @@ fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween,
                     modifier = Modifier
-                        .width(360.dp)
+                        .width(MaterialTheme.dimens.fobRegisterScreenSetLocationRowWidth)
                 ) {
                     Text(
                         text = "All Locations",
@@ -175,11 +182,14 @@ fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
                 onClick = {
                     backToSuperAdminScreen(SuperAdminScreenRoot.SuperAdminScreen)
                 },
-                shape = RoundedCornerShape(3.dp),
+                shape = RoundedCornerShape(MaterialTheme.dimens.fobRegisterScreenButtonsCornerShapeSize),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.LightGray, contentColor = Color.Black
                 ),
-                border = BorderStroke(width = 1.dp, color = Color.White)
+                border = BorderStroke(
+                    width = MaterialTheme.dimens.fobRegisterScreenButtonsBorderWidth,
+                    color = Color.White
+                )
             ) {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(5.dp),
@@ -189,7 +199,7 @@ fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
                         painter = painterResource(id = R.drawable.circle_black),
                         contentDescription = "circle_black_img",
                         contentScale = ContentScale.Fit,
-                        modifier = Modifier.size(15.dp)
+                        modifier = Modifier.size(MaterialTheme.dimens.circleBlackImgSize)
                     )
                     Text(text = "Click here to go back")
                 }

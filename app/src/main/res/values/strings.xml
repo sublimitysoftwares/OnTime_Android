@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">OnTime_Jitendra</string>
+    <string name="app_name">CI_OnTime</string>
     <string name="enter_pin">Please enter your PIN number to log in</string>
     <string name="confirm">Confirm</string>
 </resources>

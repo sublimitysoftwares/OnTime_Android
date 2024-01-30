@@ -31,11 +31,10 @@ fun SplashScreen(
     homeScreenRoot: (HomeScreenRoot) -> Unit,
     splashViewModel: SplashViewModel = hiltViewModel()
 ) {
-    val deviceInfoListsRoomData = splashViewModel.deviceInfoListRoomData.collectAsState().value
-    deviceInfoListsRoomData.forEach {
-        if (it.acknowledgementStatus == 1) {
-            homeScreenRoot(HomeScreenRoot.HomeScreen)
-        }
+
+    val acknowledgementStatusFromDB = splashViewModel.acknowledgementStatus.collectAsState()
+    if (acknowledgementStatusFromDB.value == 1){
+        homeScreenRoot(HomeScreenRoot.HomeScreen)
     }
 
     Surface(
@@ -56,7 +55,7 @@ fun SplashScreen(
                     .fillMaxHeight(0.5f),
                 colorFilter = ColorFilter.tint(color = Color.Black)
             )
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(10.dp))
             Text(
                 text = "Please wait while device setup is completed...",
                 style = MaterialTheme.typography.headlineSmall,

@@ -1,20 +1,20 @@
 package com.allocate.ontime.business_logic.repository
 
 
+import com.allocate.ontime.business_logic.data.room.DeviceInfoDao
 import com.allocate.ontime.business_logic.data.room.DeviceInformation
-import com.allocate.ontime.business_logic.data.room.OnTimeDatabaseDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.conflate
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-class DaoRepository @Inject constructor(private val onTimeDatabaseDao: OnTimeDatabaseDao) {
+class DaoRepository @Inject constructor(private val deviceInfoDao: DeviceInfoDao) {
     suspend fun addDeviceInfo(deviceInformation: DeviceInformation) =
-        onTimeDatabaseDao.insert(deviceInformation)
+        deviceInfoDao.insert(deviceInformation)
 
     suspend fun updateDeviceInfo(deviceInformation: DeviceInformation) =
-        onTimeDatabaseDao.update(deviceInformation)
+        deviceInfoDao.update(deviceInformation)
 
     fun getAllDeviceInfo(): kotlinx.coroutines.flow.Flow<List<DeviceInformation>> =
-        onTimeDatabaseDao.getDeviceInfo().flowOn(Dispatchers.IO).conflate()
+        deviceInfoDao.getDeviceInfo().flowOn(Dispatchers.IO).conflate()
 }

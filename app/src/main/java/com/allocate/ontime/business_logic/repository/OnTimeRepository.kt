@@ -5,7 +5,7 @@ import com.allocate.ontime.business_logic.data.DataOrException
 import com.allocate.ontime.presentation_logic.model.DeviceInfo
 import com.allocate.ontime.business_logic.network.OnTimeApi
 import com.allocate.ontime.presentation_logic.model.AppInfo
-import retrofit2.Response
+import com.allocate.ontime.presentation_logic.model.EditDeviceInfo
 import javax.inject.Inject
 
 class OnTimeRepository @Inject constructor(
@@ -25,14 +25,14 @@ class OnTimeRepository @Inject constructor(
 
     suspend fun postDeviceInfo(
         appInfo: AppInfo
-    ): DataOrException<Response<AppInfo>, Exception> {
-        val dataOrException1 = DataOrException<Response<AppInfo>, Exception>()
+    ): DataOrException<EditDeviceInfo, Exception> {
+        val dataOrException = DataOrException<EditDeviceInfo, Exception>()
         try {
-            dataOrException1.data = api.postEditDeviceInfo(appInfo)
+            dataOrException.data = api.postEditDeviceInfo(appInfo)
         } catch (exception: Exception) {
-            dataOrException1.e = exception
-            Log.d("EXC", "getAllDeviceInfo: ${dataOrException1.e}")
+            dataOrException.e = exception
+            Log.d("EXC", "getAllDeviceInfo: ${dataOrException.e}")
         }
-        return dataOrException1
+        return dataOrException
     }
 }

@@ -1,13 +1,15 @@
 package com.allocate.ontime.presentation_logic.navigation
 
+import com.allocate.ontime.business_logic.utils.Constants
+
 sealed class OnTimeScreens(val name: String) {
-    object SplashScreen : OnTimeScreens("Splash_Screen")
-    object HomeScreen : OnTimeScreens("Home_Screen")
-    object AdminScreen : OnTimeScreens("Admin_Screen")
-    object SuperAdminScreen : OnTimeScreens("Super_Admin_Screen")
-    object AdminRegistrationScreen : OnTimeScreens("Admin_Registration_Screen")
-    object FobRegisterScreen : OnTimeScreens("Fob_Register_Screen")
-    object SuperAdminSettingScreen : OnTimeScreens("Super_Admin_Setting_Screen")
+    object SplashScreen : OnTimeScreens(Constants.SplashScreen)
+    object HomeScreen : OnTimeScreens(Constants.HomeScreen)
+    object AdminScreen : OnTimeScreens(Constants.AdminScreen)
+    object SuperAdminScreen : OnTimeScreens(Constants.SuperAdminScreen)
+    object AdminRegistrationScreen : OnTimeScreens(Constants.AdminRegistrationScreen)
+    object FobRegisterScreen : OnTimeScreens(Constants.FobRegisterScreen)
+    object SuperAdminSettingScreen : OnTimeScreens(Constants.SuperAdminSettingScreen)
 }
 
 sealed class HomeScreenRoot {

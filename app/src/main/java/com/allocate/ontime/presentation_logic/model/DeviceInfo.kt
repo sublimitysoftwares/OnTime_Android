@@ -5,3 +5,4 @@ data class DeviceInfo(
     val responsePacket: List<DeviceInfoResponsePacket>,
     val statusCode: Int
 )
+

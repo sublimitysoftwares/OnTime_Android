@@ -1,6 +1,7 @@
 package com.allocate.ontime.presentation_logic.navigation
 
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.navigation.compose.NavHost
@@ -64,7 +65,9 @@ fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
             AdminScreen(backToHome = {
                 when (it) {
                     HomeScreenRoot.HomeScreen -> navController.navigate(OnTimeScreens.HomeScreen.name)
-                    else -> {}
+                    else -> {
+                        Log.i("Navigation", "Navigation gets wrong.")
+                    }
                 }
             })
         }
@@ -72,7 +75,9 @@ fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
             AdminRegistrationScreen(backToSuperAdminScreen = {
                 when (it) {
                     SuperAdminScreenRoot.SuperAdminScreen -> navController.navigate(OnTimeScreens.SuperAdminScreen.name)
-                    else -> {}
+                    else -> {
+                        Log.i("Navigation", "Navigation gets wrong.")
+                    }
                 }
             })
         }
@@ -80,7 +85,9 @@ fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
             FobRegisterScreen(backToSuperAdminScreen = {
                 when (it) {
                     SuperAdminScreenRoot.SuperAdminScreen -> navController.navigate(OnTimeScreens.SuperAdminScreen.name)
-                    else -> {}
+                    else -> {
+                        Log.i("Navigation", "Navigation gets wrong.")
+                    }
                 }
             })
         }
@@ -88,7 +95,9 @@ fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
             SuperAdminSettingScreen(backToSuperAdminScreen = {
                 when (it) {
                     SuperAdminScreenRoot.SuperAdminScreen -> navController.navigate(OnTimeScreens.SuperAdminScreen.name)
-                    else -> {}
+                    else -> {
+                        Log.i("Navigation", "Navigation gets wrong.")
+                    }
                 }
             }, viewModel)
         }
@@ -96,7 +105,9 @@ fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
             SplashScreen(homeScreenRoot = {
                 when (it) {
                     HomeScreenRoot.HomeScreen -> navController.navigate(OnTimeScreens.HomeScreen.name)
-                    else -> {}
+                    else -> {
+                        Log.i("Navigation", "Navigation gets wrong.")
+                    }
                 }
             })
         }
