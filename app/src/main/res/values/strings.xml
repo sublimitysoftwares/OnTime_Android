@@ -80,11 +80,9 @@
     <string name="Enable_Pin">Enable Pin</string>
     <string name="Disable_Pin">Disable Pin</string>
     <string name="CHECK_FOR_UPDATE">CHECK FOR UPDATE</string>
-    <string name="SET_TEST_EMPLOYEE">SET TEST EMPLOYEE</string>
     <string name="Trust_or_Organization">Trust/Organization</string>
     <string name="Location_Do_not_add_semi_colon">Location(Do not add semi colon)</string>
     <string name="Postcode">Postcode</string>
     <string name="LatLng">LatLng</string>
-    <string name="REGISTER">REGISTER</string>
     <string name="Unique_Identifier_only">Unique Identifier</string>
 </resources>

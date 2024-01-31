@@ -2,6 +2,9 @@ package com.allocate.ontime.presentation_logic.screens.super_admin
 
 import android.annotation.SuppressLint
 import android.util.Log
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -31,6 +34,7 @@ import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -77,6 +81,13 @@ fun SuperAdminSettingScreen(
     val latLngState = remember {
         mutableStateOf("")
     }
+    val siteNameState = remember {
+        mutableStateOf("")
+    }
+    val isRLD = remember {
+        mutableStateOf(false)
+    }
+
 
 
     val deviceData = produceState<DataOrException<DeviceInfo, Exception>>(
@@ -95,6 +106,8 @@ fun SuperAdminSettingScreen(
             uniqueIdentifierState.value = it.Unique_Identifier
             latitudeState.value = it.Latitude
             longitudeState.value = it.Longitude
+            siteNameState.value = it.SiteName
+            isRLD.value = it.IsRLD
         }
         latLngState.value = latitudeState.value + ',' + longitudeState.value
 
@@ -115,7 +128,13 @@ fun SuperAdminSettingScreen(
                 fontWeight = FontWeight.Bold
             )
             SuperAdminSettingInfo(
-                trustState, locationState, postCodeState, uniqueIdentifierState, latLngState
+                trustState,
+                locationState,
+                postCodeState,
+                uniqueIdentifierState,
+                latLngState,
+                siteNameState,
+                isRLD
             )
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -177,26 +196,12 @@ fun SuperAdminSettingScreen(
                     style = MaterialTheme.typography.titleSmall
                 )
             }
-            Row(
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically,
+            Button(
+                onClick = { /*TODO*/ },
+                shape = RoundedCornerShape(MaterialTheme.dimens.superAdminSettingScreenButtonsCornerShapeSize),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF85D32C)),
             ) {
-                Button(
-                    onClick = { /*TODO*/ },
-                    shape = RoundedCornerShape(MaterialTheme.dimens.superAdminSettingScreenButtonsCornerShapeSize),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF85D32C)),
-                ) {
-                    Text(text = stringResource(id = R.string.CHECK_FOR_UPDATE))
-                }
-                Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth20))
-                Button(
-                    onClick = { /*TODO*/ },
-                    shape = RoundedCornerShape(MaterialTheme.dimens.superAdminSettingScreenButtonsCornerShapeSize),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF85D32C)),
-
-                    ) {
-                    Text(text = stringResource(id = R.string.SET_TEST_EMPLOYEE))
-                }
+                Text(text = stringResource(id = R.string.CHECK_FOR_UPDATE))
             }
             Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight10))
             Row(
@@ -268,7 +273,9 @@ private fun SuperAdminSettingInfo(
     locationState: MutableState<String>,
     postCodeState: MutableState<String>,
     uniqueIdentifierState: MutableState<String>,
-    latLngState: MutableState<String>
+    latLngState: MutableState<String>,
+    siteNameState: MutableState<String>,
+    isRLD : MutableState<Boolean>
 ) {
     Surface(
         modifier = Modifier
@@ -294,7 +301,7 @@ private fun SuperAdminSettingInfo(
                 InputField(
                     valueState = trustState,
                     labelId = "",
-                    enabled = true,
+                    enabled = false,
                     isSingleLine = true,
                     modifier = Modifier.size(
                         width = MaterialTheme.dimens.superAdminSettingScreenTextFieldsWidth,
@@ -310,7 +317,7 @@ private fun SuperAdminSettingInfo(
                 InputField(
                     valueState = locationState,
                     labelId = "",
-                    enabled = true,
+                    enabled = false,
                     isSingleLine = true,
                     modifier = Modifier.size(
                         width = MaterialTheme.dimens.superAdminSettingScreenTextFieldsWidth,
@@ -326,7 +333,7 @@ private fun SuperAdminSettingInfo(
                 InputField(
                     valueState = postCodeState,
                     labelId = "",
-                    enabled = true,
+                    enabled = false,
                     isSingleLine = true,
                     modifier = Modifier.size(
                         width = MaterialTheme.dimens.superAdminSettingScreenTextFieldsWidth,
@@ -347,7 +354,7 @@ private fun SuperAdminSettingInfo(
                 InputField(
                     valueState = uniqueIdentifierState,
                     labelId = "",
-                    enabled = true,
+                    enabled = false,
                     isSingleLine = true,
                     modifier = Modifier.size(
                         width = MaterialTheme.dimens.superAdminSettingScreenTextFieldsWidth,
@@ -363,7 +370,7 @@ private fun SuperAdminSettingInfo(
                 InputField(
                     valueState = latLngState,
                     labelId = "",
-                    enabled = true,
+                    enabled = false,
                     isSingleLine = true,
                     modifier = Modifier.size(
                         width = MaterialTheme.dimens.superAdminSettingScreenTextFieldsWidth,
@@ -371,19 +378,23 @@ private fun SuperAdminSettingInfo(
                     ),
                     textStyle = MaterialTheme.typography.titleMedium
                 )
-                Button(
-                    onClick = { /*TODO*/ },
-                    shape = RoundedCornerShape(MaterialTheme.dimens.superAdminSettingScreenButtonsCornerShapeSize),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF85D32C)),
-                    modifier = Modifier
-                        .size(
-                            width = MaterialTheme.dimens.superAdminSettingScreenRegisterButtonWidth,
-                            height = MaterialTheme.dimens.superAdminSettingScreenRegisterButtonHeight
-                        )
-                        .padding(MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
-                ) {
-                    Text(text = stringResource(id = R.string.REGISTER))
-                }
+                Text(
+                    text = "Site Name",
+                    color = Color.White,
+                    modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
+                        .alpha(if(isRLD.value) 0f else 1f)
+                )
+                InputField(
+                    valueState = siteNameState,
+                    labelId = "",
+                    enabled = false,
+                    isSingleLine = true,
+                    modifier = Modifier.size(
+                        width = MaterialTheme.dimens.superAdminSettingScreenTextFieldsWidth,
+                        height = MaterialTheme.dimens.superAdminSettingScreenTextFieldsHeight
+                    ).alpha(if(isRLD.value) 0f else 1f),
+                    textStyle = MaterialTheme.typography.titleMedium
+                )
             }
         }
     }
