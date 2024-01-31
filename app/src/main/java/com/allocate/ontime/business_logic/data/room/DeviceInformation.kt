@@ -39,6 +39,13 @@ data class DeviceInformation(
     @ColumnInfo(name = "LocationCode")
     val locationCode: String?,
     @ColumnInfo(name = "Acknowledgement_status")
-    val acknowledgementStatus: Int
+    val acknowledgementStatus: Int,
+    @ColumnInfo(name = "Sites")
+    val sites: String?,
+    @ColumnInfo(name = "SiteName")
+    val siteName: String?,
+    @ColumnInfo(name = "IsRLD")
+    val isRLD: Boolean?,
+
 )
 

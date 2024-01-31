@@ -86,4 +86,5 @@
     <string name="Postcode">Postcode</string>
     <string name="LatLng">LatLng</string>
     <string name="REGISTER">REGISTER</string>
+    <string name="Unique_Identifier_only">Unique Identifier</string>
 </resources>

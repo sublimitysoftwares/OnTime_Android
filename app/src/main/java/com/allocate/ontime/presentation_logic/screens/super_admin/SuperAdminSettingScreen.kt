@@ -159,7 +159,7 @@ fun SuperAdminSettingScreen(
                 horizontalArrangement = Arrangement.spacedBy(20.dp)
             ) {
                 Text(
-                    text = stringResource(id = R.string.ENTER_PIN),
+                    text = stringResource(id = R.string.Enable_Pin),
                     color = Color.White,
                     style = MaterialTheme.typography.titleSmall
                 )
@@ -340,7 +340,7 @@ private fun SuperAdminSettingInfo(
                 horizontalAlignment = Alignment.Start,
             ) {
                 Text(
-                    text = stringResource(id = R.string.Unique_Identifier),
+                    text = stringResource(id = R.string.Unique_Identifier_only),
                     color = Color.White,
                     modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
                 )

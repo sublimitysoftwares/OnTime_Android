@@ -51,7 +51,10 @@ class SplashViewModel @Inject constructor(
                         asApiURL = data.ASApiURL,
                         appVersion = data.AppVersion!!,
                         locationCode = data.LocationCode,
-                        acknowledgementStatus = 0
+                        acknowledgementStatus = 0,
+                        sites = data.Sites,
+                        siteName = data.SiteName,
+                        isRLD = data.IsRLD
                     )
                 )
             }
@@ -98,7 +101,10 @@ class SplashViewModel @Inject constructor(
                                                 asApiURL = data.ASApiURL,
                                                 appVersion = data.AppVersion!!,
                                                 locationCode = data.LocationCode,
-                                                acknowledgementStatus = acknowledgementStatus.value
+                                                acknowledgementStatus = acknowledgementStatus.value,
+                                                sites = data.Sites,
+                                                siteName = data.SiteName,
+                                                isRLD = data.IsRLD
                                             )
                                         )
                                     }

@@ -63,5 +63,8 @@ data class DeviceInfoResponsePacket(
     val WAP_Password: String,
     val WAP_SSID: String,
     val _id: String,
-    val LocationCode : String
+    val LocationCode : String,
+    val Sites: String,
+    val SiteName: String,
+    val IsRLD: Boolean
 )
