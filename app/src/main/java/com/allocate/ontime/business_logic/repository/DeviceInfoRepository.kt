@@ -1,21 +1,28 @@
 package com.allocate.ontime.business_logic.repository
 
 import android.util.Log
+import com.allocate.ontime.business_logic.annotations.DeviceInfoRetrofit
 import com.allocate.ontime.business_logic.data.DataOrException
 import com.allocate.ontime.presentation_logic.model.DeviceInfo
-import com.allocate.ontime.business_logic.network.OnTimeApi
+import com.allocate.ontime.business_logic.network.DeviceInfoApi
+import com.allocate.ontime.business_logic.utils.Constants
+import com.allocate.ontime.business_logic.utils.Utils
+import com.allocate.ontime.encryption.EDModel
 import com.allocate.ontime.presentation_logic.model.AppInfo
 import com.allocate.ontime.presentation_logic.model.EditDeviceInfo
+import dagger.hilt.android.lifecycle.HiltViewModel
+import retrofit2.Response
 import javax.inject.Inject
 
-class OnTimeRepository @Inject constructor(
-    private val api: OnTimeApi,
 
+class DeviceInfoRepository @Inject constructor(
+   private val api: DeviceInfoApi,
     ) {
     suspend fun getDeviceInfo(): DataOrException<DeviceInfo, Exception> {
         val dataOrException = DataOrException<DeviceInfo, Exception>()
         try {
-            dataOrException.data = api.getDeviceInfo()
+//            dataOrException.data = api.getDeviceInfo(imei = Utils.imei)
+            dataOrException.data = api.getDeviceInfo(imei = "867291070025769")
         } catch (exception: Exception) {
             dataOrException.e = exception
             Log.d("EXC", "getAllDeviceInfo: ${dataOrException.e}")
@@ -35,4 +42,18 @@ class OnTimeRepository @Inject constructor(
         }
         return dataOrException
     }
+
+    suspend fun postSuperAdminDetails(): DataOrException<Response<EDModel>, Exception> {
+        val dataOrException = DataOrException<Response<EDModel>, Exception>()
+        try {
+            dataOrException.data = api.getCISuperAdminDetails(Utils.asApiURL + Constants.getCISuperAdminDetails)
+            Log.d("SuperAdmin","${dataOrException.data}")
+        } catch (exception: Exception) {
+            dataOrException.e = exception
+            Log.d("EXC", "getSuperAdminDetails: ${dataOrException.e}")
+        }
+        return dataOrException
+    }
+
+
 }

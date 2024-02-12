@@ -1,35 +1,49 @@
 package com.allocate.ontime
 
 
+
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.admin.DevicePolicyManager
 import android.app.admin.SystemUpdatePolicy
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.pm.PackageManager
 import android.os.BatteryManager
+import android.os.Build
 import android.os.Bundle
 import android.os.UserManager
 import android.provider.Settings
+import android.telephony.TelephonyManager
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.allocate.ontime.business_logic.utils.Constants
+import com.allocate.ontime.business_logic.utils.Utils
 import com.allocate.ontime.presentation_logic.navigation.OnTimeNavigation
 import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminSettingViewModel
 import com.allocate.ontime.presentation_logic.theme.CI_OnTimeTheme
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.DelicateCoroutinesApi
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -38,17 +52,39 @@ class MainActivity : ComponentActivity() {
     private lateinit var mAdminComponentName: ComponentName
     private lateinit var mDevicePolicyManager: DevicePolicyManager
 
+
+    lateinit var imei: String
+    private val REQUEST_CODE = 101
+
     companion object {
         const val LOCK_ACTIVITY_KEY = "com.allocate.ontime.MainActivity"
     }
 
 
-    @SuppressLint("CoroutineCreationDuringComposition")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             OnTimeApp()
         }
+
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.READ_PHONE_STATE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(android.Manifest.permission.READ_PHONE_STATE),
+                REQUEST_CODE
+            )
+        } else {
+            // Permission already granted
+            getImei()
+//            Utils.getImei()
+        }
+
+
+
         mAdminComponentName = MyDeviceAdminReceiver.getComponentName(this)
         mDevicePolicyManager =
             getSystemService(Context.DEVICE_POLICY_SERVICE) as DevicePolicyManager
@@ -68,6 +104,43 @@ class MainActivity : ComponentActivity() {
 //            startActivity(intent)
         }
     }
+
+    @SuppressLint("HardwareIds")
+    private fun getImei() {
+        val telephonyManager = getSystemService(TELEPHONY_SERVICE) as TelephonyManager
+
+        // Check if the device is running Android 10 or higher
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            // Use getImei() for Android 10 and higher
+            imei = telephonyManager.imei
+        } else {
+            // Use getDeviceId() for Android 9 and below
+            imei = telephonyManager.deviceId
+        }
+        Utils.imei = imei
+    }
+
+
+
+
+//    @Deprecated("Deprecated in Java")
+//    override fun onRequestPermissionsResult(
+//        requestCode: Int,
+//        permissions: Array<String>,
+//        grantResults: IntArray
+//    ) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+//
+//        if (requestCode == REQUEST_CODE) {
+//            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                // Permission granted, now get the IMEI
+//                getImei()
+//            } else {
+//                // Permission denied
+//                Toast.makeText(this, "Permission denied.", Toast.LENGTH_SHORT).show()
+//            }
+//        }
+//    }
 
 
     private fun isAdmin() = mDevicePolicyManager.isDeviceOwnerApp(packageName)

@@ -1,6 +1,7 @@
 package com.allocate.ontime.business_logic.repository
 
 
+import com.allocate.ontime.business_logic.annotations.DeviceInfoRetrofit
 import com.allocate.ontime.business_logic.data.room.DeviceInfoDao
 import com.allocate.ontime.business_logic.data.room.DeviceInformation
 import kotlinx.coroutines.Dispatchers

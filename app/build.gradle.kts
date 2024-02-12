@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId = "com.allocate.ontime"
-        minSdk = 23
+        minSdk = 28
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -59,6 +59,8 @@ kapt {
 }
 
 dependencies {
+
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
 
     // Room
     implementation("androidx.room:room-runtime:2.6.1")

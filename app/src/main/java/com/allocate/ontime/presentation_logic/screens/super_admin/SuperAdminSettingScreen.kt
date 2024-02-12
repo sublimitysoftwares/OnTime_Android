@@ -55,7 +55,7 @@ import com.allocate.ontime.presentation_logic.widgets.InputField
 @Composable
 fun SuperAdminSettingScreen(
     backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit,
-    superAdminViewModel: SuperAdminSettingViewModel = hiltViewModel()
+    superAdminViewModel: SuperAdminSettingViewModel = hiltViewModel(),
 ) {
     val checkBoxState = remember {
         mutableStateOf(false)
