@@ -16,13 +16,8 @@ import retrofit2.http.Url
 import javax.inject.Singleton
 
 
-
+@DeviceInfoRetrofit
 interface DeviceInfoApi {
-    // GET api to get device information through IMEI number of device.
-
-
-//    @GET(value = "GetDevice?IMEI=867291070018749")
-//    suspend fun getDeviceInfo(): DeviceInfo
 
     @GET(value = "GetDevice")
     suspend fun getDeviceInfo(@Query("IMEI") imei: String?): DeviceInfo
@@ -32,8 +27,4 @@ interface DeviceInfoApi {
     suspend fun postEditDeviceInfo(
         @Body appInfo: AppInfo
     ): EditDeviceInfo
-
-    @POST(value = Constants.getCISuperAdminDetails)
-    suspend fun getCISuperAdminDetails(@Url url:String): Response<EDModel>
-
 }

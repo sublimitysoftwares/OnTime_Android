@@ -7,6 +7,7 @@ import com.allocate.ontime.business_logic.annotations.SuperAdminRetrofit
 import com.allocate.ontime.business_logic.data.room.DeviceInfoDao
 import com.allocate.ontime.business_logic.data.room.OnTimeDatabase
 import com.allocate.ontime.business_logic.network.DeviceInfoApi
+import com.allocate.ontime.business_logic.network.SuperAdminApi
 import com.allocate.ontime.business_logic.repository.DaoRepository
 import com.allocate.ontime.business_logic.repository.DeviceInfoRepository
 
@@ -34,10 +35,11 @@ import javax.inject.Singleton
 object AppModule {
     // It provides the dependency of OnTimeRepository Class.
     @Provides
-    fun provideDeviceInfoRepository(api: DeviceInfoApi): DeviceInfoRepository =
-        DeviceInfoRepository(api)
+    fun provideDeviceInfoRepository(@DeviceInfoRetrofit deviceInfoApi: DeviceInfoApi,@SuperAdminRetrofit superAdminApi: SuperAdminApi): DeviceInfoRepository =
+        DeviceInfoRepository(deviceInfoApi,superAdminApi)
 
     @Provides
+    @DeviceInfoRetrofit
     fun provideSlashViewModelContext(
         deviceInfoRepository: DeviceInfoRepository,
         daoRepository: DaoRepository,
@@ -47,6 +49,7 @@ object AppModule {
 
     // It provides the dependency of DaoRepository Class.
     @Provides
+    @DeviceInfoRetrofit
     fun provideDeviceInfoDaoRepository(database: OnTimeDatabase): DeviceInfoDao {
         return database.deviceInfoDao()
     }
@@ -54,6 +57,7 @@ object AppModule {
     // It provides the dependency of OnTimeDatabase Class.
     @Singleton
     @Provides
+    @DeviceInfoRetrofit
     fun provideAppDatabase(@ApplicationContext context: Context): OnTimeDatabase =
         Room.databaseBuilder(context, OnTimeDatabase::class.java, name = Constants.databaseName)
             .fallbackToDestructiveMigration()
@@ -63,63 +67,36 @@ object AppModule {
 //     It provides the dependency of OnTimeApi Interface.
     @Singleton
     @Provides
-    fun provideDeviceInfoApi(retrofit: Retrofit): DeviceInfoApi {
+    fun provideDeviceInfoApi(@DeviceInfoRetrofit retrofit: Retrofit): DeviceInfoApi {
         return retrofit.create(DeviceInfoApi::class.java)
     }
 
 
-//    @Provides
-//    fun provideSuperAdminApi(retrofit: Retrofit): SuperAdminApi {
-//        return retrofit.create(SuperAdminApi::class.java)
-//    }
-//
-//    @Provides
-//    fun provideSuperAdminRepository(api: SuperAdminApi): SuperAdminRepository =
-//        SuperAdminRepository(api)
-
-
-//    @Provides
-//    @DeviceInfoRetrofit
-//    fun provideRetrofitClient(): Retrofit {
-//        return Retrofit.Builder()
-//            .baseUrl(Constants.BASE_URL)
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build()
-//    }
-
-
-
-
-    class BaseUrlInterceptor() : Interceptor {
-        override fun intercept(chain: Interceptor.Chain): Response {
-            val request = chain.request()
-
-            // Read the appropriate base URL from shared preferences (or other source)
-            val baseUrl = when (request.tag()) {
-                // Use different keys for different APIs
-                "BASE_URL" -> "http://cpaapi.sublimitysoft.com/"
-                "AS_API_URL" -> "http://airstack.sublimitysoft.com/AirstackAPI/API/"
-                else -> throw IllegalArgumentException("Unknown API tag")
-            }
-
-            // Build a new request with the modified base URL
-            val newUrl =
-                request.url().newBuilder().scheme(request.url().scheme()).host(baseUrl).build()
-            val newRequest = request.newBuilder().url(newUrl).build()
-
-            return chain.proceed(newRequest)
-        }
+    @Provides
+    fun provideSuperAdminApi(@SuperAdminRetrofit retrofit: Retrofit): SuperAdminApi {
+        return retrofit.create(SuperAdminApi::class.java)
     }
 
-    private val okHttpClient: OkHttpClient = OkHttpClient.Builder()
-        .addNetworkInterceptor(BaseUrlInterceptor())
-        .build()
 
-    @Singleton
+
+
     @Provides
-    fun provideRetrofit(): Retrofit {
+    @DeviceInfoRetrofit
+    fun provideRetrofitClient1(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(Utils.BASE_URL)
+            .baseUrl(Constants.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
+    }
+
+    @Provides
+    @SuperAdminRetrofit
+    fun provideRetrofitClient2(): Retrofit {
+        return Utils.asApiURL.let {
+            Retrofit.Builder()
+                .baseUrl(it)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        }
     }
 }

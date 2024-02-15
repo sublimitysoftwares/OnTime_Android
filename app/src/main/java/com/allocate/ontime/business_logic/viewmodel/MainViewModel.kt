@@ -11,7 +11,7 @@ import javax.inject.Inject
 import javax.inject.Named
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val repository: DeviceInfoRepository): ViewModel(){
+class MainViewModel @Inject constructor(@SuperAdminRetrofit private val repository: DeviceInfoRepository): ViewModel(){
 
     init {
         viewModelScope.launch {

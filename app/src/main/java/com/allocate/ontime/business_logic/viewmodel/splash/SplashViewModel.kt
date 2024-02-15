@@ -31,6 +31,7 @@ import javax.inject.Named
 
 
 @HiltViewModel
+@DeviceInfoRetrofit
 class SplashViewModel @Inject constructor(
     private val repository: DeviceInfoRepository,
     private val daoRepository: DaoRepository,

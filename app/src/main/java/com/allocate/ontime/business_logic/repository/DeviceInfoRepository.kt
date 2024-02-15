@@ -2,9 +2,11 @@ package com.allocate.ontime.business_logic.repository
 
 import android.util.Log
 import com.allocate.ontime.business_logic.annotations.DeviceInfoRetrofit
+import com.allocate.ontime.business_logic.annotations.SuperAdminRetrofit
 import com.allocate.ontime.business_logic.data.DataOrException
 import com.allocate.ontime.presentation_logic.model.DeviceInfo
 import com.allocate.ontime.business_logic.network.DeviceInfoApi
+import com.allocate.ontime.business_logic.network.SuperAdminApi
 import com.allocate.ontime.business_logic.utils.Constants
 import com.allocate.ontime.business_logic.utils.Utils
 import com.allocate.ontime.encryption.EDModel
@@ -16,13 +18,14 @@ import javax.inject.Inject
 
 
 class DeviceInfoRepository @Inject constructor(
-   private val api: DeviceInfoApi,
+   @DeviceInfoRetrofit private val deviceInfoApi: DeviceInfoApi,
+   @SuperAdminRetrofit private val superAdminApi: SuperAdminApi
     ) {
     suspend fun getDeviceInfo(): DataOrException<DeviceInfo, Exception> {
         val dataOrException = DataOrException<DeviceInfo, Exception>()
         try {
 //            dataOrException.data = api.getDeviceInfo(imei = Utils.imei)
-            dataOrException.data = api.getDeviceInfo(imei = "867291070025769")
+            dataOrException.data = deviceInfoApi.getDeviceInfo(imei = "867291070025769")
         } catch (exception: Exception) {
             dataOrException.e = exception
             Log.d("EXC", "getAllDeviceInfo: ${dataOrException.e}")
@@ -35,7 +38,7 @@ class DeviceInfoRepository @Inject constructor(
     ): DataOrException<EditDeviceInfo, Exception> {
         val dataOrException = DataOrException<EditDeviceInfo, Exception>()
         try {
-            dataOrException.data = api.postEditDeviceInfo(appInfo)
+            dataOrException.data = deviceInfoApi.postEditDeviceInfo(appInfo)
         } catch (exception: Exception) {
             dataOrException.e = exception
             Log.d("EXC", "getAllDeviceInfo: ${dataOrException.e}")
@@ -46,7 +49,7 @@ class DeviceInfoRepository @Inject constructor(
     suspend fun postSuperAdminDetails(): DataOrException<Response<EDModel>, Exception> {
         val dataOrException = DataOrException<Response<EDModel>, Exception>()
         try {
-            dataOrException.data = api.getCISuperAdminDetails(Utils.asApiURL + Constants.getCISuperAdminDetails)
+            dataOrException.data = superAdminApi.getCISuperAdminDetails()
             Log.d("SuperAdmin","${dataOrException.data}")
         } catch (exception: Exception) {
             dataOrException.e = exception
@@ -54,6 +57,8 @@ class DeviceInfoRepository @Inject constructor(
         }
         return dataOrException
     }
+
+
 
 
 }
