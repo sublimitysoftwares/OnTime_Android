@@ -18,8 +18,8 @@ import javax.inject.Inject
 
 
 class DeviceInfoRepository @Inject constructor(
-   @DeviceInfoRetrofit private val deviceInfoApi: DeviceInfoApi,
-   @SuperAdminRetrofit private val superAdminApi: SuperAdminApi
+    private val deviceInfoApi: DeviceInfoApi,
+    private val superAdminApi: SuperAdminApi
     ) {
     suspend fun getDeviceInfo(): DataOrException<DeviceInfo, Exception> {
         val dataOrException = DataOrException<DeviceInfo, Exception>()

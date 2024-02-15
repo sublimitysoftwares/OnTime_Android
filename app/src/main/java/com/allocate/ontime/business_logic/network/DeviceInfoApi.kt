@@ -16,7 +16,7 @@ import retrofit2.http.Url
 import javax.inject.Singleton
 
 
-@DeviceInfoRetrofit
+
 interface DeviceInfoApi {
 
     @GET(value = "GetDevice")

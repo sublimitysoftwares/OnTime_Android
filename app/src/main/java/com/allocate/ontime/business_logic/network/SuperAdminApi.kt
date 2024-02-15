@@ -11,7 +11,7 @@ import retrofit2.http.POST
 
 
 
-@SuperAdminRetrofit
+
 interface SuperAdminApi {
     @POST(value = Constants.getCISuperAdminDetails)
     suspend fun getCISuperAdminDetails(): Response<EDModel>

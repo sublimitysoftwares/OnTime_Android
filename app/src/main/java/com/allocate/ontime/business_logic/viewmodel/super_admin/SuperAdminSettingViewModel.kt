@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SuperAdminSettingViewModel @Inject
-constructor(@DeviceInfoRetrofit private val repository: DeviceInfoRepository) :
+constructor(private val repository: DeviceInfoRepository) :
     ViewModel() {
     suspend fun getDeviceData()
             : DataOrException<DeviceInfo, Exception> {

@@ -35,11 +35,10 @@ import javax.inject.Singleton
 object AppModule {
     // It provides the dependency of OnTimeRepository Class.
     @Provides
-    fun provideDeviceInfoRepository(@DeviceInfoRetrofit deviceInfoApi: DeviceInfoApi,@SuperAdminRetrofit superAdminApi: SuperAdminApi): DeviceInfoRepository =
+    fun provideDeviceInfoRepository(deviceInfoApi: DeviceInfoApi,superAdminApi: SuperAdminApi): DeviceInfoRepository =
         DeviceInfoRepository(deviceInfoApi,superAdminApi)
 
     @Provides
-    @DeviceInfoRetrofit
     fun provideSlashViewModelContext(
         deviceInfoRepository: DeviceInfoRepository,
         daoRepository: DaoRepository,
@@ -49,7 +48,6 @@ object AppModule {
 
     // It provides the dependency of DaoRepository Class.
     @Provides
-    @DeviceInfoRetrofit
     fun provideDeviceInfoDaoRepository(database: OnTimeDatabase): DeviceInfoDao {
         return database.deviceInfoDao()
     }
@@ -57,7 +55,6 @@ object AppModule {
     // It provides the dependency of OnTimeDatabase Class.
     @Singleton
     @Provides
-    @DeviceInfoRetrofit
     fun provideAppDatabase(@ApplicationContext context: Context): OnTimeDatabase =
         Room.databaseBuilder(context, OnTimeDatabase::class.java, name = Constants.databaseName)
             .fallbackToDestructiveMigration()
