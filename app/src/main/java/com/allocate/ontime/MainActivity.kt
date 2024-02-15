@@ -12,8 +12,11 @@ import android.os.BatteryManager
 import android.os.Bundle
 import android.os.UserManager
 import android.provider.Settings
+import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,15 +24,28 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.fragment.NavHostFragment
+import com.allocate.ontime.business_logic.utils.Constants.HomeScreen
+import com.allocate.ontime.business_logic.viewmodel.NavigationTimeoutHandler
 import com.allocate.ontime.presentation_logic.navigation.OnTimeNavigation
 import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminSettingViewModel
+import com.allocate.ontime.presentation_logic.navigation.OnTimeScreens
+import com.allocate.ontime.presentation_logic.screens.home.HomeScreen
 import com.allocate.ontime.presentation_logic.theme.CI_OnTimeTheme
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.DelicateCoroutinesApi
+import javax.inject.Inject
+import kotlin.properties.Delegates
 
 
 @AndroidEntryPoint
@@ -42,13 +58,18 @@ class MainActivity : ComponentActivity() {
         const val LOCK_ACTIVITY_KEY = "com.allocate.ontime.MainActivity"
     }
 
+    private lateinit var navController: NavController
 
     @SuppressLint("CoroutineCreationDuringComposition")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        startNavigationTimeout()
+
         setContent {
             OnTimeApp()
         }
+
         mAdminComponentName = MyDeviceAdminReceiver.getComponentName(this)
         mDevicePolicyManager =
             getSystemService(Context.DEVICE_POLICY_SERVICE) as DevicePolicyManager
@@ -67,6 +88,49 @@ class MainActivity : ComponentActivity() {
 //            intent.putExtra(LOCK_ACTIVITY_KEY, false)
 //            startActivity(intent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        startNavigationTimeout()
+    }
+    override fun onPause() {
+        super.onPause()
+        NavigationTimeoutHandler.stopTimeout()
+    }
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        restartNavigationTimeout()
+        return super.dispatchTouchEvent(ev)
+    }
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        restartNavigationTimeout()
+    }
+
+
+    @SuppressLint("RestrictedApi")
+    private fun startNavigationTimeout() {
+        NavigationTimeoutHandler.startTimeout {
+            onBackPressedDispatcher.onBackPressed()
+            navController = NavController(applicationContext)
+            val currentDestination = navController.currentDestination?.route
+            if (currentDestination == OnTimeScreens.HomeScreen.name){
+                NavigationTimeoutHandler.stopTimeout()
+            } else{
+                restartNavigationTimeout()
+            }
+        }
+    }
+
+
+    private fun restartNavigationTimeout() {
+        NavigationTimeoutHandler.stopTimeout()
+        startNavigationTimeout()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        NavigationTimeoutHandler.stopTimeout()
     }
 
 

@@ -1,9 +1,10 @@
 package com.allocate.ontime.business_logic.utils
 
 object Constants {
-      const val BASE_URL = "http://api.cpair.uk/"
+//      const val BASE_URL = "http://api.cpair.uk/"
+      const val BASE_URL = "http://cpaapi.sublimitysoft.com/"
       const val databaseName = "OnTime_DB"
-      const val getDeviceInfoUrlEndPoint = "GetDevice?IMEI=864392050058185"
+      const val getDeviceInfoUrlEndPoint = "GetDevice?IMEI=867291070025769"
       const val editDeviceInfoUrlEndPoint = "editDeviceAppData"
 
 

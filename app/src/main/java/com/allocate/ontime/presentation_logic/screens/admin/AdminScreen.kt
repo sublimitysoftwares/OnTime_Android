@@ -3,6 +3,7 @@ package com.allocate.ontime.presentation_logic.screens.admin
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -24,6 +25,7 @@ import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -32,6 +34,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -45,6 +48,15 @@ import com.allocate.ontime.presentation_logic.screens.login.PinEntryDialog
 @Composable
 fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
 
+//DisposableEffect(Unit){
+//    AutoBackNavigationManager.startAutoBackNavigation {
+//        backToHome(HomeScreenRoot.HomeScreen)
+//    }
+//    onDispose {
+//        AutoBackNavigationManager.stopAutoBackNavigation()
+//    }
+//}
+
     var isDialogVisible by remember { mutableStateOf(false) }
     val context = LocalContext.current
     if (isDialogVisible) {
@@ -57,6 +69,12 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
 
     Surface(
         modifier = Modifier.fillMaxSize(),
+//            .pointerInput(Unit){
+//                               detectTapGestures {
+//                                   AutoBackNavigationManager.onUserInteraction()
+//                               }
+//            },
+
         color = Color.DarkGray.copy(alpha = MaterialTheme.dimens.surfaceColorAlphaValue)
     ) {
         Column(

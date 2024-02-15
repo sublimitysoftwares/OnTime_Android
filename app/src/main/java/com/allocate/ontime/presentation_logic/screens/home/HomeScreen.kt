@@ -42,6 +42,7 @@ import com.allocate.ontime.presentation_logic.screens.login.PinEntryDialog
 
 @Composable
 fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
+
     var isDialogVisible by remember { mutableStateOf(false) }
     val context = LocalContext.current
     if (isDialogVisible) {
