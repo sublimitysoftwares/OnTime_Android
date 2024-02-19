@@ -7,7 +7,6 @@ import androidx.room.Upsert
 import com.allocate.ontime.business_logic.annotations.DeviceInfoRetrofit
 import kotlinx.coroutines.flow.Flow
 
-@DeviceInfoRetrofit
 @Dao
 interface DeviceInfoDao {
     @Query(value = "SELECT * from device_info")

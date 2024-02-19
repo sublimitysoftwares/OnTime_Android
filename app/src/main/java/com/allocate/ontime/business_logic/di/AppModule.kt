@@ -10,7 +10,6 @@ import com.allocate.ontime.business_logic.network.DeviceInfoApi
 import com.allocate.ontime.business_logic.network.SuperAdminApi
 import com.allocate.ontime.business_logic.repository.DaoRepository
 import com.allocate.ontime.business_logic.repository.DeviceInfoRepository
-
 import com.allocate.ontime.business_logic.utils.Constants
 import com.allocate.ontime.business_logic.utils.Utils
 import com.allocate.ontime.business_logic.viewmodel.splash.SplashViewModel
@@ -18,15 +17,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.android.scopes.ActivityRetainedScoped
-import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.hilt.components.SingletonComponent
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
-import okhttp3.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Qualifier
 import javax.inject.Singleton
 
 
@@ -35,8 +28,11 @@ import javax.inject.Singleton
 object AppModule {
     // It provides the dependency of OnTimeRepository Class.
     @Provides
-    fun provideDeviceInfoRepository(deviceInfoApi: DeviceInfoApi,superAdminApi: SuperAdminApi): DeviceInfoRepository =
-        DeviceInfoRepository(deviceInfoApi,superAdminApi)
+    fun provideDeviceInfoRepository(
+        deviceInfoApi: DeviceInfoApi,
+        superAdminApi: SuperAdminApi
+    ): DeviceInfoRepository =
+        DeviceInfoRepository(deviceInfoApi, superAdminApi)
 
     @Provides
     fun provideSlashViewModelContext(
@@ -60,22 +56,17 @@ object AppModule {
             .fallbackToDestructiveMigration()
             .build()
 
-
-//     It provides the dependency of OnTimeApi Interface.
+    //     It provides the dependency of OnTimeApi Interface.
     @Singleton
     @Provides
     fun provideDeviceInfoApi(@DeviceInfoRetrofit retrofit: Retrofit): DeviceInfoApi {
         return retrofit.create(DeviceInfoApi::class.java)
     }
 
-
     @Provides
     fun provideSuperAdminApi(@SuperAdminRetrofit retrofit: Retrofit): SuperAdminApi {
         return retrofit.create(SuperAdminApi::class.java)
     }
-
-
-
 
     @Provides
     @DeviceInfoRetrofit

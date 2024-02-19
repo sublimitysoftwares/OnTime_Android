@@ -3,7 +3,6 @@ package com.allocate.ontime
 
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.admin.DevicePolicyManager
 import android.app.admin.SystemUpdatePolicy
 import android.content.ComponentName
@@ -17,33 +16,25 @@ import android.os.Bundle
 import android.os.UserManager
 import android.provider.Settings
 import android.telephony.TelephonyManager
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.allocate.ontime.business_logic.utils.Constants
 import com.allocate.ontime.business_logic.utils.Utils
 import com.allocate.ontime.presentation_logic.navigation.OnTimeNavigation
 import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminSettingViewModel
 import com.allocate.ontime.presentation_logic.theme.CI_OnTimeTheme
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -80,7 +71,6 @@ class MainActivity : ComponentActivity() {
         } else {
             // Permission already granted
             getImei()
-//            Utils.getImei()
         }
 
 

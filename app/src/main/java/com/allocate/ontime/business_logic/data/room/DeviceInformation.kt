@@ -6,7 +6,6 @@ import androidx.room.PrimaryKey
 import com.allocate.ontime.business_logic.annotations.DeviceInfoRetrofit
 
 
-@DeviceInfoRetrofit
 @Entity(tableName = "device_info")
 data class DeviceInformation(
     @PrimaryKey

@@ -4,5 +4,5 @@ import javax.inject.Qualifier
 
 @Qualifier
 @MustBeDocumented
-@Retention(AnnotationRetention.BINARY)
+@Retention(AnnotationRetention.RUNTIME)
 annotation class DeviceInfoRetrofit

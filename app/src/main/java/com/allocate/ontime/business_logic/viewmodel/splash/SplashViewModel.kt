@@ -9,7 +9,6 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.allocate.ontime.BuildConfig
-import com.allocate.ontime.business_logic.annotations.DeviceInfoRetrofit
 import com.allocate.ontime.business_logic.data.DataOrException
 import com.allocate.ontime.business_logic.data.room.DeviceInformation
 import com.allocate.ontime.business_logic.repository.DaoRepository
@@ -27,7 +26,6 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import java.util.Locale
 import javax.inject.Inject
-import javax.inject.Named
 
 
 @HiltViewModel
@@ -43,7 +41,7 @@ class SplashViewModel @Inject constructor(
     init {
         viewModelScope.launch(Dispatchers.IO) {
             val deviceInfoApiData = async { repository.getDeviceInfo() }.await()
-            Log.d("data1","hello:$deviceInfoApiData")
+            Log.d("data1", "hello:$deviceInfoApiData")
 
             deviceInfoApiData.data?.responsePacket?.first()?.let { data ->
                 addDeviceInfo(
@@ -71,9 +69,9 @@ class SplashViewModel @Inject constructor(
                     )
                 )
                 val asApiURL = data.ASApiURL
-              Utils.asApiURL = asApiURL
+                Utils.asApiURL = asApiURL
             }
-            observeAllDeviceInfo(this, deviceInfoApiData,context)
+            observeAllDeviceInfo(this, deviceInfoApiData, context)
         }
     }
 
@@ -100,30 +98,30 @@ class SplashViewModel @Inject constructor(
                             if (result.data?.ResponseCode == 201) {
                                 _acknowledgementStatus.value = 1
                                 getDeviceInfoApiData.data?.responsePacket?.first()?.let { data ->
-                                        updateDeviceInfo(
-                                            deviceInformation = DeviceInformation(
-                                                id = data._id,
-                                                deviceId = data.DeviceId.toLong(),
-                                                trustOrganization = data.TrustOrganization,
-                                                uniqueIdentifier = data.Unique_Identifier,
-                                                location = data.Location,
-                                                serialNumber = data.SerialNumber,
-                                                latitude = data.Latitude.toDouble(),
-                                                longitude = data.Longitude.toDouble(),
-                                                postcode = data.Postcode,
-                                                status = data.Status,
-                                                asInstance = data.ASInstance,
-                                                asEmployeeOnlineURL = data.ASEmployeeOnlineURL,
-                                                asApiURL = data.ASApiURL,
-                                                appVersion = data.AppVersion,
-                                                locationCode = data.LocationCode,
-                                                acknowledgementStatus = acknowledgementStatus.value,
-                                                sites = data.Sites,
-                                                siteName = data.SiteName,
-                                                isRLD = data.IsRLD
-                                            )
+                                    updateDeviceInfo(
+                                        deviceInformation = DeviceInformation(
+                                            id = data._id,
+                                            deviceId = data.DeviceId.toLong(),
+                                            trustOrganization = data.TrustOrganization,
+                                            uniqueIdentifier = data.Unique_Identifier,
+                                            location = data.Location,
+                                            serialNumber = data.SerialNumber,
+                                            latitude = data.Latitude.toDouble(),
+                                            longitude = data.Longitude.toDouble(),
+                                            postcode = data.Postcode,
+                                            status = data.Status,
+                                            asInstance = data.ASInstance,
+                                            asEmployeeOnlineURL = data.ASEmployeeOnlineURL,
+                                            asApiURL = data.ASApiURL,
+                                            appVersion = data.AppVersion,
+                                            locationCode = data.LocationCode,
+                                            acknowledgementStatus = acknowledgementStatus.value,
+                                            sites = data.Sites,
+                                            siteName = data.SiteName,
+                                            isRLD = data.IsRLD
                                         )
-                                    }
+                                    )
+                                }
                             } else {
                                 result.e?.let {
                                     Log.d("EXC", "$it")
