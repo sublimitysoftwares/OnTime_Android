@@ -1,6 +1,8 @@
 package com.allocate.ontime.encryption;
 
 //import com.allocate.ontime.retrofit.EDModel;
+import android.util.Log;
+
 import com.google.gson.Gson;
 
 import retrofit2.Response;

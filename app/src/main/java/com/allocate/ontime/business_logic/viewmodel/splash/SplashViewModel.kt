@@ -68,7 +68,7 @@ class SplashViewModel @Inject constructor(
 
                     )
                 )
-                val asApiURL = data.ASApiURL
+                val asApiURL: String = data.ASApiURL
                 Utils.asApiURL = asApiURL
             }
             observeAllDeviceInfo(this, deviceInfoApiData, context)

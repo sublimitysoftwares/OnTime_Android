@@ -12,6 +12,7 @@ import com.allocate.ontime.business_logic.repository.DaoRepository
 import com.allocate.ontime.business_logic.repository.DeviceInfoRepository
 import com.allocate.ontime.business_logic.utils.Constants
 import com.allocate.ontime.business_logic.utils.Utils
+import com.allocate.ontime.business_logic.viewmodel.MainViewModel
 import com.allocate.ontime.business_logic.viewmodel.splash.SplashViewModel
 import dagger.Module
 import dagger.Provides
@@ -41,6 +42,13 @@ object AppModule {
         @ApplicationContext context: Context,
     ) =
         SplashViewModel(deviceInfoRepository, daoRepository, context)
+
+    @Provides
+    fun provideMainViewModelContext(
+        deviceInfoRepository: DeviceInfoRepository,
+        @ApplicationContext context: Context,
+    ) =
+        MainViewModel(deviceInfoRepository,context)
 
     // It provides the dependency of DaoRepository Class.
     @Provides

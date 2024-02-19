@@ -34,14 +34,22 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.allocate.ontime.R
+import com.allocate.ontime.business_logic.data.shared_preferences.PreferencesManager
+import com.allocate.ontime.business_logic.utils.Constants
+import com.allocate.ontime.business_logic.viewmodel.MainViewModel
 import com.allocate.ontime.presentation_logic.navigation.HomeScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.screens.login.PinEntryDialog
 
 
 @Composable
-fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
+fun HomeScreen(
+    homeScreenRoot: (HomeScreenRoot) -> Unit,
+    mainViewModel: MainViewModel = hiltViewModel()
+) {
+
     var isDialogVisible by remember { mutableStateOf(false) }
     val context = LocalContext.current
     if (isDialogVisible) {
@@ -51,6 +59,10 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
             Toast.makeText(context, "Entered PIN: $pin", Toast.LENGTH_SHORT).show()
         })
     }
+
+    val userName = PreferencesManager(context).getData(Constants.UserName,"")
+    val password = PreferencesManager(context).getData(Constants.Password,"")
+
 
     Surface(
         modifier = Modifier.fillMaxSize(),

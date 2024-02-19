@@ -110,29 +110,6 @@ class MainActivity : ComponentActivity() {
         Utils.imei = imei
     }
 
-
-
-
-//    @Deprecated("Deprecated in Java")
-//    override fun onRequestPermissionsResult(
-//        requestCode: Int,
-//        permissions: Array<String>,
-//        grantResults: IntArray
-//    ) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-//
-//        if (requestCode == REQUEST_CODE) {
-//            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                // Permission granted, now get the IMEI
-//                getImei()
-//            } else {
-//                // Permission denied
-//                Toast.makeText(this, "Permission denied.", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//    }
-
-
     private fun isAdmin() = mDevicePolicyManager.isDeviceOwnerApp(packageName)
 
     private fun setKioskPolicies(enable: Boolean, isAdmin: Boolean) {
