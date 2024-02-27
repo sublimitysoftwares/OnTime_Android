@@ -28,6 +28,7 @@ class SplashViewModel @Inject constructor(
 
     private val _acknowledgementStatus = MutableStateFlow(0)
     val acknowledgementStatus = _acknowledgementStatus.asStateFlow()
+    private val tag = "EXCEPTION"
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
@@ -49,7 +50,7 @@ class SplashViewModel @Inject constructor(
                         asInstance = data.ASInstance,
                         asEmployeeOnlineURL = data.ASEmployeeOnlineURL,
                         asApiURL = data.ASApiURL,
-                        appVersion = data.AppVersion!!,
+                        appVersion = data.AppVersion,
                         locationCode = data.LocationCode,
                         acknowledgementStatus = 0,
                         sites = data.Sites,
@@ -66,9 +67,9 @@ class SplashViewModel @Inject constructor(
         coroutineScope: CoroutineScope,
         getDeviceInfoApiData: DataOrException<DeviceInfo, Exception>,
     ) {
-        daoRepository.getAllDeviceInfo().distinctUntilChanged().collect() { listOfDeviceInfo ->
+        daoRepository.getAllDeviceInfo().distinctUntilChanged().collect { listOfDeviceInfo ->
             if (listOfDeviceInfo.isEmpty()) {
-                Log.d("Empty", "Empty List")
+                Log.d(tag, "Empty List")
             } else {
                 if (acknowledgementStatus.value == 0) {
                     coroutineScope.async {
@@ -99,7 +100,7 @@ class SplashViewModel @Inject constructor(
                                                 asInstance = data.ASInstance,
                                                 asEmployeeOnlineURL = data.ASEmployeeOnlineURL,
                                                 asApiURL = data.ASApiURL,
-                                                appVersion = data.AppVersion!!,
+                                                appVersion = data.AppVersion,
                                                 locationCode = data.LocationCode,
                                                 acknowledgementStatus = acknowledgementStatus.value,
                                                 sites = data.Sites,
@@ -110,12 +111,12 @@ class SplashViewModel @Inject constructor(
                                     }
                             } else {
                                 result.e?.let {
-                                    Log.d("EXC", "$it")
+                                    Log.d(tag, "$it")
                                 }
                             }
                         } ?: run {
                             getDeviceInfoApiData.e?.let {
-                                Log.d("EXC", "$it")
+                                Log.d(tag, "$it")
                             }
                         }
                     }.await()

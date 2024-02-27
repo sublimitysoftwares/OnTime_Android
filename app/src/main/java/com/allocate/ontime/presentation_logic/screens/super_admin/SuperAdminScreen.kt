@@ -67,7 +67,7 @@ fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot) -> Unit) {
             ) {
                 Text(text = stringResource(id = R.string.switch_to_mobile_mode))
             }
-            Spacer(modifier = Modifier.weight(3f))
+            Spacer(modifier = Modifier.weight(MaterialTheme.dimens.superAdminScreenSpacerWeightFraction))
             Row(
                 modifier = Modifier
                     .fillMaxWidth()

@@ -27,9 +27,8 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.allocate.ontime.presentation_logic.navigation.OnTimeNavigation
 import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminSettingViewModel
-import com.allocate.ontime.presentation_logic.theme.CI_OnTimeTheme
+import com.allocate.ontime.presentation_logic.theme.OnTimeTheme
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.DelicateCoroutinesApi
 
 
 @AndroidEntryPoint
@@ -186,7 +185,7 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun OnTimeApp(viewModel: SuperAdminSettingViewModel = hiltViewModel()) {
-    CI_OnTimeTheme {
+    OnTimeTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background

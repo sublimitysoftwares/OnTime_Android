@@ -131,8 +131,7 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                     )
                 }
             }
-            Spacer(modifier = Modifier.fillMaxHeight(0.45f))
-
+            Spacer(modifier = Modifier.fillMaxHeight(MaterialTheme.dimens.adminScreenSpacerMaxHeightFraction))
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
