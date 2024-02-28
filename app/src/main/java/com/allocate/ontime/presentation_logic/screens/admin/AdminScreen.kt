@@ -38,6 +38,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import com.allocate.ontime.R
+import com.allocate.ontime.business_logic.utils.OnTimeColors
 import com.allocate.ontime.presentation_logic.navigation.HomeScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.screens.login.PinEntryDialog
@@ -57,7 +58,7 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
 
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = Color.DarkGray.copy(alpha = MaterialTheme.dimens.surfaceColorAlphaValue)
+        color = OnTimeColors.TORY_BLUE
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -96,7 +97,7 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                     Text(
                         text = stringResource(id = R.string.WELCOME_TO_ADMIN_PAGE),
                         style = MaterialTheme.typography.headlineLarge,
-                        color = Color(0xFF008B8B),
+                        color = OnTimeColors.GREEN_HAZE,
                         fontWeight = FontWeight.Bold
                     )
                     Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight5))
@@ -163,7 +164,7 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                             isDialogVisible = true
                         },
                         shape = RoundedCornerShape(MaterialTheme.dimens.adminScreenButtonsCornerShapeSize),
-                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5F3341)),
+                        colors = ButtonDefaults.buttonColors(containerColor = OnTimeColors.GREEN_HAZE),
                     ) {
                         Text(
                             text = stringResource(id = R.string.ENTER_PIN),
@@ -183,7 +184,7 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                             },
                             shape = RoundedCornerShape(MaterialTheme.dimens.adminScreenButtonsCornerShapeSize),
                             colors = ButtonDefaults.buttonColors(
-                                containerColor = Color(0xFF008B8B)
+                                containerColor = OnTimeColors.PORT_GORE
                             )
                         ) {
                             Text(
@@ -197,7 +198,7 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                             onClick = { /*TODO*/ },
                             shape = RoundedCornerShape(MaterialTheme.dimens.adminScreenButtonsCornerShapeSize),
                             colors = ButtonDefaults.buttonColors(
-                                containerColor = Color(0xFF008B8B)
+                                containerColor = OnTimeColors.PORT_GORE
                             )
                         ) {
                             Text(
@@ -227,7 +228,7 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                         Text(
                             text = stringResource(id = R.string.FOB),
                             style = MaterialTheme.typography.headlineSmall,
-                            color = Color.White,
+                            color = OnTimeColors.White,
                         )
                     }
                     Spacer(modifier = Modifier.weight(1f))
@@ -238,12 +239,12 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                     ) {
                         Text(
                             text = stringResource(id = R.string.app_info),
-                            color = Color.White,
+                            color = OnTimeColors.White,
                             style = MaterialTheme.typography.labelSmall
                         )
                         Text(
                             text = stringResource(id = R.string.Unique_Identifier),
-                            color = Color.White,
+                            color = OnTimeColors.White,
                             style = MaterialTheme.typography.labelSmall
                         )
                     }

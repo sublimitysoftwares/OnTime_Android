@@ -36,6 +36,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -44,6 +45,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.allocate.ontime.R
 import com.allocate.ontime.business_logic.data.DataOrException
+import com.allocate.ontime.business_logic.utils.OnTimeColors
 import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminSettingViewModel
 import com.allocate.ontime.presentation_logic.model.DeviceInfo
 import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
@@ -115,7 +117,7 @@ fun SuperAdminSettingScreen(
 
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = Color.DarkGray.copy(alpha = MaterialTheme.dimens.surfaceColorAlphaValue)
+        color = OnTimeColors.TORY_BLUE
     ) {
         Column(
             verticalArrangement = Arrangement.Center,
@@ -124,7 +126,7 @@ fun SuperAdminSettingScreen(
             Text(
                 text = stringResource(id = R.string.Super_Admin_Setting),
                 style = MaterialTheme.typography.headlineMedium,
-                color = Color(0xFF85D32C),
+                color = OnTimeColors.GREEN_HAZE,
                 fontWeight = FontWeight.Bold
             )
             SuperAdminSettingInfo(
@@ -142,20 +144,20 @@ fun SuperAdminSettingScreen(
             ) {
                 Text(
                     text = stringResource(id = R.string.Clock_In_or_Out),
-                    color = Color.White,
+                    color = OnTimeColors.White,
                     style = MaterialTheme.typography.titleSmall
                 )
                 Switch(
                     checked = true, onCheckedChange = {}, colors = SwitchDefaults.colors(
-                        uncheckedThumbColor = Color.White,
-                        uncheckedTrackColor = Color.LightGray,
-                        checkedThumbColor = Color.Cyan,
-                        checkedTrackColor = Color.White
+                        uncheckedThumbColor = OnTimeColors.White,
+                        uncheckedTrackColor = OnTimeColors.LightGray,
+                        checkedThumbColor = OnTimeColors.Cyan,
+                        checkedTrackColor = OnTimeColors.White
                     )
                 )
                 Text(
                     text = stringResource(id = R.string.Swipe_And_Go),
-                    color = Color.White,
+                    color = OnTimeColors.White,
                     style = MaterialTheme.typography.titleSmall
                 )
             }
@@ -165,11 +167,11 @@ fun SuperAdminSettingScreen(
                 Checkbox(
                     checked = false,
                     onCheckedChange = { checkBoxState.value },
-                    colors = CheckboxDefaults.colors(uncheckedColor = Color.White)
+                    colors = CheckboxDefaults.colors(uncheckedColor = OnTimeColors.White)
                 )
                 Text(
                     text = stringResource(id = R.string.Enable_two_way_Authentication),
-                    color = Color.White,
+                    color = OnTimeColors.White,
                     style = MaterialTheme.typography.titleMedium
                 )
             }
@@ -179,27 +181,27 @@ fun SuperAdminSettingScreen(
             ) {
                 Text(
                     text = stringResource(id = R.string.Enable_Pin),
-                    color = Color.White,
+                    color = OnTimeColors.White,
                     style = MaterialTheme.typography.titleSmall
                 )
                 Switch(
                     checked = true, onCheckedChange = {}, colors = SwitchDefaults.colors(
-                        uncheckedThumbColor = Color.White,
-                        uncheckedTrackColor = Color.LightGray,
-                        checkedThumbColor = Color.Cyan,
-                        checkedTrackColor = Color.White
+                        uncheckedThumbColor = OnTimeColors.White,
+                        uncheckedTrackColor = OnTimeColors.LightGray,
+                        checkedThumbColor = OnTimeColors.Cyan,
+                        checkedTrackColor = OnTimeColors.White
                     )
                 )
                 Text(
                     text = stringResource(id = R.string.Disable_Pin),
-                    color = Color.White,
+                    color = OnTimeColors.White,
                     style = MaterialTheme.typography.titleSmall
                 )
             }
             Button(
                 onClick = { /*TODO*/ },
                 shape = RoundedCornerShape(MaterialTheme.dimens.superAdminSettingScreenButtonsCornerShapeSize),
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF85D32C)),
+                colors = ButtonDefaults.buttonColors(containerColor = OnTimeColors.GREEN_HAZE),
             ) {
                 Text(text = stringResource(id = R.string.CHECK_FOR_UPDATE))
             }
@@ -217,11 +219,7 @@ fun SuperAdminSettingScreen(
                     },
                     shape = RoundedCornerShape(MaterialTheme.dimens.superAdminSettingScreenButtonsCornerShapeSize),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.LightGray, contentColor = Color.Black
-                    ),
-                    border = BorderStroke(
-                        width = MaterialTheme.dimens.superAdminSettingScreenButtonsBorderWidth,
-                        color = Color.White
+                        containerColor = OnTimeColors.GREEN_HAZE, contentColor = OnTimeColors.White
                     )
                 ) {
                     Row(
@@ -242,11 +240,7 @@ fun SuperAdminSettingScreen(
                     onClick = { /*TODO*/ },
                     shape = RoundedCornerShape(MaterialTheme.dimens.superAdminSettingScreenButtonsCornerShapeSize),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.LightGray, contentColor = Color(0xFF5B6F46)
-                    ),
-                    border = BorderStroke(
-                        width = MaterialTheme.dimens.superAdminSettingScreenButtonsBorderWidth,
-                        color = Color.White
+                        containerColor = OnTimeColors.GREEN_HAZE, contentColor = OnTimeColors.White
                     )
                 ) {
                     Row(
@@ -257,6 +251,7 @@ fun SuperAdminSettingScreen(
                             painter = painterResource(id = R.drawable.circle_green),
                             contentDescription = stringResource(id = R.string.circle_green_img),
                             contentScale = ContentScale.Fit,
+                            colorFilter = ColorFilter.tint(color = OnTimeColors.MANTIS),
                             modifier = Modifier.size(MaterialTheme.dimens.circleGreenImgSize)
                         )
                         Text(text = stringResource(id = R.string.View_Employee_Online))
@@ -284,7 +279,7 @@ private fun SuperAdminSettingInfo(
                 height = MaterialTheme.dimens.superAdminSettingScreenSurfaceHeight
             )
             .padding(top = MaterialTheme.dimens.superAdminSettingScreenSurfaceTopPadding),
-        color = Color(0xFF5A5656)
+        color = OnTimeColors.PORT_GORE
     ) {
         Row(
             horizontalArrangement = Arrangement.Center,
@@ -311,7 +306,7 @@ private fun SuperAdminSettingInfo(
                 )
                 Text(
                     text = stringResource(id = R.string.Location_Do_not_add_semi_colon),
-                    color = Color.White,
+                    color = OnTimeColors.White,
                     modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
                 )
                 InputField(
@@ -327,7 +322,7 @@ private fun SuperAdminSettingInfo(
                 )
                 Text(
                     text = stringResource(id = R.string.Postcode),
-                    color = Color.White,
+                    color = OnTimeColors.White,
                     modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
                 )
                 InputField(
@@ -348,7 +343,7 @@ private fun SuperAdminSettingInfo(
             ) {
                 Text(
                     text = stringResource(id = R.string.Unique_Identifier_only),
-                    color = Color.White,
+                    color = OnTimeColors.White,
                     modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
                 )
                 InputField(
@@ -364,7 +359,7 @@ private fun SuperAdminSettingInfo(
                 )
                 Text(
                     text = stringResource(id = R.string.LatLng),
-                    color = Color.White,
+                    color = OnTimeColors.White,
                     modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
                 )
                 InputField(
@@ -379,8 +374,8 @@ private fun SuperAdminSettingInfo(
                     textStyle = MaterialTheme.typography.titleMedium
                 )
                 Text(
-                    text = "Site Name",
-                    color = Color.White,
+                    text = stringResource(id = R.string.Site_Name),
+                    color = OnTimeColors.White,
                     modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
                         .alpha(if(isRLD.value) 0f else 1f)
                 )
