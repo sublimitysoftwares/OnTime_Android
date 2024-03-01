@@ -13,7 +13,8 @@ import com.allocate.ontime.business_logic.data.DataOrException
 import com.allocate.ontime.business_logic.data.room.DeviceInformation
 import com.allocate.ontime.business_logic.repository.DaoRepository
 import com.allocate.ontime.business_logic.repository.DeviceInfoRepository
-import com.allocate.ontime.business_logic.utils.Utils
+import com.allocate.ontime.business_logic.utils.Constants
+import com.allocate.ontime.business_logic.utils.DeviceUtils
 import com.allocate.ontime.presentation_logic.model.AppInfo
 import com.allocate.ontime.presentation_logic.model.DeviceInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -32,16 +33,18 @@ import javax.inject.Inject
 class SplashViewModel @Inject constructor(
     private val repository: DeviceInfoRepository,
     private val daoRepository: DaoRepository,
+    private val deviceUtils: DeviceUtils,
     context: Context,
 ) : ViewModel() {
 
     private val _acknowledgementStatus = MutableStateFlow(0)
     val acknowledgementStatus = _acknowledgementStatus.asStateFlow()
+    private val TAG = "SplashViewModel"
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            val deviceInfoApiData = async { repository.getDeviceInfo() }.await()
-            Log.d("data1", "hello:$deviceInfoApiData")
+            val deviceInfoApiData = async { repository.getDeviceInfo(context) }.await()
+            Log.d(TAG, "deviceInfoApiData:$deviceInfoApiData")
 
             deviceInfoApiData.data?.responsePacket?.first()?.let { data ->
                 addDeviceInfo(
@@ -65,11 +68,10 @@ class SplashViewModel @Inject constructor(
                         sites = data.Sites,
                         siteName = data.SiteName,
                         isRLD = data.IsRLD
-
                     )
                 )
                 val asApiURL: String = data.ASApiURL
-                Utils.asApiURL = asApiURL
+                Constants.asApiURL = asApiURL
             }
             observeAllDeviceInfo(this, deviceInfoApiData, context)
         }
@@ -82,7 +84,7 @@ class SplashViewModel @Inject constructor(
     ) {
         daoRepository.getAllDeviceInfo().distinctUntilChanged().collect() { listOfDeviceInfo ->
             if (listOfDeviceInfo.isEmpty()) {
-                Log.d("Empty", "Empty List")
+                Log.d(TAG, "Empty List")
             } else {
                 if (acknowledgementStatus.value == 0) {
                     coroutineScope.async {
@@ -90,7 +92,7 @@ class SplashViewModel @Inject constructor(
                             val result = repository.postDeviceInfo(
                                 appInfo = AppInfo(
                                     id = it.responsePacket.first()._id,
-                                    macAddress = getMacAddress(context),
+                                    macAddress = deviceUtils.getMacAddress(context),
                                     app = "",
                                     appVersion = BuildConfig.VERSION_NAME
                                 )
@@ -124,12 +126,12 @@ class SplashViewModel @Inject constructor(
                                 }
                             } else {
                                 result.e?.let {
-                                    Log.d("EXC", "$it")
+                                    Log.d(TAG, "Exception: $it")
                                 }
                             }
                         } ?: run {
                             getDeviceInfoApiData.e?.let {
-                                Log.d("EXC", "$it")
+                                Log.d(TAG, "Exception: $it")
                             }
                         }
                     }.await()

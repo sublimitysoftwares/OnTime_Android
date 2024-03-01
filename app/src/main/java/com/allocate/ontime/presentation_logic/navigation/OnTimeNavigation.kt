@@ -1,9 +1,11 @@
 package com.allocate.ontime.presentation_logic.navigation
 
 
+import android.content.Context
 import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -19,7 +21,7 @@ import com.allocate.ontime.presentation_logic.screens.splash.SplashScreen
 
 @ExperimentalComposeUiApi
 @Composable
-fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
+fun OnTimeNavigation(context: Context, viewModel: SuperAdminSettingViewModel = hiltViewModel()) {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
@@ -99,7 +101,7 @@ fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
                         Log.i("Navigation", "Navigation gets wrong.")
                     }
                 }
-            }, viewModel)
+            }, viewModel, context)
         }
         composable(OnTimeScreens.SplashScreen.name) {
             SplashScreen(homeScreenRoot = {

@@ -1,10 +1,9 @@
 package com.allocate.ontime.business_logic.viewmodel
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.allocate.ontime.business_logic.data.shared_preferences.PreferencesManager
+import com.allocate.ontime.business_logic.data.shared_preferences.SecureSharedPrefs
 import com.allocate.ontime.business_logic.repository.DeviceInfoRepository
 import com.allocate.ontime.business_logic.utils.Constants
 import com.allocate.ontime.encryption.EDModel
@@ -23,15 +22,15 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             val result = repository.postSuperAdminDetails()
             if (result.data?.isSuccessful == true) {
-                val data = result.data!!.body()?.data
+                val data = result.data?.body()?.data
                 val decryptedData =
                     EDModel(data.toString()).getResponseModel(SuperAdminResponse::class.java)
-                PreferencesManager(context).saveData(
-                    Constants.UserName,
+                SecureSharedPrefs(context).saveData(
+                    Constants.USER_NAME,
                     decryptedData.ResponsePacket.UserName
                 )
-                PreferencesManager(context).saveData(
-                    Constants.Password,
+                SecureSharedPrefs(context).saveData(
+                    Constants.PASSWORD,
                     decryptedData.ResponsePacket.Password
                 )
             }

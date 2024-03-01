@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.conflate
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-
 class DaoRepository @Inject constructor(private val deviceInfoDao: DeviceInfoDao) {
     suspend fun addDeviceInfo(deviceInformation: DeviceInformation) =
         deviceInfoDao.insert(deviceInformation)

@@ -1,6 +1,7 @@
 package com.allocate.ontime.presentation_logic.screens.super_admin
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -49,6 +50,7 @@ import com.allocate.ontime.presentation_logic.model.DeviceInfo
 import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.widgets.InputField
+import dagger.hilt.android.qualifiers.ApplicationContext
 
 
 @SuppressLint("SuspiciousIndentation")
@@ -56,6 +58,7 @@ import com.allocate.ontime.presentation_logic.widgets.InputField
 fun SuperAdminSettingScreen(
     backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit,
     superAdminViewModel: SuperAdminSettingViewModel = hiltViewModel(),
+    context: Context
 ) {
     val checkBoxState = remember {
         mutableStateOf(false)
@@ -92,7 +95,7 @@ fun SuperAdminSettingScreen(
     val deviceData = produceState<DataOrException<DeviceInfo, Exception>>(
         initialValue = DataOrException()
     ) {
-        value = superAdminViewModel.getDeviceData()
+        value = superAdminViewModel.getDeviceData(context)
     }.value
 
     Log.d("deviceData", "SuperAdminSettingScreen: $deviceData")

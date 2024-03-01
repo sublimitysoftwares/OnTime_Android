@@ -36,7 +36,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.allocate.ontime.R
-import com.allocate.ontime.business_logic.data.shared_preferences.PreferencesManager
+import com.allocate.ontime.business_logic.data.shared_preferences.SecureSharedPrefs
 import com.allocate.ontime.business_logic.utils.Constants
 import com.allocate.ontime.business_logic.viewmodel.MainViewModel
 import com.allocate.ontime.presentation_logic.navigation.HomeScreenRoot
@@ -60,8 +60,8 @@ fun HomeScreen(
         })
     }
 
-    val userName = PreferencesManager(context).getData(Constants.UserName,"")
-    val password = PreferencesManager(context).getData(Constants.Password,"")
+    val userName = SecureSharedPrefs(context).getData(Constants.USER_NAME, "")
+    val password = SecureSharedPrefs(context).getData(Constants.PASSWORD, "")
 
 
     Surface(

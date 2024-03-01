@@ -1,26 +1,22 @@
 package com.allocate.ontime.business_logic.utils
 
-
 object Constants {
-//      const val BASE_URL = "http://api.cpair.uk/"
-        const val BASE_URL = "http://cpaapi.sublimitysoft.com/"
-      const val databaseName = "OnTime_DB"
-      const val getCISuperAdminDetails = "EmployeeAPI/GetAppManageUser"
-      const val editDeviceInfoUrlEndPoint = "editDeviceAppData"
-
-
+      var asApiURL: String = "http://airstack.sublimitysoft.com/AirstackAPI/API/"
+      const val DATABASE_NAME = "OnTime_DB"
+      const val GET_CI_SUPER_ADMIN_DETAILS = "EmployeeAPI/GetAppManageUser"
+      const val EDIT_DEVICE_INFO_URL_ENDPOINT = "editDeviceAppData"
 
       // Screens route
-      const val SplashScreen = "SplashScreen"
-      const val HomeScreen = "HomeScreen"
-      const val AdminScreen = "AdminScreen"
-      const val SuperAdminScreen = "SuperAdminScreen"
-      const val AdminRegistrationScreen = "AdminRegistrationScreen"
-      const val FobRegisterScreen = "FobRegisterScreen"
-      const val SuperAdminSettingScreen = "SuperAdminSettingScreen"
+      const val SPLASH_SCREEN = "SplashScreen"
+      const val HOME_SCREEN = "HomeScreen"
+      const val ADMIN_SCREEN = "AdminScreen"
+      const val SUPER_ADMIN_SCREEN = "SuperAdminScreen"
+      const val ADMIN_REGISTRATION_SCREEN = "AdminRegistrationScreen"
+      const val FOB_REGISTER_SCREEN = "FobRegisterScreen"
+      const val SUPER_ADMIN_SETTING_SCREEN = "SuperAdminSettingScreen"
 
-      const val UserName = "UserName"
-      const val Password = "Password"
+      const val USER_NAME = "UserName"
+      const val PASSWORD = "Password"
 }
 
 

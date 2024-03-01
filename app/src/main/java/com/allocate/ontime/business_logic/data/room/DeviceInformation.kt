@@ -5,7 +5,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.allocate.ontime.business_logic.annotations.DeviceInfoRetrofit
 
-
 @Entity(tableName = "device_info")
 data class DeviceInformation(
     @PrimaryKey
@@ -46,6 +45,5 @@ data class DeviceInformation(
     val siteName: String?,
     @ColumnInfo(name = "IsRLD")
     val isRLD: Boolean?,
-
 )
 

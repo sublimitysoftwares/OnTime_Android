@@ -365,6 +365,9 @@ val ExpandedDimens1 = Dimens(
     superAdminSettingScreenRegisterButtonWidth = 400.dp,
     superAdminSettingScreenSurfaceTopPadding = 10.dp,
     superAdminSettingScreenColumnStartPadding = 10.dp,
+    pinEntryDialogRoundedCornerShapeSize = 3.dp,
+    pinEntryDialogTextSurfaceHeight = 50.dp,
+    pinEntryDialogTextSurfaceBorderWidth = 1.dp,
 )
 
 val ExpandedDimens2 = Dimens(
@@ -473,6 +476,9 @@ val ExpandedDimens2 = Dimens(
     superAdminSettingScreenRegisterButtonWidth = 400.dp,
     superAdminSettingScreenSurfaceTopPadding = 10.dp,
     superAdminSettingScreenColumnStartPadding = 10.dp,
+    pinEntryDialogRoundedCornerShapeSize = 3.dp,
+    pinEntryDialogTextSurfaceHeight = 50.dp,
+    pinEntryDialogTextSurfaceBorderWidth = 1.dp,
 )
 
 val ExpandedDimens3 = Dimens(
@@ -581,6 +587,9 @@ val ExpandedDimens3 = Dimens(
     superAdminSettingScreenRegisterButtonWidth = 400.dp,
     superAdminSettingScreenSurfaceTopPadding = 10.dp,
     superAdminSettingScreenColumnStartPadding = 10.dp,
+    pinEntryDialogRoundedCornerShapeSize = 3.dp,
+    pinEntryDialogTextSurfaceHeight = 50.dp,
+    pinEntryDialogTextSurfaceBorderWidth = 1.dp,
 )
 
 val ExpandedDimens = Dimens(
@@ -689,4 +698,7 @@ val ExpandedDimens = Dimens(
     superAdminSettingScreenRegisterButtonWidth = 400.dp,
     superAdminSettingScreenSurfaceTopPadding = 10.dp,
     superAdminSettingScreenColumnStartPadding = 10.dp,
+    pinEntryDialogRoundedCornerShapeSize = 3.dp,
+    pinEntryDialogTextSurfaceHeight = 50.dp,
+    pinEntryDialogTextSurfaceBorderWidth = 1.dp,
 )

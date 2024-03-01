@@ -2,6 +2,7 @@ package com.allocate.ontime.business_logic.di
 
 import android.content.Context
 import androidx.room.Room
+import com.allocate.ontime.BuildConfig
 import com.allocate.ontime.business_logic.annotations.DeviceInfoRetrofit
 import com.allocate.ontime.business_logic.annotations.SuperAdminRetrofit
 import com.allocate.ontime.business_logic.data.room.DeviceInfoDao
@@ -11,7 +12,7 @@ import com.allocate.ontime.business_logic.network.SuperAdminApi
 import com.allocate.ontime.business_logic.repository.DaoRepository
 import com.allocate.ontime.business_logic.repository.DeviceInfoRepository
 import com.allocate.ontime.business_logic.utils.Constants
-import com.allocate.ontime.business_logic.utils.Utils
+import com.allocate.ontime.business_logic.utils.DeviceUtils
 import com.allocate.ontime.business_logic.viewmodel.MainViewModel
 import com.allocate.ontime.business_logic.viewmodel.splash.SplashViewModel
 import dagger.Module
@@ -23,7 +24,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
@@ -31,24 +31,33 @@ object AppModule {
     @Provides
     fun provideDeviceInfoRepository(
         deviceInfoApi: DeviceInfoApi,
-        superAdminApi: SuperAdminApi
+        superAdminApi: SuperAdminApi,
+        deviceUtils: DeviceUtils,
     ): DeviceInfoRepository =
-        DeviceInfoRepository(deviceInfoApi, superAdminApi)
+        DeviceInfoRepository(deviceInfoApi, superAdminApi, deviceUtils)
 
     @Provides
     fun provideSlashViewModelContext(
         deviceInfoRepository: DeviceInfoRepository,
         daoRepository: DaoRepository,
+        deviceUtils: DeviceUtils,
         @ApplicationContext context: Context,
     ) =
-        SplashViewModel(deviceInfoRepository, daoRepository, context)
+        SplashViewModel(deviceInfoRepository, daoRepository, deviceUtils, context)
 
     @Provides
     fun provideMainViewModelContext(
         deviceInfoRepository: DeviceInfoRepository,
         @ApplicationContext context: Context,
     ) =
-        MainViewModel(deviceInfoRepository,context)
+        MainViewModel(deviceInfoRepository, context)
+
+    @Singleton
+    @Provides
+    fun provideDeviceUtils(
+        @ApplicationContext context: Context,
+    ) =
+        DeviceUtils(context)
 
     // It provides the dependency of DaoRepository Class.
     @Provides
@@ -60,7 +69,7 @@ object AppModule {
     @Singleton
     @Provides
     fun provideAppDatabase(@ApplicationContext context: Context): OnTimeDatabase =
-        Room.databaseBuilder(context, OnTimeDatabase::class.java, name = Constants.databaseName)
+        Room.databaseBuilder(context, OnTimeDatabase::class.java, name = Constants.DATABASE_NAME)
             .fallbackToDestructiveMigration()
             .build()
 
@@ -80,7 +89,7 @@ object AppModule {
     @DeviceInfoRetrofit
     fun provideRetrofitClient1(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
@@ -88,7 +97,7 @@ object AppModule {
     @Provides
     @SuperAdminRetrofit
     fun provideRetrofitClient2(): Retrofit {
-        return Utils.asApiURL.let {
+        return Constants.asApiURL.let {
             Retrofit.Builder()
                 .baseUrl(it)
                 .addConverterFactory(GsonConverterFactory.create())

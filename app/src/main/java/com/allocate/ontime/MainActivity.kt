@@ -1,21 +1,15 @@
 package com.allocate.ontime
 
-
-
-import android.annotation.SuppressLint
 import android.app.admin.DevicePolicyManager
 import android.app.admin.SystemUpdatePolicy
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.content.pm.PackageManager
 import android.os.BatteryManager
-import android.os.Build
 import android.os.Bundle
 import android.os.UserManager
 import android.provider.Settings
-import android.telephony.TelephonyManager
 import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -28,11 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.core.app.ActivityCompat
-import androidx.hilt.navigation.compose.hiltViewModel
-import com.allocate.ontime.business_logic.utils.Utils
 import com.allocate.ontime.presentation_logic.navigation.OnTimeNavigation
-import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminSettingViewModel
 import com.allocate.ontime.presentation_logic.theme.CI_OnTimeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -43,37 +33,15 @@ class MainActivity : ComponentActivity() {
     private lateinit var mAdminComponentName: ComponentName
     private lateinit var mDevicePolicyManager: DevicePolicyManager
 
-
-    lateinit var imei: String
-    private val REQUEST_CODE = 101
-
     companion object {
         const val LOCK_ACTIVITY_KEY = "com.allocate.ontime.MainActivity"
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            OnTimeApp()
+            OnTimeApp(applicationContext)
         }
-
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                android.Manifest.permission.READ_PHONE_STATE
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(android.Manifest.permission.READ_PHONE_STATE),
-                REQUEST_CODE
-            )
-        } else {
-            // Permission already granted
-            getImei()
-        }
-
-
 
         mAdminComponentName = MyDeviceAdminReceiver.getComponentName(this)
         mDevicePolicyManager =
@@ -93,21 +61,6 @@ class MainActivity : ComponentActivity() {
 //            intent.putExtra(LOCK_ACTIVITY_KEY, false)
 //            startActivity(intent)
         }
-    }
-
-    @SuppressLint("HardwareIds")
-    private fun getImei() {
-        val telephonyManager = getSystemService(TELEPHONY_SERVICE) as TelephonyManager
-
-        // Check if the device is running Android 10 or higher
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            // Use getImei() for Android 10 and higher
-            imei = telephonyManager.imei
-        } else {
-            // Use getDeviceId() for Android 9 and below
-            imei = telephonyManager.deviceId
-        }
-        Utils.imei = imei
     }
 
     private fun isAdmin() = mDevicePolicyManager.isDeviceOwnerApp(packageName)
@@ -222,10 +175,9 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun OnTimeApp(viewModel: SuperAdminSettingViewModel = hiltViewModel()) {
+fun OnTimeApp(context: Context) {
     CI_OnTimeTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
@@ -235,7 +187,7 @@ fun OnTimeApp(viewModel: SuperAdminSettingViewModel = hiltViewModel()) {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                OnTimeNavigation(viewModel = viewModel)
+                OnTimeNavigation(context)
             }
         }
     }

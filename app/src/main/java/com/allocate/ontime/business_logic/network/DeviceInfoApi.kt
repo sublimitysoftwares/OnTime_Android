@@ -9,14 +9,13 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
 
-
 interface DeviceInfoApi {
 
     @GET(value = "GetDevice")
     suspend fun getDeviceInfo(@Query("IMEI") imei: String?): DeviceInfo
 
     // POST api to edit the app related fields in the GET api.
-    @POST(Constants.editDeviceInfoUrlEndPoint)
+    @POST(Constants.EDIT_DEVICE_INFO_URL_ENDPOINT)
     suspend fun postEditDeviceInfo(
         @Body appInfo: AppInfo
     ): EditDeviceInfo
