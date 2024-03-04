@@ -2,6 +2,7 @@ package com.allocate.ontime.presentation_logic.screens.home
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,6 +20,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
+import androidx.compose.material3.RadioButtonColors
+import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,12 +33,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import com.allocate.ontime.R
+import com.allocate.ontime.business_logic.utils.OnTimeColors
 import com.allocate.ontime.presentation_logic.navigation.HomeScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.screens.login.PinEntryDialog
@@ -94,12 +99,16 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Start
                 ) {
-                    RadioButton(selected = true, onClick = { /*TODO*/ })
-
+                    RadioButton(
+                        selected = true,
+                        onClick = { /*TODO*/ },
+                        colors = RadioButtonDefaults.colors(selectedColor = OnTimeColors.PORT_GORE)
+                    )
                     Text(
                         text = currentTime,
                         style = MaterialTheme.typography.headlineMedium,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        color = OnTimeColors.PORT_GORE
                     )
                 }
                 Image(
@@ -119,13 +128,14 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                         painter = painterResource(id = R.drawable.fingerprint_rld),
                         contentDescription =
                         stringResource(id = R.string.place_finger_logo),
+                        colorFilter = ColorFilter.tint(color = OnTimeColors.PORT_GORE),
                         modifier = Modifier.size(MaterialTheme.dimens.medium3)
                     )
                     Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
                     Text(
                         text = stringResource(id = R.string.Place_Finger),
                         style = MaterialTheme.typography.headlineSmall,
-                        color = Color.Red
+                        color = OnTimeColors.PORT_GORE
                     )
                 }
             }
@@ -163,7 +173,7 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                             isDialogVisible = true
                         },
                         shape = RoundedCornerShape(MaterialTheme.dimens.homeScreenButtonsCornerShapeSize),
-                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5F3341)),
+                        colors = ButtonDefaults.buttonColors(containerColor = OnTimeColors.GREEN_HAZE),
                     ) {
                         Text(
                             text = stringResource(id = R.string.ENTER_PIN),
@@ -182,9 +192,7 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                             },
                             shape = RoundedCornerShape(MaterialTheme.dimens.homeScreenButtonsCornerShapeSize),
                             colors = ButtonDefaults.buttonColors(
-                                containerColor = Color(
-                                    0xFF202424
-                                )
+                                containerColor = OnTimeColors.PORT_GORE
                             )
                         ) {
                             Text(
@@ -199,9 +207,7 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                             },
                             shape = RoundedCornerShape(MaterialTheme.dimens.homeScreenButtonsCornerShapeSize),
                             colors = ButtonDefaults.buttonColors(
-                                containerColor = Color(
-                                    0xFF202424
-                                )
+                                containerColor = OnTimeColors.PORT_GORE
                             )
                         ) {
                             Text(
@@ -224,13 +230,14 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                             painter = painterResource(id = R.drawable.ic_nfc),
                             contentDescription = stringResource(id = R.string.fob_icon),
                             contentScale = ContentScale.Fit,
+                            colorFilter = ColorFilter.tint(color = OnTimeColors.PORT_GORE),
                             modifier = Modifier.size(MaterialTheme.dimens.medium3)
                         )
                         Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
                         Text(
                             text = stringResource(id = R.string.FOB),
                             style = MaterialTheme.typography.headlineSmall,
-                            color = Color.Red,
+                            color = OnTimeColors.PORT_GORE,
                         )
                     }
                     Spacer(modifier = Modifier.weight(1f))
