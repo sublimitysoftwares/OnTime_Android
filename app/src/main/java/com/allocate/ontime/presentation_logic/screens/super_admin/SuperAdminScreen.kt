@@ -26,28 +26,29 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.allocate.ontime.R
-import com.allocate.ontime.presentation_logic.navigation.OnTimeScreens
 import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 
 @Composable
-fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot)-> Unit) {
+fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot) -> Unit) {
+
     Surface(
-        modifier = Modifier.fillMaxSize(), color = Color.DarkGray.copy(alpha = 0.8f)
+        modifier = Modifier.fillMaxSize(),
+        color = Color.DarkGray.copy(alpha = MaterialTheme.dimens.surfaceColorAlphaValue)
     ) {
         Column(
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
-                .padding(top = 10.dp)
+                .padding(top = MaterialTheme.dimens.superAdminScreenColumnTopPadding)
                 .fillMaxSize()
         ) {
             Text(
-                text = "SUPER ADMIN PAGE",
+                text = stringResource(id = R.string.SUPER_ADMIN_PAGE),
                 style = MaterialTheme.typography.headlineMedium,
                 color = Color(0xFF85D32C),
                 fontWeight = FontWeight.Bold
@@ -61,17 +62,19 @@ fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot)-> Unit) {
                         width = MaterialTheme.dimens.switchToMobileModeBtnWidth,
                         height = MaterialTheme.dimens.switchToMobileModeBtnHeight
                     )
-                    .padding(end = 10.dp),
-                shape = RoundedCornerShape(3.dp)
+                    .padding(end = MaterialTheme.dimens.switchToMobileModeBtnEndPadding),
+                shape = RoundedCornerShape(MaterialTheme.dimens.superAdminScreenButtonsCornerShapeSize)
             ) {
-                Text(text = "    switch to \nmobile mode")
+                Text(text = stringResource(id = R.string.switch_to_mobile_mode))
             }
-            Spacer(modifier = Modifier.weight(3f))
-
+            Spacer(modifier = Modifier.weight(MaterialTheme.dimens.superAdminScreenSpacerWeightFraction))
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 10.dp, end = 10.dp),
+                    .padding(
+                        start = MaterialTheme.dimens.superAdminScreenRowStartPadding,
+                        end = MaterialTheme.dimens.superAdminScreenRowEndPadding
+                    ),
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 Column(
@@ -83,13 +86,15 @@ fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot)-> Unit) {
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.new_user_registration),
-                        contentDescription = "new_user_registration_img"
+                        contentDescription = stringResource(id = R.string.new_user_registration_img)
                     )
-                    Spacer(modifier = Modifier.height(2.dp))
-                    Text(text = "New/Edit Admin", color = Color.White)
-                    Text(text = "Registration", color = Color.White)
+                    Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
+                    Text(
+                        text = stringResource(id = R.string.New_or_Edit_User_Registration),
+                        color = Color.White
+                    )
+                    Text(text = stringResource(id = R.string.Registration), color = Color.White)
                 }
-
                 Column(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -99,12 +104,11 @@ fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot)-> Unit) {
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.nfc_register),
-                        contentDescription = "fob_register_img"
+                        contentDescription = stringResource(id = R.string.fob_register_img)
                     )
-                    Spacer(modifier = Modifier.height(2.dp))
-                    Text(text = "FOB Register", color = Color.White)
+                    Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
+                    Text(text = stringResource(id = R.string.FOB_Register), color = Color.White)
                 }
-
                 Column(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -114,10 +118,10 @@ fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot)-> Unit) {
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.device_setting),
-                        contentDescription = "device_setting_img"
+                        contentDescription = stringResource(id = R.string.device_setting_img)
                     )
-                    Spacer(modifier = Modifier.height(2.dp))
-                    Text(text = "Device Setting", color = Color.White)
+                    Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
+                    Text(text = stringResource(id = R.string.Device_Setting), color = Color.White)
 
                 }
                 Column(
@@ -126,9 +130,9 @@ fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot)-> Unit) {
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.deregister_admin),
-                        contentDescription = "deregister_admin_img"
+                        contentDescription = stringResource(id = R.string.deregister_admin_img)
                     )
-                    Spacer(modifier = Modifier.height(2.dp))
+                    Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
                     Text(text = "Deregister Admins", color = Color.White)
                 }
                 Column(
@@ -137,10 +141,10 @@ fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot)-> Unit) {
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.choose_logo),
-                        contentDescription = "choose_logo_img"
+                        contentDescription = stringResource(id = R.string.choose_logo_img)
                     )
-                    Spacer(modifier = Modifier.height(2.dp))
-                    Text(text = "Choose Logo", color = Color.White)
+                    Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
+                    Text(text = stringResource(id = R.string.Choose_Logo), color = Color.White)
                 }
                 Column(
                     verticalArrangement = Arrangement.Center,
@@ -148,59 +152,74 @@ fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot)-> Unit) {
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.export_db),
-                        contentDescription = "export_db_img"
+                        contentDescription = stringResource(id = R.string.export_db_img)
                     )
-                    Spacer(modifier = Modifier.height(2.dp))
-                    Text(text = "Export DB", color = Color.White)
+                    Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
+                    Text(text = stringResource(id = R.string.Export_DB), color = Color.White)
                 }
             }
             Spacer(modifier = Modifier.weight(1f))
-
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
-                Text(text = "Fingerprint Match Rate", color = Color.White)
-                Spacer(modifier = Modifier.width(20.dp))
+                Text(
+                    text = stringResource(id = R.string.Fingerprint_Match_Rate),
+                    color = Color.White
+                )
+                Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth20))
                 Button(
                     onClick = { /*TODO*/ },
-                    shape = RoundedCornerShape(3.dp),
-                    modifier = Modifier.size(width = 220.dp, height = 40.dp),
+                    shape = RoundedCornerShape(MaterialTheme.dimens.superAdminScreenButtonsCornerShapeSize),
+                    modifier = Modifier.size(
+                        width = MaterialTheme.dimens.fingerprintMatchRateButtonWidth,
+                        height = MaterialTheme.dimens.fingerprintMatchRateButtonHeight
+                    ),
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD6B6C1)),
-                    border = BorderStroke(width = 1.dp, color = Color.White)
+                    border = BorderStroke(
+                        width = MaterialTheme.dimens.superAdminScreenButtonsBorderWidth,
+                        color = Color.White
+                    )
                 ) {
-                    Text(text = "Fingerprint Match Rate", color = Color.DarkGray)
-
+                    Text(
+                        text = stringResource(id = R.string.Fingerprint_Match_Rate),
+                        color = Color.DarkGray
+                    )
                 }
-                Spacer(modifier = Modifier.width(20.dp))
+                Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth20))
                 Button(
                     onClick = { /*TODO*/ },
-                    shape = RoundedCornerShape(3.dp),
+                    shape = RoundedCornerShape(MaterialTheme.dimens.superAdminScreenButtonsCornerShapeSize),
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF85D32C)),
-                    modifier = Modifier.size(width = 200.dp, height = 40.dp)
+                    modifier = Modifier.size(
+                        width = MaterialTheme.dimens.superAdminScreenSubmitButtonWidth,
+                        height = MaterialTheme.dimens.superAdminScreenSubmitButtonHeight
+                    )
                 ) {
-                    Text(text = "SUBMIT")
-
+                    Text(text = stringResource(id = R.string.SUBMIT))
                 }
             }
             Spacer(modifier = Modifier.weight(4f))
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 10.dp),
+                    .padding(bottom = MaterialTheme.dimens.superAdminScreenBottomRowBottomPadding),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Button(
                     onClick = {
-//                        superAdminScreenRoot(SuperAdminScreenRoot.SuperAdminSettingScreen)
+                        superAdminScreenRoot(SuperAdminScreenRoot.HomeScreen)
                     },
-                    shape = RoundedCornerShape(3.dp),
+                    shape = RoundedCornerShape(MaterialTheme.dimens.superAdminScreenButtonsCornerShapeSize),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.LightGray, contentColor = Color.Black
                     ),
-                    border = BorderStroke(width = 1.dp, color = Color.White)
+                    border = BorderStroke(
+                        width = MaterialTheme.dimens.superAdminScreenButtonsBorderWidth,
+                        color = Color.White
+                    )
                 ) {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(5.dp),
@@ -208,25 +227,24 @@ fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot)-> Unit) {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.circle_black),
-                            contentDescription = "circle_black_img",
+                            contentDescription = stringResource(id = R.string.circle_black_img),
                             contentScale = ContentScale.Fit,
-                            modifier = Modifier.size(15.dp)
+                            modifier = Modifier.size(MaterialTheme.dimens.circleBlackImgSize)
                         )
-
-                        Text(text = "Log out and return to home page")
+                        Text(text = stringResource(id = R.string.Log_out_and_return_to_home_page))
                     }
-
                 }
-                Spacer(modifier = Modifier.width(20.dp))
+                Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth20))
                 Button(
-                    onClick = {
-
-                    },
-                    shape = RoundedCornerShape(3.dp),
+                    onClick = {},
+                    shape = RoundedCornerShape(MaterialTheme.dimens.superAdminScreenButtonsCornerShapeSize),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.LightGray, contentColor = Color(0xFF5B6F46)
                     ),
-                    border = BorderStroke(width = 1.dp, color = Color.White)
+                    border = BorderStroke(
+                        width = MaterialTheme.dimens.superAdminScreenButtonsBorderWidth,
+                        color = Color.White
+                    )
                 ) {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(5.dp),
@@ -234,17 +252,14 @@ fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot)-> Unit) {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.circle_green),
-                            contentDescription = "circle_green_img",
+                            contentDescription = stringResource(id = R.string.circle_green_img),
                             contentScale = ContentScale.Fit,
-                            modifier = Modifier.size(15.dp)
+                            modifier = Modifier.size(MaterialTheme.dimens.circleGreenImgSize)
                         )
-                        Text(text = "View Employee Online")
+                        Text(text = stringResource(id = R.string.View_Employee_Online))
                     }
-
                 }
             }
-
         }
-
     }
 }

@@ -46,7 +46,7 @@ private val LightColorScheme = lightColorScheme(
 
 @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
 @Composable
-fun OnTime_JitendraTheme(
+fun OnTimeTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
@@ -119,8 +119,6 @@ fun OnTime_JitendraTheme(
         )
 
     }
-
-
 }
 
 val MaterialTheme.dimens

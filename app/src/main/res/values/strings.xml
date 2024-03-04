@@ -1,5 +1,90 @@
 <resources>
-    <string name="app_name">OnTime_Jitendra</string>
-    <string name="enter_pin">Please enter your PIN number to log in</string>
-    <string name="confirm">Confirm</string>
+    <string name="app_name">CI_OnTime</string>
+
+    // Admin Screen
+    <string name="WELCOME_TO_ADMIN_PAGE">WELCOME TO ADMIN PAGE</string>
+    <string name="Administrator_to_Log_In">Administrator to Log In</string>
+    <string name="via_the_Fingerprint_Reader">via the Fingerprint Reader</string>
+    <string name="place_finger_logo">place_finger_logo</string>
+    <string name="rld_img_logo">rld_img_logo</string>
+    <string name="ENTER_PIN">ENTER PIN</string>
+    <string name="Click_here_to_home_page">Click here to home page</string>
+    <string name="Place_Finger">Place Finger</string>
+    <string name="View_Employee_Online">View Employee Online</string>
+    <string name="fob_icon">fob_icon</string>
+    <string name="FOB">FOB</string>
+    <string name="app_info">6.5d : 6.5</string>
+    <string name="Unique_Identifier">Unique Identifier : ci delhi</string>
+
+    // Home Screen
+    <string name="Administrator_Access">Administrator Access</string>
+    <string name="onTime_logo">onTime_logo</string>
+    <string name="rld_logo">rld_logo</string>
+
+    // Pin Entry Dialog
+    <string name="Please_enter_your_PIN_number_to_log_in">Please enter your PIN number to log in</string>
+    <string name="Administration_Log_In">Administration Log In</string>
+    <string name="Login">Login</string>
+
+    // Admin Registration Screen
+    <string name="ADMIN_PAGE">ADMIN PAGE</string>
+    <string name="Search_Employee">Search Employee</string>
+    <string name="New_or_Edit_User_Registration">New/Edit User Registration</string>
+    <string name="First_Name">First Name</string>
+    <string name="Last_Name">Last Name</string>
+    <string name="Employee_Number">Employee Number</string>
+    <string name="Fingerprint_Registration">Fingerprint Registration</string>
+    <string name="Fingerprint_One">Fingerprint One(Not Registered)</string>
+    <string name="Fingerprint_Two">Fingerprint Two(Not Registered)</string>
+    <string name="fingerprint_img">fingerprint_img</string>
+    <string name="Skip_Fingerprint">Skip Fingerprint</string>
+    <string name="qr_code_img">qr_code_img</string>
+    <string name="NEXT">NEXT</string>
+    <string name="Please_scan_QR_Code_for_instructional_video_on_Finger_Scan_registrations">Please
+                 scan QR Code for instructional video on Finger Scan \nregistrations</string>
+    <string name="Click_here_to_go_back">Click here to go back</string>
+    <string name="circle_black_img">circle_black_img</string>
+    <string name="circle_green_img">circle_green_img</string>
+
+    // Fob Register Screen
+    <string name="FOB_REGISTER">FOB REGISTER</string>
+    <string name="Set_location_Radius">Set location Radius</string>
+    <string name="Miles">Miles</string>
+    <string name="All_Locations">All Locations</string>
+
+    // SuperAdmin Screen
+    <string name="SUPER_ADMIN_PAGE">SUPER ADMIN PAGE</string>
+    <string name="switch_to_mobile_mode">    switch to \nmobile mode</string>
+    <string name="new_user_registration_img">new_user_registration_img</string>
+    <string name="New_or_Edit_Admin">New/Edit Admin</string>
+    <string name="Registration">Registration</string>
+    <string name="fob_register_img">fob_register_img</string>
+    <string name="FOB_Register">FOB Register</string>
+    <string name="device_setting_img">device_setting_img</string>
+    <string name="Device_Setting">Device Setting</string>
+    <string name="deregister_admin_img">deregister_admin_img</string>
+    <string name="Deregister_Admins">Deregister Admins</string>
+    <string name="choose_logo_img">choose_logo_img</string>
+    <string name="Choose_Logo">Choose Logo</string>
+    <string name="export_db_img">export_db_img</string>
+    <string name="Export_DB">Export DB</string>
+    <string name="Log_out_and_return_to_home_page">Log out and return to home page</string>
+    <string name="Fingerprint_Match_Rate">Fingerprint Match Rate</string>
+    <string name="SUBMIT">SUBMIT</string>
+
+    // SuperAdmin Setting Screen
+    <string name="Super_Admin_Setting">Super Admin Setting</string>
+    <string name="Clock_In_or_Out">Clock In/Out</string>
+    <string name="Swipe_And_Go">Swipe And Go</string>
+    <string name="Enable_two_way_Authentication">Enable two way Authentication</string>
+    <string name="Enable_Pin">Enable Pin</string>
+    <string name="Disable_Pin">Disable Pin</string>
+    <string name="CHECK_FOR_UPDATE">CHECK FOR UPDATE</string>
+    <string name="SET_TEST_EMPLOYEE">SET TEST EMPLOYEE</string>
+    <string name="Trust_or_Organization">Trust/Organization</string>
+    <string name="Location_Do_not_add_semi_colon">Location(Do not add semi colon)</string>
+    <string name="Postcode">Postcode</string>
+    <string name="LatLng">LatLng</string>
+    <string name="REGISTER">REGISTER</string>
+    <string name="Unique_Identifier_only">Unique Identifier</string>
 </resources>

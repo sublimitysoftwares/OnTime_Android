@@ -31,19 +31,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.allocate.ontime.R
+import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.widgets.InputField
-import kotlinx.coroutines.DelicateCoroutinesApi
 
-@OptIn(DelicateCoroutinesApi::class)
+
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
-fun AdminRegistrationScreen(navController: NavController) {
+fun AdminRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
 
     val searchState = remember {
         mutableStateOf("")
@@ -53,73 +53,65 @@ fun AdminRegistrationScreen(navController: NavController) {
         mutableStateOf(false)
     }
 
-//    var response by remember { mutableStateOf<DeviceInfo?>(null) }
-//    val api = Retrofit.Builder()
-//        .baseUrl(Constants.BASE_URL)
-//        .addConverterFactory(GsonConverterFactory.create())
-//        .build()
-//        .create(OnTimeApi::class.java)
-//    GlobalScope.launch(Dispatchers.IO) {
-//        val result = api.getDeviceInfo()
-//        response = result
-//
-//        Log.d("abc", "onCreate: ${response.toString()}")
-//    }
-
     Surface(
-        modifier = Modifier.fillMaxSize(), color = Color.DarkGray.copy(alpha = 0.8f)
+        modifier = Modifier.fillMaxSize(),
+        color = Color.DarkGray.copy(alpha = MaterialTheme.dimens.surfaceColorAlphaValue)
     ) {
         Column(
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
-                .padding(top = 10.dp)
+                .padding(top = MaterialTheme.dimens.adminRegistrationScreenColumnTopPadding)
                 .fillMaxSize()
         ) {
             Text(
-                text = "ADMIN PAGE",
+                text = stringResource(id = R.string.ADMIN_PAGE),
                 style = MaterialTheme.typography.headlineMedium,
                 color = Color(0xFF85D32C),
                 fontWeight = FontWeight.Bold
             )
             InputField(
                 valueState = searchState,
-                labelId = "Search Employee",
+                labelId = stringResource(id = R.string.Search_Employee),
                 enabled = true,
                 isSingleLine = true,
                 modifier = Modifier
-                    .size(width = 300.dp, height = 70.dp)
+                    .size(
+                        width = MaterialTheme.dimens.adminRegistrationScreenSearchTextFieldWidth,
+                        height = MaterialTheme.dimens.adminRegistrationScreenSearchTextFieldHeight
+                    )
                     .align(alignment = Alignment.End)
-                    .padding(end = 10.dp),
+                    .padding(end = MaterialTheme.dimens.adminRegistrationScreenSearchTextFieldEndPadding),
                 textStyle = MaterialTheme.typography.titleMedium
             )
-
             Spacer(
                 modifier = Modifier
-                    .height(10.dp)
+                    .height(MaterialTheme.dimens.spacerHeight10)
                     .weight(1f)
             )
-
-
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 20.dp, end = 20.dp),
+                    .padding(
+                        start = MaterialTheme.dimens.adminRegistrationScreenSurfaceRowStartPadding,
+                        end = MaterialTheme.dimens.adminRegistrationScreenSurfaceRowEndPadding
+                    ),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Column(
                     verticalArrangement = Arrangement.Top,
                 ) {
-                    Text(text = "New/Edit User Registration", color = Color.White)
+                    Text(
+                        text = stringResource(id = R.string.New_or_Edit_User_Registration),
+                        color = Color.White
+                    )
                     Surface(
                         modifier = Modifier
                             .size(
                                 width = MaterialTheme.dimens.surfaceWidth,
                                 height = MaterialTheme.dimens.surfaceHeight
                             )
-//                            .fillMaxWidth(0.4f)
-//                            .fillMaxHeight(0.5f)
-                            .padding(top = 5.dp),
+                            .padding(top = MaterialTheme.dimens.adminRegistrationScreenSurfaceTopPadding),
                         color = Color(0xFF5A5656)
                     ) {
                         Column(
@@ -128,7 +120,7 @@ fun AdminRegistrationScreen(navController: NavController) {
                         ) {
                             InputField(
                                 valueState = searchState,
-                                labelId = "First Name",
+                                labelId = stringResource(id = R.string.First_Name),
                                 enabled = true,
                                 isSingleLine = true,
                                 modifier = Modifier
@@ -140,7 +132,7 @@ fun AdminRegistrationScreen(navController: NavController) {
                             )
                             InputField(
                                 valueState = searchState,
-                                labelId = "Last Name",
+                                labelId = stringResource(id = R.string.Last_Name),
                                 enabled = true,
                                 isSingleLine = true,
                                 modifier = Modifier
@@ -152,7 +144,7 @@ fun AdminRegistrationScreen(navController: NavController) {
                             )
                             InputField(
                                 valueState = searchState,
-                                labelId = "Employee Number",
+                                labelId = stringResource(id = R.string.Employee_Number),
                                 enabled = true,
                                 isSingleLine = true,
                                 modifier = Modifier
@@ -162,38 +154,36 @@ fun AdminRegistrationScreen(navController: NavController) {
                                     ),
                                 textStyle = MaterialTheme.typography.titleMedium
                             )
-
                         }
                     }
-
                 }
                 Column(
                     verticalArrangement = Arrangement.Top,
-
-                    ) {
-                    Text(text = "Fingerprint Registration", color = Color.White)
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.Fingerprint_Registration),
+                        color = Color.White
+                    )
                     Surface(
                         modifier = Modifier
                             .size(
                                 width = MaterialTheme.dimens.surfaceWidth,
                                 height = MaterialTheme.dimens.surfaceHeight
                             )
-//                            .fillMaxWidth(0.6f)
-//                            .fillMaxHeight(0.4f)
-                            .padding(top = 5.dp),
+                            .padding(top = MaterialTheme.dimens.adminRegistrationScreenSurfaceTopPadding),
                         color = Color(0xFF5A5656)
                     ) {
                         Column(
                             verticalArrangement = Arrangement.Center,
                         ) {
                             Row(
-                                modifier = Modifier.padding(start = 15.dp),
+                                modifier = Modifier.padding(start = MaterialTheme.dimens.adminRegistrationScreenFingerPrintRowStartPadding),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
 
                                 InputField(
                                     valueState = searchState,
-                                    labelId = "Fingerprint One(Not Registered)",
+                                    labelId = stringResource(id = R.string.Fingerprint_One),
                                     enabled = true,
                                     isSingleLine = true,
                                     modifier = Modifier
@@ -206,18 +196,17 @@ fun AdminRegistrationScreen(navController: NavController) {
                                 )
                                 Image(
                                     painter = painterResource(id = R.drawable.fingerprint),
-                                    contentDescription = "fingerprint_img",
-                                    modifier = Modifier.aspectRatio(1.2f),
+                                    contentDescription = stringResource(id = R.string.fingerprint_img),
+                                    modifier = Modifier.aspectRatio(MaterialTheme.dimens.adminRegistrationScreenFingerprintImgAspectRatio),
                                 )
                             }
                             Row(
-                                modifier = Modifier.padding(start = 15.dp),
+                                modifier = Modifier.padding(start = MaterialTheme.dimens.adminRegistrationScreenFingerPrintRowStartPadding),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-
                                 InputField(
                                     valueState = searchState,
-                                    labelId = "Fingerprint Two(Not Registered)",
+                                    labelId = stringResource(id = R.string.Fingerprint_Two),
                                     enabled = true,
                                     isSingleLine = true,
                                     modifier = Modifier
@@ -230,28 +219,28 @@ fun AdminRegistrationScreen(navController: NavController) {
                                 )
                                 Image(
                                     painter = painterResource(id = R.drawable.fingerprint),
-                                    contentDescription = "fingerprint_img",
-                                    modifier = Modifier.aspectRatio(1.2f),
+                                    contentDescription = stringResource(id = R.string.fingerprint_img),
+                                    modifier = Modifier.aspectRatio(MaterialTheme.dimens.adminRegistrationScreenFingerprintImgAspectRatio),
                                 )
                             }
                             Row(
                                 horizontalArrangement = Arrangement.Start,
                                 verticalAlignment = Alignment.CenterVertically,
-                                modifier = Modifier.padding(start = 15.dp)
+                                modifier = Modifier.padding(start = MaterialTheme.dimens.adminRegistrationScreenFingerPrintRowStartPadding)
                             ) {
-
                                 Checkbox(
                                     checked = false,
                                     onCheckedChange = { checkBoxState.value },
                                     colors = CheckboxDefaults.colors(uncheckedColor = Color.White)
                                 )
-                                Spacer(modifier = Modifier.width(5.dp))
-                                Text(text = "Skip Fingerprint", color = Color.White)
+                                Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth5))
+                                Text(
+                                    text = stringResource(id = R.string.Skip_Fingerprint),
+                                    color = Color.White
+                                )
                             }
-
                         }
                     }
-
                 }
             }
             Spacer(
@@ -263,58 +252,58 @@ fun AdminRegistrationScreen(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
-
                 Image(
                     painter = painterResource(id = R.drawable.ontime_qr_code),
-                    contentDescription = "qr_code_img",
+                    contentDescription = stringResource(id = R.string.qr_code_img),
                     modifier = Modifier.size(MaterialTheme.dimens.qrCodeLogoSize)
                 )
-                Spacer(modifier = Modifier.width(20.dp))
+                Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth20))
                 Button(
                     onClick = { /*TODO*/ },
-                    shape = RoundedCornerShape(3.dp),
+                    shape = RoundedCornerShape(MaterialTheme.dimens.adminRegistrationScreenButtonsCornerShapeSize),
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF85D32C)),
                     modifier = Modifier.size(
                         width = MaterialTheme.dimens.nextBtnWidth,
                         height = MaterialTheme.dimens.nextBtnHeight
                     )
                 ) {
-                    Text(text = "NEXT")
-
+                    Text(text = stringResource(id = R.string.NEXT))
                 }
-
             }
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight10))
             Text(
-                text = "Please scan QR Code for instructional video on Finger Scan \nregistrations",
+                text = stringResource(id = R.string.Please_scan_QR_Code_for_instructional_video_on_Finger_Scan_registrations),
                 color = Color.White,
                 textAlign = TextAlign.Start,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 20.dp),
+                    .padding(start = MaterialTheme.dimens.adminRegistrationScreenTextStartPadding),
                 style = MaterialTheme.typography.labelSmall
             )
             Spacer(
                 modifier = Modifier
-                    .height(10.dp)
+                    .height(MaterialTheme.dimens.spacerHeight10)
                     .weight(1f)
             )
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 10.dp),
+                    .padding(bottom = MaterialTheme.dimens.adminScreenBottomRowBottomPadding),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Button(
                     onClick = {
-                        navController.popBackStack()
+                        backToSuperAdminScreen(SuperAdminScreenRoot.SuperAdminScreen)
                     },
-                    shape = RoundedCornerShape(3.dp),
+                    shape = RoundedCornerShape(MaterialTheme.dimens.adminRegistrationScreenButtonsCornerShapeSize),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.LightGray, contentColor = Color.Black
                     ),
-                    border = BorderStroke(width = 1.dp, color = Color.White)
+                    border = BorderStroke(
+                        width = MaterialTheme.dimens.adminRegistrationScreenButtonsBorderWidth,
+                        color = Color.White
+                    )
                 ) {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(5.dp),
@@ -322,23 +311,24 @@ fun AdminRegistrationScreen(navController: NavController) {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.circle_black),
-                            contentDescription = "circle_black_img",
+                            contentDescription = stringResource(id = R.string.circle_black_img),
                             contentScale = ContentScale.Fit,
-                            modifier = Modifier.size(15.dp)
+                            modifier = Modifier.size(MaterialTheme.dimens.circleBlackImgSize)
                         )
-
-                        Text(text = "Click here to go back")
+                        Text(text = stringResource(id = R.string.Click_here_to_go_back))
                     }
-
                 }
-                Spacer(modifier = Modifier.width(20.dp))
+                Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth20))
                 Button(
                     onClick = { /*TODO*/ },
-                    shape = RoundedCornerShape(3.dp),
+                    shape = RoundedCornerShape(MaterialTheme.dimens.adminRegistrationScreenButtonsCornerShapeSize),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.LightGray, contentColor = Color(0xFF5B6F46)
                     ),
-                    border = BorderStroke(width = 1.dp, color = Color.White)
+                    border = BorderStroke(
+                        width = MaterialTheme.dimens.adminRegistrationScreenButtonsBorderWidth,
+                        color = Color.White
+                    )
                 ) {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(5.dp),
@@ -346,18 +336,14 @@ fun AdminRegistrationScreen(navController: NavController) {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.circle_green),
-                            contentDescription = "circle_green_img",
+                            contentDescription = stringResource(id = R.string.circle_green_img),
                             contentScale = ContentScale.Fit,
-                            modifier = Modifier.size(15.dp)
+                            modifier = Modifier.size(MaterialTheme.dimens.circleGreenImgSize)
                         )
-                        Text(text = "View Employee Online")
+                        Text(text = stringResource(id = R.string.View_Employee_Online))
                     }
-
                 }
             }
-
         }
-
     }
-
 }

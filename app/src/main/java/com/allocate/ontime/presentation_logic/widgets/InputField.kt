@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -23,13 +22,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.allocate.ontime.R
 
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InputField(
     modifier: Modifier = Modifier,
@@ -56,7 +53,6 @@ fun InputField(
     },
     shape: Shape = RoundedCornerShape(5.dp),
     textStyle: TextStyle
-
 ) {
     OutlinedTextField(
         value = valueState.value,
@@ -83,7 +79,5 @@ fun InputField(
         keyboardActions = onAction,
         colors = colors,
         shape = shape,
-
-
     )
 }

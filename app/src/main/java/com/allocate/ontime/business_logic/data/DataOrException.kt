@@ -1,7 +1,6 @@
 package com.allocate.ontime.business_logic.data
 
-data class DataOrException<T,Boolean,E:Exception>(
+data class DataOrException<T,E:Exception>(
     var data:T? = null,
-    var loading:Boolean? = null,
     var e:E? = null
 )

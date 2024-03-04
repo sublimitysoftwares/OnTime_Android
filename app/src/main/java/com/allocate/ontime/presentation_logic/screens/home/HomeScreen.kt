@@ -22,6 +22,7 @@ import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -32,20 +33,29 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.allocate.ontime.R
 import com.allocate.ontime.presentation_logic.navigation.HomeScreenRoot
-import com.allocate.ontime.presentation_logic.navigation.OnTimeScreens
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.screens.login.PinEntryDialog
-
+import kotlinx.coroutines.delay
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 
 @Composable
-fun HomeScreen(homeScreenRoot: (HomeScreenRoot)-> Unit) {
+fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
+
+    fun getCurrentTime(): String {
+        val currentTime = Calendar.getInstance().time
+        val dateFormat = SimpleDateFormat("h:mm a", Locale.getDefault())
+        return dateFormat.format(currentTime)
+    }
+
     var isDialogVisible by remember { mutableStateOf(false) }
+    var currentTime by remember { mutableStateOf(getCurrentTime()) }
     val context = LocalContext.current
     if (isDialogVisible) {
         PinEntryDialog(onDismiss = {
@@ -54,11 +64,18 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot)-> Unit) {
             Toast.makeText(context, "Entered PIN: $pin", Toast.LENGTH_SHORT).show()
         })
     }
+
+    LaunchedEffect(true) {
+        while (true) {
+            delay(60000) // Update every minute
+            currentTime = getCurrentTime()
+        }
+    }
+
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
-
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -79,16 +96,20 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot)-> Unit) {
                 ) {
                     RadioButton(selected = true, onClick = { /*TODO*/ })
 
-                    Text(text = "2:23 PM", style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
+                    Text(
+                        text = currentTime,
+                        style = MaterialTheme.typography.headlineMedium,
+                        fontWeight = FontWeight.Bold
+                    )
                 }
                 Image(
                     painter = painterResource(id = R.drawable.rld_logo),
                     contentDescription =
-                    "rld_logo",
+                    stringResource(id = R.string.rld_logo),
                     contentScale = ContentScale.Fit,
                     modifier = Modifier
-                        .fillMaxWidth(0.4f)
-                        .fillMaxHeight(0.2f)
+                        .fillMaxWidth(MaterialTheme.dimens.homeScreenRldLogoMaxWidthFraction)
+                        .fillMaxHeight(MaterialTheme.dimens.homeScreenRldLogoMaxHeightFraction)
                 )
                 Column(
                     verticalArrangement = Arrangement.Center,
@@ -97,12 +118,12 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot)-> Unit) {
                     Image(
                         painter = painterResource(id = R.drawable.fingerprint_rld),
                         contentDescription =
-                        "place_finger_logo",
+                        stringResource(id = R.string.place_finger_logo),
                         modifier = Modifier.size(MaterialTheme.dimens.medium3)
                     )
-                    Spacer(modifier = Modifier.height(2.dp))
+                    Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
                     Text(
-                        text = "Place Finger",
+                        text = stringResource(id = R.string.Place_Finger),
                         style = MaterialTheme.typography.headlineSmall,
                         color = Color.Red
                     )
@@ -110,11 +131,11 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot)-> Unit) {
             }
             Image(
                 painter = painterResource(id = R.drawable.ontime_logo),
-                contentDescription = "onTime_logo",
+                contentDescription = stringResource(id = R.string.onTime_logo),
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
-                    .fillMaxWidth(0.35f)
-                    .fillMaxHeight(0.5f)
+                    .fillMaxWidth(MaterialTheme.dimens.homeScreenOnTimeLogoMaxWidthFraction)
+                    .fillMaxHeight(MaterialTheme.dimens.homeScreenOnTimeLogoMaxHeightFraction)
             )
             Row(
                 modifier = Modifier
@@ -124,12 +145,12 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot)-> Unit) {
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.rld_img_logo),
-                    contentDescription = "rld_img_logo",
+                    contentDescription = stringResource(id = R.string.rld_img_logo),
                     modifier = Modifier
                         .size(MaterialTheme.dimens.large3)
                         .aspectRatio(1f),
 
-                )
+                    )
                 Column(
                     verticalArrangement = Arrangement.Bottom,
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -137,16 +158,17 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot)-> Unit) {
                         .fillMaxHeight()
                         .padding(bottom = MaterialTheme.dimens.small3)
                 ) {
-
-
                     Button(
                         onClick = {
                             isDialogVisible = true
                         },
-                        shape = RoundedCornerShape(10.dp),
+                        shape = RoundedCornerShape(MaterialTheme.dimens.homeScreenButtonsCornerShapeSize),
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5F3341)),
                     ) {
-                        Text(text = "ENTER PIN", style = MaterialTheme.typography.titleLarge)
+                        Text(
+                            text = stringResource(id = R.string.ENTER_PIN),
+                            style = MaterialTheme.typography.titleLarge
+                        )
 
                     }
                     Spacer(modifier = Modifier.height(MaterialTheme.dimens.small3))
@@ -156,9 +178,9 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot)-> Unit) {
                     ) {
                         Button(
                             onClick = {
-                      homeScreenRoot(HomeScreenRoot.AdminScreen)
+                                homeScreenRoot(HomeScreenRoot.AdminScreen)
                             },
-                            shape = RoundedCornerShape(10.dp),
+                            shape = RoundedCornerShape(MaterialTheme.dimens.homeScreenButtonsCornerShapeSize),
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color(
                                     0xFF202424
@@ -166,15 +188,16 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot)-> Unit) {
                             )
                         ) {
                             Text(
-                                text = "Administrator Access",
+                                text = stringResource(id = R.string.Administrator_Access),
                                 style = MaterialTheme.typography.titleLarge
                             )
                         }
-                        Spacer(modifier = Modifier.width(15.dp))
+                        Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth15))
                         Button(
                             onClick = {
                                 homeScreenRoot(HomeScreenRoot.SuperAdminScreen)
-                            }, shape = RoundedCornerShape(10.dp),
+                            },
+                            shape = RoundedCornerShape(MaterialTheme.dimens.homeScreenButtonsCornerShapeSize),
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color(
                                     0xFF202424
@@ -182,7 +205,7 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot)-> Unit) {
                             )
                         ) {
                             Text(
-                                text = "View Employee Online",
+                                text = stringResource(id = R.string.View_Employee_Online),
                                 style = MaterialTheme.typography.titleLarge
                             )
                         }
@@ -192,41 +215,43 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot)-> Unit) {
                     verticalArrangement = Arrangement.SpaceBetween,
                     horizontalAlignment = Alignment.End,
 
-                ) {
+                    ) {
                     Column(
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.ic_nfc),
-                            contentDescription = "fob_icon",
+                            contentDescription = stringResource(id = R.string.fob_icon),
                             contentScale = ContentScale.Fit,
                             modifier = Modifier.size(MaterialTheme.dimens.medium3)
                         )
-                        Spacer(modifier = Modifier.height(2.dp))
+                        Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
                         Text(
-                            text = "FOB",
+                            text = stringResource(id = R.string.FOB),
                             style = MaterialTheme.typography.headlineSmall,
                             color = Color.Red,
                         )
                     }
-
                     Spacer(modifier = Modifier.weight(1f))
                     Column(
                         verticalArrangement = Arrangement.Bottom,
                         horizontalAlignment = Alignment.End,
-                        modifier = Modifier.padding(bottom = 20.dp)
+                        modifier = Modifier.padding(bottom = MaterialTheme.dimens.homeScreenBottomRowBottomPadding)
                     ) {
-                        Text(text = "6.5d : 6.5", style = MaterialTheme.typography.labelSmall)
-                        Text(text = "Unique Identifier : ci delhi", style = MaterialTheme.typography.labelSmall)
+                        Text(
+                            text = stringResource(id = R.string.app_info),
+                            style = MaterialTheme.typography.labelSmall
+                        )
+                        Text(
+                            text = stringResource(id = R.string.Unique_Identifier),
+                            style = MaterialTheme.typography.labelSmall
+                        )
                     }
                 }
             }
         }
-
-
-
-        }
     }
+}
 
 
