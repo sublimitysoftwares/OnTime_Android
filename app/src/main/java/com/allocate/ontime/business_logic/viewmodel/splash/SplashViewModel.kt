@@ -11,6 +11,7 @@ import androidx.lifecycle.viewModelScope
 import com.allocate.ontime.BuildConfig
 import com.allocate.ontime.business_logic.data.DataOrException
 import com.allocate.ontime.business_logic.data.room.DeviceInformation
+import com.allocate.ontime.business_logic.data.shared_preferences.SecureSharedPrefs
 import com.allocate.ontime.business_logic.repository.DaoRepository
 import com.allocate.ontime.business_logic.repository.DeviceInfoRepository
 import com.allocate.ontime.business_logic.utils.Constants
@@ -27,6 +28,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import java.util.Locale
 import javax.inject.Inject
+import javax.inject.Singleton
 
 
 @HiltViewModel
@@ -39,14 +41,21 @@ class SplashViewModel @Inject constructor(
 
     private val _acknowledgementStatus = MutableStateFlow(0)
     val acknowledgementStatus = _acknowledgementStatus.asStateFlow()
-    private val TAG = "SplashViewModel"
+    companion object {
+        const val TAG = "SplashViewModel"
+    }
+
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
             val deviceInfoApiData = async { repository.getDeviceInfo(context) }.await()
-            Log.d(TAG, "deviceInfoApiData:$deviceInfoApiData")
+            Log.i(TAG, "deviceInfoApiData : success")
 
             deviceInfoApiData.data?.responsePacket?.first()?.let { data ->
+                SecureSharedPrefs(context).saveData(
+                    Constants.AS_API_URL,
+                    data.ASApiURL
+                )
                 addDeviceInfo(
                     deviceInformation = DeviceInformation(
                         id = data._id,
@@ -70,8 +79,6 @@ class SplashViewModel @Inject constructor(
                         isRLD = data.IsRLD
                     )
                 )
-                val asApiURL: String = data.ASApiURL
-                Constants.asApiURL = asApiURL
             }
             observeAllDeviceInfo(this, deviceInfoApiData, context)
         }
@@ -126,12 +133,12 @@ class SplashViewModel @Inject constructor(
                                 }
                             } else {
                                 result.e?.let {
-                                    Log.d(TAG, "Exception: $it")
+                                    Log.e(TAG, "Exception: $it")
                                 }
                             }
                         } ?: run {
                             getDeviceInfoApiData.e?.let {
-                                Log.d(TAG, "Exception: $it")
+                                Log.e(TAG, "Exception: $it")
                             }
                         }
                     }.await()

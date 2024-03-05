@@ -15,7 +15,7 @@ import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
 /**
- * Created by Azlaan Khan on 9/25/2015.
+ * Created by Sublimity on 05/03/2024.
  */
 
 class AESHelper private constructor() {

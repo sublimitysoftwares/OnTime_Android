@@ -1,16 +1,17 @@
 package com.allocate.ontime.encryption
 
 import android.util.Log
+import com.allocate.ontime.BuildConfig
 import com.google.gson.Gson
 import retrofit2.Response
 
 /**
- * Created by admin on 02-Feb-18.
+ * Created by Sublimity on 05/03/2024.
  */
 
 object EDHelper {
     val TAG = "EDHelper"
-    const val KEY = "MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTIzNDU2Nzg5MzA="
+    const val KEY = BuildConfig.KEY
     fun encrypt(`object`: Any?): EDModel {
         var normalTextEnc: String? = ""
         try {

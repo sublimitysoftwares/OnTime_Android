@@ -18,13 +18,16 @@ class DeviceInfoRepository @Inject constructor(
     private val superAdminApi: SuperAdminApi,
     private val deviceUtils: DeviceUtils,
 ) {
+    companion object {
+        const val TAG = "DeviceInfoRepository"
+    }
     suspend fun getDeviceInfo(context: Context): DataOrException<DeviceInfo, Exception> {
         val dataOrException = DataOrException<DeviceInfo, Exception>()
         try {
-            dataOrException.data = deviceInfoApi.getDeviceInfo(imei = deviceUtils.getIMEI(context))
+           dataOrException.data = deviceInfoApi.getDeviceInfo(imei = deviceUtils.getIMEI(context))
         } catch (exception: Exception) {
             dataOrException.e = exception
-            Log.d("EXC", "getAllDeviceInfo: ${dataOrException.e}")
+            Log.e(TAG, "getAllDeviceInfo: ${dataOrException.e}")
         }
         return dataOrException
     }
@@ -37,7 +40,7 @@ class DeviceInfoRepository @Inject constructor(
             dataOrException.data = deviceInfoApi.postEditDeviceInfo(appInfo)
         } catch (exception: Exception) {
             dataOrException.e = exception
-            Log.d("EXC", "getAllDeviceInfo: ${dataOrException.e}")
+            Log.e(TAG, "getAllDeviceInfo: ${dataOrException.e}")
         }
         return dataOrException
     }
@@ -46,10 +49,10 @@ class DeviceInfoRepository @Inject constructor(
         val dataOrException = DataOrException<Response<EDModel>, Exception>()
         try {
             dataOrException.data = superAdminApi.getCISuperAdminDetails()
-            Log.d("SuperAdmin", "${dataOrException.data}")
+            Log.i(TAG, "getCISuperAdminDetails success")
         } catch (exception: Exception) {
             dataOrException.e = exception
-            Log.d("EXC", "getSuperAdminDetails: ${dataOrException.e}")
+            Log.e(TAG, "getSuperAdminDetails: ${dataOrException.e}")
         }
         return dataOrException
     }

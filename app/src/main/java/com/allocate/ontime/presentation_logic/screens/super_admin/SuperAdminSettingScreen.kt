@@ -60,6 +60,8 @@ fun SuperAdminSettingScreen(
     superAdminViewModel: SuperAdminSettingViewModel = hiltViewModel(),
     context: Context
 ) {
+    val TAG = "SuperAdminSettingScreen"
+
     val checkBoxState = remember {
         mutableStateOf(false)
     }
@@ -98,22 +100,24 @@ fun SuperAdminSettingScreen(
         value = superAdminViewModel.getDeviceData(context)
     }.value
 
-    Log.d("deviceData", "SuperAdminSettingScreen: $deviceData")
-
-    if (deviceData.data?.statusCode == 200) {
-        deviceData.data!!.responsePacket.forEach {
-            trustState.value = it.TrustOrganization
-            locationState.value = it.Location
-            postCodeState.value = it.Postcode
-            uniqueIdentifierState.value = it.Unique_Identifier
-            latitudeState.value = it.Latitude
-            longitudeState.value = it.Longitude
-            siteNameState.value = it.SiteName
-            isRLD.value = it.IsRLD
+    if (deviceData.data != null){
+        if (deviceData.data?.statusCode == 200) {
+            deviceData.data?.responsePacket?.forEach {
+                trustState.value = it.TrustOrganization
+                locationState.value = it.Location
+                postCodeState.value = it.Postcode
+                uniqueIdentifierState.value = it.Unique_Identifier
+                latitudeState.value = it.Latitude
+                longitudeState.value = it.Longitude
+                siteNameState.value = it.SiteName
+                isRLD.value = it.IsRLD
+            }
+            latLngState.value = latitudeState.value + ',' + longitudeState.value
         }
-        latLngState.value = latitudeState.value + ',' + longitudeState.value
-
+    } else {
+        Log.e(TAG,"deviceData : $deviceData")
     }
+
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -381,7 +385,7 @@ private fun SuperAdminSettingInfo(
                     textStyle = MaterialTheme.typography.titleMedium
                 )
                 Text(
-                    text = "Site Name",
+                    text = stringResource(id = R.string.Site_Name),
                     color = Color.White,
                     modifier = Modifier
                         .padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)

@@ -1,5 +1,6 @@
 package com.allocate.ontime.business_logic.di
 
+import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import com.allocate.ontime.BuildConfig
@@ -7,6 +8,7 @@ import com.allocate.ontime.business_logic.annotations.DeviceInfoRetrofit
 import com.allocate.ontime.business_logic.annotations.SuperAdminRetrofit
 import com.allocate.ontime.business_logic.data.room.DeviceInfoDao
 import com.allocate.ontime.business_logic.data.room.OnTimeDatabase
+import com.allocate.ontime.business_logic.data.shared_preferences.SecureSharedPrefs
 import com.allocate.ontime.business_logic.network.DeviceInfoApi
 import com.allocate.ontime.business_logic.network.SuperAdminApi
 import com.allocate.ontime.business_logic.repository.DaoRepository
@@ -23,6 +25,7 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
+
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -96,12 +99,14 @@ object AppModule {
 
     @Provides
     @SuperAdminRetrofit
-    fun provideRetrofitClient2(): Retrofit {
-        return Constants.asApiURL.let {
-            Retrofit.Builder()
-                .baseUrl(it)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-        }
+    fun provideRetrofitClient2(@ApplicationContext context: Context): Retrofit {
+        val asApiUrl = SecureSharedPrefs(context).getData(
+            Constants.AS_API_URL,
+            "http://airstack.sublimitysoft.com/AirstackAPI/API/"
+        )
+        return Retrofit.Builder()
+            .baseUrl(asApiUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
     }
 }

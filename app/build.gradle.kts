@@ -18,7 +18,8 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-        buildConfigField("String","BASE_URL", "\"http://cpaapi.sublimitysoft.com/\"")
+        buildConfigField("String","BASE_URL","\"${project.property("BASE_URL")}\"")
+        buildConfigField("String","KEY","\"${project.property("KEY")}\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
