@@ -2,7 +2,6 @@ package com.allocate.ontime.presentation_logic.screens.super_admin
 
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,20 +22,17 @@ import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import com.allocate.ontime.R
 import com.allocate.ontime.business_logic.utils.OnTimeColors
 import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
@@ -89,7 +85,7 @@ fun AdminRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Un
             Spacer(
                 modifier = Modifier
                     .height(MaterialTheme.dimens.spacerHeight10)
-                    .weight(1f)
+                    .weight(MaterialTheme.dimens.adminRegistrationScreenSpacerWeightAboveRegistrationSurface)
             )
             Row(
                 modifier = Modifier
@@ -242,7 +238,7 @@ fun AdminRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Un
             }
             Spacer(
                 modifier = Modifier
-                    .weight(0.5f)
+                    .weight(MaterialTheme.dimens.adminRegistrationScreenSpacerWeightBelowRegistrationSurface)
             )
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -280,7 +276,7 @@ fun AdminRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Un
             Spacer(
                 modifier = Modifier
                     .height(MaterialTheme.dimens.spacerHeight10)
-                    .weight(1f)
+                    .weight(MaterialTheme.dimens.adminRegistrationScreenSpacerWeightBelowQrCode)
             )
             Row(
                 modifier = Modifier
@@ -299,7 +295,7 @@ fun AdminRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Un
                     )
                 ) {
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(5.dp),
+                        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.circleImgAndTextSpace),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Image(
@@ -320,7 +316,7 @@ fun AdminRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Un
                     )
                 ) {
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(5.dp),
+                        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.circleImgAndTextSpace),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Image(

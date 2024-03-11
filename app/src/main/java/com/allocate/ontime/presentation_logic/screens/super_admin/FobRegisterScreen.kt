@@ -3,7 +3,6 @@ package com.allocate.ontime.presentation_logic.screens.super_admin
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -37,7 +36,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.unit.dp
 import com.allocate.ontime.R
 import com.allocate.ontime.business_logic.utils.OnTimeColors
 import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
@@ -178,7 +176,7 @@ fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
                     )
                 }
             }
-            Spacer(modifier = Modifier.weight(1f))
+            Spacer(modifier = Modifier.weight(MaterialTheme.dimens.fobRegisterScreenSpacerWeight))
             Button(
                 onClick = {
                     backToSuperAdminScreen(SuperAdminScreenRoot.SuperAdminScreen)
@@ -189,7 +187,7 @@ fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
                 )
             ) {
                 Row(
-                    horizontalArrangement = Arrangement.spacedBy(5.dp),
+                    horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.buttonRowHorizontalArrangementSpacedBy),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Image(

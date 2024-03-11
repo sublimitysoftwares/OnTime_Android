@@ -5,6 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -33,11 +34,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import com.allocate.ontime.R
 import com.allocate.ontime.business_logic.utils.OnTimeColors
 import com.allocate.ontime.presentation_logic.navigation.HomeScreenRoot
@@ -92,7 +95,7 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                     )
                 }
                 Image(
-                    painter = painterResource(id = R.drawable.rld_logo),
+                    painter = painterResource(id = R.drawable.ontime_icon),
                     contentDescription =
                     stringResource(id = R.string.rld_logo),
                     contentScale = ContentScale.Fit,
@@ -119,6 +122,7 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                     )
                 }
             }
+            Spacer(modifier = Modifier.height(MaterialTheme.dimens.homeScreenSpacerHeight))
             Image(
                 painter = painterResource(id = R.drawable.ontime_logo),
                 contentDescription = stringResource(id = R.string.onTime_logo),
@@ -131,16 +135,8 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(end = MaterialTheme.dimens.medium1),
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.End
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.rld_img_logo),
-                    contentDescription = stringResource(id = R.string.rld_img_logo),
-                    modifier = Modifier
-                        .size(MaterialTheme.dimens.large3)
-                        .aspectRatio(1f),
-
-                    )
                 Column(
                     verticalArrangement = Arrangement.Bottom,
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -152,8 +148,12 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                         onClick = {
                             isDialogVisible = true
                         },
-                        shape = RoundedCornerShape(MaterialTheme.dimens.homeScreenButtonsCornerShapeSize),
+                        shape = RoundedCornerShape(MaterialTheme.dimens.homeScreenEnterPinButtonRoundedCornerShape),
                         colors = ButtonDefaults.buttonColors(containerColor = OnTimeColors.GREEN_HAZE),
+                        contentPadding = PaddingValues(
+                            horizontal = MaterialTheme.dimens.homeScreenContentPaddingHorizontal,
+                            vertical = MaterialTheme.dimens.homeScreenContentPaddingVertical
+                        )
                     ) {
                         Text(
                             text = stringResource(id = R.string.ENTER_PIN),
@@ -170,7 +170,7 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                             onClick = {
                                 homeScreenRoot(HomeScreenRoot.AdminScreen)
                             },
-                            shape = RoundedCornerShape(MaterialTheme.dimens.homeScreenButtonsCornerShapeSize),
+                            shape = RectangleShape,
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = OnTimeColors.PORT_GORE
                             )
@@ -185,7 +185,7 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                             onClick = {
                                 homeScreenRoot(HomeScreenRoot.SuperAdminScreen)
                             },
-                            shape = RoundedCornerShape(MaterialTheme.dimens.homeScreenButtonsCornerShapeSize),
+                            shape = RectangleShape,
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = OnTimeColors.PORT_GORE
                             )
@@ -197,6 +197,7 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                         }
                     }
                 }
+                Spacer(modifier = Modifier.width(MaterialTheme.dimens.homeScreenSpacerWidth))
                 Column(
                     verticalArrangement = Arrangement.SpaceBetween,
                     horizontalAlignment = Alignment.End,
@@ -220,7 +221,7 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                             color = OnTimeColors.PORT_GORE,
                         )
                     }
-                    Spacer(modifier = Modifier.weight(1f))
+                    Spacer(modifier = Modifier.weight(MaterialTheme.dimens.homeScreenSpacerWeight))
                     Column(
                         verticalArrangement = Arrangement.Bottom,
                         horizontalAlignment = Alignment.End,

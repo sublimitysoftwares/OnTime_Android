@@ -5,9 +5,9 @@ import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -32,6 +32,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -83,7 +84,7 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                     RadioButton(
                         selected = true,
                         onClick = { /*TODO*/ },
-                        colors = RadioButtonDefaults.colors(selectedColor = Color.White)
+                        colors = RadioButtonDefaults.colors(selectedColor = Color.White),
                     )
 
                     Text(
@@ -96,7 +97,7 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                 Column {
                     Text(
                         text = stringResource(id = R.string.WELCOME_TO_ADMIN_PAGE),
-                        style = MaterialTheme.typography.headlineLarge,
+                        style = MaterialTheme.typography.headlineMedium,
                         color = OnTimeColors.GREEN_HAZE,
                         fontWeight = FontWeight.Bold
                     )
@@ -105,12 +106,14 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                         text = stringResource(id = R.string.Administrator_to_Log_In),
                         style = MaterialTheme.typography.headlineMedium,
                         color = Color.White,
+                        fontWeight = FontWeight.Bold,
                         modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
                     )
                     Text(
                         text = stringResource(id = R.string.via_the_Fingerprint_Reader),
                         style = MaterialTheme.typography.headlineMedium,
                         color = Color.White,
+                        fontWeight = FontWeight.Bold,
                         modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
                     )
                 }
@@ -132,24 +135,15 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                     )
                 }
             }
-            Spacer(modifier = Modifier.fillMaxHeight(0.45f))
-
+            Spacer(modifier = Modifier.fillMaxHeight(MaterialTheme.dimens.adminScreenSpacerFillMaxHeight))
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(end = MaterialTheme.dimens.adminScreenBottomRowEndPadding),
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.End
 
 
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.rld_img_logo),
-                    contentDescription = stringResource(id = R.string.rld_img_logo),
-                    modifier = Modifier
-                        .size(MaterialTheme.dimens.large3)
-                        .aspectRatio(1f),
-                    colorFilter = ColorFilter.tint(color = Color.White)
-                )
                 Column(
                     verticalArrangement = Arrangement.Bottom,
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -165,6 +159,10 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                         },
                         shape = RoundedCornerShape(MaterialTheme.dimens.adminScreenButtonsCornerShapeSize),
                         colors = ButtonDefaults.buttonColors(containerColor = OnTimeColors.GREEN_HAZE),
+                        contentPadding = PaddingValues(
+                            horizontal = MaterialTheme.dimens.adminScreenContentPaddingHorizontal,
+                            vertical = MaterialTheme.dimens.adminScreenContentPaddingVertical
+                        )
                     ) {
                         Text(
                             text = stringResource(id = R.string.ENTER_PIN),
@@ -182,7 +180,7 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                             onClick = {
                                 backToHome(HomeScreenRoot.HomeScreen)
                             },
-                            shape = RoundedCornerShape(MaterialTheme.dimens.adminScreenButtonsCornerShapeSize),
+                            shape = RectangleShape,
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = OnTimeColors.PORT_GORE
                             )
@@ -196,7 +194,7 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                         Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth15))
                         Button(
                             onClick = { /*TODO*/ },
-                            shape = RoundedCornerShape(MaterialTheme.dimens.adminScreenButtonsCornerShapeSize),
+                            shape = RectangleShape,
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = OnTimeColors.PORT_GORE
                             )
@@ -209,6 +207,7 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                         }
                     }
                 }
+                Spacer(modifier = Modifier.width(MaterialTheme.dimens.adminScreenSpacerWidth))
                 Column(
                     verticalArrangement = Arrangement.SpaceBetween,
                     horizontalAlignment = Alignment.End,
@@ -231,7 +230,7 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                             color = OnTimeColors.White,
                         )
                     }
-                    Spacer(modifier = Modifier.weight(1f))
+                    Spacer(modifier = Modifier.weight(MaterialTheme.dimens.adminScreenSpacerWeight))
                     Column(
                         verticalArrangement = Arrangement.Bottom,
                         horizontalAlignment = Alignment.End,

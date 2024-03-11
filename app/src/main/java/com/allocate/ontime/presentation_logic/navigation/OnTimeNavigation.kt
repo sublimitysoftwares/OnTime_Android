@@ -15,6 +15,7 @@ import com.allocate.ontime.presentation_logic.screens.super_admin.SuperAdminScre
 import com.allocate.ontime.presentation_logic.screens.super_admin.SuperAdminSettingScreen
 import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminSettingViewModel
 import com.allocate.ontime.presentation_logic.screens.splash.SplashScreen
+import com.allocate.ontime.presentation_logic.screens.super_admin.VisitorRegistrationScreen
 
 
 @ExperimentalComposeUiApi
@@ -41,6 +42,10 @@ fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
                     when (it) {
                         SuperAdminScreenRoot.AdminRegistrationScreen -> navController.navigate(
                             OnTimeScreens.AdminRegistrationScreen.name
+                        )
+
+                        SuperAdminScreenRoot.VisitorRegistrationScreen -> navController.navigate(
+                            OnTimeScreens.VisitorRegistrationScreen.name
                         )
 
                         SuperAdminScreenRoot.FobRegisterScreen -> navController.navigate(
@@ -73,6 +78,16 @@ fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
         }
         composable(OnTimeScreens.AdminRegistrationScreen.name) {
             AdminRegistrationScreen(backToSuperAdminScreen = {
+                when (it) {
+                    SuperAdminScreenRoot.SuperAdminScreen -> navController.navigate(OnTimeScreens.SuperAdminScreen.name)
+                    else -> {
+                        Log.i("Navigation", "Navigation gets wrong.")
+                    }
+                }
+            })
+        }
+        composable(OnTimeScreens.VisitorRegistrationScreen.name) {
+            VisitorRegistrationScreen(backToSuperAdminScreen = {
                 when (it) {
                     SuperAdminScreenRoot.SuperAdminScreen -> navController.navigate(OnTimeScreens.SuperAdminScreen.name)
                     else -> {

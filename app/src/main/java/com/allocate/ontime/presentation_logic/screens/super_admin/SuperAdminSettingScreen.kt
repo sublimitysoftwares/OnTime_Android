@@ -91,7 +91,6 @@ fun SuperAdminSettingScreen(
     }
 
 
-
     val deviceData = produceState<DataOrException<DeviceInfo, Exception>>(
         initialValue = DataOrException()
     ) {
@@ -116,8 +115,7 @@ fun SuperAdminSettingScreen(
     }
 
     Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = OnTimeColors.TORY_BLUE
+        modifier = Modifier.fillMaxSize(), color = OnTimeColors.TORY_BLUE
     ) {
         Column(
             verticalArrangement = Arrangement.Center,
@@ -140,7 +138,7 @@ fun SuperAdminSettingScreen(
             )
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(20.dp)
+                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.superAdminSettingScreenRowHorizontalArrangementSpacedBy)
             ) {
                 Text(
                     text = stringResource(id = R.string.Clock_In_or_Out),
@@ -177,7 +175,7 @@ fun SuperAdminSettingScreen(
             }
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(20.dp)
+                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.superAdminSettingScreenRowHorizontalArrangementSpacedBy)
             ) {
                 Text(
                     text = stringResource(id = R.string.Enable_Pin),
@@ -223,7 +221,7 @@ fun SuperAdminSettingScreen(
                     )
                 ) {
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(5.dp),
+                        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.buttonRowHorizontalArrangementSpacedBy),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Image(
@@ -244,7 +242,7 @@ fun SuperAdminSettingScreen(
                     )
                 ) {
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(5.dp),
+                        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.buttonRowHorizontalArrangementSpacedBy),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Image(
@@ -270,7 +268,7 @@ private fun SuperAdminSettingInfo(
     uniqueIdentifierState: MutableState<String>,
     latLngState: MutableState<String>,
     siteNameState: MutableState<String>,
-    isRLD : MutableState<Boolean>
+    isRLD: MutableState<Boolean>
 ) {
     Surface(
         modifier = Modifier
@@ -376,18 +374,21 @@ private fun SuperAdminSettingInfo(
                 Text(
                     text = stringResource(id = R.string.Site_Name),
                     color = OnTimeColors.White,
-                    modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
-                        .alpha(if(isRLD.value) 0f else 1f)
+                    modifier = Modifier
+                        .padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
+                        .alpha(if (isRLD.value) 0f else 1f)
                 )
                 InputField(
                     valueState = siteNameState,
                     labelId = "",
                     enabled = false,
                     isSingleLine = true,
-                    modifier = Modifier.size(
-                        width = MaterialTheme.dimens.superAdminSettingScreenTextFieldsWidth,
-                        height = MaterialTheme.dimens.superAdminSettingScreenTextFieldsHeight
-                    ).alpha(if(isRLD.value) 0f else 1f),
+                    modifier = Modifier
+                        .size(
+                            width = MaterialTheme.dimens.superAdminSettingScreenTextFieldsWidth,
+                            height = MaterialTheme.dimens.superAdminSettingScreenTextFieldsHeight
+                        )
+                        .alpha(if (isRLD.value) 0f else 1f),
                     textStyle = MaterialTheme.typography.titleMedium
                 )
             }

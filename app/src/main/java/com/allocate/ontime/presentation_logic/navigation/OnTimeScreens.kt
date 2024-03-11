@@ -8,6 +8,7 @@ sealed class OnTimeScreens(val name: String) {
     object AdminScreen : OnTimeScreens(Constants.AdminScreen)
     object SuperAdminScreen : OnTimeScreens(Constants.SuperAdminScreen)
     object AdminRegistrationScreen : OnTimeScreens(Constants.AdminRegistrationScreen)
+    object VisitorRegistrationScreen : OnTimeScreens(Constants.VisitorRegistrationScreen)
     object FobRegisterScreen : OnTimeScreens(Constants.FobRegisterScreen)
     object SuperAdminSettingScreen : OnTimeScreens(Constants.SuperAdminSettingScreen)
 }
@@ -21,6 +22,7 @@ sealed class HomeScreenRoot {
 sealed class SuperAdminScreenRoot {
     object HomeScreen : SuperAdminScreenRoot()
     object AdminRegistrationScreen : SuperAdminScreenRoot()
+    object VisitorRegistrationScreen : SuperAdminScreenRoot()
     object FobRegisterScreen : SuperAdminScreenRoot()
     object SuperAdminSettingScreen : SuperAdminScreenRoot()
     object SuperAdminScreen : SuperAdminScreenRoot()
