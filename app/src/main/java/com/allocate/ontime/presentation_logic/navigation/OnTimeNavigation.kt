@@ -7,6 +7,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.allocate.ontime.business_logic.utils.LogMsg
 import com.allocate.ontime.presentation_logic.screens.super_admin.AdminRegistrationScreen
 import com.allocate.ontime.presentation_logic.screens.admin.AdminScreen
 import com.allocate.ontime.presentation_logic.screens.super_admin.FobRegisterScreen
@@ -22,6 +23,7 @@ import com.allocate.ontime.presentation_logic.screens.super_admin.VisitorRegistr
 @Composable
 fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
     val navController = rememberNavController()
+    val tag = "Navigation"
     NavHost(
         navController = navController,
         startDestination = OnTimeScreens.SplashScreen.name
@@ -71,7 +73,7 @@ fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
                 when (it) {
                     HomeScreenRoot.HomeScreen -> navController.navigate(OnTimeScreens.HomeScreen.name)
                     else -> {
-                        Log.i("Navigation", "Navigation gets wrong.")
+                        Log.i(tag, LogMsg.NAVIGATION_GETS_WRONG)
                     }
                 }
             })
@@ -81,7 +83,7 @@ fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
                 when (it) {
                     SuperAdminScreenRoot.SuperAdminScreen -> navController.navigate(OnTimeScreens.SuperAdminScreen.name)
                     else -> {
-                        Log.i("Navigation", "Navigation gets wrong.")
+                        Log.i(tag, LogMsg.NAVIGATION_GETS_WRONG)
                     }
                 }
             })
@@ -101,7 +103,7 @@ fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
                 when (it) {
                     SuperAdminScreenRoot.SuperAdminScreen -> navController.navigate(OnTimeScreens.SuperAdminScreen.name)
                     else -> {
-                        Log.i("Navigation", "Navigation gets wrong.")
+                        Log.i(tag, LogMsg.NAVIGATION_GETS_WRONG)
                     }
                 }
             })
@@ -111,7 +113,7 @@ fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
                 when (it) {
                     SuperAdminScreenRoot.SuperAdminScreen -> navController.navigate(OnTimeScreens.SuperAdminScreen.name)
                     else -> {
-                        Log.i("Navigation", "Navigation gets wrong.")
+                        Log.i(tag, LogMsg.NAVIGATION_GETS_WRONG)
                     }
                 }
             }, viewModel)
@@ -121,7 +123,7 @@ fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
                 when (it) {
                     HomeScreenRoot.HomeScreen -> navController.navigate(OnTimeScreens.HomeScreen.name)
                     else -> {
-                        Log.i("Navigation", "Navigation gets wrong.")
+                        Log.i(tag, LogMsg.NAVIGATION_GETS_WRONG)
                     }
                 }
             })

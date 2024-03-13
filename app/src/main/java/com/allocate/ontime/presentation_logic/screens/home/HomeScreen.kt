@@ -26,6 +26,7 @@ import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -46,11 +47,23 @@ import com.allocate.ontime.business_logic.utils.OnTimeColors
 import com.allocate.ontime.presentation_logic.navigation.HomeScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.screens.login.PinEntryDialog
+import kotlinx.coroutines.delay
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 
 @Composable
 fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
+
+    fun getCurrentTime(): String {
+        val currentTime = Calendar.getInstance().time
+        val dateFormat = SimpleDateFormat("h:mm a", Locale.getDefault())
+        return dateFormat.format(currentTime)
+    }
+
     var isDialogVisible by remember { mutableStateOf(false) }
+    var currentTime by remember { mutableStateOf(getCurrentTime()) }
     val context = LocalContext.current
     if (isDialogVisible) {
         PinEntryDialog(onDismiss = {
@@ -58,6 +71,13 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
         }, onPinEntered = { pin ->
             Toast.makeText(context, "Entered PIN: $pin", Toast.LENGTH_SHORT).show()
         })
+    }
+
+    LaunchedEffect(true) {
+        while (true) {
+            delay(60000) // Update every minute
+            currentTime = getCurrentTime()
+        }
     }
 
     Surface(
@@ -88,7 +108,7 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
                         colors = RadioButtonDefaults.colors(selectedColor = OnTimeColors.PORT_GORE)
                     )
                     Text(
-                        text = "2:23 PM",
+                        text = currentTime,
                         style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold,
                         color = OnTimeColors.PORT_GORE
