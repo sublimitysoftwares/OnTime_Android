@@ -38,6 +38,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import com.allocate.ontime.R
+import com.allocate.ontime.business_logic.utils.OnTimeColors
 import com.allocate.ontime.presentation_logic.theme.dimens
 
 
@@ -69,7 +70,7 @@ fun PinEntryDialog(
                     Text(
                         text = stringResource(id = R.string.Administrator_Access),
                         style = MaterialTheme.typography.headlineSmall,
-                        color = Color(0xFF4CAF50),
+                        color = OnTimeColors.GREEN_HAZE,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(start = MaterialTheme.dimens.administrationPadding)
                     )
@@ -91,10 +92,10 @@ fun PinEntryDialog(
                         .fillMaxWidth()
                         .height(MaterialTheme.dimens.pinEntryDialogTextSurfaceHeight),
                     shape = RoundedCornerShape(MaterialTheme.dimens.pinEntryDialogRoundedCornerShapeSize),
-                    color = Color(0xFFD6B6C1),
+                    color = OnTimeColors.LightPink,
                     border = BorderStroke(
                         width = MaterialTheme.dimens.pinEntryDialogTextSurfaceBorderWidth,
-                        color = Color(0xFFB3798D)
+                        color = OnTimeColors.ALIZARIN_CRIMSON
                     )
                 ) {
                     Text(
@@ -108,7 +109,7 @@ fun PinEntryDialog(
                 Text(
                     text = stringResource(id = R.string.Administration_Log_In),
                     style = MaterialTheme.typography.headlineSmall,
-                    color = Color(0xFF008B8B),
+                    color = OnTimeColors.TORY_BLUE,
                     fontWeight = FontWeight.Bold
                 )
             }
@@ -141,7 +142,7 @@ fun PinEntryDialog(
                         width = MaterialTheme.dimens.loginButtonWidth,
                         height = MaterialTheme.dimens.loginButtonHeight
                     ),
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF19701D)),
+                colors = ButtonDefaults.buttonColors(containerColor = OnTimeColors.GREEN_HAZE),
                 shape = RoundedCornerShape(MaterialTheme.dimens.pinEntryDialogRoundedCornerShapeSize)
             ) {
                 Text(text = stringResource(id = R.string.Login))

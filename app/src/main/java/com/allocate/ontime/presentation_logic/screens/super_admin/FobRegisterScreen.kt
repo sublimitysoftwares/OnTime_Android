@@ -39,6 +39,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.allocate.ontime.R
+import com.allocate.ontime.business_logic.utils.OnTimeColors
 import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.widgets.InputField
@@ -64,7 +65,7 @@ fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
 
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = Color.DarkGray.copy(alpha = MaterialTheme.dimens.surfaceColorAlphaValue)
+        color = OnTimeColors.TORY_BLUE
     ) {
         Column(
             verticalArrangement = Arrangement.Center,
@@ -77,7 +78,7 @@ fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
             Text(
                 text = stringResource(id = R.string.FOB_REGISTER),
                 style = MaterialTheme.typography.headlineMedium,
-                color = Color(0xFF85D32C),
+                color = OnTimeColors.GREEN_HAZE,
                 fontWeight = FontWeight.Bold
             )
             Spacer(modifier = Modifier.weight(0.2f))
@@ -88,7 +89,6 @@ fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
                 InputField(
                     valueState = searchEmployeeState,
                     labelId = stringResource(id = R.string.Search_Employee),
-                    enabled = true,
                     isSingleLine = true,
                     modifier = Modifier
                         .size(
@@ -131,16 +131,16 @@ fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
                             ),
                             textStyle = MaterialTheme.typography.titleSmall,
                             colors = run {
-                                val containerColor = Color(0xFFD6B6C1)
+                                val containerColor = OnTimeColors.LightPink
                                 TextFieldDefaults.colors(
-                                    unfocusedTextColor = Color.LightGray,
+                                    unfocusedTextColor = OnTimeColors.LightGray,
                                     focusedContainerColor = containerColor,
                                     unfocusedContainerColor = containerColor,
                                     disabledContainerColor = containerColor,
-                                    cursorColor = Color.Cyan,
-                                    focusedIndicatorColor = Color.White,
-                                    focusedLabelColor = Color.White,
-                                    focusedSupportingTextColor = Color.White,
+                                    cursorColor = OnTimeColors.Cyan,
+                                    focusedIndicatorColor = OnTimeColors.White,
+                                    focusedLabelColor = OnTimeColors.White,
+                                    focusedSupportingTextColor = OnTimeColors.White,
                                 )
                             },
                             placeholder = {
@@ -161,7 +161,7 @@ fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
                 ) {
                     Text(
                         text = stringResource(id = R.string.All_Locations),
-                        color = Color.White,
+                        color = OnTimeColors.White,
                         style = MaterialTheme.typography.titleSmall
                     )
                     Switch(
@@ -170,10 +170,10 @@ fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
                             isSwitchOn.value = it
                         },
                         colors = SwitchDefaults.colors(
-                            uncheckedThumbColor = Color.White,
-                            uncheckedTrackColor = Color.LightGray,
-                            checkedThumbColor = Color.Cyan,
-                            checkedTrackColor = Color.White
+                            uncheckedThumbColor = OnTimeColors.White,
+                            uncheckedTrackColor = OnTimeColors.LightGray,
+                            checkedThumbColor = OnTimeColors.Cyan,
+                            checkedTrackColor = OnTimeColors.White
                         )
                     )
                 }
@@ -185,11 +185,7 @@ fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
                 },
                 shape = RoundedCornerShape(MaterialTheme.dimens.fobRegisterScreenButtonsCornerShapeSize),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.LightGray, contentColor = Color.Black
-                ),
-                border = BorderStroke(
-                    width = MaterialTheme.dimens.fobRegisterScreenButtonsBorderWidth,
-                    color = Color.White
+                    containerColor = OnTimeColors.GREEN_HAZE, contentColor = OnTimeColors.White
                 )
             ) {
                 Row(

@@ -45,7 +45,6 @@ class SplashViewModel @Inject constructor(
         const val TAG = "SplashViewModel"
     }
 
-
     init {
         viewModelScope.launch(Dispatchers.IO) {
             val deviceInfoApiData = async { repository.getDeviceInfo(context) }.await()
@@ -89,7 +88,7 @@ class SplashViewModel @Inject constructor(
         getDeviceInfoApiData: DataOrException<DeviceInfo, Exception>,
         context: Context
     ) {
-        daoRepository.getAllDeviceInfo().distinctUntilChanged().collect() { listOfDeviceInfo ->
+        daoRepository.getAllDeviceInfo().distinctUntilChanged().collect { listOfDeviceInfo ->
             if (listOfDeviceInfo.isEmpty()) {
                 Log.d(TAG, "Empty List")
             } else {

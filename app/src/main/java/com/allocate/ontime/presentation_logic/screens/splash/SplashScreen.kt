@@ -34,8 +34,13 @@ fun SplashScreen(
     val acknowledgementStatusFromDB = splashViewModel.acknowledgementStatus.collectAsState()
     if (acknowledgementStatusFromDB.value == 1) {
         homeScreenRoot(HomeScreenRoot.HomeScreen)
+    } else {
+        SplashScreenView()
     }
+}
 
+@Composable
+private fun SplashScreenView() {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
