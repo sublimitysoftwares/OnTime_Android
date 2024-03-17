@@ -4,9 +4,14 @@ package com.allocate.ontime.presentation_logic.navigation
 import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.allocate.ontime.business_logic.autoback_navigation_manager.AutoBackNavigationManager
+import com.allocate.ontime.business_logic.viewmodel.admin.AdminViewModel
+import com.allocate.ontime.business_logic.viewmodel.super_admin.AdminRegistrationViewModel
+import com.allocate.ontime.business_logic.viewmodel.super_admin.FobRegisterViewModel
 import com.allocate.ontime.presentation_logic.screens.super_admin.AdminRegistrationScreen
 import com.allocate.ontime.presentation_logic.screens.admin.AdminScreen
 import com.allocate.ontime.presentation_logic.screens.super_admin.FobRegisterScreen
@@ -14,12 +19,13 @@ import com.allocate.ontime.presentation_logic.screens.home.HomeScreen
 import com.allocate.ontime.presentation_logic.screens.super_admin.SuperAdminScreen
 import com.allocate.ontime.presentation_logic.screens.super_admin.SuperAdminSettingScreen
 import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminSettingViewModel
+import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminViewModel
 import com.allocate.ontime.presentation_logic.screens.splash.SplashScreen
 
 
 @ExperimentalComposeUiApi
 @Composable
-fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
+fun OnTimeNavigation() {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
@@ -33,7 +39,8 @@ fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
                         HomeScreenRoot.SuperAdminScreen -> navController.navigate(OnTimeScreens.SuperAdminScreen.name)
                         HomeScreenRoot.HomeScreen -> navController.navigate(OnTimeScreens.HomeScreen.name)
                     }
-                })
+                }
+            )
         }
         composable(OnTimeScreens.SuperAdminScreen.name) {
             SuperAdminScreen(
@@ -99,7 +106,7 @@ fun OnTimeNavigation(viewModel: SuperAdminSettingViewModel) {
                         Log.i("Navigation", "Navigation gets wrong.")
                     }
                 }
-            }, viewModel)
+            })
         }
         composable(OnTimeScreens.SplashScreen.name) {
             SplashScreen(homeScreenRoot = {

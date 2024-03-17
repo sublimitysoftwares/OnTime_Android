@@ -1,6 +1,7 @@
 package com.allocate.ontime.presentation_logic.screens.admin
 
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -25,7 +26,7 @@ import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -40,22 +41,21 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.allocate.ontime.R
+import com.allocate.ontime.business_logic.autoback_navigation_manager.AutoBackNavigationManager
+import com.allocate.ontime.business_logic.viewmodel.admin.AdminViewModel
 import com.allocate.ontime.presentation_logic.navigation.HomeScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.screens.login.PinEntryDialog
 
-@Composable
-fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
 
-//DisposableEffect(Unit){
-//    AutoBackNavigationManager.startAutoBackNavigation {
-//        backToHome(HomeScreenRoot.HomeScreen)
-//    }
-//    onDispose {
-//        AutoBackNavigationManager.stopAutoBackNavigation()
-//    }
-//}
+@Composable
+fun AdminScreen(
+    backToHome: (HomeScreenRoot) -> Unit,
+    adminViewModel: AdminViewModel = hiltViewModel(),
+) {
+    val TAG = "AdminScreen"
 
     var isDialogVisible by remember { mutableStateOf(false) }
     val context = LocalContext.current
@@ -66,15 +66,28 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
             Toast.makeText(context, "Entered PIN: $pin", Toast.LENGTH_SHORT).show()
         })
     }
+    val hasNoUserInteractionAdminScreen =
+        adminViewModel.navigationFlows.collectAsState()
+    Log.d(TAG,"hasNoUserInteraction: ${hasNoUserInteractionAdminScreen.value}")
+
+
+
+    if(hasNoUserInteractionAdminScreen.value){
+        backToHome(HomeScreenRoot.HomeScreen)
+    }
 
     Surface(
-        modifier = Modifier.fillMaxSize(),
-//            .pointerInput(Unit){
-//                               detectTapGestures {
-//                                   AutoBackNavigationManager.onUserInteraction()
-//                               }
-//            },
+        modifier = Modifier
+            .fillMaxSize()
+            .pointerInput(Unit) {
+                detectTapGestures(
+                    onTap = {
+                        adminViewModel.startInteraction(AutoBackNavigationManager())
+                        Log.d(TAG,"after OnTap: ${hasNoUserInteractionAdminScreen.value}")
 
+                    }
+                )
+            },
         color = Color.DarkGray.copy(alpha = MaterialTheme.dimens.surfaceColorAlphaValue)
     ) {
         Column(
@@ -212,7 +225,8 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                         }
                         Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth15))
                         Button(
-                            onClick = { /*TODO*/ },
+                            onClick = { /*TODO*/
+                                      },
                             shape = RoundedCornerShape(MaterialTheme.dimens.adminScreenButtonsCornerShapeSize),
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color(0xFF008B8B)

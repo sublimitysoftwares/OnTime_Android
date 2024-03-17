@@ -27,7 +27,7 @@ import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -41,13 +41,21 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.allocate.ontime.R
+import com.allocate.ontime.business_logic.autoback_navigation_manager.AutoBackNavigationManager
+import com.allocate.ontime.business_logic.viewmodel.super_admin.FobRegisterViewModel
+import com.allocate.ontime.presentation_logic.navigation.OnTimeScreens
 import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.widgets.InputField
 
 @Composable
-fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
+fun FobRegisterScreen(
+    backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit,
+    fobRegisterViewModel: FobRegisterViewModel = hiltViewModel(),
+) {
+
 
     val searchEmployeeState = remember {
         mutableStateOf("")
@@ -65,8 +73,22 @@ fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
         mutableStateOf(false)
     }
 
+    val hasNoUserInteractionFobRegistrationScreen = fobRegisterViewModel.navigationFlow.collectAsState()
+
+    if(hasNoUserInteractionFobRegistrationScreen.value){
+        backToSuperAdminScreen(SuperAdminScreenRoot.SuperAdminScreen)
+    }
+
     Surface(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize()
+            .pointerInput(Unit) {
+                detectTapGestures(
+                    onTap = {
+                        fobRegisterViewModel.startInteraction(AutoBackNavigationManager())
+                    }
+                )
+
+            },
         color = Color.DarkGray.copy(alpha = MaterialTheme.dimens.surfaceColorAlphaValue)
     ) {
         Column(

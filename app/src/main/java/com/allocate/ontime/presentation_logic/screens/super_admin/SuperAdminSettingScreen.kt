@@ -2,9 +2,6 @@ package com.allocate.ontime.presentation_logic.screens.super_admin
 
 import android.annotation.SuppressLint
 import android.util.Log
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -29,8 +26,8 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
@@ -46,9 +43,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.allocate.ontime.R
+import com.allocate.ontime.business_logic.autoback_navigation_manager.AutoBackNavigationManager
 import com.allocate.ontime.business_logic.data.DataOrException
 import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminSettingViewModel
 import com.allocate.ontime.presentation_logic.model.DeviceInfo
+import com.allocate.ontime.presentation_logic.navigation.OnTimeScreens
 import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.widgets.InputField
@@ -58,8 +57,9 @@ import com.allocate.ontime.presentation_logic.widgets.InputField
 @Composable
 fun SuperAdminSettingScreen(
     backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit,
-    superAdminViewModel: SuperAdminSettingViewModel = hiltViewModel()
+    superAdminViewModel: SuperAdminSettingViewModel = hiltViewModel(),
 ) {
+
 
     val checkBoxState = remember {
         mutableStateOf(false)
@@ -117,8 +117,22 @@ fun SuperAdminSettingScreen(
 
     }
 
+    val hasNoUserInteractionSuperAdminSettingScreen = superAdminViewModel.navigationFlow.collectAsState()
+
+    if(hasNoUserInteractionSuperAdminSettingScreen.value){
+        backToSuperAdminScreen(SuperAdminScreenRoot.SuperAdminScreen)
+    }
+
     Surface(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize()
+            .pointerInput(Unit) {
+                detectTapGestures(
+                    onTap = {
+                        superAdminViewModel.startInteraction(AutoBackNavigationManager())
+                    }
+                )
+
+            },
         color = Color.DarkGray.copy(alpha = MaterialTheme.dimens.surfaceColorAlphaValue)
     ) {
         Column(
