@@ -4,8 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-
-
 @Entity(tableName = "device_info")
 data class DeviceInformation(
     @PrimaryKey
@@ -46,6 +44,5 @@ data class DeviceInformation(
     val siteName: String?,
     @ColumnInfo(name = "IsRLD")
     val isRLD: Boolean?,
-
 )
 

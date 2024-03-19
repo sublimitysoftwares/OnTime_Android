@@ -46,7 +46,7 @@ private val LightColorScheme = lightColorScheme(
 
 @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
 @Composable
-fun CI_OnTimeTheme(
+fun OnTimeTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
