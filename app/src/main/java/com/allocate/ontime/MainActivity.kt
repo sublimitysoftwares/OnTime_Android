@@ -1,6 +1,5 @@
 package com.allocate.ontime
 
-
 import android.annotation.SuppressLint
 import android.app.admin.DevicePolicyManager
 import android.app.admin.SystemUpdatePolicy
@@ -33,27 +32,19 @@ import com.allocate.ontime.presentation_logic.theme.CI_OnTimeTheme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private lateinit var mAdminComponentName: ComponentName
     private lateinit var mDevicePolicyManager: DevicePolicyManager
 
-    private lateinit var navController : NavController
-
     companion object {
         const val LOCK_ACTIVITY_KEY = "com.allocate.ontime.MainActivity"
     }
 
-
-
     @SuppressLint("CoroutineCreationDuringComposition")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-//        startNavigationTimeout()
-
         setContent {
             OnTimeApp()
         }
@@ -77,54 +68,6 @@ class MainActivity : ComponentActivity() {
 //            startActivity(intent)
         }
     }
-
-//    override fun onResume() {
-//        super.onResume()
-//        startNavigationTimeout()
-//    }
-//    override fun onPause() {
-//        super.onPause()
-//        com.allocate.ontime.business_logic.autoback_navigation_manager.AutoBackNavigationManager.stopTimeout()
-//    }
-//    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-//        restartNavigationTimeout()
-//        return super.dispatchTouchEvent(ev)
-//    }
-//    override fun onUserInteraction() {
-//        super.onUserInteraction()
-//        restartNavigationTimeout()
-//    }
-
-
-
-//    @SuppressLint("RestrictedApi")
-//    private fun startNavigationTimeout() {
-//        com.allocate.ontime.business_logic.autoback_navigation_manager.AutoBackNavigationManager.startTimeout {
-//            onBackPressedDispatcher.onBackPressed()
-//            restartNavigationTimeout()
-////            navController = NavController(applicationContext)
-////            val currentDestination = navController.currentDestination?.route
-//////            val currentDestination = navController.currentBackStackEntry?.destination?.route
-////            Log.d("current","$currentDestination")
-////            if (currentDestination == OnTimeScreens.HomeScreen.name){
-////                com.allocate.ontime.business_logic.autoback_navigation_manager.AutoBackNavigationManager.stopTimeout()
-////            } else{
-////                restartNavigationTimeout()
-////            }
-//        }
-//    }
-
-
-//    private fun restartNavigationTimeout() {
-//        com.allocate.ontime.business_logic.autoback_navigation_manager.AutoBackNavigationManager.stopTimeout()
-//        startNavigationTimeout()
-//    }
-//
-//    override fun onStop() {
-//        super.onStop()
-//        com.allocate.ontime.business_logic.autoback_navigation_manager.AutoBackNavigationManager.stopTimeout()
-//    }
-
 
     private fun isAdmin() = mDevicePolicyManager.isDeviceOwnerApp(packageName)
 

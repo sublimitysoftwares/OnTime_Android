@@ -1,6 +1,5 @@
 package com.allocate.ontime.business_logic.viewmodel.super_admin
 
-
 import com.allocate.ontime.business_logic.autoback_navigation_manager.AutoBackNavigationManager
 import androidx.lifecycle.ViewModel
 import com.allocate.ontime.business_logic.data.DataOrException
@@ -11,7 +10,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SuperAdminSettingViewModel @Inject constructor(private val repository: OnTimeRepository,autoBackNavigationManager: AutoBackNavigationManager) :
+class SuperAdminSettingViewModel @Inject constructor(
+    private val repository: OnTimeRepository,
+    private val autoBackNavigationManager: AutoBackNavigationManager
+) :
     ViewModel() {
     suspend fun getDeviceData()
             : DataOrException<DeviceInfo, Exception> {
@@ -19,10 +21,12 @@ class SuperAdminSettingViewModel @Inject constructor(private val repository: OnT
     }
 
     val navigationFlow = autoBackNavigationManager.navigationFlow
+
     init {
-        startInteraction(autoBackNavigationManager)
+        startInteraction()
     }
-    fun startInteraction(autoBackNavigationManager: AutoBackNavigationManager){
+
+    fun startInteraction() {
         autoBackNavigationManager.addOrUpdateScreens(OnTimeScreens.SuperAdminSettingScreen.name)
     }
 }

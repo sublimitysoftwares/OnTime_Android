@@ -1,6 +1,6 @@
 package com.allocate.ontime.presentation_logic.screens.admin
 
-
+import android.annotation.SuppressLint
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -43,13 +43,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.allocate.ontime.R
-import com.allocate.ontime.business_logic.autoback_navigation_manager.AutoBackNavigationManager
 import com.allocate.ontime.business_logic.viewmodel.admin.AdminViewModel
 import com.allocate.ontime.presentation_logic.navigation.HomeScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.screens.login.PinEntryDialog
 
-
+@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun AdminScreen(
     backToHome: (HomeScreenRoot) -> Unit,
@@ -66,13 +65,10 @@ fun AdminScreen(
             Toast.makeText(context, "Entered PIN: $pin", Toast.LENGTH_SHORT).show()
         })
     }
-    val hasNoUserInteractionAdminScreen =
-        adminViewModel.navigationFlows.collectAsState()
-    Log.d(TAG,"hasNoUserInteraction: ${hasNoUserInteractionAdminScreen.value}")
 
+    val hasNoUserInteractionAdminScreen = adminViewModel.navigationFlows.collectAsState()
 
-
-    if(hasNoUserInteractionAdminScreen.value){
+    if (hasNoUserInteractionAdminScreen.value) {
         backToHome(HomeScreenRoot.HomeScreen)
     }
 
@@ -82,9 +78,8 @@ fun AdminScreen(
             .pointerInput(Unit) {
                 detectTapGestures(
                     onTap = {
-                        adminViewModel.startInteraction(AutoBackNavigationManager())
-                        Log.d(TAG,"after OnTap: ${hasNoUserInteractionAdminScreen.value}")
-
+                        adminViewModel.startInteraction()
+                        Log.d(TAG, "after OnTap: ${hasNoUserInteractionAdminScreen.value}")
                     }
                 )
             },
@@ -225,8 +220,9 @@ fun AdminScreen(
                         }
                         Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth15))
                         Button(
-                            onClick = { /*TODO*/
-                                      },
+                            onClick = {
+                                Log.d(TAG, "after OnTap: ${hasNoUserInteractionAdminScreen.value}")
+                            },
                             shape = RoundedCornerShape(MaterialTheme.dimens.adminScreenButtonsCornerShapeSize),
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color(0xFF008B8B)

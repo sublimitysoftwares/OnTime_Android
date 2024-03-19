@@ -1,6 +1,5 @@
 package com.allocate.ontime.presentation_logic.screens.super_admin
 
-
 import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.foundation.BorderStroke
@@ -41,13 +40,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.allocate.ontime.R
-import com.allocate.ontime.business_logic.autoback_navigation_manager.AutoBackNavigationManager
 import com.allocate.ontime.business_logic.viewmodel.super_admin.AdminRegistrationViewModel
-import com.allocate.ontime.presentation_logic.navigation.OnTimeScreens
 import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.widgets.InputField
-
 
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
@@ -64,19 +60,24 @@ fun AdminRegistrationScreen(
         mutableStateOf(false)
     }
 
-    val hasNoUserInteractionAdminRegistrationScreen = adminRegistrationViewModel.navigationFlow.collectAsState()
-    Log.d("AutoBackNavigationManager","adminRegistration: ${hasNoUserInteractionAdminRegistrationScreen.value}")
+    val hasNoUserInteractionAdminRegistrationScreen =
+        adminRegistrationViewModel.navigationFlow.collectAsState()
+    Log.d(
+        "AutoBackNavigationManager",
+        "adminRegistration: ${hasNoUserInteractionAdminRegistrationScreen.value}"
+    )
 
-    if(hasNoUserInteractionAdminRegistrationScreen.value){
+    if (hasNoUserInteractionAdminRegistrationScreen.value) {
         backToSuperAdminScreen(SuperAdminScreenRoot.SuperAdminScreen)
     }
 
     Surface(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
             .pointerInput(Unit) {
                 detectTapGestures(
                     onTap = {
-                        adminRegistrationViewModel.startInteraction(AutoBackNavigationManager())
+                        adminRegistrationViewModel.startInteraction()
                     }
                 )
 

@@ -1,6 +1,5 @@
 package com.allocate.ontime.presentation_logic.screens.splash
 
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

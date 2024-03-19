@@ -1,6 +1,5 @@
 package com.allocate.ontime.presentation_logic.screens.super_admin
 
-
 import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.foundation.BorderStroke
@@ -36,9 +35,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.allocate.ontime.R
-import com.allocate.ontime.business_logic.autoback_navigation_manager.AutoBackNavigationManager
 import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminViewModel
-import com.allocate.ontime.presentation_logic.navigation.OnTimeScreens
 import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 
@@ -50,18 +47,21 @@ fun SuperAdminScreen(
 ) {
 
     val hasNoUserInteractionSuperAdminScreen = superAdminViewModel.navigationFlow.collectAsState()
-    Log.d("AutoBackNavigationManager","SuperAdminScreen: ${hasNoUserInteractionSuperAdminScreen.value}")
-    if(hasNoUserInteractionSuperAdminScreen.value){
+    Log.d(
+        "AutoBackNavigationManager",
+        "SuperAdminScreen: ${hasNoUserInteractionSuperAdminScreen.value}"
+    )
+    if (hasNoUserInteractionSuperAdminScreen.value) {
         superAdminScreenRoot(SuperAdminScreenRoot.HomeScreen)
     }
 
-
     Surface(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
             .pointerInput(Unit) {
                 detectTapGestures(
                     onTap = {
-                        superAdminViewModel.startInteraction(AutoBackNavigationManager())
+                        superAdminViewModel.startInteraction()
                     }
                 )
 

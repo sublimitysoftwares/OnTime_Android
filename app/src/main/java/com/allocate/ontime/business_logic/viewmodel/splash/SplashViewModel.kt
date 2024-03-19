@@ -84,30 +84,30 @@ class SplashViewModel @Inject constructor(
                             if (result.data?.ResponseCode == 201) {
                                 _acknowledgementStatus.value = 1
                                 getDeviceInfoApiData.data?.responsePacket?.first()?.let { data ->
-                                        updateDeviceInfo(
-                                            deviceInformation = DeviceInformation(
-                                                id = data._id,
-                                                deviceId = data.DeviceId.toLong(),
-                                                trustOrganization = data.TrustOrganization,
-                                                uniqueIdentifier = data.Unique_Identifier,
-                                                location = data.Location,
-                                                serialNumber = data.SerialNumber,
-                                                latitude = data.Latitude.toDouble(),
-                                                longitude = data.Longitude.toDouble(),
-                                                postcode = data.Postcode,
-                                                status = data.Status,
-                                                asInstance = data.ASInstance,
-                                                asEmployeeOnlineURL = data.ASEmployeeOnlineURL,
-                                                asApiURL = data.ASApiURL,
-                                                appVersion = data.AppVersion,
-                                                locationCode = data.LocationCode,
-                                                acknowledgementStatus = acknowledgementStatus.value,
-                                                sites = data.Sites,
-                                                siteName = data.SiteName,
-                                                isRLD = data.IsRLD
-                                            )
+                                    updateDeviceInfo(
+                                        deviceInformation = DeviceInformation(
+                                            id = data._id,
+                                            deviceId = data.DeviceId.toLong(),
+                                            trustOrganization = data.TrustOrganization,
+                                            uniqueIdentifier = data.Unique_Identifier,
+                                            location = data.Location,
+                                            serialNumber = data.SerialNumber,
+                                            latitude = data.Latitude.toDouble(),
+                                            longitude = data.Longitude.toDouble(),
+                                            postcode = data.Postcode,
+                                            status = data.Status,
+                                            asInstance = data.ASInstance,
+                                            asEmployeeOnlineURL = data.ASEmployeeOnlineURL,
+                                            asApiURL = data.ASApiURL,
+                                            appVersion = data.AppVersion,
+                                            locationCode = data.LocationCode,
+                                            acknowledgementStatus = acknowledgementStatus.value,
+                                            sites = data.Sites,
+                                            siteName = data.SiteName,
+                                            isRLD = data.IsRLD
                                         )
-                                    }
+                                    )
+                                }
                             } else {
                                 result.e?.let {
                                     Log.d("EXC", "$it")

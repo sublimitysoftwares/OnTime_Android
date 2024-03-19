@@ -1,6 +1,5 @@
 package com.allocate.ontime.presentation_logic.widgets
 
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -25,7 +24,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.allocate.ontime.R
-
 
 @Composable
 fun InputField(

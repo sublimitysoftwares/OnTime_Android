@@ -43,15 +43,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.allocate.ontime.R
-import com.allocate.ontime.business_logic.autoback_navigation_manager.AutoBackNavigationManager
 import com.allocate.ontime.business_logic.data.DataOrException
 import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminSettingViewModel
 import com.allocate.ontime.presentation_logic.model.DeviceInfo
-import com.allocate.ontime.presentation_logic.navigation.OnTimeScreens
 import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.widgets.InputField
-
 
 @SuppressLint("SuspiciousIndentation")
 @Composable
@@ -59,8 +56,6 @@ fun SuperAdminSettingScreen(
     backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit,
     superAdminViewModel: SuperAdminSettingViewModel = hiltViewModel(),
 ) {
-
-
     val checkBoxState = remember {
         mutableStateOf(false)
     }
@@ -92,15 +87,11 @@ fun SuperAdminSettingScreen(
         mutableStateOf(false)
     }
 
-
-
     val deviceData = produceState<DataOrException<DeviceInfo, Exception>>(
         initialValue = DataOrException()
     ) {
         value = superAdminViewModel.getDeviceData()
     }.value
-
-    Log.d("deviceData", "SuperAdminSettingScreen: $deviceData")
 
     if (deviceData.data?.statusCode == 200) {
         deviceData.data!!.responsePacket.forEach {
@@ -114,21 +105,22 @@ fun SuperAdminSettingScreen(
             isRLD.value = it.IsRLD
         }
         latLngState.value = latitudeState.value + ',' + longitudeState.value
-
     }
 
-    val hasNoUserInteractionSuperAdminSettingScreen = superAdminViewModel.navigationFlow.collectAsState()
+    val hasNoUserInteractionSuperAdminSettingScreen =
+        superAdminViewModel.navigationFlow.collectAsState()
 
-    if(hasNoUserInteractionSuperAdminSettingScreen.value){
+    if (hasNoUserInteractionSuperAdminSettingScreen.value) {
         backToSuperAdminScreen(SuperAdminScreenRoot.SuperAdminScreen)
     }
 
     Surface(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
             .pointerInput(Unit) {
                 detectTapGestures(
                     onTap = {
-                        superAdminViewModel.startInteraction(AutoBackNavigationManager())
+                        superAdminViewModel.startInteraction()
                     }
                 )
 
@@ -293,7 +285,7 @@ private fun SuperAdminSettingInfo(
     uniqueIdentifierState: MutableState<String>,
     latLngState: MutableState<String>,
     siteNameState: MutableState<String>,
-    isRLD : MutableState<Boolean>
+    isRLD: MutableState<Boolean>
 ) {
     Surface(
         modifier = Modifier
@@ -399,18 +391,21 @@ private fun SuperAdminSettingInfo(
                 Text(
                     text = "Site Name",
                     color = Color.White,
-                    modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
-                        .alpha(if(isRLD.value) 0f else 1f)
+                    modifier = Modifier
+                        .padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
+                        .alpha(if (isRLD.value) 0f else 1f)
                 )
                 InputField(
                     valueState = siteNameState,
                     labelId = "",
                     enabled = false,
                     isSingleLine = true,
-                    modifier = Modifier.size(
-                        width = MaterialTheme.dimens.superAdminSettingScreenTextFieldsWidth,
-                        height = MaterialTheme.dimens.superAdminSettingScreenTextFieldsHeight
-                    ).alpha(if(isRLD.value) 0f else 1f),
+                    modifier = Modifier
+                        .size(
+                            width = MaterialTheme.dimens.superAdminSettingScreenTextFieldsWidth,
+                            height = MaterialTheme.dimens.superAdminSettingScreenTextFieldsHeight
+                        )
+                        .alpha(if (isRLD.value) 0f else 1f),
                     textStyle = MaterialTheme.typography.titleMedium
                 )
             }
