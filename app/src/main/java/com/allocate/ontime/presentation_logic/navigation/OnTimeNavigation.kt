@@ -5,6 +5,7 @@ import android.content.Context
 import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -21,7 +22,7 @@ import com.allocate.ontime.presentation_logic.screens.splash.SplashScreen
 
 @ExperimentalComposeUiApi
 @Composable
-fun OnTimeNavigation(context: Context, viewModel: SuperAdminSettingViewModel = hiltViewModel()) {
+fun OnTimeNavigation(context: Context = LocalContext.current, viewModel: SuperAdminSettingViewModel = hiltViewModel()) {
     val navController = rememberNavController()
     NavHost(
         navController = navController,

@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            OnTimeApp(applicationContext)
+            OnTimeApp()
         }
 
         mAdminComponentName = MyDeviceAdminReceiver.getComponentName(this)
@@ -177,7 +177,7 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun OnTimeApp(context: Context) {
+fun OnTimeApp() {
     CI_OnTimeTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
@@ -187,7 +187,7 @@ fun OnTimeApp(context: Context) {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                OnTimeNavigation(context)
+                OnTimeNavigation()
             }
         }
     }

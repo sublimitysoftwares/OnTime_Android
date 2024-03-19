@@ -3,8 +3,6 @@ package com.allocate.ontime.business_logic.viewmodel.splash
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Context.WIFI_SERVICE
-import android.net.wifi.WifiManager
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,10 +13,11 @@ import com.allocate.ontime.business_logic.data.shared_preferences.SecureSharedPr
 import com.allocate.ontime.business_logic.repository.DaoRepository
 import com.allocate.ontime.business_logic.repository.DeviceInfoRepository
 import com.allocate.ontime.business_logic.utils.Constants
-import com.allocate.ontime.business_logic.utils.DeviceUtils
+import com.allocate.ontime.business_logic.utils.DeviceUtility
 import com.allocate.ontime.presentation_logic.model.AppInfo
 import com.allocate.ontime.presentation_logic.model.DeviceInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -26,17 +25,16 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
-import java.util.Locale
 import javax.inject.Inject
-import javax.inject.Singleton
 
 
 @HiltViewModel
+@SuppressLint("StaticFieldLeak")
 class SplashViewModel @Inject constructor(
     private val repository: DeviceInfoRepository,
     private val daoRepository: DaoRepository,
-    private val deviceUtils: DeviceUtils,
-    context: Context,
+    private val deviceUtility: DeviceUtility,
+    @ApplicationContext private val context: Context,
 ) : ViewModel() {
 
     private val _acknowledgementStatus = MutableStateFlow(0)
@@ -80,14 +78,13 @@ class SplashViewModel @Inject constructor(
                     )
                 )
             }
-            observeAllDeviceInfo(this, deviceInfoApiData, context)
+            observeAllDeviceInfo(this, deviceInfoApiData)
         }
     }
 
     private suspend fun observeAllDeviceInfo(
         coroutineScope: CoroutineScope,
         getDeviceInfoApiData: DataOrException<DeviceInfo, Exception>,
-        context: Context
     ) {
         daoRepository.getAllDeviceInfo().distinctUntilChanged().collect() { listOfDeviceInfo ->
             if (listOfDeviceInfo.isEmpty()) {
@@ -99,7 +96,7 @@ class SplashViewModel @Inject constructor(
                             val result = repository.postDeviceInfo(
                                 appInfo = AppInfo(
                                     id = it.responsePacket.first()._id,
-                                    macAddress = deviceUtils.getMacAddress(context),
+                                    macAddress = deviceUtility.getMacAddress(context),
                                     app = "",
                                     appVersion = BuildConfig.VERSION_NAME
                                 )
@@ -145,13 +142,6 @@ class SplashViewModel @Inject constructor(
                 }
             }
         }
-    }
-
-    @SuppressLint("HardwareIds")
-    private fun getMacAddress(context: Context): String {
-        val manager = context.getSystemService(WIFI_SERVICE) as WifiManager
-        val info = manager.connectionInfo
-        return info.macAddress.uppercase(Locale.ROOT)
     }
 
     private suspend fun addDeviceInfo(deviceInformation: DeviceInformation) =

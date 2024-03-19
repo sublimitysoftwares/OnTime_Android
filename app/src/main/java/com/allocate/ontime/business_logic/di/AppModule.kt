@@ -1,6 +1,5 @@
 package com.allocate.ontime.business_logic.di
 
-import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import com.allocate.ontime.BuildConfig
@@ -14,7 +13,7 @@ import com.allocate.ontime.business_logic.network.SuperAdminApi
 import com.allocate.ontime.business_logic.repository.DaoRepository
 import com.allocate.ontime.business_logic.repository.DeviceInfoRepository
 import com.allocate.ontime.business_logic.utils.Constants
-import com.allocate.ontime.business_logic.utils.DeviceUtils
+import com.allocate.ontime.business_logic.utils.DeviceUtility
 import com.allocate.ontime.business_logic.viewmodel.MainViewModel
 import com.allocate.ontime.business_logic.viewmodel.splash.SplashViewModel
 import dagger.Module
@@ -30,39 +29,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-    // It provides the dependency of OnTimeRepository Class.
-    @Provides
-    fun provideDeviceInfoRepository(
-        deviceInfoApi: DeviceInfoApi,
-        superAdminApi: SuperAdminApi,
-        deviceUtils: DeviceUtils,
-    ): DeviceInfoRepository =
-        DeviceInfoRepository(deviceInfoApi, superAdminApi, deviceUtils)
 
-    @Provides
-    fun provideSlashViewModelContext(
-        deviceInfoRepository: DeviceInfoRepository,
-        daoRepository: DaoRepository,
-        deviceUtils: DeviceUtils,
-        @ApplicationContext context: Context,
-    ) =
-        SplashViewModel(deviceInfoRepository, daoRepository, deviceUtils, context)
-
-    @Provides
-    fun provideMainViewModelContext(
-        deviceInfoRepository: DeviceInfoRepository,
-        @ApplicationContext context: Context,
-    ) =
-        MainViewModel(deviceInfoRepository, context)
-
-    @Singleton
-    @Provides
-    fun provideDeviceUtils(
-        @ApplicationContext context: Context,
-    ) =
-        DeviceUtils(context)
-
-    // It provides the dependency of DaoRepository Class.
     @Provides
     fun provideDeviceInfoDaoRepository(database: OnTimeDatabase): DeviceInfoDao {
         return database.deviceInfoDao()
@@ -102,7 +69,7 @@ object AppModule {
     fun provideRetrofitClient2(@ApplicationContext context: Context): Retrofit {
         val asApiUrl = SecureSharedPrefs(context).getData(
             Constants.AS_API_URL,
-            "http://airstack.sublimitysoft.com/AirstackAPI/API/"
+            Constants.DEFAULT_AS_API_URL
         )
         return Retrofit.Builder()
             .baseUrl(asApiUrl)

@@ -6,7 +6,7 @@ import com.allocate.ontime.business_logic.data.DataOrException
 import com.allocate.ontime.presentation_logic.model.DeviceInfo
 import com.allocate.ontime.business_logic.network.DeviceInfoApi
 import com.allocate.ontime.business_logic.network.SuperAdminApi
-import com.allocate.ontime.business_logic.utils.DeviceUtils
+import com.allocate.ontime.business_logic.utils.DeviceUtility
 import com.allocate.ontime.encryption.EDModel
 import com.allocate.ontime.presentation_logic.model.AppInfo
 import com.allocate.ontime.presentation_logic.model.EditDeviceInfo
@@ -16,7 +16,7 @@ import javax.inject.Inject
 class DeviceInfoRepository @Inject constructor(
     private val deviceInfoApi: DeviceInfoApi,
     private val superAdminApi: SuperAdminApi,
-    private val deviceUtils: DeviceUtils,
+    private val deviceUtility: DeviceUtility,
 ) {
     companion object {
         const val TAG = "DeviceInfoRepository"
@@ -24,7 +24,7 @@ class DeviceInfoRepository @Inject constructor(
     suspend fun getDeviceInfo(context: Context): DataOrException<DeviceInfo, Exception> {
         val dataOrException = DataOrException<DeviceInfo, Exception>()
         try {
-           dataOrException.data = deviceInfoApi.getDeviceInfo(imei = deviceUtils.getIMEI(context))
+           dataOrException.data = deviceInfoApi.getDeviceInfo(imei = deviceUtility.getIMEI())
         } catch (exception: Exception) {
             dataOrException.e = exception
             Log.e(TAG, "getAllDeviceInfo: ${dataOrException.e}")

@@ -1,5 +1,6 @@
 package com.allocate.ontime.business_logic.viewmodel
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -10,13 +11,15 @@ import com.allocate.ontime.business_logic.utils.Constants
 import com.allocate.ontime.encryption.EDModel
 import com.allocate.ontime.presentation_logic.model.SuperAdminResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
+@SuppressLint("StaticFieldLeak")
 class MainViewModel @Inject constructor(
     private val repository: DeviceInfoRepository,
-    context: Context
+    @ApplicationContext private val context: Context
 ) : ViewModel() {
 
     companion object{

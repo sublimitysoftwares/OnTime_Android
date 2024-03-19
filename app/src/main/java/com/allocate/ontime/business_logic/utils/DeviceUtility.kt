@@ -6,17 +6,18 @@ import android.net.wifi.WifiInfo
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.telephony.TelephonyManager
+import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class DeviceUtils @Inject constructor(context: Context) {
+class DeviceUtility @Inject constructor(@ApplicationContext private val context: Context) {
 
     private lateinit var imei: String
 
     @SuppressLint("HardwareIds")
-    fun getIMEI(context: Context): String {
+    fun getIMEI(): String {
         val telephonyManager =
             context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
