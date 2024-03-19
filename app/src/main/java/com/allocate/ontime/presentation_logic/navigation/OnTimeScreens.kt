@@ -1,6 +1,7 @@
 package com.allocate.ontime.presentation_logic.navigation
 
 import com.allocate.ontime.business_logic.utils.Constants
+import com.allocate.ontime.business_logic.utils.ScreenRoutes
 
 sealed class OnTimeScreens(val name: String) {
     object SplashScreen : OnTimeScreens(Constants.SPLASH_SCREEN)
