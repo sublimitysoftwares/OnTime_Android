@@ -8,7 +8,5 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(autoBackNavigationManager: AutoBackNavigationManager) :
     ViewModel() {
-    init {
-        autoBackNavigationManager.navigationFlowInternal.value = false
-    }
+
 }

@@ -53,6 +53,7 @@ fun SuperAdminScreen(
     )
     if (hasNoUserInteractionSuperAdminScreen.value) {
         superAdminScreenRoot(SuperAdminScreenRoot.HomeScreen)
+        superAdminViewModel.resetAutoBack()
     }
 
     Surface(

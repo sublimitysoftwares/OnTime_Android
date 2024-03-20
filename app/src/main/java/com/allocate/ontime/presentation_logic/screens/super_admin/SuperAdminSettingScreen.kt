@@ -112,6 +112,7 @@ fun SuperAdminSettingScreen(
 
     if (hasNoUserInteractionSuperAdminSettingScreen.value) {
         backToSuperAdminScreen(SuperAdminScreenRoot.SuperAdminScreen)
+        superAdminViewModel.resetAutoBack()
     }
 
     Surface(

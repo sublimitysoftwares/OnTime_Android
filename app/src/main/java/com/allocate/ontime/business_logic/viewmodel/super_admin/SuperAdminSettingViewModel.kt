@@ -29,4 +29,8 @@ class SuperAdminSettingViewModel @Inject constructor(
     fun startInteraction() {
         autoBackNavigationManager.addOrUpdateScreens(OnTimeScreens.SuperAdminSettingScreen.name)
     }
+
+    fun resetAutoBack() {
+        autoBackNavigationManager.removeScreens(OnTimeScreens.SuperAdminSettingScreen.name)
+    }
 }

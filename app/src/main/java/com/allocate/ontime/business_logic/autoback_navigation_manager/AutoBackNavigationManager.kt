@@ -15,7 +15,7 @@ import javax.inject.Singleton
 class AutoBackNavigationManager @Inject constructor() {
 
     private val navigateScreens: HashMap<String, Long> = hashMapOf()
-    val navigationFlowInternal = MutableStateFlow(false)
+    private val navigationFlowInternal = MutableStateFlow(false)
     var navigationFlow = navigationFlowInternal.asStateFlow()
     private var timeoutJob: Job? = null
     private val TIMEOUT_DURATION_MS = 10000L
@@ -25,12 +25,9 @@ class AutoBackNavigationManager @Inject constructor() {
         startTimeout(screen)
     }
 
-    private fun removeScreens(screen: String) {
+    fun removeScreens(screen: String) {
         navigateScreens.remove(screen)
-        CoroutineScope(Dispatchers.Main).launch {
-            delay(10)
-            navigationFlowInternal.value = false
-        }
+        navigationFlowInternal.value = false
     }
 
     private fun startTimeout(screenName: String) {
@@ -49,17 +46,11 @@ class AutoBackNavigationManager @Inject constructor() {
             val screenLastTime = navigateScreens[screenName]
             screenLastTime?.let { screenLastTimes ->
                 if (currentTime - screenLastTimes >= TIMEOUT_DURATION_MS) {
-                    CoroutineScope(Dispatchers.Main).launch {
-                        navigationFlowInternal.value = true
-                    }
-                    removeScreens(screenName)
+                    navigationFlowInternal.value = true
                 }
             }
         } else {
-            CoroutineScope(Dispatchers.Main).launch {
-                navigationFlowInternal.value = false
-            }
-            stopTimeout()
+            navigationFlowInternal.value = false
         }
     }
 

@@ -20,4 +20,8 @@ class AdminViewModel @Inject constructor(
     fun startInteraction() {
         autoBackNavigationManager.addOrUpdateScreens(OnTimeScreens.AdminScreen.name)
     }
+
+    fun resetAutoBack() {
+        autoBackNavigationManager.removeScreens(OnTimeScreens.AdminScreen.name)
+    }
 }

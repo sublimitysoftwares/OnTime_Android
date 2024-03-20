@@ -18,4 +18,8 @@ class FobRegisterViewModel @Inject constructor(private val autoBackNavigationMan
     fun startInteraction() {
         autoBackNavigationManager.addOrUpdateScreens(OnTimeScreens.FobRegisterScreen.name)
     }
+
+    fun resetAutoBack() {
+        autoBackNavigationManager.removeScreens(OnTimeScreens.FobRegisterScreen.name)
+    }
 }

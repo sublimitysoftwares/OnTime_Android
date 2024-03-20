@@ -18,4 +18,8 @@ class SuperAdminViewModel @Inject constructor(private val autoBackNavigationMana
     fun startInteraction() {
         autoBackNavigationManager.addOrUpdateScreens(OnTimeScreens.SuperAdminScreen.name)
     }
+
+    fun resetAutoBack() {
+        autoBackNavigationManager.removeScreens(OnTimeScreens.SuperAdminScreen.name)
+    }
 }

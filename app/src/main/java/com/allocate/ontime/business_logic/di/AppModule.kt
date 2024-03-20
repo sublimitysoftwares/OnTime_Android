@@ -34,12 +34,6 @@ object AppModule {
         SplashViewModel(repository, daoRepository)
 
     @Provides
-    @Singleton
-    fun provideAutoBackNavigationManager(): AutoBackNavigationManager {
-        return AutoBackNavigationManager()
-    }
-
-    @Provides
     fun provideSuperAdminSettingViewModel(
         repository: OnTimeRepository,
         autoBackNavigationManager: AutoBackNavigationManager

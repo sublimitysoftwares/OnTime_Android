@@ -18,4 +18,8 @@ class AdminRegistrationViewModel @Inject constructor(private val autoBackNavigat
     fun startInteraction() {
         autoBackNavigationManager.addOrUpdateScreens(OnTimeScreens.AdminRegistrationScreen.name)
     }
+
+    fun resetAutoBack() {
+        autoBackNavigationManager.removeScreens(OnTimeScreens.AdminRegistrationScreen.name)
+    }
 }

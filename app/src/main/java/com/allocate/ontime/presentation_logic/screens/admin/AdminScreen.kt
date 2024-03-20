@@ -70,6 +70,7 @@ fun AdminScreen(
 
     if (hasNoUserInteractionAdminScreen.value) {
         backToHome(HomeScreenRoot.HomeScreen)
+        adminViewModel.resetAutoBack()
     }
 
     Surface(

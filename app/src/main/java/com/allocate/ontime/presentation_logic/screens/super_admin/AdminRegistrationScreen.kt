@@ -69,6 +69,7 @@ fun AdminRegistrationScreen(
 
     if (hasNoUserInteractionAdminRegistrationScreen.value) {
         backToSuperAdminScreen(SuperAdminScreenRoot.SuperAdminScreen)
+        adminRegistrationViewModel.resetAutoBack()
     }
 
     Surface(

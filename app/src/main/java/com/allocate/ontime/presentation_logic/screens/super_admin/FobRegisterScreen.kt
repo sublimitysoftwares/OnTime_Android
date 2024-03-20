@@ -76,6 +76,7 @@ fun FobRegisterScreen(
 
     if (hasNoUserInteractionFobRegistrationScreen.value) {
         backToSuperAdminScreen(SuperAdminScreenRoot.SuperAdminScreen)
+        fobRegisterViewModel.resetAutoBack()
     }
 
     Surface(
