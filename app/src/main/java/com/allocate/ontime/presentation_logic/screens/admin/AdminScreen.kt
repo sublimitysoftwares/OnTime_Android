@@ -70,9 +70,9 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(
-                        start = MaterialTheme.dimens.adminScreenTopRowStartPadding,
-                        end = MaterialTheme.dimens.adminScreenTopRowEndPadding,
-                        top = MaterialTheme.dimens.adminScreenTopRowTopPadding
+                        start = MaterialTheme.dimens.homeScrBtnCornerSz,
+                        end = MaterialTheme.dimens.adminScrTopRowStartPad,
+                        top = MaterialTheme.dimens.adminScrTopRowEndPad
                     ),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.Top
@@ -101,7 +101,7 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                         color = OnTimeColors.GREEN_HAZE,
                         fontWeight = FontWeight.Bold
                     )
-                    Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight5))
+                    Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerH5))
                     Text(
                         text = stringResource(id = R.string.Administrator_to_Log_In),
                         style = MaterialTheme.typography.headlineMedium,
@@ -125,9 +125,9 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                         painter = painterResource(id = R.drawable.fingerprint_rld),
                         contentDescription = stringResource(id = R.string.place_finger_logo),
                         colorFilter = ColorFilter.tint(color = Color.White),
-                        modifier = Modifier.size(MaterialTheme.dimens.medium3)
+                        modifier = Modifier.size(MaterialTheme.dimens.m3)
                     )
-                    Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
+                    Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerH2))
                     Text(
                         text = stringResource(id = R.string.Place_Finger),
                         style = MaterialTheme.typography.headlineSmall,
@@ -135,11 +135,11 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                     )
                 }
             }
-            Spacer(modifier = Modifier.fillMaxHeight(MaterialTheme.dimens.adminScreenSpacerFillMaxHeight))
+            Spacer(modifier = Modifier.fillMaxHeight(MaterialTheme.dimens.adminScrSpacerFillMaxH))
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(end = MaterialTheme.dimens.adminScreenBottomRowEndPadding),
+                    .padding(end = MaterialTheme.dimens.adminScrBottomRowStartPad),
                 horizontalArrangement = Arrangement.End
 
 
@@ -149,7 +149,7 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier
                         .fillMaxHeight()
-                        .padding(bottom = MaterialTheme.dimens.adminScreenBottomRowBottomPadding)
+                        .padding(bottom = MaterialTheme.dimens.adminScrBottomRowBottomPad)
                 ) {
 
 
@@ -157,11 +157,11 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                         onClick = {
                             isDialogVisible = true
                         },
-                        shape = RoundedCornerShape(MaterialTheme.dimens.adminScreenButtonsCornerShapeSize),
+                        shape = RoundedCornerShape(MaterialTheme.dimens.adminScrBtnCornerSz),
                         colors = ButtonDefaults.buttonColors(containerColor = OnTimeColors.GREEN_HAZE),
                         contentPadding = PaddingValues(
-                            horizontal = MaterialTheme.dimens.adminScreenContentPaddingHorizontal,
-                            vertical = MaterialTheme.dimens.adminScreenContentPaddingVertical
+                            horizontal = MaterialTheme.dimens.adminScrContentPadH,
+                            vertical = MaterialTheme.dimens.adminScrContentPadV
                         )
                     ) {
                         Text(
@@ -171,7 +171,7 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                         )
 
                     }
-                    Spacer(modifier = Modifier.height(MaterialTheme.dimens.small3))
+                    Spacer(modifier = Modifier.height(MaterialTheme.dimens.s3))
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.Center,
@@ -191,7 +191,7 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                                 fontWeight = FontWeight.Bold
                             )
                         }
-                        Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth15))
+                        Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerW15))
                         Button(
                             onClick = { /*TODO*/ },
                             shape = RectangleShape,
@@ -207,7 +207,7 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                         }
                     }
                 }
-                Spacer(modifier = Modifier.width(MaterialTheme.dimens.adminScreenSpacerWidth))
+                Spacer(modifier = Modifier.width(MaterialTheme.dimens.adminScrSpacerW))
                 Column(
                     verticalArrangement = Arrangement.SpaceBetween,
                     horizontalAlignment = Alignment.End,
@@ -221,20 +221,20 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                             contentDescription = stringResource(id = R.string.fob_icon),
                             contentScale = ContentScale.Fit,
                             colorFilter = ColorFilter.tint(color = Color.White),
-                            modifier = Modifier.size(MaterialTheme.dimens.medium3)
+                            modifier = Modifier.size(MaterialTheme.dimens.m3)
                         )
-                        Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
+                        Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerH2))
                         Text(
                             text = stringResource(id = R.string.FOB),
                             style = MaterialTheme.typography.headlineSmall,
                             color = OnTimeColors.White,
                         )
                     }
-                    Spacer(modifier = Modifier.weight(MaterialTheme.dimens.adminScreenSpacerWeight))
+                    Spacer(modifier = Modifier.weight(MaterialTheme.dimens.adminScrSpacerWeight))
                     Column(
                         verticalArrangement = Arrangement.Bottom,
                         horizontalAlignment = Alignment.End,
-                        modifier = Modifier.padding(bottom = MaterialTheme.dimens.adminScreenBottomRowBottomPadding)
+                        modifier = Modifier.padding(bottom = MaterialTheme.dimens.adminScrBottomRowBottomPad)
                     ) {
                         Text(
                             text = stringResource(id = R.string.app_info),

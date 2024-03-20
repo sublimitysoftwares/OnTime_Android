@@ -2,7 +2,6 @@ package com.allocate.ontime.presentation_logic.screens.super_admin
 
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,7 +9,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -20,25 +18,18 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Checkbox
-import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import com.allocate.ontime.R
 import com.allocate.ontime.business_logic.utils.OnTimeColors
 import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
@@ -95,8 +86,8 @@ fun VisitorRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> 
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(
-                        start = MaterialTheme.dimens.adminRegistrationScreenSurfaceRowStartPadding,
-                        end = MaterialTheme.dimens.adminRegistrationScreenSurfaceRowEndPadding
+                        start = MaterialTheme.dimens.adminRegScrSurfaceRowStartPad,
+                        end = MaterialTheme.dimens.adminRegScrSurfaceRowEndPad
                     ),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
@@ -110,10 +101,10 @@ fun VisitorRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> 
                     Surface(
                         modifier = Modifier
                             .size(
-                                width = MaterialTheme.dimens.surfaceWidth,
-                                height = MaterialTheme.dimens.visitorRegistrationScreenUserRegistrationSurfaceHeight
+                                width = MaterialTheme.dimens.surfW,
+                                height = MaterialTheme.dimens.visitorRegScrUserRegSurfaceH
                             )
-                            .padding(top = MaterialTheme.dimens.adminRegistrationScreenSurfaceTopPadding),
+                            .padding(top = MaterialTheme.dimens.adminRegScrSurfaceTopPad),
                         color = OnTimeColors.PORT_GORE
                     ) {
                         Column(
@@ -126,8 +117,8 @@ fun VisitorRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> 
                                 isSingleLine = true,
                                 modifier = Modifier
                                     .size(
-                                        width = MaterialTheme.dimens.userInputTextFieldWidth,
-                                        height = MaterialTheme.dimens.userInputTextFieldHeight
+                                        width = MaterialTheme.dimens.userInTxtFieldW,
+                                        height = MaterialTheme.dimens.userInTxtFieldH
                                     ),
                                 textStyle = MaterialTheme.typography.titleMedium
                             )
@@ -138,8 +129,8 @@ fun VisitorRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> 
                                     isSingleLine = true,
                                     modifier = Modifier
                                         .size(
-                                            width = MaterialTheme.dimens.visitorRegistrationScreenInputFieldWidth,
-                                            height = MaterialTheme.dimens.userInputTextFieldHeight
+                                            width = MaterialTheme.dimens.visitorRegScrInputFieldWidth,
+                                            height = MaterialTheme.dimens.userInTxtFieldH
                                         ),
                                     textStyle = MaterialTheme.typography.titleMedium
                                 )
@@ -149,8 +140,8 @@ fun VisitorRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> 
                                     isSingleLine = true,
                                     modifier = Modifier
                                         .size(
-                                            width = MaterialTheme.dimens.visitorRegistrationScreenInputFieldWidth,
-                                            height = MaterialTheme.dimens.userInputTextFieldHeight
+                                            width = MaterialTheme.dimens.visitorRegScrInputFieldWidth,
+                                            height = MaterialTheme.dimens.userInTxtFieldH
                                         ),
                                     textStyle = MaterialTheme.typography.titleMedium
                                 )
@@ -162,8 +153,8 @@ fun VisitorRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> 
                                     isSingleLine = true,
                                     modifier = Modifier
                                         .size(
-                                            width = MaterialTheme.dimens.visitorRegistrationScreenInputFieldWidth,
-                                            height = MaterialTheme.dimens.userInputTextFieldHeight
+                                            width = MaterialTheme.dimens.visitorRegScrInputFieldWidth,
+                                            height = MaterialTheme.dimens.userInTxtFieldH
                                         ),
                                     textStyle = MaterialTheme.typography.titleMedium
                                 )
@@ -173,8 +164,8 @@ fun VisitorRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> 
                                     isSingleLine = true,
                                     modifier = Modifier
                                         .size(
-                                            width = MaterialTheme.dimens.visitorRegistrationScreenInputFieldWidth,
-                                            height = MaterialTheme.dimens.userInputTextFieldHeight
+                                            width = MaterialTheme.dimens.visitorRegScrInputFieldWidth,
+                                            height = MaterialTheme.dimens.userInTxtFieldH
                                         ),
                                     textStyle = MaterialTheme.typography.titleMedium
                                 )
@@ -185,8 +176,8 @@ fun VisitorRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> 
                                 isSingleLine = true,
                                 modifier = Modifier
                                     .size(
-                                        width = MaterialTheme.dimens.userInputTextFieldWidth,
-                                        height = MaterialTheme.dimens.userInputTextFieldHeight
+                                        width = MaterialTheme.dimens.userInTxtFieldW,
+                                        height = MaterialTheme.dimens.userInTxtFieldH
                                     ),
                                 textStyle = MaterialTheme.typography.titleMedium
                             )
@@ -196,8 +187,8 @@ fun VisitorRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> 
                                 isSingleLine = true,
                                 modifier = Modifier
                                     .size(
-                                        width = MaterialTheme.dimens.userInputTextFieldWidth,
-                                        height = MaterialTheme.dimens.userInputTextFieldHeight
+                                        width = MaterialTheme.dimens.userInTxtFieldW,
+                                        height = MaterialTheme.dimens.userInTxtFieldH
                                     ),
                                 textStyle = MaterialTheme.typography.titleMedium
                             )
@@ -207,8 +198,8 @@ fun VisitorRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> 
                                 isSingleLine = false,
                                 modifier = Modifier
                                     .size(
-                                        width = MaterialTheme.dimens.userInputTextFieldWidth,
-                                        height = MaterialTheme.dimens.visitorRegistrationScreenReasonInputFieldWidth
+                                        width = MaterialTheme.dimens.userInTxtFieldW,
+                                        height = MaterialTheme.dimens.visitorRegScrReasonInputFieldWidth
                                     ),
                                 textStyle = MaterialTheme.typography.titleMedium
                             )
@@ -219,17 +210,17 @@ fun VisitorRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> 
                 Surface(
                     modifier = Modifier
                         .size(
-                            width = MaterialTheme.dimens.surfaceWidth,
-                            height = MaterialTheme.dimens.visitorRegistrationScreenRightSurfaceHeight
+                            width = MaterialTheme.dimens.surfW,
+                            height = MaterialTheme.dimens.visitorRegScrRightSurfaceH
                         )
-                        .padding(top = MaterialTheme.dimens.visitorRegistrationScreenRightSurfaceTopPadding),
+                        .padding(top = MaterialTheme.dimens.visitorRegScrRightSurfaceTopPad),
                     color = OnTimeColors.PORT_GORE
                 ) {
                     Column(
                         verticalArrangement = Arrangement.Center,
                     ) {
                         Row(
-                            modifier = Modifier.padding(start = MaterialTheme.dimens.adminRegistrationScreenFingerPrintRowStartPadding),
+                            modifier = Modifier.padding(start = MaterialTheme.dimens.adminRegScrFingerPrintRowStartPad),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             InputField(
@@ -238,8 +229,8 @@ fun VisitorRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> 
                                 isSingleLine = true,
                                 modifier = Modifier
                                     .size(
-                                        width = MaterialTheme.dimens.fingerprintInputTextFieldWidth,
-                                        height = MaterialTheme.dimens.fingerprintInputTextFieldHeight
+                                        width = MaterialTheme.dimens.fingerprintInTxtFieldW,
+                                        height = MaterialTheme.dimens.fingerprintInTxtFieldH
                                     ),
                                 isTrailingIcon = true,
                                 textStyle = MaterialTheme.typography.titleMedium
@@ -247,10 +238,10 @@ fun VisitorRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> 
                             Image(
                                 painter = painterResource(id = R.drawable.fingerprint),
                                 contentDescription = stringResource(id = R.string.fingerprint_img),
-                                modifier = Modifier.aspectRatio(MaterialTheme.dimens.adminRegistrationScreenFingerprintImgAspectRatio),
+                                modifier = Modifier.aspectRatio(MaterialTheme.dimens.adminRegScrFingerprintImgAspectRatio),
                             )
                         }
-                        Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight10))
+                        Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerH10))
                         Row(
                             horizontalArrangement = Arrangement.SpaceEvenly,
                             modifier = Modifier
@@ -259,12 +250,12 @@ fun VisitorRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> 
                             Image(
                                 painter = painterResource(id = R.drawable.login),
                                 contentDescription = stringResource(id = R.string.fingerprint_img),
-                                modifier = Modifier.size(MaterialTheme.dimens.visitorRegistrationScreenImgSize),
+                                modifier = Modifier.size(MaterialTheme.dimens.visitorRegScrImgSize),
                             )
                             Image(
                                 painter = painterResource(id = R.drawable.logout),
                                 contentDescription = stringResource(id = R.string.fingerprint_img),
-                                modifier = Modifier.size(MaterialTheme.dimens.visitorRegistrationScreenImgSize),
+                                modifier = Modifier.size(MaterialTheme.dimens.visitorRegScrImgSize),
                             )
                         }
                         Row(
@@ -284,16 +275,16 @@ fun VisitorRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> 
                             )
 
                         }
-                        Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerWidth20))
+                        Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerW20))
                         Button(
                             onClick = { /*TODO*/ },
-                            shape = RoundedCornerShape(MaterialTheme.dimens.adminRegistrationScreenButtonsCornerShapeSize),
+                            shape = RoundedCornerShape(MaterialTheme.dimens.adminRegScrBtnCornerSz),
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = OnTimeColors.GREEN_HAZE,
                                 contentColor = OnTimeColors.White
                             ),
                             modifier = Modifier.align(Alignment.CenterHorizontally),
-                            contentPadding = PaddingValues(MaterialTheme.dimens.visitorRegistrationScreenRegisterButtonContentPadding)
+                            contentPadding = PaddingValues(MaterialTheme.dimens.visitorRegScrRegisterBtnContentPad)
                         ) {
                             Text(text = stringResource(id = R.string.Register_and_make_event))
                         }
@@ -304,12 +295,12 @@ fun VisitorRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> 
             }
             Spacer(
                 modifier = Modifier
-                    .weight(MaterialTheme.dimens.visitorRegistrationScreenSpacerWeight)
+                    .weight(MaterialTheme.dimens.visitorRegScrSpacerWeight)
             )
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = MaterialTheme.dimens.adminScreenBottomRowBottomPadding),
+                    .padding(bottom = MaterialTheme.dimens.adminScrBottomRowBottomPad),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -317,7 +308,7 @@ fun VisitorRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> 
                     onClick = {
                         backToSuperAdminScreen(SuperAdminScreenRoot.SuperAdminScreen)
                     },
-                    shape = RoundedCornerShape(MaterialTheme.dimens.adminRegistrationScreenButtonsCornerShapeSize),
+                    shape = RoundedCornerShape(MaterialTheme.dimens.adminRegScrBtnCornerSz),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = OnTimeColors.GREEN_HAZE, contentColor = OnTimeColors.White
                     )
@@ -330,15 +321,15 @@ fun VisitorRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> 
                             painter = painterResource(id = R.drawable.circle_black),
                             contentDescription = stringResource(id = R.string.circle_black_img),
                             contentScale = ContentScale.Fit,
-                            modifier = Modifier.size(MaterialTheme.dimens.circleBlackImgSize)
+                            modifier = Modifier.size(MaterialTheme.dimens.circleBlkImgSz)
                         )
                         Text(text = stringResource(id = R.string.Click_here_to_go_back))
                     }
                 }
-                Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth20))
+                Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerW20))
                 Button(
                     onClick = { /*TODO*/ },
-                    shape = RoundedCornerShape(MaterialTheme.dimens.adminRegistrationScreenButtonsCornerShapeSize),
+                    shape = RoundedCornerShape(MaterialTheme.dimens.adminRegScrBtnCornerSz),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = OnTimeColors.GREEN_HAZE, contentColor = OnTimeColors.White
                     )
@@ -352,7 +343,7 @@ fun VisitorRegistrationScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> 
                             contentDescription = stringResource(id = R.string.circle_green_img),
                             contentScale = ContentScale.Fit,
                             colorFilter = ColorFilter.tint(OnTimeColors.MANTIS),
-                            modifier = Modifier.size(MaterialTheme.dimens.circleGreenImgSize)
+                            modifier = Modifier.size(MaterialTheme.dimens.circleGrnImgSz)
                         )
                         Text(text = stringResource(id = R.string.View_Employee_Online))
                     }
