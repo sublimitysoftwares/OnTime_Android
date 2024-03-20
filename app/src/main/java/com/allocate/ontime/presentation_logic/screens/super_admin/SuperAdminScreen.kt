@@ -79,12 +79,12 @@ fun SuperAdminScreen(
             Text(
                 text = stringResource(id = R.string.SUPER_ADMIN_PAGE),
                 style = MaterialTheme.typography.headlineMedium,
-                color = Color(0xFF85D32C),
+                color = OnTimeColors.GREEN_HAZE,
                 fontWeight = FontWeight.Bold
             )
             Button(
                 onClick = { },
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF85D32C)),
+                colors = ButtonDefaults.buttonColors(containerColor = OnTimeColors.GREEN_HAZE),
                 modifier = Modifier
                     .align(alignment = Alignment.End)
                     .size(
@@ -96,7 +96,7 @@ fun SuperAdminScreen(
             ) {
                 Text(text = stringResource(id = R.string.switch_to_mobile_mode))
             }
-            Spacer(modifier = Modifier.weight(3f))
+            Spacer(modifier = Modifier.weight(MaterialTheme.dimens.superAdminScreenSpacerWeightFraction))
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -120,9 +120,9 @@ fun SuperAdminScreen(
                     Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
                     Text(
                         text = stringResource(id = R.string.New_or_Edit_User_Registration),
-                        color = Color.White
+                        color = OnTimeColors.White
                     )
-                    Text(text = stringResource(id = R.string.Registration), color = Color.White)
+                    Text(text = stringResource(id = R.string.Registration), color = OnTimeColors.White)
                 }
                 Column(
                     verticalArrangement = Arrangement.Center,
@@ -136,7 +136,10 @@ fun SuperAdminScreen(
                         contentDescription = stringResource(id = R.string.fob_register_img)
                     )
                     Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
-                    Text(text = stringResource(id = R.string.FOB_Register), color = Color.White)
+                    Text(
+                        text = stringResource(id = R.string.FOB_Register),
+                        color = OnTimeColors.White
+                    )
                 }
                 Column(
                     verticalArrangement = Arrangement.Center,
@@ -150,7 +153,10 @@ fun SuperAdminScreen(
                         contentDescription = stringResource(id = R.string.device_setting_img)
                     )
                     Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
-                    Text(text = stringResource(id = R.string.Device_Setting), color = Color.White)
+                    Text(
+                        text = stringResource(id = R.string.Device_Setting),
+                        color = OnTimeColors.White
+                    )
 
                 }
                 Column(
@@ -162,7 +168,7 @@ fun SuperAdminScreen(
                         contentDescription = stringResource(id = R.string.deregister_admin_img)
                     )
                     Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
-                    Text(text = "Deregister Admins", color = Color.White)
+                    Text(text = "Deregister Admins", color = OnTimeColors.White)
                 }
                 Column(
                     verticalArrangement = Arrangement.Center,
@@ -173,7 +179,10 @@ fun SuperAdminScreen(
                         contentDescription = stringResource(id = R.string.choose_logo_img)
                     )
                     Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
-                    Text(text = stringResource(id = R.string.Choose_Logo), color = Color.White)
+                    Text(
+                        text = stringResource(id = R.string.Choose_Logo),
+                        color = OnTimeColors.White
+                    )
                 }
                 Column(
                     verticalArrangement = Arrangement.Center,
@@ -184,7 +193,7 @@ fun SuperAdminScreen(
                         contentDescription = stringResource(id = R.string.export_db_img)
                     )
                     Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
-                    Text(text = stringResource(id = R.string.Export_DB), color = Color.White)
+                    Text(text = stringResource(id = R.string.Export_DB), color = OnTimeColors.White)
                 }
             }
             Spacer(modifier = Modifier.weight(1f))
@@ -195,7 +204,7 @@ fun SuperAdminScreen(
             ) {
                 Text(
                     text = stringResource(id = R.string.Fingerprint_Match_Rate),
-                    color = Color.White
+                    color = OnTimeColors.White
                 )
                 Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth20))
                 Button(
@@ -205,22 +214,22 @@ fun SuperAdminScreen(
                         width = MaterialTheme.dimens.fingerprintMatchRateButtonWidth,
                         height = MaterialTheme.dimens.fingerprintMatchRateButtonHeight
                     ),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD6B6C1)),
+                    colors = ButtonDefaults.buttonColors(containerColor = OnTimeColors.LightPink),
                     border = BorderStroke(
                         width = MaterialTheme.dimens.superAdminScreenButtonsBorderWidth,
-                        color = Color.White
+                        color = OnTimeColors.White
                     )
                 ) {
                     Text(
                         text = stringResource(id = R.string.Fingerprint_Match_Rate),
-                        color = Color.DarkGray
+                        color = OnTimeColors.DarkGray
                     )
                 }
                 Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth20))
                 Button(
                     onClick = { /*TODO*/ },
                     shape = RoundedCornerShape(MaterialTheme.dimens.superAdminScreenButtonsCornerShapeSize),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF85D32C)),
+                    colors = ButtonDefaults.buttonColors(containerColor = OnTimeColors.GREEN_HAZE),
                     modifier = Modifier.size(
                         width = MaterialTheme.dimens.superAdminScreenSubmitButtonWidth,
                         height = MaterialTheme.dimens.superAdminScreenSubmitButtonHeight
@@ -243,11 +252,7 @@ fun SuperAdminScreen(
                     },
                     shape = RoundedCornerShape(MaterialTheme.dimens.superAdminScreenButtonsCornerShapeSize),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.LightGray, contentColor = Color.Black
-                    ),
-                    border = BorderStroke(
-                        width = MaterialTheme.dimens.superAdminScreenButtonsBorderWidth,
-                        color = Color.White
+                        containerColor = OnTimeColors.GREEN_HAZE, contentColor = OnTimeColors.White
                     )
                 ) {
                     Row(
@@ -260,7 +265,9 @@ fun SuperAdminScreen(
                             contentScale = ContentScale.Fit,
                             modifier = Modifier.size(MaterialTheme.dimens.circleBlackImgSize)
                         )
-                        Text(text = stringResource(id = R.string.Log_out_and_return_to_home_page))
+                        Text(
+                            text = stringResource(id = R.string.Log_out_and_return_to_home_page),
+                        )
                     }
                 }
                 Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth20))
@@ -268,11 +275,7 @@ fun SuperAdminScreen(
                     onClick = {},
                     shape = RoundedCornerShape(MaterialTheme.dimens.superAdminScreenButtonsCornerShapeSize),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.LightGray, contentColor = Color(0xFF5B6F46)
-                    ),
-                    border = BorderStroke(
-                        width = MaterialTheme.dimens.superAdminScreenButtonsBorderWidth,
-                        color = Color.White
+                        containerColor = OnTimeColors.GREEN_HAZE, contentColor = OnTimeColors.White
                     )
                 ) {
                     Row(
@@ -283,9 +286,12 @@ fun SuperAdminScreen(
                             painter = painterResource(id = R.drawable.circle_green),
                             contentDescription = stringResource(id = R.string.circle_green_img),
                             contentScale = ContentScale.Fit,
+                            colorFilter = ColorFilter.tint(color = OnTimeColors.MANTIS),
                             modifier = Modifier.size(MaterialTheme.dimens.circleGreenImgSize)
                         )
-                        Text(text = stringResource(id = R.string.View_Employee_Online))
+                        Text(
+                            text = stringResource(id = R.string.View_Employee_Online),
+                        )
                     }
                 }
             }

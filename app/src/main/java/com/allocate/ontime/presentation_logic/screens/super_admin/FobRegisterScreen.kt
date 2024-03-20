@@ -103,7 +103,7 @@ fun FobRegisterScreen(
             Text(
                 text = stringResource(id = R.string.FOB_REGISTER),
                 style = MaterialTheme.typography.headlineMedium,
-                color = Color(0xFF85D32C),
+                color = OnTimeColors.GREEN_HAZE,
                 fontWeight = FontWeight.Bold
             )
             Spacer(modifier = Modifier.weight(0.2f))
@@ -114,7 +114,6 @@ fun FobRegisterScreen(
                 InputField(
                     valueState = searchEmployeeState,
                     labelId = stringResource(id = R.string.Search_Employee),
-                    enabled = true,
                     isSingleLine = true,
                     modifier = Modifier
                         .size(
@@ -157,16 +156,16 @@ fun FobRegisterScreen(
                             ),
                             textStyle = MaterialTheme.typography.titleSmall,
                             colors = run {
-                                val containerColor = Color(0xFFD6B6C1)
+                                val containerColor = OnTimeColors.LightPink
                                 TextFieldDefaults.colors(
-                                    unfocusedTextColor = Color.LightGray,
+                                    unfocusedTextColor = OnTimeColors.LightGray,
                                     focusedContainerColor = containerColor,
                                     unfocusedContainerColor = containerColor,
                                     disabledContainerColor = containerColor,
-                                    cursorColor = Color.Cyan,
-                                    focusedIndicatorColor = Color.White,
-                                    focusedLabelColor = Color.White,
-                                    focusedSupportingTextColor = Color.White,
+                                    cursorColor = OnTimeColors.Cyan,
+                                    focusedIndicatorColor = OnTimeColors.White,
+                                    focusedLabelColor = OnTimeColors.White,
+                                    focusedSupportingTextColor = OnTimeColors.White,
                                 )
                             },
                             placeholder = {
@@ -187,7 +186,7 @@ fun FobRegisterScreen(
                 ) {
                     Text(
                         text = stringResource(id = R.string.All_Locations),
-                        color = Color.White,
+                        color = OnTimeColors.White,
                         style = MaterialTheme.typography.titleSmall
                     )
                     Switch(
@@ -196,10 +195,10 @@ fun FobRegisterScreen(
                             isSwitchOn.value = it
                         },
                         colors = SwitchDefaults.colors(
-                            uncheckedThumbColor = Color.White,
-                            uncheckedTrackColor = Color.LightGray,
-                            checkedThumbColor = Color.Cyan,
-                            checkedTrackColor = Color.White
+                            uncheckedThumbColor = OnTimeColors.White,
+                            uncheckedTrackColor = OnTimeColors.LightGray,
+                            checkedThumbColor = OnTimeColors.Cyan,
+                            checkedTrackColor = OnTimeColors.White
                         )
                     )
                 }
@@ -211,11 +210,7 @@ fun FobRegisterScreen(
                 },
                 shape = RoundedCornerShape(MaterialTheme.dimens.fobRegisterScreenButtonsCornerShapeSize),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.LightGray, contentColor = Color.Black
-                ),
-                border = BorderStroke(
-                    width = MaterialTheme.dimens.fobRegisterScreenButtonsBorderWidth,
-                    color = Color.White
+                    containerColor = OnTimeColors.GREEN_HAZE, contentColor = OnTimeColors.White
                 )
             ) {
                 Row(

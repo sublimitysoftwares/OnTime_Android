@@ -71,6 +71,7 @@
     <string name="Log_out_and_return_to_home_page">Log out and return to home page</string>
     <string name="Fingerprint_Match_Rate">Fingerprint Match Rate</string>
     <string name="SUBMIT">SUBMIT</string>
+    <string name="Site_Name">Site Name</string>
 
     // SuperAdmin Setting Screen
     <string name="Super_Admin_Setting">Super Admin Setting</string>

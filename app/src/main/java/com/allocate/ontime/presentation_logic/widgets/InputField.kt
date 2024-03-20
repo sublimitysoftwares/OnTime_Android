@@ -1,6 +1,7 @@
 package com.allocate.ontime.presentation_logic.widgets
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -24,6 +25,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.allocate.ontime.R
+import com.allocate.ontime.business_logic.utils.OnTimeColors
+import com.allocate.ontime.presentation_logic.theme.dimens
 
 @Composable
 fun InputField(
@@ -31,7 +34,7 @@ fun InputField(
     isTrailingIcon: Boolean = false,
     valueState: MutableState<String>,
     labelId: String,
-    enabled: Boolean,
+    enabled: Boolean = true,
     isSingleLine: Boolean,
     keyboardType: KeyboardType = KeyboardType.Text,
     imeAction: ImeAction = ImeAction.Next,

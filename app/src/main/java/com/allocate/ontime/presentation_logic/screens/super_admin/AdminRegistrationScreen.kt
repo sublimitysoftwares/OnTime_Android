@@ -24,6 +24,7 @@ import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
@@ -95,13 +96,12 @@ fun AdminRegistrationScreen(
             Text(
                 text = stringResource(id = R.string.ADMIN_PAGE),
                 style = MaterialTheme.typography.headlineMedium,
-                color = Color(0xFF85D32C),
+                color = OnTimeColors.GREEN_HAZE,
                 fontWeight = FontWeight.Bold
             )
             InputField(
                 valueState = searchState,
                 labelId = stringResource(id = R.string.Search_Employee),
-                enabled = true,
                 isSingleLine = true,
                 modifier = Modifier
                     .size(
@@ -110,7 +110,7 @@ fun AdminRegistrationScreen(
                     )
                     .align(alignment = Alignment.End)
                     .padding(end = MaterialTheme.dimens.adminRegistrationScreenSearchTextFieldEndPadding),
-                textStyle = MaterialTheme.typography.titleMedium
+                textStyle = MaterialTheme.typography.titleMedium,
             )
             Spacer(
                 modifier = Modifier
@@ -131,7 +131,7 @@ fun AdminRegistrationScreen(
                 ) {
                     Text(
                         text = stringResource(id = R.string.New_or_Edit_User_Registration),
-                        color = Color.White
+                        color = OnTimeColors.White
                     )
                     Surface(
                         modifier = Modifier
@@ -140,7 +140,7 @@ fun AdminRegistrationScreen(
                                 height = MaterialTheme.dimens.surfaceHeight
                             )
                             .padding(top = MaterialTheme.dimens.adminRegistrationScreenSurfaceTopPadding),
-                        color = Color(0xFF5A5656)
+                        color = OnTimeColors.PORT_GORE
                     ) {
                         Column(
                             verticalArrangement = Arrangement.Center,
@@ -149,7 +149,6 @@ fun AdminRegistrationScreen(
                             InputField(
                                 valueState = searchState,
                                 labelId = stringResource(id = R.string.First_Name),
-                                enabled = true,
                                 isSingleLine = true,
                                 modifier = Modifier
                                     .size(
@@ -161,7 +160,6 @@ fun AdminRegistrationScreen(
                             InputField(
                                 valueState = searchState,
                                 labelId = stringResource(id = R.string.Last_Name),
-                                enabled = true,
                                 isSingleLine = true,
                                 modifier = Modifier
                                     .size(
@@ -173,7 +171,6 @@ fun AdminRegistrationScreen(
                             InputField(
                                 valueState = searchState,
                                 labelId = stringResource(id = R.string.Employee_Number),
-                                enabled = true,
                                 isSingleLine = true,
                                 modifier = Modifier
                                     .size(
@@ -190,7 +187,7 @@ fun AdminRegistrationScreen(
                 ) {
                     Text(
                         text = stringResource(id = R.string.Fingerprint_Registration),
-                        color = Color.White
+                        color = OnTimeColors.White
                     )
                     Surface(
                         modifier = Modifier
@@ -199,7 +196,7 @@ fun AdminRegistrationScreen(
                                 height = MaterialTheme.dimens.surfaceHeight
                             )
                             .padding(top = MaterialTheme.dimens.adminRegistrationScreenSurfaceTopPadding),
-                        color = Color(0xFF5A5656)
+                        color = OnTimeColors.PORT_GORE
                     ) {
                         Column(
                             verticalArrangement = Arrangement.Center,
@@ -212,7 +209,6 @@ fun AdminRegistrationScreen(
                                 InputField(
                                     valueState = searchState,
                                     labelId = stringResource(id = R.string.Fingerprint_One),
-                                    enabled = true,
                                     isSingleLine = true,
                                     modifier = Modifier
                                         .size(
@@ -235,7 +231,6 @@ fun AdminRegistrationScreen(
                                 InputField(
                                     valueState = searchState,
                                     labelId = stringResource(id = R.string.Fingerprint_Two),
-                                    enabled = true,
                                     isSingleLine = true,
                                     modifier = Modifier
                                         .size(
@@ -259,12 +254,12 @@ fun AdminRegistrationScreen(
                                 Checkbox(
                                     checked = false,
                                     onCheckedChange = { checkBoxState.value },
-                                    colors = CheckboxDefaults.colors(uncheckedColor = Color.White)
+                                    colors = CheckboxDefaults.colors(uncheckedColor = OnTimeColors.White)
                                 )
                                 Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth5))
                                 Text(
                                     text = stringResource(id = R.string.Skip_Fingerprint),
-                                    color = Color.White
+                                    color = OnTimeColors.White
                                 )
                             }
                         }
@@ -289,7 +284,7 @@ fun AdminRegistrationScreen(
                 Button(
                     onClick = { /*TODO*/ },
                     shape = RoundedCornerShape(MaterialTheme.dimens.adminRegistrationScreenButtonsCornerShapeSize),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF85D32C)),
+                    colors = ButtonDefaults.buttonColors(containerColor = OnTimeColors.GREEN_HAZE),
                     modifier = Modifier.size(
                         width = MaterialTheme.dimens.nextBtnWidth,
                         height = MaterialTheme.dimens.nextBtnHeight
@@ -301,7 +296,7 @@ fun AdminRegistrationScreen(
             Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight10))
             Text(
                 text = stringResource(id = R.string.Please_scan_QR_Code_for_instructional_video_on_Finger_Scan_registrations),
-                color = Color.White,
+                color = OnTimeColors.White,
                 textAlign = TextAlign.Start,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -326,11 +321,7 @@ fun AdminRegistrationScreen(
                     },
                     shape = RoundedCornerShape(MaterialTheme.dimens.adminRegistrationScreenButtonsCornerShapeSize),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.LightGray, contentColor = Color.Black
-                    ),
-                    border = BorderStroke(
-                        width = MaterialTheme.dimens.adminRegistrationScreenButtonsBorderWidth,
-                        color = Color.White
+                        containerColor = OnTimeColors.GREEN_HAZE, contentColor = OnTimeColors.White
                     )
                 ) {
                     Row(
@@ -351,11 +342,7 @@ fun AdminRegistrationScreen(
                     onClick = { /*TODO*/ },
                     shape = RoundedCornerShape(MaterialTheme.dimens.adminRegistrationScreenButtonsCornerShapeSize),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.LightGray, contentColor = Color(0xFF5B6F46)
-                    ),
-                    border = BorderStroke(
-                        width = MaterialTheme.dimens.adminRegistrationScreenButtonsBorderWidth,
-                        color = Color.White
+                        containerColor = OnTimeColors.GREEN_HAZE, contentColor = OnTimeColors.White
                     )
                 ) {
                     Row(
@@ -366,6 +353,7 @@ fun AdminRegistrationScreen(
                             painter = painterResource(id = R.drawable.circle_green),
                             contentDescription = stringResource(id = R.string.circle_green_img),
                             contentScale = ContentScale.Fit,
+                            colorFilter = ColorFilter.tint(OnTimeColors.MANTIS),
                             modifier = Modifier.size(MaterialTheme.dimens.circleGreenImgSize)
                         )
                         Text(text = stringResource(id = R.string.View_Employee_Online))

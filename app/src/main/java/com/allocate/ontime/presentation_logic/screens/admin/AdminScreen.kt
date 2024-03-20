@@ -123,7 +123,7 @@ fun AdminScreen(
                     Text(
                         text = stringResource(id = R.string.WELCOME_TO_ADMIN_PAGE),
                         style = MaterialTheme.typography.headlineLarge,
-                        color = Color(0xFF008B8B),
+                        color = OnTimeColors.GREEN_HAZE,
                         fontWeight = FontWeight.Bold
                     )
                     Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight5))
@@ -158,8 +158,7 @@ fun AdminScreen(
                     )
                 }
             }
-            Spacer(modifier = Modifier.fillMaxHeight(0.45f))
-
+            Spacer(modifier = Modifier.fillMaxHeight(MaterialTheme.dimens.adminScreenSpacerMaxHeightFraction))
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -190,7 +189,7 @@ fun AdminScreen(
                             isDialogVisible = true
                         },
                         shape = RoundedCornerShape(MaterialTheme.dimens.adminScreenButtonsCornerShapeSize),
-                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5F3341)),
+                        colors = ButtonDefaults.buttonColors(containerColor = OnTimeColors.GREEN_HAZE),
                     ) {
                         Text(
                             text = stringResource(id = R.string.ENTER_PIN),
@@ -210,7 +209,7 @@ fun AdminScreen(
                             },
                             shape = RoundedCornerShape(MaterialTheme.dimens.adminScreenButtonsCornerShapeSize),
                             colors = ButtonDefaults.buttonColors(
-                                containerColor = Color(0xFF008B8B)
+                                containerColor = OnTimeColors.PORT_GORE
                             )
                         ) {
                             Text(
@@ -226,7 +225,7 @@ fun AdminScreen(
                             },
                             shape = RoundedCornerShape(MaterialTheme.dimens.adminScreenButtonsCornerShapeSize),
                             colors = ButtonDefaults.buttonColors(
-                                containerColor = Color(0xFF008B8B)
+                                containerColor = OnTimeColors.PORT_GORE
                             )
                         ) {
                             Text(
@@ -256,7 +255,7 @@ fun AdminScreen(
                         Text(
                             text = stringResource(id = R.string.FOB),
                             style = MaterialTheme.typography.headlineSmall,
-                            color = Color.White,
+                            color = OnTimeColors.White,
                         )
                     }
                     Spacer(modifier = Modifier.weight(1f))
@@ -267,12 +266,12 @@ fun AdminScreen(
                     ) {
                         Text(
                             text = stringResource(id = R.string.app_info),
-                            color = Color.White,
+                            color = OnTimeColors.White,
                             style = MaterialTheme.typography.labelSmall
                         )
                         Text(
                             text = stringResource(id = R.string.Unique_Identifier),
-                            color = Color.White,
+                            color = OnTimeColors.White,
                             style = MaterialTheme.typography.labelSmall
                         )
                     }

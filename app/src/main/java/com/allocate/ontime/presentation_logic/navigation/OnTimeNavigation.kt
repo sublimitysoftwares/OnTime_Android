@@ -27,6 +27,7 @@ import com.allocate.ontime.presentation_logic.screens.splash.SplashScreen
 @Composable
 fun OnTimeNavigation() {
     val navController = rememberNavController()
+    val tag = "Navigation"
     NavHost(
         navController = navController,
         startDestination = OnTimeScreens.SplashScreen.name
@@ -73,7 +74,7 @@ fun OnTimeNavigation() {
                 when (it) {
                     HomeScreenRoot.HomeScreen -> navController.navigate(OnTimeScreens.HomeScreen.name)
                     else -> {
-                        Log.i("Navigation", "Navigation gets wrong.")
+                        Log.i(tag, LogMsg.NAVIGATION_GETS_WRONG)
                     }
                 }
             })
@@ -83,7 +84,7 @@ fun OnTimeNavigation() {
                 when (it) {
                     SuperAdminScreenRoot.SuperAdminScreen -> navController.navigate(OnTimeScreens.SuperAdminScreen.name)
                     else -> {
-                        Log.i("Navigation", "Navigation gets wrong.")
+                        Log.i(tag, LogMsg.NAVIGATION_GETS_WRONG)
                     }
                 }
             })
@@ -93,7 +94,7 @@ fun OnTimeNavigation() {
                 when (it) {
                     SuperAdminScreenRoot.SuperAdminScreen -> navController.navigate(OnTimeScreens.SuperAdminScreen.name)
                     else -> {
-                        Log.i("Navigation", "Navigation gets wrong.")
+                        Log.i(tag, LogMsg.NAVIGATION_GETS_WRONG)
                     }
                 }
             })
@@ -103,7 +104,7 @@ fun OnTimeNavigation() {
                 when (it) {
                     SuperAdminScreenRoot.SuperAdminScreen -> navController.navigate(OnTimeScreens.SuperAdminScreen.name)
                     else -> {
-                        Log.i("Navigation", "Navigation gets wrong.")
+                        Log.i(tag, LogMsg.NAVIGATION_GETS_WRONG)
                     }
                 }
             })
@@ -113,7 +114,7 @@ fun OnTimeNavigation() {
                 when (it) {
                     HomeScreenRoot.HomeScreen -> navController.navigate(OnTimeScreens.HomeScreen.name)
                     else -> {
-                        Log.i("Navigation", "Navigation gets wrong.")
+                        Log.i(tag, LogMsg.NAVIGATION_GETS_WRONG)
                     }
                 }
             })
