@@ -2,10 +2,6 @@ package com.allocate.ontime.presentation_logic.screens.super_admin
 
 import android.annotation.SuppressLint
 import android.util.Log
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -41,7 +37,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.allocate.ontime.R
 import com.allocate.ontime.business_logic.data.DataOrException
@@ -91,7 +86,6 @@ fun SuperAdminSettingScreen(
     }
 
 
-
     val deviceData = produceState<DataOrException<DeviceInfo, Exception>>(
         initialValue = DataOrException()
     ) {
@@ -116,8 +110,7 @@ fun SuperAdminSettingScreen(
     }
 
     Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = OnTimeColors.TORY_BLUE
+        modifier = Modifier.fillMaxSize(), color = OnTimeColors.TORY_BLUE
     ) {
         Column(
             verticalArrangement = Arrangement.Center,
@@ -140,7 +133,7 @@ fun SuperAdminSettingScreen(
             )
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(20.dp)
+                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.superAdminSettingScrRowHArrangementSpacedBy)
             ) {
                 Text(
                     text = stringResource(id = R.string.Clock_In_or_Out),
@@ -177,7 +170,7 @@ fun SuperAdminSettingScreen(
             }
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(20.dp)
+                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.superAdminSettingScrRowHArrangementSpacedBy)
             ) {
                 Text(
                     text = stringResource(id = R.string.Enable_Pin),
@@ -200,16 +193,16 @@ fun SuperAdminSettingScreen(
             }
             Button(
                 onClick = { /*TODO*/ },
-                shape = RoundedCornerShape(MaterialTheme.dimens.superAdminSettingScreenButtonsCornerShapeSize),
+                shape = RoundedCornerShape(MaterialTheme.dimens.superAdminSettingScrBtnCornerSz),
                 colors = ButtonDefaults.buttonColors(containerColor = OnTimeColors.GREEN_HAZE),
             ) {
                 Text(text = stringResource(id = R.string.CHECK_FOR_UPDATE))
             }
-            Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight10))
+            Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerH10))
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = MaterialTheme.dimens.superAdminSettingScreenBottomRowBottomPadding),
+                    .padding(bottom = MaterialTheme.dimens.superAdminSettingScrBottomRowBottomPad),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -217,34 +210,34 @@ fun SuperAdminSettingScreen(
                     onClick = {
                         backToSuperAdminScreen(SuperAdminScreenRoot.SuperAdminScreen)
                     },
-                    shape = RoundedCornerShape(MaterialTheme.dimens.superAdminSettingScreenButtonsCornerShapeSize),
+                    shape = RoundedCornerShape(MaterialTheme.dimens.superAdminSettingScrBtnCornerSz),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = OnTimeColors.GREEN_HAZE, contentColor = OnTimeColors.White
                     )
                 ) {
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(5.dp),
+                        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.btnRowHArrangementSpacedBy),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.circle_black),
                             contentDescription = stringResource(id = R.string.circle_black_img),
                             contentScale = ContentScale.Fit,
-                            modifier = Modifier.size(MaterialTheme.dimens.circleBlackImgSize)
+                            modifier = Modifier.size(MaterialTheme.dimens.circleBlkImgSz)
                         )
                         Text(text = stringResource(id = R.string.Click_here_to_go_back))
                     }
                 }
-                Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth20))
+                Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerW20))
                 Button(
                     onClick = { /*TODO*/ },
-                    shape = RoundedCornerShape(MaterialTheme.dimens.superAdminSettingScreenButtonsCornerShapeSize),
+                    shape = RoundedCornerShape(MaterialTheme.dimens.superAdminSettingScrBtnCornerSz),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = OnTimeColors.GREEN_HAZE, contentColor = OnTimeColors.White
                     )
                 ) {
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(5.dp),
+                        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.btnRowHArrangementSpacedBy),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Image(
@@ -252,7 +245,7 @@ fun SuperAdminSettingScreen(
                             contentDescription = stringResource(id = R.string.circle_green_img),
                             contentScale = ContentScale.Fit,
                             colorFilter = ColorFilter.tint(color = OnTimeColors.MANTIS),
-                            modifier = Modifier.size(MaterialTheme.dimens.circleGreenImgSize)
+                            modifier = Modifier.size(MaterialTheme.dimens.circleGrnImgSz)
                         )
                         Text(text = stringResource(id = R.string.View_Employee_Online))
                     }
@@ -270,15 +263,15 @@ private fun SuperAdminSettingInfo(
     uniqueIdentifierState: MutableState<String>,
     latLngState: MutableState<String>,
     siteNameState: MutableState<String>,
-    isRLD : MutableState<Boolean>
+    isRLD: MutableState<Boolean>
 ) {
     Surface(
         modifier = Modifier
             .size(
-                width = MaterialTheme.dimens.superAdminSettingScreenSurfaceWidth,
-                height = MaterialTheme.dimens.superAdminSettingScreenSurfaceHeight
+                width = MaterialTheme.dimens.superAdminSettingScrSurfaceW,
+                height = MaterialTheme.dimens.superAdminSettingScrSurfaceH
             )
-            .padding(top = MaterialTheme.dimens.superAdminSettingScreenSurfaceTopPadding),
+            .padding(top = MaterialTheme.dimens.superAdminSettingScrSurfaceTopPad),
         color = OnTimeColors.PORT_GORE
     ) {
         Row(
@@ -291,7 +284,7 @@ private fun SuperAdminSettingInfo(
                 Text(
                     text = stringResource(id = R.string.Trust_or_Organization),
                     color = Color.White,
-                    modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
+                    modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScrColStartPad)
                 )
                 InputField(
                     valueState = trustState,
@@ -299,15 +292,15 @@ private fun SuperAdminSettingInfo(
                     enabled = false,
                     isSingleLine = true,
                     modifier = Modifier.size(
-                        width = MaterialTheme.dimens.superAdminSettingScreenTextFieldsWidth,
-                        height = MaterialTheme.dimens.superAdminSettingScreenTextFieldsHeight
+                        width = MaterialTheme.dimens.superAdminSettingScrTxtFieldsW,
+                        height = MaterialTheme.dimens.superAdminSettingScrTxtFieldsH
                     ),
                     textStyle = MaterialTheme.typography.titleMedium
                 )
                 Text(
                     text = stringResource(id = R.string.Location_Do_not_add_semi_colon),
                     color = OnTimeColors.White,
-                    modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
+                    modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScrColStartPad)
                 )
                 InputField(
                     valueState = locationState,
@@ -315,15 +308,15 @@ private fun SuperAdminSettingInfo(
                     enabled = false,
                     isSingleLine = true,
                     modifier = Modifier.size(
-                        width = MaterialTheme.dimens.superAdminSettingScreenTextFieldsWidth,
-                        height = MaterialTheme.dimens.superAdminSettingScreenTextFieldsHeight
+                        width = MaterialTheme.dimens.superAdminSettingScrTxtFieldsW,
+                        height = MaterialTheme.dimens.superAdminSettingScrTxtFieldsH
                     ),
                     textStyle = MaterialTheme.typography.titleMedium
                 )
                 Text(
                     text = stringResource(id = R.string.Postcode),
                     color = OnTimeColors.White,
-                    modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
+                    modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScrColStartPad)
                 )
                 InputField(
                     valueState = postCodeState,
@@ -331,20 +324,20 @@ private fun SuperAdminSettingInfo(
                     enabled = false,
                     isSingleLine = true,
                     modifier = Modifier.size(
-                        width = MaterialTheme.dimens.superAdminSettingScreenTextFieldsWidth,
-                        height = MaterialTheme.dimens.superAdminSettingScreenTextFieldsHeight
+                        width = MaterialTheme.dimens.superAdminSettingScrTxtFieldsW,
+                        height = MaterialTheme.dimens.superAdminSettingScrTxtFieldsH
                     ),
                     textStyle = MaterialTheme.typography.titleMedium
                 )
             }
-            Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth10))
+            Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerW10))
             Column(
                 horizontalAlignment = Alignment.Start,
             ) {
                 Text(
                     text = stringResource(id = R.string.Unique_Identifier_only),
                     color = OnTimeColors.White,
-                    modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
+                    modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScrColStartPad)
                 )
                 InputField(
                     valueState = uniqueIdentifierState,
@@ -352,15 +345,15 @@ private fun SuperAdminSettingInfo(
                     enabled = false,
                     isSingleLine = true,
                     modifier = Modifier.size(
-                        width = MaterialTheme.dimens.superAdminSettingScreenTextFieldsWidth,
-                        height = MaterialTheme.dimens.superAdminSettingScreenTextFieldsHeight
+                        width = MaterialTheme.dimens.superAdminSettingScrTxtFieldsW,
+                        height = MaterialTheme.dimens.superAdminSettingScrTxtFieldsH
                     ),
                     textStyle = MaterialTheme.typography.titleMedium
                 )
                 Text(
                     text = stringResource(id = R.string.LatLng),
                     color = OnTimeColors.White,
-                    modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
+                    modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScrColStartPad)
                 )
                 InputField(
                     valueState = latLngState,
@@ -368,26 +361,29 @@ private fun SuperAdminSettingInfo(
                     enabled = false,
                     isSingleLine = true,
                     modifier = Modifier.size(
-                        width = MaterialTheme.dimens.superAdminSettingScreenTextFieldsWidth,
-                        height = MaterialTheme.dimens.superAdminSettingScreenTextFieldsHeight
+                        width = MaterialTheme.dimens.superAdminSettingScrTxtFieldsW,
+                        height = MaterialTheme.dimens.superAdminSettingScrTxtFieldsH
                     ),
                     textStyle = MaterialTheme.typography.titleMedium
                 )
                 Text(
                     text = stringResource(id = R.string.Site_Name),
                     color = OnTimeColors.White,
-                    modifier = Modifier.padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
-                        .alpha(if(isRLD.value) 0f else 1f)
+                    modifier = Modifier
+                        .padding(start = MaterialTheme.dimens.superAdminSettingScrColStartPad)
+                        .alpha(if (isRLD.value) 0f else 1f)
                 )
                 InputField(
                     valueState = siteNameState,
                     labelId = "",
                     enabled = false,
                     isSingleLine = true,
-                    modifier = Modifier.size(
-                        width = MaterialTheme.dimens.superAdminSettingScreenTextFieldsWidth,
-                        height = MaterialTheme.dimens.superAdminSettingScreenTextFieldsHeight
-                    ).alpha(if(isRLD.value) 0f else 1f),
+                    modifier = Modifier
+                        .size(
+                            width = MaterialTheme.dimens.superAdminSettingScrTxtFieldsW,
+                            height = MaterialTheme.dimens.superAdminSettingScrTxtFieldsH
+                        )
+                        .alpha(if (isRLD.value) 0f else 1f),
                     textStyle = MaterialTheme.typography.titleMedium
                 )
             }
