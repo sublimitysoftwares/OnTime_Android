@@ -22,6 +22,7 @@ sealed class HomeScreenRoot {
 sealed class SuperAdminScreenRoot {
     object HomeScreen : SuperAdminScreenRoot()
     object AdminRegistrationScreen : SuperAdminScreenRoot()
+    object VisitorRegistrationScreen : SuperAdminScreenRoot()
     object FobRegisterScreen : SuperAdminScreenRoot()
     object SuperAdminSettingScreen : SuperAdminScreenRoot()
     object SuperAdminScreen : SuperAdminScreenRoot()

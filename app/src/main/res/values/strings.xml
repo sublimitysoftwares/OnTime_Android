@@ -54,7 +54,8 @@
 
     // SuperAdmin Screen
     <string name="SUPER_ADMIN_PAGE">SUPER ADMIN PAGE</string>
-    <string name="switch_to_mobile_mode">    switch to \nmobile mode</string>
+    <string name="switch_to">switch to</string>
+    <string name="mobile_mode">mobile mode</string>
     <string name="new_user_registration_img">new_user_registration_img</string>
     <string name="New_or_Edit_Admin">New/Edit Admin</string>
     <string name="Registration">Registration</string>
@@ -72,6 +73,9 @@
     <string name="Fingerprint_Match_Rate">Fingerprint Match Rate</string>
     <string name="SUBMIT">SUBMIT</string>
     <string name="Site_Name">Site Name</string>
+    <string name="New_or_Edit">New/Edit</string>
+    <string name="Visitor_Registration">Visitor Registration</string>
+
 
     // SuperAdmin Setting Screen
     <string name="Super_Admin_Setting">Super Admin Setting</string>
@@ -86,5 +90,4 @@
     <string name="Postcode">Postcode</string>
     <string name="LatLng">LatLng</string>
     <string name="Unique_Identifier_only">Unique Identifier</string>
-    <string name="Site_Name">Site Name</string>
 </resources>
