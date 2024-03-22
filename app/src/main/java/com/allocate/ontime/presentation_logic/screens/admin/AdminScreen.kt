@@ -1,8 +1,10 @@
 package com.allocate.ontime.presentation_logic.screens.admin
 
-
+import android.annotation.SuppressLint
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -24,6 +26,7 @@ import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -32,20 +35,26 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.allocate.ontime.R
-import com.allocate.ontime.business_logic.utils.OnTimeColors
+import com.allocate.ontime.business_logic.viewmodel.admin.AdminViewModel
 import com.allocate.ontime.presentation_logic.navigation.HomeScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.screens.login.PinEntryDialog
 
+@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
-fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
+fun AdminScreen(
+    backToHome: (HomeScreenRoot) -> Unit,
+    adminViewModel: AdminViewModel = hiltViewModel(),
+) {
+    val TAG = "AdminScreen"
 
     var isDialogVisible by remember { mutableStateOf(false) }
     val context = LocalContext.current
@@ -57,9 +66,25 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
         })
     }
 
+    val hasNoUserInteractionAdminScreen = adminViewModel.navigationFlows.collectAsState()
+
+    if (hasNoUserInteractionAdminScreen.value) {
+        backToHome(HomeScreenRoot.HomeScreen)
+        adminViewModel.resetAutoBack()
+    }
+
     Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = OnTimeColors.TORY_BLUE
+        modifier = Modifier
+            .fillMaxSize()
+            .pointerInput(Unit) {
+                detectTapGestures(
+                    onTap = {
+                        adminViewModel.startInteraction()
+                        Log.d(TAG, "after OnTap: ${hasNoUserInteractionAdminScreen.value}")
+                    }
+                )
+            },
+        color = Color.DarkGray.copy(alpha = MaterialTheme.dimens.surfaceColorAlphaValue)
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -193,8 +218,10 @@ fun AdminScreen(backToHome: (HomeScreenRoot) -> Unit) {
                         }
                         Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerW15))
                         Button(
-                            onClick = { /*TODO*/ },
-                            shape = RectangleShape,
+                            onClick = {
+                                Log.d(TAG, "after OnTap: ${hasNoUserInteractionAdminScreen.value}")
+                            },
+                            shape = RoundedCornerShape(MaterialTheme.dimens.adminScreenButtonsCornerShapeSize),
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = OnTimeColors.PORT_GORE
                             )
