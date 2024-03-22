@@ -1,9 +1,11 @@
 package com.allocate.ontime.presentation_logic.navigation
 
 
+import android.content.Context
 import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -22,11 +24,12 @@ import com.allocate.ontime.presentation_logic.screens.super_admin.SuperAdminSett
 import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminSettingViewModel
 import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminViewModel
 import com.allocate.ontime.presentation_logic.screens.splash.SplashScreen
+import com.allocate.ontime.presentation_logic.screens.super_admin.VisitorRegistrationScreen
 
 
 @ExperimentalComposeUiApi
 @Composable
-fun OnTimeNavigation() {
+fun OnTimeNavigation(context: Context = LocalContext.current, viewModel: SuperAdminSettingViewModel = hiltViewModel()) {
     val navController = rememberNavController()
     val tag = "Navigation"
     NavHost(
@@ -41,8 +44,7 @@ fun OnTimeNavigation() {
                         HomeScreenRoot.SuperAdminScreen -> navController.navigate(OnTimeScreens.SuperAdminScreen.name)
                         HomeScreenRoot.HomeScreen -> navController.navigate(OnTimeScreens.HomeScreen.name)
                     }
-                }
-            )
+                })
         }
         composable(OnTimeScreens.SuperAdminScreen.name) {
             SuperAdminScreen(
@@ -50,6 +52,10 @@ fun OnTimeNavigation() {
                     when (it) {
                         SuperAdminScreenRoot.AdminRegistrationScreen -> navController.navigate(
                             OnTimeScreens.AdminRegistrationScreen.name
+                        )
+
+                        SuperAdminScreenRoot.VisitorRegistrationScreen -> navController.navigate(
+                            OnTimeScreens.VisitorRegistrationScreen.name
                         )
 
                         SuperAdminScreenRoot.FobRegisterScreen -> navController.navigate(
@@ -90,6 +96,16 @@ fun OnTimeNavigation() {
                 }
             })
         }
+        composable(OnTimeScreens.VisitorRegistrationScreen.name) {
+            VisitorRegistrationScreen(backToSuperAdminScreen = {
+                when (it) {
+                    SuperAdminScreenRoot.SuperAdminScreen -> navController.navigate(OnTimeScreens.SuperAdminScreen.name)
+                    else -> {
+                        Log.i("Navigation", "Navigation gets wrong.")
+                    }
+                }
+            })
+        }
         composable(OnTimeScreens.FobRegisterScreen.name) {
             FobRegisterScreen(backToSuperAdminScreen = {
                 when (it) {
@@ -108,7 +124,7 @@ fun OnTimeNavigation() {
                         Log.i(tag, LogMsg.NAVIGATION_GETS_WRONG)
                     }
                 }
-            })
+            }, viewModel, context)
         }
         composable(OnTimeScreens.SplashScreen.name) {
             SplashScreen(homeScreenRoot = {

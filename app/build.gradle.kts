@@ -14,10 +14,12 @@ android {
 
     defaultConfig {
         applicationId = "com.allocate.ontime"
-        minSdk = 23
+        minSdk = 28
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+        buildConfigField("String","BASE_URL","\"${project.property("BASE_URL")}\"")
+        buildConfigField("String","KEY","\"${project.property("KEY")}\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -60,9 +62,11 @@ kapt {
 
 dependencies {
 
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation("androidx.security:security-crypto:1.1.0-alpha06")
+
     // Room
     implementation("androidx.room:room-runtime:2.6.1")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     kapt("androidx.room:room-compiler:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
 

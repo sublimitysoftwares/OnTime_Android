@@ -30,7 +30,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -40,6 +39,7 @@ import androidx.compose.ui.text.style.TextAlign
 import com.allocate.ontime.R
 import com.allocate.ontime.business_logic.utils.OnTimeColors
 import com.allocate.ontime.presentation_logic.theme.dimens
+
 
 @Composable
 fun PinEntryDialog(
@@ -71,9 +71,9 @@ fun PinEntryDialog(
                         style = MaterialTheme.typography.headlineSmall,
                         color = OnTimeColors.GREEN_HAZE,
                         fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(start = MaterialTheme.dimens.administrationPadding)
+                        modifier = Modifier.padding(start = MaterialTheme.dimens.adminPad)
                     )
-                    Spacer(modifier = Modifier.width(MaterialTheme.dimens.adminAndCloseSpacerW))
+                    Spacer(modifier = Modifier.width(MaterialTheme.dimens.adminCloseSpacerW))
                     IconButton(
                         onClick = {
                             onDismiss()
@@ -81,19 +81,19 @@ fun PinEntryDialog(
                         Icon(
                             imageVector = Icons.Default.Close,
                             contentDescription = null,
-                            modifier = Modifier.size(MaterialTheme.dimens.closeIconSize)
+                            modifier = Modifier.size(MaterialTheme.dimens.closeIconSz)
                         )
                     }
                 }
-                Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight5))
+                Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerH5))
                 Surface(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(MaterialTheme.dimens.pinEntryDialogTextSurfaceHeight),
-                    shape = RoundedCornerShape(MaterialTheme.dimens.pinEntryDialogRoundedCornerShapeSize),
+                        .height(MaterialTheme.dimens.pinEntryDlgTextSurfaceH),
+                    shape = RoundedCornerShape(MaterialTheme.dimens.pinEntryDlgRoundedCornerSz),
                     color = OnTimeColors.LightPink,
                     border = BorderStroke(
-                        width = MaterialTheme.dimens.pinEntryDialogTextSurfaceBorderWidth,
+                        width = MaterialTheme.dimens.pinEntryDlgTextSurfaceBorderWidth,
                         color = OnTimeColors.ALIZARIN_CRIMSON
                     )
                 ) {
@@ -101,10 +101,10 @@ fun PinEntryDialog(
                         text = stringResource(id = R.string.Please_enter_your_PIN_number_to_log_in),
                         textAlign = TextAlign.Center,
                         style = MaterialTheme.typography.titleMedium,
-                        modifier = Modifier.padding(top = MaterialTheme.dimens.enterPinTextPadding)
+                        modifier = Modifier.padding(top = MaterialTheme.dimens.enterPinTxtPad)
                     )
                 }
-                Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight5))
+                Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerH5))
                 Text(
                     text = stringResource(id = R.string.Administration_Log_In),
                     style = MaterialTheme.typography.headlineSmall,
@@ -136,18 +136,18 @@ fun PinEntryDialog(
                     onDismiss()
                 },
                 modifier = Modifier
-                    .padding(end = MaterialTheme.dimens.loginButtonPadding)
+                    .padding(end = MaterialTheme.dimens.loginBtnPad)
                     .size(
-                        width = MaterialTheme.dimens.loginButtonWidth,
-                        height = MaterialTheme.dimens.loginButtonHeight
+                        width = MaterialTheme.dimens.loginBtnW,
+                        height = MaterialTheme.dimens.loginBtnH
                     ),
                 colors = ButtonDefaults.buttonColors(containerColor = OnTimeColors.GREEN_HAZE),
-                shape = RoundedCornerShape(MaterialTheme.dimens.pinEntryDialogRoundedCornerShapeSize)
+                shape = RoundedCornerShape(MaterialTheme.dimens.pinEntryDlgRoundedCornerSz)
             ) {
                 Text(text = stringResource(id = R.string.Login))
             }
         },
         dismissButton = {},
-        shape = RoundedCornerShape(MaterialTheme.dimens.pinEntryDialogRoundedCornerShapeSize)
+        shape = RoundedCornerShape(MaterialTheme.dimens.pinEntryDlgRoundedCornerSz)
     )
 }
