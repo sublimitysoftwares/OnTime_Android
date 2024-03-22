@@ -6,3 +6,5 @@ object Constants {
       const val getDeviceInfoUrlEndPoint = "GetDevice?IMEI=867291070018749"
       const val editDeviceInfoUrlEndPoint = "editDeviceAppData"
 }
+
+

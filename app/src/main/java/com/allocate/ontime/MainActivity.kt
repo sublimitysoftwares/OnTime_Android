@@ -23,9 +23,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
-import com.allocate.ontime.business_logic.autoback_navigation_manager.AutoBackNavigationManager
+import com.allocate.ontime.presentation_logic.navigation.OnTimeNavigation
+import com.allocate.ontime.presentation_logic.theme.CI_OnTimeTheme
 import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminSettingViewModel
 import com.allocate.ontime.presentation_logic.navigation.OnTimeNavigation
 import com.allocate.ontime.presentation_logic.theme.CI_OnTimeTheme
@@ -41,6 +40,7 @@ class MainActivity : ComponentActivity() {
     companion object {
         const val LOCK_ACTIVITY_KEY = "com.allocate.ontime.MainActivity"
     }
+
 
     @SuppressLint("CoroutineCreationDuringComposition")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -180,7 +180,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable

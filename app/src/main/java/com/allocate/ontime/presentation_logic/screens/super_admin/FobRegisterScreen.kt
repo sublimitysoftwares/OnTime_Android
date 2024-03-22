@@ -3,7 +3,6 @@ package com.allocate.ontime.presentation_logic.screens.super_admin
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
@@ -96,8 +95,8 @@ fun FobRegisterScreen(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(
-                top = MaterialTheme.dimens.small3,
-                bottom = MaterialTheme.dimens.small3
+                top = MaterialTheme.dimens.s3,
+                bottom = MaterialTheme.dimens.s3
             )
         ) {
             Text(
@@ -117,14 +116,14 @@ fun FobRegisterScreen(
                     isSingleLine = true,
                     modifier = Modifier
                         .size(
-                            width = MaterialTheme.dimens.fobRegisterScreenSearchTextFieldWidth,
-                            height = MaterialTheme.dimens.fobRegisterScreenSearchTextFieldHeight
+                            width = MaterialTheme.dimens.fobRegScrSearchTxtFieldW,
+                            height = MaterialTheme.dimens.fobRegScrSearchTxtFieldH
                         )
                         .align(alignment = Alignment.End)
-                        .padding(end = MaterialTheme.dimens.fobRegisterScreenSearchTextFieldEndPadding),
+                        .padding(end = MaterialTheme.dimens.fobRegScrSearchTxtFieldEndPad),
                     textStyle = MaterialTheme.typography.titleMedium
                 )
-                Spacer(modifier = Modifier.height(MaterialTheme.dimens.small1))
+                Spacer(modifier = Modifier.height(MaterialTheme.dimens.s1))
                 AnimatedVisibility(
                     visible = if (!isSwitchOn.value) {
                         isVisible.value
@@ -135,7 +134,7 @@ fun FobRegisterScreen(
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween,
-                        modifier = Modifier.width(MaterialTheme.dimens.fobRegisterScreenSetLocationRowWidth)
+                        modifier = Modifier.width(MaterialTheme.dimens.fobRegScrSetLocRowW)
                     ) {
                         Text(
                             text = stringResource(id = R.string.Set_location_Radius),
@@ -151,8 +150,8 @@ fun FobRegisterScreen(
                             ),
                             singleLine = true,
                             modifier = Modifier.size(
-                                width = MaterialTheme.dimens.fobRegisterScreenSetLocationTextFieldWidth,
-                                height = MaterialTheme.dimens.fobRegisterScreenSetLocationTextFieldHeight
+                                width = MaterialTheme.dimens.fobRegScrSetLocTxtFieldWidth,
+                                height = MaterialTheme.dimens.fobRegScrSetLocTxtFieldH
                             ),
                             textStyle = MaterialTheme.typography.titleSmall,
                             colors = run {
@@ -177,12 +176,12 @@ fun FobRegisterScreen(
                         )
                     }
                 }
-                Spacer(modifier = Modifier.height(MaterialTheme.dimens.small1))
+                Spacer(modifier = Modifier.height(MaterialTheme.dimens.s1))
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween,
                     modifier = Modifier
-                        .width(MaterialTheme.dimens.fobRegisterScreenSetLocationRowWidth)
+                        .width(MaterialTheme.dimens.fobRegScrSetLocRowW)
                 ) {
                     Text(
                         text = stringResource(id = R.string.All_Locations),
@@ -203,25 +202,25 @@ fun FobRegisterScreen(
                     )
                 }
             }
-            Spacer(modifier = Modifier.weight(1f))
+            Spacer(modifier = Modifier.weight(MaterialTheme.dimens.fobRegScrSpacerWeight))
             Button(
                 onClick = {
                     backToSuperAdminScreen(SuperAdminScreenRoot.SuperAdminScreen)
                 },
-                shape = RoundedCornerShape(MaterialTheme.dimens.fobRegisterScreenButtonsCornerShapeSize),
+                shape = RoundedCornerShape(MaterialTheme.dimens.fobRegScrBtnCornerSz),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = OnTimeColors.GREEN_HAZE, contentColor = OnTimeColors.White
                 )
             ) {
                 Row(
-                    horizontalArrangement = Arrangement.spacedBy(5.dp),
+                    horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.btnRowHArrangementSpacedBy),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.circle_black),
                         contentDescription = stringResource(id = R.string.circle_black_img),
                         contentScale = ContentScale.Fit,
-                        modifier = Modifier.size(MaterialTheme.dimens.circleBlackImgSize)
+                        modifier = Modifier.size(MaterialTheme.dimens.circleBlkImgSz)
                     )
                     Text(text = stringResource(id = R.string.Click_here_to_go_back))
                 }

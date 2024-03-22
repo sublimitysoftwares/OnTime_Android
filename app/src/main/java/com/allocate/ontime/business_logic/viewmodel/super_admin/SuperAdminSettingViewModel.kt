@@ -15,9 +15,9 @@ class SuperAdminSettingViewModel @Inject constructor(
     private val autoBackNavigationManager: AutoBackNavigationManager
 ) :
     ViewModel() {
-    suspend fun getDeviceData()
+    suspend fun getDeviceData(context: Context)
             : DataOrException<DeviceInfo, Exception> {
-        return repository.getDeviceInfo()
+        return repository.getDeviceInfo(context)
     }
 
     val navigationFlow = autoBackNavigationManager.navigationFlow

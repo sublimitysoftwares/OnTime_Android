@@ -1,15 +1,23 @@
 package com.allocate.ontime.business_logic.viewmodel.splash
 
+
+import android.annotation.SuppressLint
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.allocate.ontime.BuildConfig
 import com.allocate.ontime.business_logic.data.DataOrException
 import com.allocate.ontime.business_logic.data.room.DeviceInformation
+import com.allocate.ontime.business_logic.data.shared_preferences.SecureSharedPrefs
 import com.allocate.ontime.business_logic.repository.DaoRepository
-import com.allocate.ontime.business_logic.repository.OnTimeRepository
+import com.allocate.ontime.business_logic.repository.DeviceInfoRepository
+import com.allocate.ontime.business_logic.utils.Constants
+import com.allocate.ontime.business_logic.utils.DeviceUtility
 import com.allocate.ontime.presentation_logic.model.AppInfo
 import com.allocate.ontime.presentation_logic.model.DeviceInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -19,22 +27,32 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
-class SplashViewModel @Inject constructor(
-    private val repository: OnTimeRepository,
-    private val daoRepository: DaoRepository,
-) : ViewModel() {
 
+@HiltViewModel
+@SuppressLint("StaticFieldLeak")
+class SplashViewModel @Inject constructor(
+    private val repository: DeviceInfoRepository,
+    private val daoRepository: DaoRepository,
+    private val deviceUtility: DeviceUtility,
+    @ApplicationContext private val context: Context,
+) : ViewModel() {
 
     private val _acknowledgementStatus = MutableStateFlow(0)
     val acknowledgementStatus = _acknowledgementStatus.asStateFlow()
-    private val tag = "EXCEPTION"
+    companion object {
+        const val TAG = "SplashViewModel"
+    }
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            val deviceInfoApiData = async { repository.getDeviceInfo() }.await()
+            val deviceInfoApiData = async { repository.getDeviceInfo(context) }.await()
+            Log.i(TAG, "deviceInfoApiData : success")
 
             deviceInfoApiData.data?.responsePacket?.first()?.let { data ->
+                SecureSharedPrefs(context).saveData(
+                    Constants.AS_API_URL,
+                    data.ASApiURL
+                )
                 addDeviceInfo(
                     deviceInformation = DeviceInformation(
                         id = data._id,
@@ -69,7 +87,7 @@ class SplashViewModel @Inject constructor(
     ) {
         daoRepository.getAllDeviceInfo().distinctUntilChanged().collect { listOfDeviceInfo ->
             if (listOfDeviceInfo.isEmpty()) {
-                Log.d(tag, "Empty List")
+                Log.d(TAG, "Empty List")
             } else {
                 if (acknowledgementStatus.value == 0) {
                     coroutineScope.async {
@@ -77,9 +95,9 @@ class SplashViewModel @Inject constructor(
                             val result = repository.postDeviceInfo(
                                 appInfo = AppInfo(
                                     id = it.responsePacket.first()._id,
-                                    macAddress = "test9",
-                                    app = "test9",
-                                    appVersion = "test9"
+                                    macAddress = deviceUtility.getMacAddress(context),
+                                    app = "",
+                                    appVersion = BuildConfig.VERSION_NAME
                                 )
                             )
                             if (result.data?.ResponseCode == 201) {
@@ -111,12 +129,12 @@ class SplashViewModel @Inject constructor(
                                 }
                             } else {
                                 result.e?.let {
-                                    Log.d(tag, "$it")
+                                    Log.e(TAG, "Exception: $it")
                                 }
                             }
                         } ?: run {
                             getDeviceInfoApiData.e?.let {
-                                Log.d(tag, "$it")
+                                Log.e(TAG, "Exception: $it")
                             }
                         }
                     }.await()

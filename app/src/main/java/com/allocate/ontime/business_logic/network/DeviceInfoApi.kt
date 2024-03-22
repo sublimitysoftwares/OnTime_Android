@@ -7,17 +7,15 @@ import com.allocate.ontime.presentation_logic.model.EditDeviceInfo
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
-import javax.inject.Singleton
+import retrofit2.http.Query
 
+interface DeviceInfoApi {
 
-@Singleton
-interface OnTimeApi {
-    // GET api to get device information through IMEI number of device.
-    @GET(value = Constants.getDeviceInfoUrlEndPoint)
-    suspend fun getDeviceInfo(): DeviceInfo
+    @GET(value = "GetDevice")
+    suspend fun getDeviceInfo(@Query("IMEI") imei: String?): DeviceInfo
 
     // POST api to edit the app related fields in the GET api.
-    @POST(Constants.editDeviceInfoUrlEndPoint)
+    @POST(Constants.EDIT_DEVICE_INFO_URL_ENDPOINT)
     suspend fun postEditDeviceInfo(
         @Body appInfo: AppInfo
     ): EditDeviceInfo

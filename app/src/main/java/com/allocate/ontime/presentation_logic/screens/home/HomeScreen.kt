@@ -1,13 +1,13 @@
 package com.allocate.ontime.presentation_logic.screens.home
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,7 +20,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
-import androidx.compose.material3.RadioButtonColors
 import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -32,8 +31,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -66,12 +65,11 @@ fun HomeScreen(
         })
     }
 
-    LaunchedEffect(true) {
-        while (true) {
-            delay(60000) // Update every minute
-            currentTime = getCurrentTime()
-        }
-    }
+    val userName = SecureSharedPrefs(context).getData(Constants.USER_NAME, "")
+    val password = SecureSharedPrefs(context).getData(Constants.PASSWORD, "")
+
+    val asApiUrl = SecureSharedPrefs(context).getData(Constants.AS_API_URL, "")
+    Log.d("asApiUrl",asApiUrl)
 
     Surface(
         modifier = Modifier
@@ -81,14 +79,14 @@ fun HomeScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(MaterialTheme.dimens.small1),
+                .padding(MaterialTheme.dimens.s1),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(end = MaterialTheme.dimens.small3, top = MaterialTheme.dimens.medium1),
+                    .padding(end = MaterialTheme.dimens.s3, top = MaterialTheme.dimens.m1),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.Top
             ) {
@@ -109,13 +107,13 @@ fun HomeScreen(
                     )
                 }
                 Image(
-                    painter = painterResource(id = R.drawable.rld_logo),
+                    painter = painterResource(id = R.drawable.ontime_icon),
                     contentDescription =
                     stringResource(id = R.string.rld_logo),
                     contentScale = ContentScale.Fit,
                     modifier = Modifier
-                        .fillMaxWidth(MaterialTheme.dimens.homeScreenRldLogoMaxWidthFraction)
-                        .fillMaxHeight(MaterialTheme.dimens.homeScreenRldLogoMaxHeightFraction)
+                        .fillMaxWidth(MaterialTheme.dimens.homeScrRldLogoMaxWFract)
+                        .fillMaxHeight(MaterialTheme.dimens.homeScrRldLogoMaxHFract)
                 )
                 Column(
                     verticalArrangement = Arrangement.Center,
@@ -126,9 +124,9 @@ fun HomeScreen(
                         contentDescription =
                         stringResource(id = R.string.place_finger_logo),
                         colorFilter = ColorFilter.tint(color = OnTimeColors.PORT_GORE),
-                        modifier = Modifier.size(MaterialTheme.dimens.medium3)
+                        modifier = Modifier.size(MaterialTheme.dimens.m3)
                     )
-                    Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
+                    Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerH2))
                     Text(
                         text = stringResource(id = R.string.Place_Finger),
                         style = MaterialTheme.typography.headlineSmall,
@@ -136,41 +134,38 @@ fun HomeScreen(
                     )
                 }
             }
+            Spacer(modifier = Modifier.height(MaterialTheme.dimens.homeScrSpacerH))
             Image(
                 painter = painterResource(id = R.drawable.ontime_logo),
                 contentDescription = stringResource(id = R.string.onTime_logo),
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
-                    .fillMaxWidth(MaterialTheme.dimens.homeScreenOnTimeLogoMaxWidthFraction)
-                    .fillMaxHeight(MaterialTheme.dimens.homeScreenOnTimeLogoMaxHeightFraction)
+                    .fillMaxWidth(MaterialTheme.dimens.homeScrOnTimeLogoMaxWFract)
+                    .fillMaxHeight(MaterialTheme.dimens.homeScrOnTimeLogoMaxHFract)
             )
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(end = MaterialTheme.dimens.medium1),
-                horizontalArrangement = Arrangement.SpaceBetween
+                    .padding(end = MaterialTheme.dimens.m1),
+                horizontalArrangement = Arrangement.End
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.rld_img_logo),
-                    contentDescription = stringResource(id = R.string.rld_img_logo),
-                    modifier = Modifier
-                        .size(MaterialTheme.dimens.large3)
-                        .aspectRatio(1f),
-
-                    )
                 Column(
                     verticalArrangement = Arrangement.Bottom,
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier
                         .fillMaxHeight()
-                        .padding(bottom = MaterialTheme.dimens.small3)
+                        .padding(bottom = MaterialTheme.dimens.s3)
                 ) {
                     Button(
                         onClick = {
                             isDialogVisible = true
                         },
-                        shape = RoundedCornerShape(MaterialTheme.dimens.homeScreenButtonsCornerShapeSize),
+                        shape = RoundedCornerShape(MaterialTheme.dimens.homeScrEnterPinBtnRoundedCornerSz),
                         colors = ButtonDefaults.buttonColors(containerColor = OnTimeColors.GREEN_HAZE),
+                        contentPadding = PaddingValues(
+                            horizontal = MaterialTheme.dimens.homeScrContentPadH,
+                            vertical = MaterialTheme.dimens.homeScrContentPadV
+                        )
                     ) {
                         Text(
                             text = stringResource(id = R.string.ENTER_PIN),
@@ -178,7 +173,7 @@ fun HomeScreen(
                         )
 
                     }
-                    Spacer(modifier = Modifier.height(MaterialTheme.dimens.small3))
+                    Spacer(modifier = Modifier.height(MaterialTheme.dimens.s3))
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.Center,
@@ -187,7 +182,7 @@ fun HomeScreen(
                             onClick = {
                                 homeScreenRoot(HomeScreenRoot.AdminScreen)
                             },
-                            shape = RoundedCornerShape(MaterialTheme.dimens.homeScreenButtonsCornerShapeSize),
+                            shape = RectangleShape,
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = OnTimeColors.PORT_GORE
                             )
@@ -197,12 +192,12 @@ fun HomeScreen(
                                 style = MaterialTheme.typography.titleLarge
                             )
                         }
-                        Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerWidth15))
+                        Spacer(modifier = Modifier.width(MaterialTheme.dimens.spacerW15))
                         Button(
                             onClick = {
                                 homeScreenRoot(HomeScreenRoot.SuperAdminScreen)
                             },
-                            shape = RoundedCornerShape(MaterialTheme.dimens.homeScreenButtonsCornerShapeSize),
+                            shape = RectangleShape,
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = OnTimeColors.PORT_GORE
                             )
@@ -214,6 +209,7 @@ fun HomeScreen(
                         }
                     }
                 }
+                Spacer(modifier = Modifier.width(MaterialTheme.dimens.homeScrSpacerW))
                 Column(
                     verticalArrangement = Arrangement.SpaceBetween,
                     horizontalAlignment = Alignment.End,
@@ -228,20 +224,20 @@ fun HomeScreen(
                             contentDescription = stringResource(id = R.string.fob_icon),
                             contentScale = ContentScale.Fit,
                             colorFilter = ColorFilter.tint(color = OnTimeColors.PORT_GORE),
-                            modifier = Modifier.size(MaterialTheme.dimens.medium3)
+                            modifier = Modifier.size(MaterialTheme.dimens.m3)
                         )
-                        Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerHeight2))
+                        Spacer(modifier = Modifier.height(MaterialTheme.dimens.spacerH2))
                         Text(
                             text = stringResource(id = R.string.FOB),
                             style = MaterialTheme.typography.headlineSmall,
                             color = OnTimeColors.PORT_GORE,
                         )
                     }
-                    Spacer(modifier = Modifier.weight(1f))
+                    Spacer(modifier = Modifier.weight(MaterialTheme.dimens.homeScrSpacerWeight))
                     Column(
                         verticalArrangement = Arrangement.Bottom,
                         horizontalAlignment = Alignment.End,
-                        modifier = Modifier.padding(bottom = MaterialTheme.dimens.homeScreenBottomRowBottomPadding)
+                        modifier = Modifier.padding(bottom = MaterialTheme.dimens.homeScrBottomRowBottomPad)
                     ) {
                         Text(
                             text = stringResource(id = R.string.app_info),

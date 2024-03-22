@@ -3,6 +3,9 @@ package com.allocate.ontime.business_logic.di
 import com.allocate.ontime.business_logic.autoback_navigation_manager.AutoBackNavigationManager
 import android.content.Context
 import androidx.room.Room
+import com.allocate.ontime.BuildConfig
+import com.allocate.ontime.business_logic.annotations.DeviceInfoRetrofit
+import com.allocate.ontime.business_logic.annotations.SuperAdminRetrofit
 import com.allocate.ontime.business_logic.data.room.DeviceInfoDao
 import com.allocate.ontime.business_logic.data.room.OnTimeDatabase
 import com.allocate.ontime.business_logic.network.OnTimeApi
@@ -51,22 +54,40 @@ object AppModule {
     @Singleton
     @Provides
     fun provideAppDatabase(@ApplicationContext context: Context): OnTimeDatabase =
-        Room.databaseBuilder(context, OnTimeDatabase::class.java, name = Constants.databaseName)
+        Room.databaseBuilder(context, OnTimeDatabase::class.java, name = Constants.DATABASE_NAME)
             .fallbackToDestructiveMigration()
             .build()
 
-    // It provides the dependency of OnTimeApi Interface.
+    //     It provides the dependency of OnTimeApi Interface.
     @Singleton
     @Provides
-    fun provideOnTimeApi(retrofit: Retrofit): OnTimeApi {
-        return retrofit.create(OnTimeApi::class.java)
+    fun provideDeviceInfoApi(@DeviceInfoRetrofit retrofit: Retrofit): DeviceInfoApi {
+        return retrofit.create(DeviceInfoApi::class.java)
     }
 
-    @Singleton
     @Provides
-    fun provideRetrofitClient(): Retrofit {
+    fun provideSuperAdminApi(@SuperAdminRetrofit retrofit: Retrofit): SuperAdminApi {
+        return retrofit.create(SuperAdminApi::class.java)
+    }
+
+    @Provides
+    @DeviceInfoRetrofit
+    fun provideRetrofitClient1(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    @Provides
+    @SuperAdminRetrofit
+    fun provideRetrofitClient2(@ApplicationContext context: Context): Retrofit {
+        val asApiUrl = SecureSharedPrefs(context).getData(
+            Constants.AS_API_URL,
+            Constants.DEFAULT_AS_API_URL
+        )
+        return Retrofit.Builder()
+            .baseUrl(asApiUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
