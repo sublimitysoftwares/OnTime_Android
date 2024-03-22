@@ -1,6 +1,5 @@
 package com.allocate.ontime.business_logic.di
 
-import com.allocate.ontime.business_logic.autoback_navigation_manager.AutoBackNavigationManager
 import android.content.Context
 import androidx.room.Room
 import com.allocate.ontime.BuildConfig
@@ -8,12 +7,15 @@ import com.allocate.ontime.business_logic.annotations.DeviceInfoRetrofit
 import com.allocate.ontime.business_logic.annotations.SuperAdminRetrofit
 import com.allocate.ontime.business_logic.data.room.DeviceInfoDao
 import com.allocate.ontime.business_logic.data.room.OnTimeDatabase
-import com.allocate.ontime.business_logic.network.OnTimeApi
+import com.allocate.ontime.business_logic.data.shared_preferences.SecureSharedPrefs
+import com.allocate.ontime.business_logic.network.DeviceInfoApi
+import com.allocate.ontime.business_logic.network.SuperAdminApi
 import com.allocate.ontime.business_logic.repository.DaoRepository
-import com.allocate.ontime.business_logic.repository.OnTimeRepository
+import com.allocate.ontime.business_logic.repository.DeviceInfoRepository
 import com.allocate.ontime.business_logic.utils.Constants
+import com.allocate.ontime.business_logic.utils.DeviceUtility
+import com.allocate.ontime.business_logic.viewmodel.MainViewModel
 import com.allocate.ontime.business_logic.viewmodel.splash.SplashViewModel
-import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminSettingViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,28 +25,11 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
+
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-    // It provides the dependency of OnTimeRepository Class.
-    @Provides
-    fun provideOnTimeRepository(api: OnTimeApi) =
-        OnTimeRepository(api)
-
-    @Provides
-    fun provideSplashViewModel(repository: OnTimeRepository, daoRepository: DaoRepository) =
-        SplashViewModel(repository, daoRepository)
-
-    @Provides
-    fun provideSuperAdminSettingViewModel(
-        repository: OnTimeRepository,
-        autoBackNavigationManager: AutoBackNavigationManager
-    ): SuperAdminSettingViewModel {
-        return SuperAdminSettingViewModel(repository, autoBackNavigationManager)
-    }
-
-    // It provides the dependency of DaoRepository Class.
     @Provides
     fun provideDeviceInfoDaoRepository(database: OnTimeDatabase): DeviceInfoDao {
         return database.deviceInfoDao()

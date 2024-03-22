@@ -3,9 +3,7 @@ package com.allocate.ontime.presentation_logic.screens.super_admin
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,7 +26,6 @@ import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
@@ -36,7 +33,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -52,11 +49,13 @@ import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.widgets.InputField
 import dagger.hilt.android.qualifiers.ApplicationContext
 
+
 @SuppressLint("SuspiciousIndentation")
 @Composable
 fun SuperAdminSettingScreen(
     backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit,
     superAdminViewModel: SuperAdminSettingViewModel = hiltViewModel(),
+    context: Context
 ) {
     val TAG = "SuperAdminSettingScreen"
 
@@ -91,47 +90,34 @@ fun SuperAdminSettingScreen(
         mutableStateOf(false)
     }
 
+
     val deviceData = produceState<DataOrException<DeviceInfo, Exception>>(
         initialValue = DataOrException()
     ) {
         value = superAdminViewModel.getDeviceData(context)
     }.value
 
-    if (deviceData.data?.statusCode == 200) {
-        deviceData.data!!.responsePacket.forEach {
-            trustState.value = it.TrustOrganization
-            locationState.value = it.Location
-            postCodeState.value = it.Postcode
-            uniqueIdentifierState.value = it.Unique_Identifier
-            latitudeState.value = it.Latitude
-            longitudeState.value = it.Longitude
-            siteNameState.value = it.SiteName
-            isRLD.value = it.IsRLD
+    if (deviceData.data != null){
+        if (deviceData.data?.statusCode == 200) {
+            deviceData.data?.responsePacket?.forEach {
+                trustState.value = it.TrustOrganization
+                locationState.value = it.Location
+                postCodeState.value = it.Postcode
+                uniqueIdentifierState.value = it.Unique_Identifier
+                latitudeState.value = it.Latitude
+                longitudeState.value = it.Longitude
+                siteNameState.value = it.SiteName
+                isRLD.value = it.IsRLD
+            }
+            latLngState.value = latitudeState.value + ',' + longitudeState.value
         }
-        latLngState.value = latitudeState.value + ',' + longitudeState.value
-    }
-
-    val hasNoUserInteractionSuperAdminSettingScreen =
-        superAdminViewModel.navigationFlow.collectAsState()
-
-    if (hasNoUserInteractionSuperAdminSettingScreen.value) {
-        backToSuperAdminScreen(SuperAdminScreenRoot.SuperAdminScreen)
-        superAdminViewModel.resetAutoBack()
+    } else {
+        Log.e(TAG,"deviceData : $deviceData")
     }
 
 
     Surface(
-        modifier = Modifier
-            .fillMaxSize()
-            .pointerInput(Unit) {
-                detectTapGestures(
-                    onTap = {
-                        superAdminViewModel.startInteraction()
-                    }
-                )
-
-            },
-        color = Color.DarkGray.copy(alpha = MaterialTheme.dimens.surfaceColorAlphaValue)
+        modifier = Modifier.fillMaxSize(), color = OnTimeColors.TORY_BLUE
     ) {
         Column(
             verticalArrangement = Arrangement.Center,
@@ -388,7 +374,7 @@ private fun SuperAdminSettingInfo(
                     textStyle = MaterialTheme.typography.titleMedium
                 )
                 Text(
-                    text = "Site Name",
+                    text = stringResource(id = R.string.Site_Name),
                     color = Color.White,
                     modifier = Modifier
                         .padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
