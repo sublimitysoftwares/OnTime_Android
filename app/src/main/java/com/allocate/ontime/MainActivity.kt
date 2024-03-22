@@ -23,12 +23,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
-import com.allocate.ontime.business_logic.autoback_navigation_manager.AutoBackNavigationManager
-import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminSettingViewModel
 import com.allocate.ontime.presentation_logic.navigation.OnTimeNavigation
-import com.allocate.ontime.presentation_logic.theme.CI_OnTimeTheme
+import com.allocate.ontime.presentation_logic.theme.OnTimeTheme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -185,7 +181,7 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun OnTimeApp() {
-    CI_OnTimeTheme {
+    OnTimeTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
