@@ -1,7 +1,5 @@
 package com.allocate.ontime
 
-
-import android.annotation.SuppressLint
 import android.app.admin.DevicePolicyManager
 import android.app.admin.SystemUpdatePolicy
 import android.content.ComponentName
@@ -24,8 +22,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.allocate.ontime.presentation_logic.navigation.OnTimeNavigation
+import com.allocate.ontime.presentation_logic.theme.CI_OnTimeTheme
 import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminSettingViewModel
 import com.allocate.ontime.presentation_logic.theme.OnTimeTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,13 +39,12 @@ class MainActivity : ComponentActivity() {
         const val LOCK_ACTIVITY_KEY = "com.allocate.ontime.MainActivity"
     }
 
-
-    @SuppressLint("CoroutineCreationDuringComposition")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             OnTimeApp()
         }
+
         mAdminComponentName = MyDeviceAdminReceiver.getComponentName(this)
         mDevicePolicyManager =
             getSystemService(Context.DEVICE_POLICY_SERVICE) as DevicePolicyManager
@@ -67,7 +64,6 @@ class MainActivity : ComponentActivity() {
 //            startActivity(intent)
         }
     }
-
 
     private fun isAdmin() = mDevicePolicyManager.isDeviceOwnerApp(packageName)
 
@@ -181,11 +177,10 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun OnTimeApp(viewModel: SuperAdminSettingViewModel = hiltViewModel()) {
-    OnTimeTheme {
+fun OnTimeApp() {
+    CI_OnTimeTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
@@ -194,7 +189,7 @@ fun OnTimeApp(viewModel: SuperAdminSettingViewModel = hiltViewModel()) {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                OnTimeNavigation(viewModel = viewModel)
+                OnTimeNavigation()
             }
         }
     }

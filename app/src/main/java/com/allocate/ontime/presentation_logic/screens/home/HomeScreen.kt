@@ -1,5 +1,6 @@
 package com.allocate.ontime.presentation_logic.screens.home
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -37,8 +38,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.allocate.ontime.R
-import com.allocate.ontime.business_logic.utils.OnTimeColors
+import com.allocate.ontime.business_logic.data.shared_preferences.SecureSharedPrefs
+import com.allocate.ontime.business_logic.utils.Constants
+import com.allocate.ontime.business_logic.viewmodel.MainViewModel
 import com.allocate.ontime.presentation_logic.navigation.HomeScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.screens.login.PinEntryDialog
@@ -49,13 +53,10 @@ import java.util.Locale
 
 
 @Composable
-fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
-
-    fun getCurrentTime(): String {
-        val currentTime = Calendar.getInstance().time
-        val dateFormat = SimpleDateFormat("h:mm a", Locale.getDefault())
-        return dateFormat.format(currentTime)
-    }
+fun HomeScreen(
+    homeScreenRoot: (HomeScreenRoot) -> Unit,
+    mainViewModel: MainViewModel = hiltViewModel()
+) {
 
     var isDialogVisible by remember { mutableStateOf(false) }
     var currentTime by remember { mutableStateOf(getCurrentTime()) }
@@ -68,12 +69,11 @@ fun HomeScreen(homeScreenRoot: (HomeScreenRoot) -> Unit) {
         })
     }
 
-    LaunchedEffect(true) {
-        while (true) {
-            delay(60000) // Update every minute
-            currentTime = getCurrentTime()
-        }
-    }
+    val userName = SecureSharedPrefs(context).getData(Constants.USER_NAME, "")
+    val password = SecureSharedPrefs(context).getData(Constants.PASSWORD, "")
+
+    val asApiUrl = SecureSharedPrefs(context).getData(Constants.AS_API_URL, "")
+    Log.d("asApiUrl",asApiUrl)
 
     Surface(
         modifier = Modifier.fillMaxSize(),

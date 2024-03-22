@@ -4,8 +4,8 @@ import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Update
 import androidx.room.Upsert
+import com.allocate.ontime.business_logic.annotations.DeviceInfoRetrofit
 import kotlinx.coroutines.flow.Flow
-
 
 @Dao
 interface DeviceInfoDao {

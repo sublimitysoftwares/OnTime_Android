@@ -1,6 +1,7 @@
 package com.allocate.ontime.presentation_logic.screens.super_admin
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -46,14 +47,18 @@ import com.allocate.ontime.presentation_logic.model.DeviceInfo
 import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.widgets.InputField
+import dagger.hilt.android.qualifiers.ApplicationContext
 
 
 @SuppressLint("SuspiciousIndentation")
 @Composable
 fun SuperAdminSettingScreen(
     backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit,
-    superAdminViewModel: SuperAdminSettingViewModel = hiltViewModel()
+    superAdminViewModel: SuperAdminSettingViewModel = hiltViewModel(),
+    context: Context
 ) {
+    val TAG = "SuperAdminSettingScreen"
+
     val checkBoxState = remember {
         mutableStateOf(false)
     }
@@ -89,25 +94,27 @@ fun SuperAdminSettingScreen(
     val deviceData = produceState<DataOrException<DeviceInfo, Exception>>(
         initialValue = DataOrException()
     ) {
-        value = superAdminViewModel.getDeviceData()
+        value = superAdminViewModel.getDeviceData(context)
     }.value
 
-    Log.d("deviceData", "SuperAdminSettingScreen: $deviceData")
-
-    if (deviceData.data?.statusCode == 200) {
-        deviceData.data!!.responsePacket.forEach {
-            trustState.value = it.TrustOrganization
-            locationState.value = it.Location
-            postCodeState.value = it.Postcode
-            uniqueIdentifierState.value = it.Unique_Identifier
-            latitudeState.value = it.Latitude
-            longitudeState.value = it.Longitude
-            siteNameState.value = it.SiteName
-            isRLD.value = it.IsRLD
+    if (deviceData.data != null){
+        if (deviceData.data?.statusCode == 200) {
+            deviceData.data?.responsePacket?.forEach {
+                trustState.value = it.TrustOrganization
+                locationState.value = it.Location
+                postCodeState.value = it.Postcode
+                uniqueIdentifierState.value = it.Unique_Identifier
+                latitudeState.value = it.Latitude
+                longitudeState.value = it.Longitude
+                siteNameState.value = it.SiteName
+                isRLD.value = it.IsRLD
+            }
+            latLngState.value = latitudeState.value + ',' + longitudeState.value
         }
-        latLngState.value = latitudeState.value + ',' + longitudeState.value
-
+    } else {
+        Log.e(TAG,"deviceData : $deviceData")
     }
+
 
     Surface(
         modifier = Modifier.fillMaxSize(), color = OnTimeColors.TORY_BLUE
@@ -368,9 +375,9 @@ private fun SuperAdminSettingInfo(
                 )
                 Text(
                     text = stringResource(id = R.string.Site_Name),
-                    color = OnTimeColors.White,
+                    color = Color.White,
                     modifier = Modifier
-                        .padding(start = MaterialTheme.dimens.superAdminSettingScrColStartPad)
+                        .padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
                         .alpha(if (isRLD.value) 0f else 1f)
                 )
                 InputField(
@@ -380,8 +387,8 @@ private fun SuperAdminSettingInfo(
                     isSingleLine = true,
                     modifier = Modifier
                         .size(
-                            width = MaterialTheme.dimens.superAdminSettingScrTxtFieldsW,
-                            height = MaterialTheme.dimens.superAdminSettingScrTxtFieldsH
+                            width = MaterialTheme.dimens.superAdminSettingScreenTextFieldsWidth,
+                            height = MaterialTheme.dimens.superAdminSettingScreenTextFieldsHeight
                         )
                         .alpha(if (isRLD.value) 0f else 1f),
                     textStyle = MaterialTheme.typography.titleMedium
