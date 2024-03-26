@@ -24,7 +24,6 @@ import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -42,21 +41,25 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.allocate.ontime.R
 import com.allocate.ontime.business_logic.data.shared_preferences.SecureSharedPrefs
 import com.allocate.ontime.business_logic.utils.Constants
+import com.allocate.ontime.business_logic.utils.OnTimeColors
 import com.allocate.ontime.business_logic.viewmodel.MainViewModel
+import com.allocate.ontime.business_logic.viewmodel.home.HomeViewModel
 import com.allocate.ontime.presentation_logic.navigation.HomeScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.screens.login.PinEntryDialog
-import kotlinx.coroutines.delay
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-
 @Composable
 fun HomeScreen(
     homeScreenRoot: (HomeScreenRoot) -> Unit,
-    mainViewModel: MainViewModel = hiltViewModel()
 ) {
+    fun getCurrentTime(): String {
+        val currentTime = Calendar.getInstance().time
+        val dateFormat = SimpleDateFormat("h:mm a", Locale.getDefault())
+        return dateFormat.format(currentTime)
+    }
 
     var isDialogVisible by remember { mutableStateOf(false) }
     var currentTime by remember { mutableStateOf(getCurrentTime()) }
@@ -75,8 +78,10 @@ fun HomeScreen(
     val asApiUrl = SecureSharedPrefs(context).getData(Constants.AS_API_URL, "")
     Log.d("asApiUrl",asApiUrl)
 
+
     Surface(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
         Column(

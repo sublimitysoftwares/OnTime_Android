@@ -1,6 +1,5 @@
 package com.allocate.ontime.presentation_logic.screens.super_admin
 
-
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -35,7 +34,6 @@ import com.allocate.ontime.business_logic.utils.OnTimeColors
 import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.widgets.InputField
-
 
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable

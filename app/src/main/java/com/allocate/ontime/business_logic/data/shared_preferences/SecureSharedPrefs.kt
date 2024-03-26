@@ -5,12 +5,11 @@ import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 
 class SecureSharedPrefs(context: Context) {
-    private val PREFS_FILE_NAME = "secret_shared_prefs"
 
+    private val PREFS_FILE_NAME = "secret_shared_prefs"
     private val masterKey = MasterKey.Builder(context)
         .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
         .build()
-
     private val sharedPreferences = EncryptedSharedPreferences.create(
         context,
         PREFS_FILE_NAME,

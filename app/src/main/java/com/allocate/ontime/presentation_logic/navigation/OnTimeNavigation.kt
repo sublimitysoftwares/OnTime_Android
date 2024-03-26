@@ -1,12 +1,8 @@
 package com.allocate.ontime.presentation_logic.navigation
 
-
-import android.content.Context
 import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.compose.ui.platform.LocalContext
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -17,14 +13,13 @@ import com.allocate.ontime.presentation_logic.screens.super_admin.FobRegisterScr
 import com.allocate.ontime.presentation_logic.screens.home.HomeScreen
 import com.allocate.ontime.presentation_logic.screens.super_admin.SuperAdminScreen
 import com.allocate.ontime.presentation_logic.screens.super_admin.SuperAdminSettingScreen
-import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminSettingViewModel
 import com.allocate.ontime.presentation_logic.screens.splash.SplashScreen
 import com.allocate.ontime.presentation_logic.screens.super_admin.VisitorRegistrationScreen
 
 
 @ExperimentalComposeUiApi
 @Composable
-fun OnTimeNavigation(context: Context = LocalContext.current, viewModel: SuperAdminSettingViewModel = hiltViewModel()) {
+fun OnTimeNavigation() {
     val navController = rememberNavController()
     val tag = "Navigation"
     NavHost(
@@ -39,7 +34,8 @@ fun OnTimeNavigation(context: Context = LocalContext.current, viewModel: SuperAd
                         HomeScreenRoot.SuperAdminScreen -> navController.navigate(OnTimeScreens.SuperAdminScreen.name)
                         HomeScreenRoot.HomeScreen -> navController.navigate(OnTimeScreens.HomeScreen.name)
                     }
-                })
+                }
+            )
         }
         composable(OnTimeScreens.SuperAdminScreen.name) {
             SuperAdminScreen(
@@ -119,7 +115,7 @@ fun OnTimeNavigation(context: Context = LocalContext.current, viewModel: SuperAd
                         Log.i(tag, LogMsg.NAVIGATION_GETS_WRONG)
                     }
                 }
-            }, viewModel, context)
+            })
         }
         composable(OnTimeScreens.SplashScreen.name) {
             SplashScreen(homeScreenRoot = {

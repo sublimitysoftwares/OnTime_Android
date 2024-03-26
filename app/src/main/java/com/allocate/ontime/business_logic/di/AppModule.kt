@@ -10,12 +10,9 @@ import com.allocate.ontime.business_logic.data.room.OnTimeDatabase
 import com.allocate.ontime.business_logic.data.shared_preferences.SecureSharedPrefs
 import com.allocate.ontime.business_logic.network.DeviceInfoApi
 import com.allocate.ontime.business_logic.network.SuperAdminApi
-import com.allocate.ontime.business_logic.repository.DaoRepository
 import com.allocate.ontime.business_logic.repository.DeviceInfoRepository
 import com.allocate.ontime.business_logic.utils.Constants
-import com.allocate.ontime.business_logic.utils.DeviceUtility
 import com.allocate.ontime.business_logic.viewmodel.MainViewModel
-import com.allocate.ontime.business_logic.viewmodel.splash.SplashViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,15 +22,19 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
+    // It provides the dependency of DaoRepository Class.
     @Provides
     fun provideDeviceInfoDaoRepository(database: OnTimeDatabase): DeviceInfoDao {
         return database.deviceInfoDao()
     }
+    @Singleton
+    @Provides
+    fun provideMainViewModel(repository: DeviceInfoRepository, @ApplicationContext context: Context): MainViewModel =
+        MainViewModel(repository, context)
 
     // It provides the dependency of OnTimeDatabase Class.
     @Singleton
@@ -50,6 +51,7 @@ object AppModule {
         return retrofit.create(DeviceInfoApi::class.java)
     }
 
+    @Singleton
     @Provides
     fun provideSuperAdminApi(@SuperAdminRetrofit retrofit: Retrofit): SuperAdminApi {
         return retrofit.create(SuperAdminApi::class.java)

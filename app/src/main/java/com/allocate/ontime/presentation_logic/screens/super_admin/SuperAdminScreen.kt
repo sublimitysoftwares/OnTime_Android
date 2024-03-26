@@ -1,9 +1,11 @@
 package com.allocate.ontime.presentation_logic.screens.super_admin
 
-
+import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,24 +25,53 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.allocate.ontime.R
 import com.allocate.ontime.business_logic.utils.OnTimeColors
+import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminViewModel
 import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 
+@SuppressLint("RememberReturnType")
 @Composable
-fun SuperAdminScreen(superAdminScreenRoot: (SuperAdminScreenRoot) -> Unit) {
+fun SuperAdminScreen(
+    superAdminScreenRoot: (SuperAdminScreenRoot) -> Unit,
+    superAdminViewModel: SuperAdminViewModel = hiltViewModel(),
+) {
     val scrollState = rememberScrollState()
 
+    val hasNoUserInteractionSuperAdminScreen = superAdminViewModel.navigationFlow.collectAsState()
+    Log.d(
+        "AutoBackNavigationManager",
+        "SuperAdminScreen: ${hasNoUserInteractionSuperAdminScreen.value}"
+    )
+    if (hasNoUserInteractionSuperAdminScreen.value) {
+        superAdminScreenRoot(SuperAdminScreenRoot.HomeScreen)
+        superAdminViewModel.resetAutoBack()
+    }
+
     Surface(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .pointerInput(Unit) {
+                detectTapGestures(
+                    onTap = {
+                        superAdminViewModel.startInteraction()
+                    }
+                )
+
+            },
         color = OnTimeColors.TORY_BLUE
     ) {
         Column(

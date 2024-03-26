@@ -4,6 +4,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,31 +26,36 @@ import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.allocate.ontime.R
 import com.allocate.ontime.business_logic.utils.OnTimeColors
+import com.allocate.ontime.business_logic.viewmodel.super_admin.FobRegisterViewModel
 import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.widgets.InputField
 
 @Composable
-fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
-
+fun FobRegisterScreen(
+    backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit,
+    fobRegisterViewModel: FobRegisterViewModel = hiltViewModel(),
+) {
     val searchEmployeeState = remember {
         mutableStateOf("")
     }
     val locationRadiusState = remember {
-
         mutableStateOf("")
     }
 
@@ -61,8 +67,25 @@ fun FobRegisterScreen(backToSuperAdminScreen: (SuperAdminScreenRoot) -> Unit) {
         mutableStateOf(false)
     }
 
+    val hasNoUserInteractionFobRegistrationScreen =
+        fobRegisterViewModel.navigationFlow.collectAsState()
+
+    if (hasNoUserInteractionFobRegistrationScreen.value) {
+        backToSuperAdminScreen(SuperAdminScreenRoot.SuperAdminScreen)
+        fobRegisterViewModel.resetAutoBack()
+    }
+
     Surface(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .pointerInput(Unit) {
+                detectTapGestures(
+                    onTap = {
+                        fobRegisterViewModel.startInteraction()
+                    }
+                )
+
+            },
         color = OnTimeColors.TORY_BLUE
     ) {
         Column(

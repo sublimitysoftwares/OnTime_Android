@@ -14,12 +14,13 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import javax.inject.Singleton
 
 @HiltViewModel
 @SuppressLint("StaticFieldLeak")
 class MainViewModel @Inject constructor(
     private val repository: DeviceInfoRepository,
-    @ApplicationContext private val context: Context
+    private val context: Context
 ) : ViewModel() {
 
     companion object{
@@ -27,9 +28,13 @@ class MainViewModel @Inject constructor(
     }
 
     init {
+        fetchSuperAdminDetails()
+    }
+
+    private fun fetchSuperAdminDetails() {
         viewModelScope.launch {
             val result = repository.postSuperAdminDetails()
-            if (result.data != null){
+            if (result.data != null) {
                 if (result.data?.isSuccessful == true) {
                     val data = result.data?.body()?.data
                     val decryptedData =
@@ -44,7 +49,7 @@ class MainViewModel @Inject constructor(
                     )
                 }
             } else {
-                Log.d(TAG,"result.data is null")
+                Log.d(TAG, "result.data is null")
             }
         }
     }

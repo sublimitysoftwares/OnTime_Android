@@ -90,4 +90,15 @@
     <string name="Postcode">Postcode</string>
     <string name="LatLng">LatLng</string>
     <string name="Unique_Identifier_only">Unique Identifier</string>
+
+    // Visitor Registration Screen
+    <string name="Search_Visitor">Search Visitor</string>
+    <string name="Company_name">Company name</string>
+    <string name="Visiting_person">Visiting person</string>
+    <string name="Phone_number">Phone number</string>
+    <string name="Vehicle_Registration">Vehicle Registration</string>
+    <string name="Reason">Reason</string>
+    <string name="Clock_in">Clock in</string>
+    <string name="Clock_out">Clock out</string>
+    <string name="Register_and_make_event">Register and make event</string>
 </resources>
