@@ -14,6 +14,7 @@ object Constants {
       const val ADMIN_REGISTRATION_SCREEN = "AdminRegistrationScreen"
       const val FOB_REGISTER_SCREEN = "FobRegisterScreen"
       const val SUPER_ADMIN_SETTING_SCREEN = "SuperAdminSettingScreen"
+      const val Visitor_Registration__SCREEN = "VisitorRegistrationScreen"
 
       const val USER_NAME = "UserName"
       const val PASSWORD = "Password"

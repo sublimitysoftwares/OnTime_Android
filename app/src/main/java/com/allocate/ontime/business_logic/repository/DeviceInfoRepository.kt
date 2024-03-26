@@ -24,7 +24,8 @@ class DeviceInfoRepository @Inject constructor(
     suspend fun getDeviceInfo(context: Context): DataOrException<DeviceInfo, Exception> {
         val dataOrException = DataOrException<DeviceInfo, Exception>()
         try {
-           dataOrException.data = deviceInfoApi.getDeviceInfo(imei = deviceUtility.getIMEI())
+//           dataOrException.data = deviceInfoApi.getDeviceInfo(imei = deviceUtility.getIMEI())
+            dataOrException.data = deviceInfoApi.getDeviceInfo(imei = "867584036299027")
         } catch (exception: Exception) {
             dataOrException.e = exception
             Log.e(TAG, "getAllDeviceInfo: ${dataOrException.e}")

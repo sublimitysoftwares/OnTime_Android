@@ -37,7 +37,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import com.allocate.ontime.R
 import com.allocate.ontime.business_logic.utils.OnTimeColors
-import com.allocate.ontime.business_logic.viewmodel.super_admin.AdminRegistrationViewModel
 import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.widgets.InputField

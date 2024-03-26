@@ -38,7 +38,6 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import com.allocate.ontime.R
 import com.allocate.ontime.business_logic.utils.OnTimeColors
-import com.allocate.ontime.business_logic.viewmodel.super_admin.FobRegisterViewModel
 import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.widgets.InputField

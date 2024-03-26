@@ -378,7 +378,7 @@ private fun SuperAdminSettingInfo(
                     text = stringResource(id = R.string.Site_Name),
                     color = Color.White,
                     modifier = Modifier
-                        .padding(start = MaterialTheme.dimens.superAdminSettingScreenColumnStartPadding)
+                        .padding(start = MaterialTheme.dimens.superAdminSettingScrColStartPad)
                         .alpha(if (isRLD.value) 0f else 1f)
                 )
                 InputField(
@@ -388,8 +388,8 @@ private fun SuperAdminSettingInfo(
                     isSingleLine = true,
                     modifier = Modifier
                         .size(
-                            width = MaterialTheme.dimens.superAdminSettingScreenTextFieldsWidth,
-                            height = MaterialTheme.dimens.superAdminSettingScreenTextFieldsHeight
+                            width = MaterialTheme.dimens.superAdminSettingScrTxtFieldsW,
+                            height = MaterialTheme.dimens.superAdminSettingScrTxtFieldsH
                         )
                         .alpha(if (isRLD.value) 0f else 1f),
                     textStyle = MaterialTheme.typography.titleMedium

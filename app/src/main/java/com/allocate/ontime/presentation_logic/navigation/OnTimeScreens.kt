@@ -11,6 +11,8 @@ sealed class OnTimeScreens(val name: String) {
     object AdminRegistrationScreen : OnTimeScreens(Constants.ADMIN_REGISTRATION_SCREEN)
     object FobRegisterScreen : OnTimeScreens(Constants.FOB_REGISTER_SCREEN)
     object SuperAdminSettingScreen : OnTimeScreens(Constants.SUPER_ADMIN_SETTING_SCREEN)
+    object VisitorRegistrationScreen : OnTimeScreens(Constants.Visitor_Registration__SCREEN)
+
 }
 
 sealed class HomeScreenRoot {

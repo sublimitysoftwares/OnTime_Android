@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -41,8 +42,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.allocate.ontime.R
+import com.allocate.ontime.business_logic.data.shared_preferences.SecureSharedPrefs
+import com.allocate.ontime.business_logic.utils.Constants
 import com.allocate.ontime.business_logic.utils.OnTimeColors
-import com.allocate.ontime.business_logic.viewmodel.home.HomeViewModel
+import com.allocate.ontime.business_logic.viewmodel.MainViewModel
 import com.allocate.ontime.presentation_logic.navigation.HomeScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.screens.login.PinEntryDialog
@@ -159,14 +162,6 @@ fun HomeScreen(
                     .padding(end = MaterialTheme.dimens.m1),
                 horizontalArrangement = Arrangement.End
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.rld_img_logo),
-                    contentDescription = stringResource(id = R.string.rld_img_logo),
-                    modifier = Modifier
-                        .size(MaterialTheme.dimens.large3)
-                        .aspectRatio(1f),
-
-                    )
                 Column(
                     verticalArrangement = Arrangement.Bottom,
                     horizontalAlignment = Alignment.CenterHorizontally,
