@@ -1,5 +1,6 @@
 package com.allocate.ontime
 
+import android.annotation.SuppressLint
 import android.app.admin.DevicePolicyManager
 import android.app.admin.SystemUpdatePolicy
 import android.content.ComponentName
@@ -23,9 +24,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import com.allocate.ontime.presentation_logic.navigation.OnTimeNavigation
-import com.allocate.ontime.presentation_logic.theme.OnTimeTheme
+import com.allocate.ontime.presentation_logic.navigation.OnTimeNavigation
+import com.allocate.ontime.presentation_logic.theme.CI_OnTimeTheme
 import dagger.hilt.android.AndroidEntryPoint
-
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -37,6 +39,8 @@ class MainActivity : ComponentActivity() {
         const val LOCK_ACTIVITY_KEY = "com.allocate.ontime.MainActivity"
     }
 
+
+    @SuppressLint("CoroutineCreationDuringComposition")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

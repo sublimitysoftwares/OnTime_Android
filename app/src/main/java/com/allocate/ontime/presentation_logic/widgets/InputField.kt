@@ -1,6 +1,5 @@
 package com.allocate.ontime.presentation_logic.widgets
 
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.aspectRatio
@@ -28,7 +27,6 @@ import androidx.compose.ui.unit.sp
 import com.allocate.ontime.R
 import com.allocate.ontime.business_logic.utils.OnTimeColors
 import com.allocate.ontime.presentation_logic.theme.dimens
-
 
 @Composable
 fun InputField(
