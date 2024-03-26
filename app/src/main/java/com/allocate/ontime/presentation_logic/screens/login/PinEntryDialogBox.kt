@@ -40,7 +40,6 @@ import com.allocate.ontime.R
 import com.allocate.ontime.business_logic.utils.OnTimeColors
 import com.allocate.ontime.presentation_logic.theme.dimens
 
-
 @Composable
 fun PinEntryDialog(
     onDismiss: () -> Unit,

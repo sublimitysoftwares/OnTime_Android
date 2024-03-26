@@ -13,6 +13,7 @@ sealed class OnTimeScreens(val name: String) {
     object SuperAdminSettingScreen : OnTimeScreens(Constants.SUPER_ADMIN_SETTING_SCREEN)
 }
 
+
 sealed class HomeScreenRoot {
     object AdminScreen : HomeScreenRoot()
     object SuperAdminScreen : HomeScreenRoot()
