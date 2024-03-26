@@ -6,6 +6,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -37,6 +38,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.allocate.ontime.R
+import com.allocate.ontime.business_logic.utils.OnTimeColors
 import com.allocate.ontime.business_logic.viewmodel.super_admin.SuperAdminViewModel
 import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
@@ -47,6 +49,7 @@ fun SuperAdminScreen(
     superAdminScreenRoot: (SuperAdminScreenRoot) -> Unit,
     superAdminViewModel: SuperAdminViewModel = hiltViewModel(),
 ) {
+    val scrollState = rememberScrollState()
 
     val hasNoUserInteractionSuperAdminScreen = superAdminViewModel.navigationFlow.collectAsState()
     Log.d(
@@ -69,7 +72,7 @@ fun SuperAdminScreen(
                 )
 
             },
-        color = Color.DarkGray.copy(alpha = MaterialTheme.dimens.surfaceColorAlphaValue)
+        color = OnTimeColors.TORY_BLUE
     ) {
         Column(
             verticalArrangement = Arrangement.Top,

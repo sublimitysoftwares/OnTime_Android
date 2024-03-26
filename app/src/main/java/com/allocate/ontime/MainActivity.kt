@@ -24,10 +24,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import com.allocate.ontime.presentation_logic.navigation.OnTimeNavigation
-import com.allocate.ontime.presentation_logic.navigation.OnTimeNavigation
-import com.allocate.ontime.presentation_logic.theme.CI_OnTimeTheme
+import com.allocate.ontime.presentation_logic.theme.OnTimeTheme
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

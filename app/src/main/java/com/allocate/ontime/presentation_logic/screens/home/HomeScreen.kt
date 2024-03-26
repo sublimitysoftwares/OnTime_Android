@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,12 +20,10 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
-import androidx.compose.material3.RadioButtonColors
 import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -42,12 +39,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.allocate.ontime.R
+import com.allocate.ontime.business_logic.data.shared_preferences.SecureSharedPrefs
+import com.allocate.ontime.business_logic.utils.Constants
 import com.allocate.ontime.business_logic.utils.OnTimeColors
+import com.allocate.ontime.business_logic.viewmodel.MainViewModel
 import com.allocate.ontime.business_logic.viewmodel.home.HomeViewModel
 import com.allocate.ontime.presentation_logic.navigation.HomeScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.screens.login.PinEntryDialog
-import kotlinx.coroutines.delay
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -55,14 +54,13 @@ import java.util.Locale
 @Composable
 fun HomeScreen(
     homeScreenRoot: (HomeScreenRoot) -> Unit,
-    homeViewModel: HomeViewModel = hiltViewModel()
+    mainViewModel: MainViewModel = hiltViewModel()
 ) {
     fun getCurrentTime(): String {
         val currentTime = Calendar.getInstance().time
         val dateFormat = SimpleDateFormat("h:mm a", Locale.getDefault())
         return dateFormat.format(currentTime)
     }
-
 
     var isDialogVisible by remember { mutableStateOf(false) }
     var currentTime by remember { mutableStateOf(getCurrentTime()) }

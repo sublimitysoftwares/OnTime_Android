@@ -1,9 +1,6 @@
 package com.allocate.ontime.presentation_logic.screens.super_admin
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.util.Log
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
@@ -51,7 +48,6 @@ import com.allocate.ontime.presentation_logic.model.DeviceInfo
 import com.allocate.ontime.presentation_logic.navigation.SuperAdminScreenRoot
 import com.allocate.ontime.presentation_logic.theme.dimens
 import com.allocate.ontime.presentation_logic.widgets.InputField
-import dagger.hilt.android.qualifiers.ApplicationContext
 
 @SuppressLint("SuspiciousIndentation")
 @Composable
@@ -95,7 +91,7 @@ fun SuperAdminSettingScreen(
     val deviceData = produceState<DataOrException<DeviceInfo, Exception>>(
         initialValue = DataOrException()
     ) {
-        value = superAdminViewModel.getDeviceData(context)
+        value = superAdminViewModel.getDeviceData()
     }.value
 
     if (deviceData.data?.statusCode == 200) {
@@ -132,7 +128,7 @@ fun SuperAdminSettingScreen(
                 )
 
             },
-        color = Color.DarkGray.copy(alpha = MaterialTheme.dimens.surfaceColorAlphaValue)
+        color = OnTimeColors.TORY_BLUE
     ) {
         Column(
             verticalArrangement = Arrangement.Center,

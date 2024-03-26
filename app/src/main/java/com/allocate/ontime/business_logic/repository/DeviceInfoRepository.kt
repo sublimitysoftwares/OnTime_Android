@@ -21,6 +21,7 @@ class DeviceInfoRepository @Inject constructor(
     companion object {
         const val TAG = "DeviceInfoRepository"
     }
+
     suspend fun getDeviceInfo(context: Context): DataOrException<DeviceInfo, Exception> {
         val dataOrException = DataOrException<DeviceInfo, Exception>()
         try {

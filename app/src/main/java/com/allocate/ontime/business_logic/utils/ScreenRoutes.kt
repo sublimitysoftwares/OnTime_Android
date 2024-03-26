@@ -1,13 +1,12 @@
 package com.allocate.ontime.business_logic.utils
 
 object ScreenRoutes {
-
-    // Screens route
-    const val SplashScreen = "SplashScreen"
-    const val HomeScreen = "HomeScreen"
-    const val AdminScreen = "AdminScreen"
-    const val SuperAdminScreen = "SuperAdminScreen"
-    const val AdminRegistrationScreen = "AdminRegistrationScreen"
-    const val FobRegisterScreen = "FobRegisterScreen"
-    const val SuperAdminSettingScreen = "SuperAdminSettingScreen"
+    const val SPLASH_SCREEN = "SplashScreen"
+    const val HOME_SCREEN = "HomeScreen"
+    const val ADMIN_SCREEN = "AdminScreen"
+    const val SUPER_ADMIN_SCREEN = "SuperAdminScreen"
+    const val ADMIN_REGISTRATION_SCREEN = "AdminRegistrationScreen"
+    const val FOB_REGISTER_SCREEN = "FobRegisterScreen"
+    const val SUPER_ADMIN_SETTING_SCREEN = "SuperAdminSettingScreen"
+    const val VISITOR_REGISTRATION_SCREEN = "VisitorRegistrationScreen"
 }

@@ -1,6 +1,5 @@
 package com.allocate.ontime.business_logic.viewmodel.splash
 
-
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
@@ -26,7 +25,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
 
 @HiltViewModel
 @SuppressLint("StaticFieldLeak")
