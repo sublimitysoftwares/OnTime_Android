@@ -10,7 +10,9 @@ import com.allocate.ontime.business_logic.data.room.OnTimeDatabase
 import com.allocate.ontime.business_logic.data.shared_preferences.SecureSharedPrefs
 import com.allocate.ontime.business_logic.network.DeviceInfoApi
 import com.allocate.ontime.business_logic.network.SuperAdminApi
+import com.allocate.ontime.business_logic.repository.DeviceInfoRepository
 import com.allocate.ontime.business_logic.utils.Constants
+import com.allocate.ontime.business_logic.viewmodel.MainViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,6 +31,10 @@ object AppModule {
     fun provideDeviceInfoDaoRepository(database: OnTimeDatabase): DeviceInfoDao {
         return database.deviceInfoDao()
     }
+    @Singleton
+    @Provides
+    fun provideMainViewModel(repository: DeviceInfoRepository, @ApplicationContext context: Context): MainViewModel =
+        MainViewModel(repository, context)
 
     // It provides the dependency of OnTimeDatabase Class.
     @Singleton

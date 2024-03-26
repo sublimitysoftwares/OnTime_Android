@@ -54,7 +54,6 @@ import java.util.Locale
 @Composable
 fun HomeScreen(
     homeScreenRoot: (HomeScreenRoot) -> Unit,
-    mainViewModel: MainViewModel = hiltViewModel()
 ) {
     fun getCurrentTime(): String {
         val currentTime = Calendar.getInstance().time
